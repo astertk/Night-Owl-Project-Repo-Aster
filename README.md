@@ -1,4 +1,2 @@
-![alt text](Letterhead.png)
-# Night-Owl-Project_Repo
-## "The night is ours, the future is yours!"
+# Night-Owl-Project-Repo
 Project Repository for Night Owl Studios
