@@ -2,6 +2,7 @@ TEAM AVAILABILITY
 
 Meeting hours:
 Monday-Friday 7PM-8PM
+Tuesday 11AM (Meeting with Scot)
 
 All team members available:
 Tuesday  6PM-9PM
