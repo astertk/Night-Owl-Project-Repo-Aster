@@ -31,7 +31,7 @@ Project Inception Worksheet
     As needed
 
 ## List of Needs and Features
-    Our application will take input from the user about what they want to do
+Our application will take input from the user about what they want to do
 for a DND/TTRPG campaign. They will describe broad concepts of what they 
 want the campaign to be like, quests, maps, encounters, and NPCs. The
 application will then return AI generated content for the user to put in
@@ -92,8 +92,7 @@ T: Task
     Diagrams, SQL modeling (dbdiagram.io), UML diagrams
 
 ## Timeline and Release Plan
-    Schedule: meaningful dates, milestones, sprint cadence, how releases are made (CI/CD, or fixed releases, or ?)
-    
+
     Milestone 2: January 24, 2023
     Milestone 3: January 30, 2023
     Milestone 4: February 6, 2023
