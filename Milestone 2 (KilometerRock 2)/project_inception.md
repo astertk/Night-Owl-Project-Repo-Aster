@@ -2,14 +2,10 @@ Project Inception Worksheet
 =====================================
 
 ## Summary of Our Approach to Software Development
-    What processes are we following?  How will we run this project? ==> Agile, Scrum, ...  
-    What are we choosing to do, how will we do it and at what level of detail or extent?
-
     Following the AGILE and SCRUM processes, we have chosen to create a web app that creates
     a campaign for people who enjoy Dungeons and Dragons and/or enjoy Table Top Role Playing Games (TTRPGs) in general.
     We will be using ChatGPT to generate a backstory and quests that will guide them through their adventures and 
-    DALLE to generate images of the character that they describe to be and the map that they describe to the 
-    AI.
+    DALLE to generate images of the character that they describe to be and the map that they describe to the AI.
 
 ## Initial Vision Discussion with Stakeholders
     Summarize what was discussed.  What do they want? Include:
