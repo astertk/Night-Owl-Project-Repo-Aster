@@ -5,13 +5,20 @@ Project Inception Worksheet
     What processes are we following?  How will we run this project? ==> Agile, Scrum, ...  
     What are we choosing to do, how will we do it and at what level of detail or extent?
 
+    Following the AGILE and SCRUM processes, we have chosen to create a web app that creates
+    a campaign for people who enjoy Dungeons and Dragons and/or enjoy Table Top Role Playing Games (TTRPGs) in general.
+    We will be using ChatGPT to generate a backstory and quests that will guide them through their adventures and 
+    DALLE to generate images of the character that they describe to be and the map that they describe to the 
+    AI.
+
 ## Initial Vision Discussion with Stakeholders
     Summarize what was discussed.  What do they want? Include:
 
 ### Description of Clients/Users
 
 ### List of Stakeholders and their Positions (if applicable)
-    Who are they? Why are they a stakeholder?
+    - Users who enjoy TTRPGs as the project is mainly catered to them
+    - Professor as they also test/approve the application
 
 ## Initial Requirements Elaboration and Elicitation
     See Requirements_template for more
@@ -28,9 +35,31 @@ Project Inception Worksheet
     As needed
 
 ## List of Needs and Features
-    1. Not in any particular format
-    2.
-    3. ...
+    Our application will take input from the user about what they want to do
+for a DND/TTRPG campaign. They will describe broad concepts of what they 
+want the campaign to be like, quests, maps, encounters, and NPCs. The
+application will then return AI generated content for the user to put in
+their campaign. This will include images for maps and characters and
+descriptions of quests, encounters, characters, and likely more. The user
+can create an account to store these assets and download them to their
+device. This will give users the ability to create a campaign without
+needing to spend as much time as the planning often requires.
+
+To do this, we will first need to be able to use the OpenAI API. We will
+need to make requests using the user's input and then display the response.
+
+We will then need to give the user the ability to create an account, save
+their assets, and download them.
+
+Another primary objective would be editing. The extent of editing would 
+vary depending on the type of resource. Quest descriptions might only
+be a plain text file, so we could provide a way to edit the text, but
+that would be the only option. For maps, there are many more possible
+editing options. The most obvious is the ability to apply and remove a
+grid.
+
+Another feature would be the ability to delete resources. Users would
+need to be able to remove resources from their account.
 
 ## Initial Modeling
 
@@ -61,10 +90,20 @@ T: Task
         a. [T]
 
 ## Initial Architecture Envisioning
-    Diagrams and drawings, lists of components
+    See mvc_architecture.png
 
 ## Agile Data Modeling
     Diagrams, SQL modeling (dbdiagram.io), UML diagrams
 
 ## Timeline and Release Plan
     Schedule: meaningful dates, milestones, sprint cadence, how releases are made (CI/CD, or fixed releases, or ?)
+    
+    Milestone 2: January 24, 2023
+    Milestone 3: January 30, 2023
+    Milestone 4: February 6, 2023
+    Sprint 1: Feb 10, 2023
+    Sprint 2: March 6, 2023
+    Sprint 3: March 20, 2023
+
+    Meetings with Professor: Tuesdays @ 11:00 a.m.
+    SCRUM Team Meetings: Thursdays or Fridays @ 12:00 p.m.
