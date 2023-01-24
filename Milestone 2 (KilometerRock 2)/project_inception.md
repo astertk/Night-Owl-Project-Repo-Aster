@@ -14,18 +14,28 @@ Project Inception Worksheet
 
 ### List of Stakeholders and their Positions (if applicable)
     - Users who enjoy TTRPGs as the project is mainly catered to them
+    - Developers as they create and deploy the project
     - Professor as they also test/approve the application
 
 ## Initial Requirements Elaboration and Elicitation
     See Requirements_template for more
 
 ### Elicitation Questions
-    1. 
-    2.
-    3. ...
+    1. Is there any competition or other apps that currently does this?
+    2. Will I be able to edit the content that's created? 
+    3. How many characters, maps, etc. am I able to create?
 
 ### Elicitation Interviews
-    Transcript or summary of what was learned
+    As we discussed the questions above, we learned that there is an app that currently does this
+    but they have an in-house randomization algorithm for creating text models, whereas we are 
+    utilizing OpenAI. 
+    
+    As far as our clients had informed us, they would like for the web app to 
+    be able to edit the content that was created on it as well. 
+
+    As far as we have discussed, users will be able to create 3 or so of each component 
+    to create the campaign. For example, the user can create 3 characters, 3 maps, 
+    3 backstories, and 3 quests all for free. 
 
 ### Other Elicitation Activities?
     As needed
