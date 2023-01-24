@@ -36,7 +36,7 @@ Project Inception Worksheet
     As far as we have discussed with our clients, users will be able to create 3 or so of each component 
     to create the campaign for free. For example, the user can create 3 characters, 3 maps, 
     3 backstories, and 3 quests all for free. It may cost some money to create more after all free 
-    creations have been used up. 
+    generated content have been used up. 
 
 ### Other Elicitation Activities?
     As needed
