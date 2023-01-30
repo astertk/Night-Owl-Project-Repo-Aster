@@ -34,3 +34,34 @@ grid.
 
 Another feature would be the ability to delete resources. Users would
 need to be able to remove resources from their account.
+
+NEEDS LIST: 
+1. Create account
+2. Input basic world information and generate detailed description
+3. Input basic quest information and generate detailed description
+4. Input basic character information and generate detailed description
+5. Input location information and generate map
+6. Input character information and generate character image
+7. Delete unwanted resources
+8. Download resources to device
+9. Upload resources from device
+10. Edit resources
+11. Delete account
+
+FEATURES LIST:
+1. Create account
+2. Receive user input for basic world information and display AI 
+response for world details
+3. Receive user input for basic quest information and display AI 
+response for quest details
+4. Receive user input for basic character information and display AI 
+response for character details
+5. Receive user input about a location and display AI generated
+map for location
+6. Receive user input about a character and display AI generated
+image for character
+7. Delete resources from account
+8. Download resources from account
+9. Upload resources to account
+10. Edit saved resources
+11. Delete account
