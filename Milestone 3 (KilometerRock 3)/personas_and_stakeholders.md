@@ -5,6 +5,8 @@
  * Jazz Parayaoan - Developer
  * Scot Morse - Professor
  * Colton - Beta Tester
+ * Nathan Evans-Butt - Beta Tester
+ * Tonya Bradley - Beta
   
 ## Personas
 
