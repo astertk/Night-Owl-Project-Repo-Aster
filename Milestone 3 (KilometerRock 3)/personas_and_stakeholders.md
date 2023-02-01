@@ -5,7 +5,7 @@
 
  * O'Neil Magno 
 
-        He is one of four developers in the DnD Campaign/World Builder Project. He works together with the team to build the project and is the Repository Maintainer for the team. 
+        He is one of four developers in the DnD Campaign/World Builder Project. He works together with the team to build the project and is the Repository Maintainer for the team. He wanted to explore the realm of TTRPGs, which interested him to the project.
 
  * Aster Kubo 
 
@@ -13,23 +13,23 @@
 
  * Jazz Parayaoan 
         
-        He is one of four developers in the DnD Campaign/World Builder Project. He works together with the team to build the project. He enjoys playing video games, but wanted to explore the realm of TTRPGs; which led to his interest in the project.
+        He is one of four developers in the DnD Campaign/World Builder Project. He works together with the team to build the project. He enjoys playing video games, but also wanted to understand the hype around TTRPGs--which led to his interest in the project.
 
  * Scot Morse 
 
         He views our project and approves/grades it based on the requirements that we create on the sprints. He is our professor who teaches the subject, one of the first few people who interact/view the project and determines if our sprint was successful.
 
- * Colton 
+ * Colton Ragan 
 
-        Beta Tester
+        Colton is really interested in the product, as he'll use the software to quickly construct materials for his two D&D groups. Colton leads a very busy life and often doesn't have many hours free in the day to craft complex campaigns for his sessions. With our project, Colton can design complex backstories, creative quests, and intricate maps while keeping to his tight schedule. He will be among the few beta testers for this project.
 
  * Nathan Evans-Butt
         
-        He is very geeky and loves playing DnD, both as a player and Dungeon Master (DM). He also spends his free time on video games and playing Magic the Gathering. He is interested and willing to participate in testing the project, so he will be a beta tester
+        He is very geeky and loves playing DnD, both as a player and Dungeon Master (DM). He also spends his free time on video games and playing Magic the Gathering. He is interested and willing to participate in testing the project, so he is among the few beta testers for this project.
 
  * Tonya Bradley
 
-        She teaches social studies, and runs a student DnD club as a DM. Outside of work, she spends most of her time grading, relaxing with her girlfriend, and doing embroidery. She is interested and willing to partcipate in testing the project, so she will be a beta tester. 
+        She teaches social studies, and runs a student DnD club as a DM. Outside of work, she spends most of her time grading, relaxing with her girlfriend, and doing embroidery. She is interested and willing to partcipate in testing the project, so she is among the few beta testers for this project.
   
 ## Personas
 
