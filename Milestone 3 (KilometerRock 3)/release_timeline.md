@@ -59,3 +59,5 @@
         </tr>
     </tbody>
 </table>
+
+Assuming we are having meetings with Professor on Tuesdays @ 11 pm, Sprints 4-8's start dates are the next day (Wednesday) and the end dates are on the days of the meetings. (Note: Sprint 4's start date is on the Monday we get back from Spring Break.) 
