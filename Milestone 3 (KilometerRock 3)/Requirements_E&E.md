@@ -23,7 +23,9 @@ We can organize this list into epics and later on into user stories during devel
 
 4. What do you not understand?
     * Technical domain knowledge
+    - Still a bit unsure about the API, we will need to go more in depth with that, possibly create a demo mvc project.
     * Business domain knowledge
+    - We should ask a number of people who enjoy D&D and are Dugeam Masters. Do they want more details in our results, or more inspiration?
 5. Is there something missing?
 6. Get answers to these questions.
 
