@@ -1959,15 +1959,15 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/13.0.2": {
+      "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -2118,21 +2118,13 @@
           }
         }
       },
-      "OpenAI/1.4.0": {
+      "OpenAI-DotNet/4.4.3": {
         "type": "package",
-        "dependencies": {
-          "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
-          "Newtonsoft.Json": "13.0.2"
-        },
         "compile": {
-          "lib/netstandard2.0/OpenAI_API.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/OpenAI-DotNet.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/OpenAI_API.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/OpenAI-DotNet.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -6761,15 +6753,14 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/13.0.2": {
-      "sha512": "R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg==",
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
-      "path": "newtonsoft.json/13.0.2",
+      "path": "newtonsoft.json/13.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
-        "README.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -6778,15 +6769,13 @@
         "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
         "lib/net45/Newtonsoft.Json.xml",
-        "lib/net6.0/Newtonsoft.Json.dll",
-        "lib/net6.0/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "newtonsoft.json.13.0.2.nupkg.sha512",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
@@ -6952,18 +6941,17 @@
         "nuget.versioning.nuspec"
       ]
     },
-    "OpenAI/1.4.0": {
-      "sha512": "leN2N/2mh2UPhsB80EKSc5DrCZStB9EnJ/AayQIqI1qglk6WrS1aHcxQEa3JcUC0n66LBxQ4STvCJpta2K+V3g==",
+    "OpenAI-DotNet/4.4.3": {
+      "sha512": "8SiLu35zMXfmqnr24BqYKdB1yVP+QB4io4ujyKZBmHO0NLlTxwW9iWcfa5LjK3dhyEP2Lj/jQdyoCT0TNFrENA==",
       "type": "package",
-      "path": "openai/1.4.0",
+      "path": "openai-dotnet/4.4.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "lib/netstandard2.0/OpenAI_API.dll",
-        "lib/netstandard2.0/OpenAI_API.xml",
-        "openai.1.4.0.nupkg.sha512",
-        "openai.nuspec"
+        "lib/net6.0/OpenAI-DotNet.dll",
+        "openai-dotnet.4.4.3.nupkg.sha512",
+        "openai-dotnet.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -11217,7 +11205,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.2",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.2",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.3",
-      "OpenAI >= 1.4.0"
+      "OpenAI-DotNet >= 4.4.3"
     ]
   },
   "packageFolders": {
@@ -11299,9 +11287,9 @@
             "target": "Package",
             "version": "[7.0.3, )"
           },
-          "OpenAI": {
+          "OpenAI-DotNet": {
             "target": "Package",
-            "version": "[1.4.0, )"
+            "version": "[4.4.3, )"
           }
         },
         "imports": [
