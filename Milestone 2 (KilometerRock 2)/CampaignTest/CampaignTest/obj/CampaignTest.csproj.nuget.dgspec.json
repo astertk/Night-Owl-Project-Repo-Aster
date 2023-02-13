@@ -1,33 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jade\\Desktop\\dev\\CS461\\CampaignTest\\CampaignTest\\CampaignTest.csproj": {}
+    "c:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\Milestone 2 (KilometerRock 2)\\CampaignTest\\CampaignTest\\CampaignTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jade\\Desktop\\dev\\CS461\\CampaignTest\\CampaignTest\\CampaignTest.csproj": {
+    "c:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\Milestone 2 (KilometerRock 2)\\CampaignTest\\CampaignTest\\CampaignTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jade\\Desktop\\dev\\CS461\\CampaignTest\\CampaignTest\\CampaignTest.csproj",
+        "projectUniqueName": "c:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\Milestone 2 (KilometerRock 2)\\CampaignTest\\CampaignTest\\CampaignTest.csproj",
         "projectName": "CampaignTest",
-        "projectPath": "C:\\Users\\Jade\\Desktop\\dev\\CS461\\CampaignTest\\CampaignTest\\CampaignTest.csproj",
-        "packagesPath": "C:\\Users\\Jade\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jade\\Desktop\\dev\\CS461\\CampaignTest\\CampaignTest\\obj\\",
+        "projectPath": "c:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\Milestone 2 (KilometerRock 2)\\CampaignTest\\CampaignTest\\CampaignTest.csproj",
+        "packagesPath": "C:\\Users\\jazzp\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\Milestone 2 (KilometerRock 2)\\CampaignTest\\CampaignTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Jade\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jazzp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
