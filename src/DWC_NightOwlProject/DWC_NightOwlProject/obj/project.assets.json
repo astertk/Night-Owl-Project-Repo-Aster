@@ -1959,15 +1959,15 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -2118,13 +2118,21 @@
           }
         }
       },
-      "OpenAI-DotNet/4.4.3": {
+      "OpenAI/1.4.0": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
+          "Newtonsoft.Json": "13.0.2"
+        },
         "compile": {
-          "lib/net6.0/OpenAI-DotNet.dll": {}
+          "lib/netstandard2.0/OpenAI_API.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/OpenAI-DotNet.dll": {}
+          "lib/netstandard2.0/OpenAI_API.dll": {
+            "related": ".xml"
+          }
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -6753,14 +6761,15 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/13.0.1": {
-      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+    "Newtonsoft.Json/13.0.2": {
+      "sha512": "R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg==",
       "type": "package",
-      "path": "newtonsoft.json/13.0.1",
+      "path": "newtonsoft.json/13.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
+        "README.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -6769,13 +6778,15 @@
         "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
         "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.13.0.2.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
@@ -6941,17 +6952,18 @@
         "nuget.versioning.nuspec"
       ]
     },
-    "OpenAI-DotNet/4.4.3": {
-      "sha512": "8SiLu35zMXfmqnr24BqYKdB1yVP+QB4io4ujyKZBmHO0NLlTxwW9iWcfa5LjK3dhyEP2Lj/jQdyoCT0TNFrENA==",
+    "OpenAI/1.4.0": {
+      "sha512": "leN2N/2mh2UPhsB80EKSc5DrCZStB9EnJ/AayQIqI1qglk6WrS1aHcxQEa3JcUC0n66LBxQ4STvCJpta2K+V3g==",
       "type": "package",
-      "path": "openai-dotnet/4.4.3",
+      "path": "openai/1.4.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "lib/net6.0/OpenAI-DotNet.dll",
-        "openai-dotnet.4.4.3.nupkg.sha512",
-        "openai-dotnet.nuspec"
+        "lib/netstandard2.0/OpenAI_API.dll",
+        "lib/netstandard2.0/OpenAI_API.xml",
+        "openai.1.4.0.nupkg.sha512",
+        "openai.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -11205,23 +11217,28 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.2",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.2",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.3",
-      "OpenAI-DotNet >= 4.4.3"
+      "OpenAI >= 1.4.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Oneil\\.nuget\\packages\\": {}
+    "C:\\Users\\jazzp\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Oneil\\Desktop\\GitHub\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
+      "projectUniqueName": "C:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
       "projectName": "DWC_NightOwlProject",
-      "projectPath": "C:\\Users\\Oneil\\Desktop\\GitHub\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
-      "packagesPath": "C:\\Users\\Oneil\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Oneil\\Desktop\\GitHub\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\obj\\",
+      "projectPath": "C:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
+      "packagesPath": "C:\\Users\\jazzp\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Oneil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jazzp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11229,6 +11246,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11287,9 +11305,9 @@
             "target": "Package",
             "version": "[7.0.3, )"
           },
-          "OpenAI-DotNet": {
+          "OpenAI": {
             "target": "Package",
-            "version": "[4.4.3, )"
+            "version": "[1.4.0, )"
           }
         },
         "imports": [
@@ -11311,7 +11329,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
