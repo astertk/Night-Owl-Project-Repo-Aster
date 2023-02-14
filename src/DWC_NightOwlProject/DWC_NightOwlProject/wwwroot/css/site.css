@@ -1,11 +1,17 @@
+* {
+    font-family: Comfortaa;
+}
+
 html {
   font-size: 14px;
+  font-family:'Baskerville Old Face';
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+        
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -13,10 +19,24 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    font-family: 'Baskerville Old Face';
 }
 
 body {
   margin-bottom: 60px;
+}
+img {
+    
+}
+
+footer {
+    display:flex;
+    /*margin-left: 40px;*/
+}
+container-fluid2{
+    font-size:24px;
+    position:fixed;
+    display:right;
 }

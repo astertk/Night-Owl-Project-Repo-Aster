@@ -17,22 +17,46 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                    <partial name="_LoginPartial" />
+               
+            </div>
+        </nav>
+    </header>
+    <header>
+        <div class="row">
+<div class="col-9">
+<div class="container">
+
+</div>
+<div class ="container">
+</div>
+</div>
+<div class="col-3">
+<nav class ="navbar bg-light">
+ <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                       <li class="nav-item">
-                           <a class="nav-link text-dark" asp-area="" asp-controller="Backstory" asp-action="Index">Backstory</a>
-                       </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Backstory" asp-action="Index">Backstory</a>
+                        </li>
                     </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
+</nav>
+</div>
+</div>
+       
+          
+   
+               
+                   
+                   
+ 
+            
+        
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -40,9 +64,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer">
         <div class="container">
-            &copy; 2023 - DWC_NightOwlProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - DWC_NightOwlProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> <img src="~/css/Group_Logo_Head.png" alt="Logo">
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
