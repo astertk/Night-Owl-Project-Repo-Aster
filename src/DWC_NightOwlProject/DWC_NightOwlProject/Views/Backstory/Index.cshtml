@@ -12,6 +12,7 @@
         var optionsBox = document.getElementById("backstoryOptionBox");
         fromTemplate.style.display = backstoryOptionBox.value == "From Template" ? "block" : "none";
         fromScratch.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
+        fromScratchLabel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
     }
 </script>
 
@@ -25,7 +26,7 @@
 </div>
 
 
-<span class="form-control-plaintext" >Fill your prophecy with a template or from scratch</span>
+<label class="form-control-plaintext" >Fill your prophecy with a template or create your own</label>
 
 <div class="form-group">
 <select class="form-control" id="backstoryOptionBox" onchange="hiddenDiv()">
@@ -39,9 +40,10 @@
 <br />
 
 <textarea class="form-control" id="fromTemplate" style="display: none" rows="5"> </textarea>
-<textarea class="form-control" id="fromScratch" style="display: none" rows="5"> </textarea>
 
-<br />
+<label class="form-control-plaintext" id="fromScratchLabel" style="display: none"> Leave the first sentence in there as that is needed for the AI to generate your story for you</label>
+<textarea class="form-control" id="fromScratch" style="display: none" rows="5"> Create a Dungeons and Dragons Backstory for me. </textarea>
+
 <br />
 
 <div class="form-group">
@@ -50,7 +52,6 @@
     <input type="range" id="openAiTemperature" step="1" min="1" max="10" class="form-range"/>
 </div>
 
-<br />
 <br />
 
 <input type="submit" class="btn btn-primary"/>
