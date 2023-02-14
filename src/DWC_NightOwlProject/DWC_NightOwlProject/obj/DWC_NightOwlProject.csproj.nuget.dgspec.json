@@ -1,21 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Oneil\\Desktop\\GitHub\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj": {}
+    "C:\\Users\\Jade\\Desktop\\dev\\CS461\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Oneil\\Desktop\\GitHub\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj": {
+    "C:\\Users\\Jade\\Desktop\\dev\\CS461\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Oneil\\Desktop\\GitHub\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
+        "projectUniqueName": "C:\\Users\\Jade\\Desktop\\dev\\CS461\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
         "projectName": "DWC_NightOwlProject",
-        "projectPath": "C:\\Users\\Oneil\\Desktop\\GitHub\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
-        "packagesPath": "C:\\Users\\Oneil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Oneil\\Desktop\\GitHub\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\obj\\",
+        "projectPath": "C:\\Users\\Jade\\Desktop\\dev\\CS461\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
+        "packagesPath": "C:\\Users\\Jade\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jade\\Desktop\\dev\\CS461\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Oneil\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Jade\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"

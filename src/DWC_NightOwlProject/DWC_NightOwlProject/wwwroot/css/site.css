@@ -1,11 +1,14 @@
-html {
-  font-size: 14px;
+* {
+    font-family: Comfortaa;
 }
 
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+        
+        
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -13,10 +16,33 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    font-family: 'Baskerville Old Face';
 }
 
 body {
   margin-bottom: 60px;
+  background: white;
+}
+img {
+    position:center;
+    width:400px;
+    margin:auto;
+}
+
+footer {
+    
+    display:flex;
+    background: black;
+    /*margin-left: 40px;*/
+    color:white;
+    
+}
+
+ul {
+   font-size:20px;
+   color:deepskyblue;
+   text-align:left;
+   display:flex;
 }
