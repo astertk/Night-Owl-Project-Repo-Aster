@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\DWC_NightOwlProject.props" />
-</Project>
