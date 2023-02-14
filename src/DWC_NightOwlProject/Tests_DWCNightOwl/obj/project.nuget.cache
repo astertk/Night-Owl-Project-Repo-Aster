@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BRCXsNN36WYXb0l7a6LuEWsY7IYHhI5kaWM2hqTBsn7yGRp61p+Yw/ODyFAne78WzFDc/LFZyNDVOcO3LZNKbA==",
+  "dgSpecHash": "u7vgjao9DowL3HvUGtdHJGRxObXew38jVaVrJ17F2fOA4cevIDGzFpT29CBmMYWW64trvgkQOMMaHCk9k35MAw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Oneil\\Desktop\\GitHub\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\Tests_DWCNightOwl\\Tests_DWCNightOwl.csproj",
   "expectedPackageFiles": [
@@ -18,7 +18,6 @@
     "C:\\Users\\Oneil\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",
     "C:\\Users\\Oneil\\.nuget\\packages\\nunit.analyzers\\3.3.0\\nunit.analyzers.3.3.0.nupkg.sha512",
     "C:\\Users\\Oneil\\.nuget\\packages\\nunit3testadapter\\4.2.1\\nunit3testadapter.4.2.1.nupkg.sha512",
-    "C:\\Users\\Oneil\\.nuget\\packages\\openai-dotnet\\4.4.3\\openai-dotnet.4.4.3.nupkg.sha512",
     "C:\\Users\\Oneil\\.nuget\\packages\\system.collections\\4.0.11\\system.collections.4.0.11.nupkg.sha512",
     "C:\\Users\\Oneil\\.nuget\\packages\\system.diagnostics.debug\\4.0.11\\system.diagnostics.debug.4.0.11.nupkg.sha512",
     "C:\\Users\\Oneil\\.nuget\\packages\\system.diagnostics.tools\\4.0.1\\system.diagnostics.tools.4.0.1.nupkg.sha512",

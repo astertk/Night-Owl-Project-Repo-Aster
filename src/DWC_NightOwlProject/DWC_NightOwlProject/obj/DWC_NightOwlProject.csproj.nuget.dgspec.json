@@ -80,9 +80,9 @@
               "target": "Package",
               "version": "[7.0.3, )"
             },
-            "OpenAI-DotNet": {
+            "OpenAI": {
               "target": "Package",
-              "version": "[4.4.3, )"
+              "version": "[1.4.0, )"
             }
           },
           "imports": [
