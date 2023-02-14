@@ -3,12 +3,49 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+
+</style>
+<script>
+    function hiddenDiv()
+    {
+        var optionsBox = document.getElementById("backstoryOptionBox");
+        fromTemplate.style.display = backstoryOptionBox.value == "From Template" ? "block" : "none";
+        fromScratch.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
+    }
+</script>
+
 <div class="text-center" id="title">
     <h2>Backstory Creation</h2>
 </div>
 
 <div class="text-center" id="adviceBox">
-    <p>There is a lot to explore in the vastness of the world, but the question lies within yourself...</p>
+    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
     <p>When will you start?</p>
 </div>
 
+
+<span class="form-control-plaintext" >Fill your prophecy with a template or from scratch</span>
+
+<div class="form-group">
+<select class="form-control" id="backstoryOptionBox" onchange="hiddenDiv()">
+    <option>Choose...</option>
+    <option>From Template</option>
+    <option>From Scratch</option>
+</select>
+</div>
+
+<br />
+<br />
+
+<textarea class="form-control" id="fromTemplate" style="display: none" rows="5"> </textarea>
+<textarea class="form-control" id="fromScratch" style="display: none" rows="5"> </textarea>
+
+<br />
+<br />
+
+<div class="form-group">
+    <label>Temperature</label>
+    <br />
+    <input type="range" id="openAiTemperature" step="1" min="1" max="10" class="form-range"/>
+</div>
