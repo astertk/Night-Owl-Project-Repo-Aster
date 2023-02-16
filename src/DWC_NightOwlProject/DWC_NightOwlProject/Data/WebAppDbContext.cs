@@ -19,8 +19,6 @@ public partial class WebAppDbContext : DbContext
 
     public virtual DbSet<Template> Templates { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
-
     public virtual DbSet<World> Worlds { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -46,18 +44,9 @@ public partial class WebAppDbContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Template__3214EC27F3675E38");
         });
 
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__User__3214EC27D694F077");
-        });
-
         modelBuilder.Entity<World>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__World__3214EC27495DB421");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Worlds)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("World_Fk_User");
         });
 
         OnModelCreatingPartial(modelBuilder);
