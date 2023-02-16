@@ -21,8 +21,4 @@ public partial class World
 
     [InverseProperty("World")]
     public virtual ICollection<Material> Materials { get; } = new List<Material>();
-
-    [ForeignKey("UserId")]
-    [InverseProperty("Worlds")]
-    public virtual User User { get; set; } = null!;
 }
