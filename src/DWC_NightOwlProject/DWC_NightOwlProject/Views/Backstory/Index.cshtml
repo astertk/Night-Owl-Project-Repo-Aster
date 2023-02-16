@@ -10,9 +10,18 @@
     function hiddenDiv()
     {
         var optionsBox = document.getElementById("backstoryOptionBox");
-        fromTemplate.style.display = backstoryOptionBox.value == "From Template" ? "block" : "none";
+        fromTemplateSubmit.style.display = backstoryOptionBox.value == "From Template" ? "block" : "none";
+        fromTemplateLabel.style.display = backstoryOptionBox.value == "From Template" ? "block" : "none";
         fromScratch.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
         fromScratchLabel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
+        fromScratchSubmit.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
+        tempLabel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
+        openAiTemperature.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
+        presencePenaltyLabel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
+        openAiPresencePenalty.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
+        aiModelLabel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
+        openAIModel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
+
     }
 </script>
 
@@ -25,7 +34,6 @@
     <p>When will you start?</p>
 </div>
 
-
 <label class="form-control-plaintext" >Fill your prophecy with a template or create your own</label>
 
 <div class="form-group">
@@ -36,22 +44,31 @@
 </select>
 </div>
 
-<br />
-<br />
-
-<textarea class="form-control" id="fromTemplate" style="display: none" rows="5"> </textarea>
+&nbsp;
+<label class="form-control-plaintext" id="fromTemplateLabel" style="display: none">Click the submit button to take you to the template page</label>
 
 <label class="form-control-plaintext" id="fromScratchLabel" style="display: none"> Leave the first sentence in there as that is needed for the AI to generate your story for you</label>
 <textarea class="form-control" id="fromScratch" style="display: none" rows="5"> Create a Dungeons and Dragons Backstory for me. </textarea>
 
-<br />
+&nbsp;
 
 <div class="form-group">
-    <label>Temperature</label>
+    <label id="tempLabel" style="display: none">Temperature</label>
     <br />
-    <input type="range" id="openAiTemperature" step="1" min="1" max="10" class="form-range"/>
+    <input type="range" id="openAiTemperature" step="0.1" min="0.1" max="1" class="form-range" style="display: none"/>
+    
+    <label id="presencePenaltyLabel" style="display: none">Presence Penalty </label>
+    <br />
+    <input type="range" id="openAiPresencePenalty" step="0.1" min="0.1" max="1" class= "form-range" style="display: none" />
+
+    <label id="aiModelLabel" style="display: none">AI Model </label>
+    <br />
+    <input type="range" id="openAIModel" step="0.1" min="0.1" max="1" class= "form-range" style="display: none"/>
 </div>
 
-<br />
+&nbsp;
 
-<input type="submit" class="btn btn-primary"/>
+<input type="submit" class="btn btn-primary" style="display: none" id="fromScratchSubmit"/>
+<button type="submit" class="btn btn-primary" style="display: none" id="fromTemplateSubmit" asp-controller="Backstory" asp-action="Template">Submit</button>
+
+&nbsp;
