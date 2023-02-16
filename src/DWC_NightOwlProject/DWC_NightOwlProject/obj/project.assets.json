@@ -11221,24 +11221,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jazzp\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\atk\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
+      "projectUniqueName": "c:\\Users\\atk\\Documents\\CS\\night owls repo\\Night-Owl-Project-Repo-Aster\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
       "projectName": "DWC_NightOwlProject",
-      "projectPath": "C:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
-      "packagesPath": "C:\\Users\\jazzp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\obj\\",
+      "projectPath": "c:\\Users\\atk\\Documents\\CS\\night owls repo\\Night-Owl-Project-Repo-Aster\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\DWC_NightOwlProject.csproj",
+      "packagesPath": "C:\\Users\\atk\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\atk\\Documents\\CS\\night owls repo\\Night-Owl-Project-Repo-Aster\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jazzp\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\atk\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11246,7 +11241,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
