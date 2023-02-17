@@ -3,9 +3,6 @@
     ViewData["Title"] = "Index";
 }
 
-<style>
-
-</style>
 <script>
     function hiddenDiv()
     {
@@ -24,6 +21,7 @@
     }
 </script>
 
+<form>
 <div class="text-center" id="title">
     <h2>Backstory Creation</h2>
 </div>
@@ -32,6 +30,14 @@
     <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
     <p>When will you start?</p>
 </div>
+
+<div class="form-group">
+    <label>What shall you call this story?</label>
+    <br />
+    <input type="text" id="backstoryName" class="form-control"/>
+</div>
+
+&nbsp;
 
 <label class="form-control-plaintext" >Fill your prophecy with a template or create your own</label>
 
@@ -70,4 +76,5 @@
 <input type="submit" class="btn btn-primary" style="display: none" id="fromScratchSubmit"/>
 <button type="submit" class="btn btn-primary" style="display: none" id="fromTemplateSubmit" asp-controller="Backstory" asp-action="Template">Submit</button>
 
+</form>
 &nbsp;
