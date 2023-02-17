@@ -6,5 +6,6 @@ namespace DWC_NightOwlProject.DAL.Abstract
 {
     public interface IMaterialRepository: IRepository<Material>
     {
+
     }
 }

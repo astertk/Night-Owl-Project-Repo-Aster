@@ -4,6 +4,7 @@ using OpenAI_API.Files;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DWC_NightOwlProject.Data;
+using DWC_NightOwlProject.DAL.Concrete;
 
 namespace DWC_NightOwlProject.Controllers
 {
@@ -24,6 +25,22 @@ namespace DWC_NightOwlProject.Controllers
         // GET: HomeController1/Create
         public ActionResult Create()
         {
+            return View();
+        }
+
+        // GET: Backstory/Template
+        public ActionResult Template(string answerOne, string answerTwo, string answerThree, string answerFour)
+        {
+            ViewBag.AnswerOne = answerOne;
+            ViewBag.AnswerTwo = answerTwo;
+            ViewBag.AnswerThree = answerThree;
+            ViewBag.AnswerFour = answerFour;
+            ViewBag.SuggestionOne = "The overall tone is:";
+            ViewBag.SuggestionTwo = "The villains are:";
+            ViewBag.SuggestionThree = "The heros are:";
+            ViewBag.SuggestionFour = "The world is:";
+
+            ViewBag.Prompt = "Create a Dungeons and Dragons Backstory." + "The overall tone is:" + answerOne + ". The villains are:" + answerTwo + ". The heros are:" + answerThree + " .The world is:" + answerFour;
             return View();
         }
 
