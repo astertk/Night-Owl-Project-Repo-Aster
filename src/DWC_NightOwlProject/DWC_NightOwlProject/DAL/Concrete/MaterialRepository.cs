@@ -20,6 +20,7 @@ namespace DWC_NightOwlProject.DAL.Concrete
         public string SuggestionThree = "The heros are:";
         public string SuggestionFour = "The world is:";
 
+
         public string AnswerOne;
         public string AnswerTwo;
         public string AnswerThree;

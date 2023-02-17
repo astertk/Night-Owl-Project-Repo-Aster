@@ -1,6 +1,4 @@
-﻿using OpenAI_API;
-using OpenAI_API.Models;
-using OpenAI_API.Files;
+﻿
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DWC_NightOwlProject.Data;
