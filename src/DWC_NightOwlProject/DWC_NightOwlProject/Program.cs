@@ -22,6 +22,8 @@ builder.Services.AddDbContext<WebAppDbContext>(options => options
                                     .UseLazyLoadingProxies()
                                     .UseSqlServer(connectionStringApp));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
+builder.Services.AddScoped<DbContext, WebAppDbContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
