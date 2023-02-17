@@ -3,6 +3,7 @@ using OpenAI_API.Models;
 using OpenAI_API.Files;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DWC_NightOwlProject.Data;
 
 namespace DWC_NightOwlProject.Controllers
 {
@@ -81,6 +82,16 @@ namespace DWC_NightOwlProject.Controllers
             {
                 return View();
             }
+        }
+
+        public Template BuildTemplate(Template template)
+        {
+            template = new Template();
+            template.Id = 0;
+            template.CreationDate = DateTime.Today;
+            template.Type = "Backstory Template";
+
+            return template;
         }
     }
 }

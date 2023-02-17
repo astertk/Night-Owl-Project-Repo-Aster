@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DWC_NightOwlProject.Data;
+using DWC_NightOwlProject.DAL.Abstract;
+using DWC_NightOwlProject.DAL.Concrete;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +21,9 @@ var connectionStringApp = builder.Configuration.GetConnectionString("AppConnecti
 builder.Services.AddDbContext<WebAppDbContext>(options => options
                                     .UseLazyLoadingProxies()
                                     .UseSqlServer(connectionStringApp));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
+builder.Services.AddScoped<DbContext, WebAppDbContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
