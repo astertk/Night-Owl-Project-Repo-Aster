@@ -10,86 +10,95 @@
 </div>
 
 
-    <h2>Questions</h2>
+<h2>Questions</h2>
 
 
 <span class="close">&times;</span>
-                <div class="row mt-4">
-                    <div class="col-md-4 offset-md-3">
-                        <form id="create-template-form">
-                           
-                            <div class="row">
-                                <div class="col">
-                                    <label for="AnswerOne" class="control-label">What is the overall tone of your backstory?</label>
-                                    <input id="AnswerOne-input" name="AnswerOne" class="form-control" type="text" required />
-                                    @*<span asp-validation-for="AnswerOne" class="text-danger"></span>*@
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="AnswerTwo" class="control-label">Who are the baddies, ie, the major villains?</label>
-                                    <input id="AnswerTwo-input" name="AnswerTwo" class="form-control" type="text" required />
-                                    @*<span asp-validation-for="StartDate" class="text-danger"></span>*@
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="AnswerThree" class="control-label">Who are the goodies, ie, the major heros?</label>
-                                    <input id="AnswerThree-input" name="AnswerThree" class="form-control" type="text" required />
-                                    @*<span asp-validation-for="StartDate" class="text-danger"></span>*@
-                                </div>
-                            </div>
-                             <div class="row">
-                                <div class="col">
-                                    <label for="AnswerFour" class="control-label">Describe the world in one or two sentences.</label>
-                                    <input id="AnswerFour-input" name="AnswerFour" class="form-control" type="text" required />
-                                    @*<span asp-validation-for="StartDate" class="text-danger"></span>*@
-                                </div>
-                            </div>
-                            
-                            <div class="form-group mt-3 text-center">
-                            
-                                <input id="create-template-button" type="submit" value="Build Your Background!" class="btn btn-primary" />
-                            </div>
-                        </form>
-                    </div>
+<div class="row mt-4">
+    <div class="col-md-4 offset-md-3">
+        <form id="create-template-form">
+
+            <div class="row">
+                <div class="col">
+                    <label for="AnswerOne" class="control-label">What is the overall tone of your backstory?</label>
+                    <input id="AnswerOne-input" name="AnswerOne" class="form-control" type="text" required />
+                    @*<span asp-validation-for="AnswerOne" class="text-danger"></span>*@
                 </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="AnswerTwo" class="control-label">Who are the baddies, ie, the major villains?</label>
+                    <input id="AnswerTwo-input" name="AnswerTwo" class="form-control" type="text" required />
+                    @*<span asp-validation-for="StartDate" class="text-danger"></span>*@
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="AnswerThree" class="control-label">Who are the goodies, ie, the major heros?</label>
+                    <input id="AnswerThree-input" name="AnswerThree" class="form-control" type="text" required />
+                    @*<span asp-validation-for="StartDate" class="text-danger"></span>*@
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="AnswerFour" class="control-label">Describe the world in one or two sentences.</label>
+                    <input id="AnswerFour-input" name="AnswerFour" class="form-control" type="text" required />
+                    @*<span asp-validation-for="StartDate" class="text-danger"></span>*@
+                </div>
+            </div>
 
-                <h4>
-                    Prompt:  <br />
-                     </h4>
-                    
-                    
-                    
-                   
-                    <ul>
-                    
-                   @ViewBag.SuggestionOne
-                   @ViewBag.AnswerOne <br />
-                   @ViewBag.SuggestionTwo
-                   @ViewBag.AnswerTwo<br />
-                   @ViewBag.SuggestionThree
-                   @ViewBag.AnswerThree<br />
-                   @ViewBag.SuggestionFour
-                   @ViewBag.AnswerFour
-                  
-                   </ul>
+            <div class="form-group mt-3 text-center">
+                <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
+                <div class="text-danger">
+                    These questions are optional, but please fill out as many as you can before clicking "Create Backstory"
+                </div>
+                <input type="button" class="" value="Create Your Backstory" onclick="window.location= '@Url.Action( "Completion", "Backstory")'" />
+                @*<input onclick="window.location= '@Url.Action( "Completion", "Backstory")'" type="submit" value="Submit request" />*@
+                @*<input id="create-template" type="submit" value="Build Your Backstory!" onclick="window.location= '@Url.Action( "Completion", "Backstory")'" />*@
+            </div>
+        </form>
+    </div>
+</div>
 
 
-                    @*@ViewBag.Prompt*@
-                    @*@Model.SuggestionOne
-                    @ViewBag.AnswerOne<br />
-                    @Model.SuggestionTwo
-                    @ViewBag.AnswerTwo<br />
-                    @Model.SuggestionThree
-                    @ViewBag.AnswerThree<br />
-                    @Model.SuggestionFour
-                    @ViewBag.AnswerFour<br />*@
-               
 
-                @* public string QuestionOne = "What is the overall tone of your backstory?";
-        public string QuestionTwo = "Who are the baddies, ie, the major villains?";
-        public string QuestionThree = "Who are the goodies, ie, the major heros?";
-        public string QuestionFour = "Describe the world in one or two sentences:";
-*@
+<h4>
+    Prompt:  <br />
+</h4>
+
+
+<ul>
+
+    @ViewBag.SuggestionOne
+    @ViewBag.AnswerOne
+    <br />
+    @ViewBag.SuggestionTwo
+    @ViewBag.AnswerTwo
+    <br />
+    @ViewBag.SuggestionThree
+    @ViewBag.AnswerThree
+    <br />
+    @ViewBag.SuggestionFour
+    @ViewBag.AnswerFour
+
+</ul>
+
+
+
+
+
+@*<script type="text/javascript">
+    $('#create-template').click(function () {
+        const AnswerOne = document.getElementById("AnswerOne-input");
+        const AnswerTwo = document.getElementById("AnswerTwo-input");
+        const AnswerThree = document.getElementById("AnswerThree-input");
+        const AnswerFour = document.getElementById("AnswerFour-input");
+
+        document.location = '@Url.Action("Completion","Backstory")';
+    });
+</script>*@
+
+
+
+
 

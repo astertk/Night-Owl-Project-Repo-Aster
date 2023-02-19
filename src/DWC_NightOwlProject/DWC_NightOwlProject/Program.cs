@@ -3,18 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using DWC_NightOwlProject.Data;
 using DWC_NightOwlProject.DAL.Abstract;
 using DWC_NightOwlProject.DAL.Concrete;
-using OpenAI;
-using OpenAI.Images;
-using OpenAI.Models;
 
 
-
-//calling openAI
 var builder = WebApplication.CreateBuilder(args);
-var APIKey = builder.Configuration["APIKey"];
-var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
-var background = await api.CompletionsEndpoint.CreateCompletionAsync("Create my background story for my Dungeons and Dragons Campaign. Theme: Comical. Mogarr the Loser wants to steal all the music from the realm!", max_tokens: 200, temperature: 0.8, presencePenalty: 0.1, frequencyPenalty: 0.1, model: Model.Davinci);
-Console.WriteLine(background);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("IdentityConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
