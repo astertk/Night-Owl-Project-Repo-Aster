@@ -5,6 +5,7 @@ using DWC_NightOwlProject.DAL.Abstract;
 using OpenAI;
 using System.Threading.Tasks.Dataflow;
 using System.Threading.Tasks;
+using System.Runtime;
 
 
 namespace DWC_NightOwlProject.Controllers
@@ -38,21 +39,29 @@ namespace DWC_NightOwlProject.Controllers
             return View();
         }
 
-        public async Task<ActionResult> Template(string answerOne, string answerTwo, string answerThree, string answerFour)
+        public async Task<ActionResult> Template(string answerOne, string answerTwo, string answerThree, string answerFour, int maxLength, double temp, double presence, double frequency)
         {
             /*            var template = new TemplateViewModel();*/
 
-
+            ViewBag.Prompt = "Create a Dungeons and Dragons Backstory and make it very random";
             ViewBag.AnswerOne = answerOne;
             ViewBag.AnswerTwo = answerTwo;
             ViewBag.AnswerThree = answerThree;
             ViewBag.AnswerFour = answerFour;
-            ViewBag.SuggestionOne = "The overall tone is: ";
-            ViewBag.SuggestionTwo = "The villains are: ";
-            ViewBag.SuggestionThree = "The heros are: ";
-            ViewBag.SuggestionFour = "The world is: ";
-            ViewBag.Prompt = "Create a Dungeons and Dragons Backstory." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
+            ViewBag.MaxLength = maxLength.ToString();
+            ViewBag.Temp = temp;
+            ViewBag.Presence = presence;
+            ViewBag.Frequency = frequency;
+            ViewBag.SuggestionOne = " The overall tone is: ";
+            ViewBag.SuggestionTwo = " The villains are: ";
+            ViewBag.SuggestionThree = " The heros are: ";
+            ViewBag.SuggestionFour = " The world is: ";
+            ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
             TempData["HoldPrompt"] = ViewBag.Prompt;
+            TempData["HoldTemp"] = temp.ToString();
+            TempData["HoldPresence"] = presence.ToString();
+            TempData["HoldFrequency"] = frequency.ToString();
+
 
 
             return View();
@@ -67,9 +76,21 @@ namespace DWC_NightOwlProject.Controllers
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
             material.Prompt += "...";
 
+            var temp = TempData.Peek("HoldTemp").ToString();           
+            var presence = TempData.Peek("HoldPresence").ToString(); ;
+            var frequency = TempData.Peek("HoldFrequency").ToString(); ;
+
+
+
+            var t = Convert.ToDouble(temp);
+            var p = Convert.ToDouble(presence);
+            var f = Convert.ToDouble(frequency);
+
+
             var APIKey = _config["APIKey"];
             var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
-            var backstory = await api.CompletionsEndpoint.CreateCompletionAsync(material.Prompt, max_tokens: 1000, temperature: 0.8, presencePenalty: 0.1, frequencyPenalty: 0.1, model: OpenAI.Models.Model.Davinci);
+            var backstory = await api.CompletionsEndpoint.CreateCompletionAsync(material.Prompt, max_tokens: 1000, temperature: t, presencePenalty: p, frequencyPenalty: f, model: OpenAI.Models.Model.Davinci);
+            /*var backstory = await api.CompletionsEndpoint.CreateCompletionAsync(material.Prompt, max_tokens: 1000, temperature: 0.8, presencePenalty: 0.1, frequencyPenalty: 0.1, model: OpenAI.Models.Model.Davinci);*/
             var result = backstory.ToString();
 
             material.Completion = result;
