@@ -1,8 +1,13 @@
+@model DWC_NightOwlProject.ViewModel.ViewModelWorld
 @{
     ViewData["Title"] = "Create world";
 }
 
 <div class="text-center">
-    <p>Enter world name</p>
-    <input type="text">
+    <form asp-action="World" method="post">
+        <label asp-for="WorldName" class="control-label">Item name</label>
+        <input asp-for="WorldName" class="form-control">
+        <span asp-validation-for="WorldName" class="text-danger"></span>
+    <input type="submit" value="Create world">
+    </form>
 </div>
