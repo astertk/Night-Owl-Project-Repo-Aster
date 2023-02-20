@@ -1,0 +1,56 @@
+﻿@model DWC_NightOwlProject.Data.Material
+
+
+<div class="text-center" id="title">
+    <h2>Backstory Result</h2>
+</div>
+
+<div class="text-center" id="adviceBox">
+    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+</div>
+
+
+
+<h4>
+    Prompt:  <br />
+
+    @Model.Prompt
+</h4>
+
+
+
+<h4>
+    Completion:  <br />
+</h4>
+
+
+
+@Model.Completion
+
+
+
+
+@*   <script type="text/jscript">
+                     $('#create-template-button').click(function () {
+                            var url = "/Backstory/BuildCompletion";
+
+                            $.get(url, { completion: @Model.Completion }, function (data) {
+                                $("#rData").html(data);
+                            });
+                        })
+                    </script>
+*@
+
+
+
+
+
+
+
+
+@* public string QuestionOne = "What is the overall tone of your backstory?";
+        public string QuestionTwo = "Who are the baddies, ie, the major villains?";
+        public string QuestionThree = "Who are the goodies, ie, the major heros?";
+        public string QuestionFour = "Describe the world in one or two sentences:";
+*@
+

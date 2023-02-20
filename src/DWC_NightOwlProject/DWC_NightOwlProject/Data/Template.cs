@@ -16,7 +16,7 @@ public partial class Template
     [Column(TypeName = "date")]
     public DateTime CreationDate { get; set; }
 
-    [StringLength(250)]
+    [StringLength(1000)]
     public string Body { get; set; } = null!;
 
     [StringLength(250)]
