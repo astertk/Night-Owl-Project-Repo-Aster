@@ -13,68 +13,71 @@
 <h2>Questions</h2>
 
 
-<span class="close">&times;</span>
-<div class="row mt-4">
-    <div class="col-md-4 offset-md-3">
-        <form id="create-template-form">
 
-            <div class="row">
-                <div class="col">
+        <form id="create-template-form">
+            <div class="container">
+                <div class="row-cols-lg-1">
+                    <div class="col">
+               
                     <label for="AnswerOne" class="control-label">What is the overall tone of your backstory?</label>
                     <input id="AnswerOne-input" name="AnswerOne" class="form-control" type="text" required />
                     
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
+                
+            
+           
+               
                     <label for="AnswerTwo" class="control-label">Who are the baddies, ie, the major villains?</label>
                     <input id="AnswerTwo-input" name="AnswerTwo" class="form-control" type="text" required />
                     
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
+                
+            
+            
+                
                     <label for="AnswerThree" class="control-label">Who are the goodies, ie, the major heros?</label>
                     <input id="AnswerThree-input" name="AnswerThree" class="form-control" type="text" required />
                     
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
+               
+            
+            
+                
                     <label for="AnswerFour" class="control-label">Describe the world in one or two sentences.</label>
                     <input id="AnswerFour-input" name="AnswerFour" class="form-control" type="text" required />
                     
                 </div>
-            </div>
+                    <div class="col">
+            
 
-            <div class="row">
-                <div class="col">
+            
+              
+                
                     <label for="maxLength" class="control-label">How long should this backstory be, from 100 to 1000 characters?</label>
                     <input id="maxLength-input" name="maxLength" class="form-control" type="range" required min="100" max="1000"/>
                     
-                </div>
-            </div>
-             <div class="row">
-                <div class="col">
+                
+            
+             
+                
                     <label for="temp" class="control-label">Pleas adjuist AI Temperature, ie, randomness!</label>
                     <input id="temp-input" name="temp" class="form-control" type="range" required step=0.1 min ="0" max="1" />
                   
-                </div>
-            </div>
-             <div class="row">
-                <div class="col">
+               
+           
+            
+               
                     <label for="presence" class="control-label">Please adjust Presence, ie, how different each idea in the backstory will be.</label>
                     <input id="presence-input" name="presence" class="form-control" type="range" required min="-2.0" max="2.0" />
                     
-                </div>
-            </div>
-             <div class="row">
-                <div class="col">
+               
+            
+             
+                
                     <label for="frequency" class="control-label">Please adjust Frequency, ie, how different each word will be.</label>
                     <input id="frequency-input" name="frequency" class="form-control" type="range" required min="-2.0" max="2.0" />
                    
-                </div>
+                
             </div>
+  </div>
+</div>
 
             
                     @*<label for="maxLength" style="display: none">Max Length of Backstory</label>
@@ -121,8 +124,6 @@
                 @*<input id="create-template" type="submit" value="Build Your Backstory!" onclick="window.location= '@Url.Action( "Completion", "Backstory")'" />*@
             </div>
         </form>
-    </div>
-</div>
 
 
 
@@ -142,26 +143,6 @@
 
 
 
-<h4>
-    Prompt:  <br />
-</h4>
-
-
-<ul>
-
-    @ViewBag.SuggestionOne
-    @ViewBag.AnswerOne
-    <br />
-    @ViewBag.SuggestionTwo
-    @ViewBag.AnswerTwo
-    <br />
-    @ViewBag.SuggestionThree
-    @ViewBag.AnswerThree
-    <br />
-    @ViewBag.SuggestionFour
-    @ViewBag.AnswerFour
-
-</ul>
 
 
 
