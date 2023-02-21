@@ -1,80 +1,37 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
-<script>
-    function hiddenDiv()
-    {
-        var optionsBox = document.getElementById("backstoryOptionBox");
-        fromTemplateSubmit.style.display = backstoryOptionBox.value == "From Template" ? "block" : "none";
-        fromTemplateLabel.style.display = backstoryOptionBox.value == "From Template" ? "block" : "none";
-        fromScratch.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
-        fromScratchLabel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
-        fromScratchSubmit.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
-        tempLabel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
-        openAiTemperature.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
-        presencePenaltyLabel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
-        openAiPresencePenalty.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
-        aiModelLabel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
-        openAIModel.style.display = backstoryOptionBox.value == "From Scratch" ? "block" : "none";
-    }
-</script>
 
-<form>
-<div class="text-center" id="title">
-    <h2>Backstory Creation</h2>
+
+
+    <div class="text-center" id="title">
+        <h2>Backstory Creation</h2>
+    </div>
+
+    <div class="text-center" id="adviceBox">
+        <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+    <p>Fill your prophecy with a template or create your own</p>
+    </div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1> Create your backstory with a template?</h1>
+         Easier, Step-by-Step <br />
+         <input type="button" class="" value="Create Your Backstory" onclick="window.location= '@Url.Action( "Template", "Backstory")'" />
+        </div>
+        <div class="col-sm">
+            <h1> Create your backstory all from Scratch?</h1>
+    More advanced, but potentially more creative! <br />
+    <input type="button" class="" value="Create Your Backstory" onclick="window.location= '@Url.Action( "Scratch", "Backstory")'" />
+        </div>
+        
+    </div>
 </div>
-
-<div class="text-center" id="adviceBox">
-    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
-    <p>When will you start?</p>
-</div>
-
-<div class="form-group">
-    <label>What shall you call this story?</label>
-    <br />
-    <input type="text" id="backstoryName" class="form-control"/>
-</div>
-
-&nbsp;
-
-<label class="form-control-plaintext" >Fill your prophecy with a template or create your own</label>
-
-<div class="form-group">
-<select class="form-control" id="backstoryOptionBox" onchange="hiddenDiv()">
-    <option>Choose...</option>
-    <option>From Template</option>
-    <option>From Scratch</option>
-</select>
-</div>
-
-&nbsp;
-<label class="form-control-plaintext" id="fromTemplateLabel" style="display: none">Click the submit button to take you to the template page</label>
-
-<label class="form-control-plaintext" id="fromScratchLabel" style="display: none"> Leave the first sentence in there as that is needed for the AI to generate your story for you</label>
-<textarea class="form-control" id="fromScratch" style="display: none" rows="5"> Create a Dungeons and Dragons Backstory for me. </textarea>
-
-&nbsp;
-
-<div class="form-group">
-    <label id="tempLabel" style="display: none">Temperature</label>
-    <br />
-    <input type="range" id="openAiTemperature" step="0.1" min="0.1" max="1" class="form-range" style="display: none"/>
+   
     
-    <label id="presencePenaltyLabel" style="display: none">Presence Penalty </label>
-    <br />
-    <input type="range" id="openAiPresencePenalty" step="0.1" min="0.1" max="1" class= "form-range" style="display: none" />
 
-    <label id="aiModelLabel" style="display: none">AI Model </label>
-    <br />
-    <input type="range" id="openAIModel" step="0.1" min="0.1" max="1" class= "form-range" style="display: none"/>
-</div>
 
-&nbsp;
-
-<input type="submit" class="btn btn-primary" style="display: none" id="fromScratchSubmit"/>
-<button type="submit" class="btn btn-primary" style="display: none" id="fromTemplateSubmit" asp-controller="Backstory" asp-action="Template">Submit</button>
-
-</form>
-&nbsp;
