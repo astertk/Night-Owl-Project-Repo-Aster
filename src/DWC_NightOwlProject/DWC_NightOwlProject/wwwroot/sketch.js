@@ -9,7 +9,7 @@ let spd = 0.07; //effects the spd of the motion
 
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(windowWidth, windowHeight/3);
    frameRate(60);
 }
 
