@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DWC_NightOwlProject</title>
@@ -24,38 +27,41 @@
         </nav>
     </header>
     <header>
-        <div class="row">
-<div class="col-9">
-<div class ="container">
-</div>
-</div>
-<div class="col-3">
+
+
+
+
+
+
 
 <nav class ="navbar bg-white">
  <ul class="nav navbar-nav">
                         <li class="nav-item2">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <div class="image">
+                                <img src="~/css//home.png" width="50" height="auto" alt="nav-pic">
+                            </div>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>  
+                            
                         </li>
                         
                         <li class="nav-item2">
+                            <div class="image">
+                        <img src="~/css//open-book.png" width="50" height="auto" alt="nav-pic">
+                            </div>
                             <a class="nav-link" asp-area="" asp-controller="Backstory" asp-action="Index">Backstory</a>
+                            
                         </li>
-                        <li class="nav-item2">
-                            <a class="nav-link" asp-area="" asp-controller="World" asp-action="Index">World</a>
+                        <li class="nav-item2"><div class="image">
+                        <img src="~/css/global.png" width="50" height="auto" alt="nav-pic">
+                            </div>
+                            <a class="nav-link" asp-area="" asp-controller=" World" asp-action="Index">World</a>
+                            
                         </li>
                     </ul>
 </nav>
-</div>
-</div>
+
        
-          
-   
-               
-                   
-                   
- 
-            
-        
+     
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -67,7 +73,7 @@
         &copy; 2023 - Night Owl Studios
         <div id="footerContainer">
             <div id="imginthefooter">
-                <img src="~/css/Group_Logo_Head.png" alt="Logo">
+                <img src="~/css/Group_Logo_Head.png" width="400" height="auto" alt="Logo">
                 
             </div>
         </div>
