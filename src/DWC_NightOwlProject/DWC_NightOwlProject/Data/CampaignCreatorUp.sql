@@ -12,7 +12,7 @@ CREATE TABLE [World]
 (
     [ID]            INT         PRIMARY KEY     IDENTITY(1, 1),
     [CreationDate]  DATE    NOT NULL,
-    [UserID]        INT         NOT NULL,
+    [UserID]        NVARCHAR(450)         NOT NULL,
 );
 
 CREATE TABLE [Material]
@@ -34,7 +34,7 @@ CREATE TABLE [Template]
     [Type]          NVARCHAR(250)   NOT NULL
 );
 
-ALTER TABLE [World]     ADD CONSTRAINT [World_Fk_User]              FOREIGN KEY ([UserID])      REFERENCES [User] ([ID])        ON DELETE NO ACTION ON UPDATE NO ACTION;
+--ALTER TABLE [World]     ADD CONSTRAINT [World_Fk_User]              FOREIGN KEY ([UserID])      REFERENCES [User] ([ID])        ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE [Material]  ADD CONSTRAINT [Material_Fk_World]          FOREIGN KEY ([WorldID])     REFERENCES [World] ([ID])       ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE [Material]  ADD CONSTRAINT [Material_Fk_Template]       FOREIGN KEY ([TemplateID])  REFERENCES [Template] ([ID])    ON DELETE NO ACTION ON UPDATE NO ACTION;
