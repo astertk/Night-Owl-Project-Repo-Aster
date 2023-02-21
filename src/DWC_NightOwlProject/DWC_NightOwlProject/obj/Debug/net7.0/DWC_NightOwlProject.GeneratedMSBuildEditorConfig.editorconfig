@@ -52,8 +52,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/atk/Documents/CS/night owls repo/Night-Owl-Project-Repo-Aster/src/DWC_NightOwlProject/DWC_NightOwlProject/Views/Backstory/Completion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFja3N0b3J5XENvbXBsZXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/atk/Documents/CS/night owls repo/Night-Owl-Project-Repo-Aster/src/DWC_NightOwlProject/DWC_NightOwlProject/Views/Backstory/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFja3N0b3J5XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/atk/Documents/CS/night owls repo/Night-Owl-Project-Repo-Aster/src/DWC_NightOwlProject/DWC_NightOwlProject/Views/Backstory/Template.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFja3N0b3J5XFRlbXBsYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/atk/Documents/CS/night owls repo/Night-Owl-Project-Repo-Aster/src/DWC_NightOwlProject/DWC_NightOwlProject/Views/Home/Index.cshtml]

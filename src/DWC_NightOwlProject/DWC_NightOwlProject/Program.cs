@@ -23,6 +23,7 @@ builder.Services.AddDbContext<WebAppDbContext>(options => options
                                     .UseSqlServer(connectionStringApp));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
+builder.Services.AddScoped<IWorldRepository, WorldRepository>();
 builder.Services.AddScoped<DbContext, WebAppDbContext>();
 var app = builder.Build();
 

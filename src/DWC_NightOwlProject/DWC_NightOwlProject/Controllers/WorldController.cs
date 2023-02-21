@@ -4,6 +4,9 @@ using DWC_NightOwlProject.Models;
 using DWC_NightOwlProject.Data;
 using DWC_NightOwlProject.ViewModel;
 using System.Security.Claims;
+using DWC_NightOwlProject.DAL.Abstract;
+using Microsoft.EntityFrameworkCore;
+using DWC_NightOwlProject.DAL.Concrete;
 using Microsoft.AspNetCore.Identity;
 
 namespace DWC_NightOwlProject.Controllers;
@@ -11,11 +14,12 @@ namespace DWC_NightOwlProject.Controllers;
 public class WorldController : Controller
 {
     private readonly ILogger<WorldController> _logger;
-    
+    private IWorldRepository worldRepo;
 
-    public WorldController(ILogger<WorldController> logger)
+    public WorldController(ILogger<WorldController> logger, IWorldRepository repo)
     {
         _logger = logger;
+        worldRepo=repo;
     }
 
     public IActionResult Index()
@@ -27,7 +31,24 @@ public class WorldController : Controller
     public IActionResult Index(ViewModelWorld w)
     {
         String userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        return View(userId);
+        if(userId!=null)
+        {
+            World newWorld=new World();
+            newWorld.UserId=userId;
+            newWorld.CreationDate=DateTime.Now;
+            try
+            {
+                worldRepo.AddOrUpdate(newWorld);
+                ViewBag.Message="World created";
+                return View();
+            }
+            catch(DbUpdateConcurrencyException e)
+            {
+                ViewBag.Message = "An unknown database error occurred while trying to create the item.  Please try again.";
+                return View();
+            }
+        }
+        return View();
     }
 
     public IActionResult Privacy()
