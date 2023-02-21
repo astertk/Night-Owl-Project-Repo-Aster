@@ -27,6 +27,22 @@ namespace DWC_NightOwlProject.Controllers
             return View();
         }
 
+        public ActionResult Scratch(string fromScratch, int maxLength, double temp, double presence, double frequency)
+        {
+            ViewBag.FromScratch = fromScratch;
+            ViewBag.MaxLength = maxLength.ToString();
+            ViewBag.Temp = temp;
+            ViewBag.Presence = presence;
+            ViewBag.Frequency = frequency;
+            ViewBag.Prompt = " Create a Dungeons and Dragons Backstory.  " + ViewBag.FromScratch + "Make the length of the backstory roughly" + ViewBag.MaxLength + " words.";
+            TempData["HoldPrompt"] = ViewBag.Prompt;
+            TempData["HoldTemp"] = temp.ToString();
+            TempData["HoldPresence"] = presence.ToString();
+            TempData["HoldFrequency"] = frequency.ToString();
+
+            return View();
+        }
+
         // GET: HomeController1/Details/5
         public ActionResult Details(int id)
         {
@@ -43,7 +59,7 @@ namespace DWC_NightOwlProject.Controllers
         {
             /*            var template = new TemplateViewModel();*/
 
-            ViewBag.Prompt = "Create a Dungeons and Dragons Backstory and make it very random";
+
             ViewBag.AnswerOne = answerOne;
             ViewBag.AnswerTwo = answerTwo;
             ViewBag.AnswerThree = answerThree;
