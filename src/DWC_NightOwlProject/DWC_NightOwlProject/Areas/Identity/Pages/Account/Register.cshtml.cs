@@ -122,9 +122,9 @@ namespace DWC_NightOwlProject.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                /*var user = CreateUser();
+                var user = CreateUser();
 
-                user.FirstName = Input.FirstName;
+                /*user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;*/
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
