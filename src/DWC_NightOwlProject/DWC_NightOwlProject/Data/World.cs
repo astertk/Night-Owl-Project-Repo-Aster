@@ -17,7 +17,8 @@ public partial class World
     public DateTime CreationDate { get; set; }
 
     [Column("UserID")]
-    public String UserId { get; set; }
+    [StringLength(450)]
+    public string UserId { get; set; } = null!;
 
     [InverseProperty("World")]
     public virtual ICollection<Material> Materials { get; } = new List<Material>();
