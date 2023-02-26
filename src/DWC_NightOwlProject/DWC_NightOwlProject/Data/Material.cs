@@ -13,6 +13,10 @@ public partial class Material
     [Column("ID")]
     public int Id { get; set; }
 
+    [Column("UserID")]
+    [StringLength(450)]
+    public string UserId { get; set; } = null!;
+
     [StringLength(40)]
     public string Type { get; set; } = null!;
 

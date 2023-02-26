@@ -6,7 +6,10 @@ using OpenAI;
 using System.Threading.Tasks.Dataflow;
 using System.Threading.Tasks;
 using System.Runtime;
-
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using NuGet.ProjectModel;
+using DWC_NightOwlProject.DAL.Concrete;
 
 namespace DWC_NightOwlProject.Controllers
 {
@@ -14,19 +17,40 @@ namespace DWC_NightOwlProject.Controllers
     {
         private IMaterialRepository _materialRepository;
         private readonly IConfiguration _config;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IRepository<Template> _templateRepository;
+        private readonly IRepository<World> _worldRepository;
 
-        public BackstoryController(IMaterialRepository materialRepository, IConfiguration config)
+        public BackstoryController(IMaterialRepository materialRepository, IConfiguration config, 
+                                   UserManager<IdentityUser> userManager, IRepository<Template> templateRepository, 
+                                   IRepository<World> worldRepository)
         {
             _materialRepository = materialRepository;
             _config = config;
+            _userManager = userManager;
+            _templateRepository = templateRepository;
+            _worldRepository = worldRepository;
         }
 
         // GET: HomeController1
+        [Authorize]
         public ActionResult Index()
         {
+            string id = _userManager.GetUserId(User);
+
+            if (_materialRepository.GetMaterialByUserId(id) == null)
+            {
+                return View();
+            }
+            /*ViewBag.Backstory = _materialRepository.GetMaterialByUserId(id);*/
+            
+            var material = _materialRepository.GetMaterialByUserId(id);
+
+            ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
+
             return View();
         }
-
+        [Authorize]
         public ActionResult Scratch(string fromScratch, int maxLength, double temp, double presence, double frequency)
         {
             ViewBag.FromScratch = fromScratch;
@@ -34,7 +58,7 @@ namespace DWC_NightOwlProject.Controllers
             ViewBag.Temp = temp;
             ViewBag.Presence = presence;
             ViewBag.Frequency = frequency;
-            ViewBag.Prompt = " Create a Dungeons and Dragons Backstory.  " + ViewBag.FromScratch + "Make the length of the backstory roughly" + ViewBag.MaxLength + " words.";
+            ViewBag.Prompt = " Create a Dungeons and Dragons Backstory.  " + ViewBag.FromScratch + " Make the length of the backstory roughly " + ViewBag.MaxLength + " characters.";
             TempData["HoldPrompt"] = ViewBag.Prompt;
             TempData["HoldTemp"] = temp.ToString();
             TempData["HoldPresence"] = presence.ToString();
@@ -52,45 +76,84 @@ namespace DWC_NightOwlProject.Controllers
         // GET: HomeController1/Create
         public ActionResult Create()
         {
-            return View();
+            return View(); 
         }
 
+        [Authorize]
         public async Task<ActionResult> Template(string answerOne, string answerTwo, string answerThree, string answerFour, int maxLength, double temp, double presence, double frequency)
         {
             /*            var template = new TemplateViewModel();*/
+            if (User.Identity.IsAuthenticated)
+            {
 
 
-            ViewBag.AnswerOne = answerOne;
-            ViewBag.AnswerTwo = answerTwo;
-            ViewBag.AnswerThree = answerThree;
-            ViewBag.AnswerFour = answerFour;
-            ViewBag.MaxLength = maxLength.ToString();
-            ViewBag.Temp = temp;
-            ViewBag.Presence = presence;
-            ViewBag.Frequency = frequency;
-            ViewBag.SuggestionOne = " The overall tone is: ";
-            ViewBag.SuggestionTwo = " The villains are: ";
-            ViewBag.SuggestionThree = " The heros are: ";
-            ViewBag.SuggestionFour = " The world is: ";
-            ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
-            TempData["HoldPrompt"] = ViewBag.Prompt;
-            TempData["HoldTemp"] = temp.ToString();
-            TempData["HoldPresence"] = presence.ToString();
-            TempData["HoldFrequency"] = frequency.ToString();
+
+                ViewBag.AnswerOne = answerOne;
+                ViewBag.AnswerTwo = answerTwo;
+                ViewBag.AnswerThree = answerThree;
+                ViewBag.AnswerFour = answerFour;
+                ViewBag.MaxLength = maxLength.ToString();
+                ViewBag.Temp = temp;
+                ViewBag.Presence = presence;
+                ViewBag.Frequency = frequency;
+                ViewBag.SuggestionOne = " The overall tone is: ";
+                ViewBag.SuggestionTwo = " The villains are: ";
+                ViewBag.SuggestionThree = " The heros are: ";
+                ViewBag.SuggestionFour = " The world is: ";
+                ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
+                TempData["HoldPrompt"] = ViewBag.Prompt;
+                TempData["HoldTemp"] = temp.ToString();
+                TempData["HoldPresence"] = presence.ToString();
+                TempData["HoldFrequency"] = frequency.ToString();
+            }
 
 
 
             return View();
         }
-        public async Task<ActionResult> Completion(TemplateViewModel template)
+        [Authorize]
+        public async Task<ActionResult> Completion()
         {
+            var backstoryCache = _materialRepository.GetAll().ToList();
+
+            for(int i = 0;i < backstoryCache.Count; i++)
+            {
+                _materialRepository.Delete(backstoryCache[i]);
+            }
+
+            var userId = _userManager.GetUserId(User);
+
+            /*var world = new World();
+            world.Id = 0;
+            world.CreationDate = DateTime.Now;
+            world.UserId = userId;*/
+
+
+           /* var template = new Template();
+            template.Id = 0;
+            template.CreationDate = DateTime.Now;
+            template.Type = "Backstory";*/
+            
+
+
+
+
 
             var material = new Material();
+            material.UserId = userId;
             material.Id = 0;
             material.Type = "Backstory";
             material.CreationDate = DateTime.Now;
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
             material.Prompt += "...";
+            
+       
+            
+            
+
+            
+
+
 
             var temp = TempData.Peek("HoldTemp").ToString();           
             var presence = TempData.Peek("HoldPresence").ToString(); ;
@@ -111,6 +174,20 @@ namespace DWC_NightOwlProject.Controllers
 
             material.Completion = result;
             ViewBag.Completion = result;
+
+
+
+          /*  world.Materials.Add(material);*/
+
+
+            _materialRepository.AddOrUpdate(material);
+
+          /*  world.Materials.Add(material);
+            _worldRepository.AddOrUpdate(world);*/
+
+          /*  template.Materials.Add(material);
+            _templateRepository.AddOrUpdate(template);*/
+            
 
             return View(material);
 
