@@ -2,15 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using DWC_NightOwlProject.Data;
 using DWC_NightOwlProject.DAL.Abstract;
+using static OpenAI.GPT3.ObjectModels.SharedModels.IOpenAiModels;
+using Castle.Core.Logging;
 
 namespace DWC_NightOwlProject.DAL.Concrete
 {
     public class MaterialRepository: Repository<Material>, IMaterialRepository
     {
     private DbSet<Material> _materials;
-        public MaterialRepository(WebAppDbContext ctx) : base(ctx)
+    private readonly UserManager<IdentityUser> _userManager;
+        public MaterialRepository(WebAppDbContext ctx, UserManager<IdentityUser> userManager) : base(ctx)
         {
             _materials = ctx.Materials;
+            _userManager = userManager;
         }
 
        
@@ -27,7 +31,14 @@ namespace DWC_NightOwlProject.DAL.Concrete
         public string AnswerFour;
 
 
+       public Material GetMaterialByUserId(string userId)
+        {
+            var result = new Material();
+            result = _materials.Where(x => x.UserId == userId).FirstOrDefault();
 
+            return result;
+
+        }
 
 
     }
