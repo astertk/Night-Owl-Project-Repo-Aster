@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DWC_NightOwlProject.Controllers
 {
-    public class QuestController : Controller
+    public class QuestsController : Controller
     {
         // GET: QuestController
         public ActionResult Index()
