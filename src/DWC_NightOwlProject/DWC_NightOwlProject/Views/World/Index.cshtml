@@ -4,12 +4,19 @@
 }
 
 <div class="text-center">
-    <form asp-action="Index"  method="post">
-        <label asp-for="WorldName" class="control-label">World name</label>
-        <input asp-for="WorldName" class="form-control">
-        <span asp-validation-for="WorldName" class="text-danger"></span>
-    <input type="submit" value="Create world">
-    </form>
+    @if(Model!=null)
+    {
+        <p>@Model.getWorld().Name</p>
+    }
+    else
+    {
+        <form asp-action="Index"  method="post">
+            <label asp-for="WorldName" class="control-label">World name</label>
+            <input asp-for="WorldName" class="form-control">
+            <span asp-validation-for="WorldName" class="text-danger"></span>
+            <input type="submit" value="Create world">
+        </form>
+    }
     @if(ViewBag.Message!=null)
     {
         <p>@ViewBag.Message</p>

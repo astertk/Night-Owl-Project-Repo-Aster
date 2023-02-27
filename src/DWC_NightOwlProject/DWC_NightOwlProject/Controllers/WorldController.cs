@@ -7,6 +7,7 @@ using System.Security.Claims;
 using DWC_NightOwlProject.DAL.Abstract;
 using Microsoft.EntityFrameworkCore;
 using DWC_NightOwlProject.DAL.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace DWC_NightOwlProject.Controllers;
@@ -22,8 +23,15 @@ public class WorldController : Controller
         worldRepo=repo;
     }
 
+    [Authorize]
     public IActionResult Index()
     {
+        String userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        ViewModelWorld w=new ViewModelWorld();
+        if(w.setWorld(worldRepo,userId))
+        {
+            return View(w);
+        }
         return View();
     }
 
@@ -36,6 +44,7 @@ public class WorldController : Controller
             World newWorld=new World();
             newWorld.UserId=userId;
             newWorld.CreationDate=DateTime.Now;
+            newWorld.Name=w.WorldName;
             try
             {
                 worldRepo.AddOrUpdate(newWorld);

@@ -5,6 +5,7 @@
 CREATE TABLE [World] 
 (
     [ID]            INT         PRIMARY KEY     IDENTITY(1, 1),
+    [NAME]          NVARCHAR(250)   NOT NULL,
     [CreationDate]  DATE    NOT NULL,
     [UserID]        NVARCHAR(450)         NOT NULL,
 );
