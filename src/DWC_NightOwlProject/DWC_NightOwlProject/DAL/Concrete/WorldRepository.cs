@@ -13,6 +13,10 @@ namespace DWC_NightOwlProject.DAL.Concrete
             _worlds = ctx.Worlds;
         }
 
+        public World GetUserWorld(string userId)
+        {
+            return _worlds.FirstOrDefault(w=>w.UserId==userId&&!string.IsNullOrEmpty(w.Name));
+        }
     }
     
 }
