@@ -38,17 +38,19 @@ namespace DWC_NightOwlProject.Controllers
         {
             string id = _userManager.GetUserId(User);
 
-            if (_materialRepository.GetMaterialByUserId(id) == null)
+            /*if (_materialRepository.GetMaterialByUserId(id) == null)
             {
                 return View();
-            }
+            }*/
             /*ViewBag.Backstory = _materialRepository.GetMaterialByUserId(id);*/
             
             var material = _materialRepository.GetMaterialByUserId(id);
 
-            ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
+            //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
 
-            return View();
+/*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
+
+            return View(material);
         }
         [Authorize]
         public ActionResult Scratch(string fromScratch, int maxLength, double temp, double presence, double frequency)
@@ -114,14 +116,16 @@ namespace DWC_NightOwlProject.Controllers
         [Authorize]
         public async Task<ActionResult> Completion()
         {
-            var backstoryCache = _materialRepository.GetAll().ToList();
+            var userId = _userManager.GetUserId(User);
+
+            var backstoryCache = _materialRepository.GetAll().Where(x => x.UserId == userId).ToList();
 
             for(int i = 0;i < backstoryCache.Count; i++)
             {
                 _materialRepository.Delete(backstoryCache[i]);
             }
 
-            var userId = _userManager.GetUserId(User);
+           
 
             /*var world = new World();
             world.Id = 0;
