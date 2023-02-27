@@ -1,12 +1,14 @@
 @model DWC_NightOwlProject.ViewModel.ViewModelWorld
 @{
-    ViewData["Title"] = "Create world";
+    ViewData["Title"] = "World";
 }
 
 <div class="text-center">
     @if(Model!=null)
     {
-        <p>@Model.getWorld().Name</p>
+        <h2>@Model.getWorld().Name</h2>
+        <a class="nav" style="color:brown;font-size:24" asp-controller="Character" asp-action="Index">World Characters</a>
+        <a class="nav" style="color:brown;font-size:24" asp-controller="Quests" asp-action="Index">World Quests</a>
     }
     else
     {
