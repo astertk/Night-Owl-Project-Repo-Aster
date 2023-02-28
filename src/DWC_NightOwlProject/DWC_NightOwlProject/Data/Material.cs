@@ -29,7 +29,7 @@ public partial class Material
     [StringLength(1000)]
     public string Prompt { get; set; } = null!;
 
-    [StringLength(1000)]
+    
     public string Completion { get; set; } = null!;
 
     [Column("TemplateID")]

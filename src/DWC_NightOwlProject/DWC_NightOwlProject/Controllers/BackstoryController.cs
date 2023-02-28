@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using NuGet.ProjectModel;
 using DWC_NightOwlProject.DAL.Concrete;
+using NuGet.Protocol;
 
 namespace DWC_NightOwlProject.Controllers
 {
@@ -178,26 +179,27 @@ namespace DWC_NightOwlProject.Controllers
 
             material.Completion = result;
             ViewBag.Completion = result;
+            TempData["HoldCompletion"] = material.Completion;
 
+            //Save();
 
+            /*  world.Materials.Add(material);*/
 
-          /*  world.Materials.Add(material);*/
+            // TempData["HoldCompletion"] = material;
+            //_materialRepository.AddOrUpdate(material);
 
+            /*  world.Materials.Add(material);
+              _worldRepository.AddOrUpdate(world);*/
 
-            _materialRepository.AddOrUpdate(material);
+            /*  template.Materials.Add(material);
+              _templateRepository.AddOrUpdate(template);*/
 
-          /*  world.Materials.Add(material);
-            _worldRepository.AddOrUpdate(world);*/
-
-          /*  template.Materials.Add(material);
-            _templateRepository.AddOrUpdate(template);*/
-            
 
             return View(material);
 
         }
 
-        public async Task<string> BuildCompletion(string completion)
+       /* public async Task<string> BuildCompletion(string completion)
         {
             var APIKey = _config["APIKey"];
             var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
@@ -205,6 +207,23 @@ namespace DWC_NightOwlProject.Controllers
             var result = backstory.ToString();
 
             return result;
+        }*/
+
+        public ActionResult Save()
+        {
+
+            var userId = _userManager.GetUserId(User);
+            var material = new Material();
+            material.UserId = userId;
+            material.Id = 0;
+            material.Type = "Backstory";
+            material.CreationDate = DateTime.Now;
+            material.Prompt = TempData.Peek("HoldPrompt").ToString();
+            material.Prompt += "...";
+            material.Completion = TempData.Peek("HoldCompletion").ToString();
+
+            _materialRepository.AddOrUpdate(material);
+            return RedirectToAction("Index", material);
         }
 
 

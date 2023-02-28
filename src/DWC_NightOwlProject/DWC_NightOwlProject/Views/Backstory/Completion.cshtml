@@ -11,11 +11,7 @@
 
 
 
-<h4>
-    Prompt:  <br />
 
-    @Model.Prompt
-</h4>
 
 
 
@@ -27,30 +23,40 @@
 
 @Model.Completion
 
+<a href="@Url.Action("Save","Backstory")">Save</a>
 
 
 
-@*   <script type="text/jscript">
-                     $('#create-template-button').click(function () {
-                            var url = "/Backstory/BuildCompletion";
+@*<input type="button" value="Save" onclick="location.href='@Url.Action("Save", "Backstory")'" />*@
 
-                            $.get(url, { completion: @Model.Completion }, function (data) {
-                                $("#rData").html(data);
-                            });
-                        })
-                    </script>
-*@
+@*<button onclick="Save">Save</button>*@
 
 
 
+@*<script>
+function Save(){
+$.post("/Backstory/Save", {material: @Model.Completion}, function (data) {  
+         alert(data);  
+     });
+}
+</script>*@
+
+
+@*<button type="button" value = "Save" class="btn btn-info" onclick='window.location = "@Url.Action("Save", "Backstory", "Model.Completion" )";'/>*@
+
+@*<button type="button" class="btn btn-default active" onclick="location.href='@Url.Action("Save", "Backstory", Model.Completion))'">Save</button>*@
+
+@*@Html.ActionLink()*@
+
+
+
+@*@Html.ActionLink("Add Balance", "Balance", "Home", new {model = Model.user}, new { @class = "navbar-brand" })*@
 
 
 
 
 
-@* public string QuestionOne = "What is the overall tone of your backstory?";
-        public string QuestionTwo = "Who are the baddies, ie, the major villains?";
-        public string QuestionThree = "Who are the goodies, ie, the major heros?";
-        public string QuestionFour = "Describe the world in one or two sentences:";
-*@
+
+
+
 
