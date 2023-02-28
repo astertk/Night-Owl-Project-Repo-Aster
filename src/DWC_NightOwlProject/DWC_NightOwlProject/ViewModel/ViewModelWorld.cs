@@ -8,22 +8,7 @@ namespace DWC_NightOwlProject.ViewModel
         //public String UserIdString{get;set;}
         public String WorldName{get;set;}
 
-        private World thisWorld;
+        public World ThisWorld{get;set;}
 
-        public World getWorld()
-        {
-            return thisWorld;
-        }
-
-        public bool setWorld(IWorldRepository worldRepo, string userid)
-        {
-            World w=worldRepo.GetUserWorld(userid);
-            if(w!=null)
-            {
-                thisWorld=w;
-                return true;
-            }
-            return false;
-        }
     }
 }

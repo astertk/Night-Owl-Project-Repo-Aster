@@ -6,7 +6,7 @@
 <div class="text-center">
     @if(Model!=null)
     {
-        <h2>@Model.getWorld().Name</h2>
+        <h2>@Model.ThisWorld.Name</h2>
         <a class="nav" style="color:brown;font-size:24" asp-controller="Character" asp-action="Index">World Characters</a>
         <a class="nav" style="color:brown;font-size:24" asp-controller="Quests" asp-action="Index">World Quests</a>
     }
