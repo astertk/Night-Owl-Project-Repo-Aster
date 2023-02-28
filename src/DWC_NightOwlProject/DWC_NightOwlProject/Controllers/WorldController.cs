@@ -16,9 +16,11 @@ public class WorldController : Controller
 {
     private readonly ILogger<WorldController> _logger;
     private IWorldRepository worldRepo;
+        private readonly UserManager<IdentityUser> _userManager;
 
-    public WorldController(ILogger<WorldController> logger, IWorldRepository repo)
+    public WorldController(ILogger<WorldController> logger, IWorldRepository repo, UserManager<IdentityUser> um)
     {
+        _userManager=um;
         _logger = logger;
         worldRepo=repo;
     }
@@ -26,11 +28,13 @@ public class WorldController : Controller
     [Authorize]
     public IActionResult Index()
     {
-        String userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        ViewModelWorld w=new ViewModelWorld();
-        if(w.setWorld(worldRepo,userId))
+        String userId = _userManager.GetUserId(User);
+        ViewModelWorld vmw=new ViewModelWorld();
+        World userWorld=getUserWorld(userId);
+        if(userWorld!=null)
         {
-            return View(w);
+            vmw.ThisWorld=userWorld;
+            return View(vmw);
         }
         return View();
     }
@@ -38,7 +42,7 @@ public class WorldController : Controller
     [HttpPost]
     public IActionResult Index(ViewModelWorld w)
     {
-        String userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        String userId = _userManager.GetUserId(User);
         if(userId!=null)
         {
             World newWorld=new World();
@@ -69,5 +73,16 @@ public class WorldController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+    
+
+    public World getUserWorld(string userid)
+    {
+        World w=worldRepo.GetUserWorld(userid);
+        if(w!=null)
+        {
+            return w;
+        }
+        return null;
     }
 }
