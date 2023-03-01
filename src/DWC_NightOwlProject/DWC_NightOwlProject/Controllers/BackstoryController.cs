@@ -119,12 +119,7 @@ namespace DWC_NightOwlProject.Controllers
         {
             var userId = _userManager.GetUserId(User);
 
-            var backstoryCache = _materialRepository.GetAll().Where(x => x.UserId == userId).ToList();
-
-            for(int i = 0;i < backstoryCache.Count; i++)
-            {
-                _materialRepository.Delete(backstoryCache[i]);
-            }
+           
 
            
 
@@ -211,8 +206,16 @@ namespace DWC_NightOwlProject.Controllers
 
         public ActionResult Save()
         {
-
             var userId = _userManager.GetUserId(User);
+
+            var backstoryCache = _materialRepository.GetAll().Where(x => x.UserId == userId).ToList();
+
+            for (int i = 0; i < backstoryCache.Count; i++)
+            {
+                _materialRepository.Delete(backstoryCache[i]);
+            }
+
+           
             var material = new Material();
             material.UserId = userId;
             material.Id = 0;
