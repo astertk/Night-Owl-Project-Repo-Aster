@@ -32,49 +32,42 @@ public class CharacterController : Controller
     }
 
     [Authorize]
-    public ActionResult Scratch(string fromScratch, int maxLength, double temp, double presence, double frequency)
+    public ActionResult Scratch(string fromScratch)
     {
         ViewBag.FromScratch = fromScratch;
-        ViewBag.MaxLength = maxLength.ToString();
-        ViewBag.Temp = temp;
-        ViewBag.Presence = presence;
-        ViewBag.Frequency = frequency;
-        ViewBag.Prompt = " Create a Dungeons and Dragons Backstory.  " + ViewBag.FromScratch + " Make the length of the backstory roughly " + ViewBag.MaxLength + " characters.";
+        ViewBag.Prompt = " Create a Character for my Dungeons and Dragons Campaign:  " + ViewBag.FromScratch;
         TempData["HoldPrompt"] = ViewBag.Prompt;
-        TempData["HoldTemp"] = temp.ToString();
-        TempData["HoldPresence"] = presence.ToString();
-        TempData["HoldFrequency"] = frequency.ToString();
 
         return View();
     }
 
     [Authorize]
-    public async Task<ActionResult> Template(string answerOne, string answerTwo, string answerThree, string answerFour, int maxLength, double temp, double presence, double frequency)
+    public async Task<ActionResult> Template(string cClass, string race, int age, string tone, double height, int weight)
     {
         
-        if (User.Identity.IsAuthenticated)
-        {
+       /* class, race, age, tone, height, weight*/
+
+      
+
+            ViewBag.Class = cClass;
+            ViewBag.Race = race;
+            ViewBag.Age = age;
+            ViewBag.Tone = tone;
+            ViewBag.Height = height;
+            ViewBag.Weight = weight;
+
+        string prompt = " Create a Character for my Dungeons and Dragons Campaign with these attributes:  "
+                        + "Class: " + cClass
+                        + ". Race: " + race
+                        + ". Age: " + age.ToString()
+                        + ". Skin Tone: " + tone
+                        + ". Height in Inches: " + height.ToString()
+                        + ". Weight in Lbs: " + weight.ToString()
+                        + ".";
 
 
-
-            ViewBag.AnswerOne = answerOne;
-            ViewBag.AnswerTwo = answerTwo;
-            ViewBag.AnswerThree = answerThree;
-            ViewBag.AnswerFour = answerFour;
-            ViewBag.MaxLength = maxLength.ToString();
-            ViewBag.Temp = temp;
-            ViewBag.Presence = presence;
-            ViewBag.Frequency = frequency;
-            ViewBag.SuggestionOne = " The overall tone is: ";
-            ViewBag.SuggestionTwo = " The villains are: ";
-            ViewBag.SuggestionThree = " The heros are: ";
-            ViewBag.SuggestionFour = " The world is: ";
-            ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
-            TempData["HoldPrompt"] = ViewBag.Prompt;
-
-        }
-
-
+            //ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
+            TempData["HoldPrompt"] = prompt;
 
         return View();
     }
@@ -95,7 +88,8 @@ public class CharacterController : Controller
 
         var APIKey = _config["APIKey"];
         var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
-        var character =  await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Small);
+        var characterList =  await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Small);
+        var character = characterList.FirstOrDefault();
         var result = character.ToString();
 
         material.Completion = result;
@@ -112,18 +106,10 @@ public class CharacterController : Controller
     {
         var userId = _userManager.GetUserId(User);
 
-        var backstoryCache = _materialRepository.GetAll().Where(x => x.UserId == userId).ToList();
-
-        for (int i = 0; i < backstoryCache.Count; i++)
-        {
-            _materialRepository.Delete(backstoryCache[i]);
-        }
-
-
         var material = new Material();
         material.UserId = userId;
         material.Id = 0;
-        material.Type = "Backstory";
+        material.Type = "Character";
         material.CreationDate = DateTime.Now;
         material.Prompt = TempData.Peek("HoldPrompt").ToString();
         material.Prompt += "...";

@@ -1,0 +1,83 @@
+﻿@model DWC_NightOwlProject.Data.Material
+
+
+<div class="text-center" id="title">
+    <h2>Character Creation</h2>
+</div>
+
+<div class="text-center" id="adviceBox">
+    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+</div>
+
+
+<h2>Questions</h2>
+
+
+
+<form id="create-template-form">
+    <div class="container">
+        <div class="row-cols-lg-1">
+            <div class="col">
+
+                <label for="CClass" class="control-label">Class</label>
+                <input id="CClass-input" name="CClass" class="form-control" type="text" required />
+
+
+                <label for="Race" class="control-label">Race</label>
+                <input id="Race-input" name="Race" class="form-control" type="text" required />
+
+
+                <label for="Age" class="control-label">Age</label>
+                <input id="Age-input" name="Age" class="form-control" type="text" required />
+
+
+
+
+
+                <label for="Tone" class="control-label">Skin Tone</label>
+                <input id="Tone-input" name="Tone" class="form-control" type="text" required />
+
+
+
+
+
+                <label for="Height" class="control-label">Height</label>
+                <input id="Height-input" name="Height" class="form-control" type="text" required />
+
+
+
+
+                <label for="Weight" class="control-label">Weight</label>
+                <input id="Weight-input" name="Weight" class="form-control" type="text" required />
+
+            </div>
+            
+        </div>
+    </div>
+
+  
+
+
+
+    <div class="form-group mt-3 text-center">
+        <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
+        <div class="text-danger">
+            These questions are optional, but please fill out as many as you can before clicking "Create Character"
+        </div>
+        <input type="button" class="" value="Create Your Backstory" onclick="window.location= '@Url.Action( "Completion", "Character")'" />
+
+    </div>
+</form>
+
+
+
+
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+<script src="~/sketch.js" type="text/javascript"></script>
+*@
+
+
+
+
+
+
