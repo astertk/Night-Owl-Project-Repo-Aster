@@ -1,0 +1,47 @@
+@model DWC_NightOwlProject.Data.MaterialVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<div class="text-center" id="title">
+    <h2>Character Creation</h2>
+</div>
+
+<div class="text-center" id="adviceBox">
+    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+    <p>Fill your prophecy with a template, or create your own</p>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1> Create your Character with a template?</h1>
+            Easier, Step-by-Step <br />
+            <input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
+        </div>
+        <div class="col-sm">
+            <h1> Create your Character all from Scratch?</h1>
+            More advanced, but potentially more creative! <br />
+            <input type="button" class="" value="From Scratch" onclick="window.location= '@Url.Action( "Scratch", "Character")'" />
+        </div>
+
+    </div>
+</div>
+
+<h2>Completions:</h2>
+@if (Model != null)
+{
+    @for(var i = 0; i < Model.materials.Count; ++i)
+    {
+        @if (Model.materials[i]!= null)
+        {
+            <iframe style="width: 1000px; height: 1000px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe>
+        }
+    }
+}
+

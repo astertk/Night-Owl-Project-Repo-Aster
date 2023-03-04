@@ -6,6 +6,10 @@ namespace DWC_NightOwlProject.DAL.Abstract
 {
     public interface IMaterialRepository: IRepository<Material>
     {
-        public Material GetMaterialByUserId(string userId);
+        public Material GetBackstoryById(string userId);
+
+        public Material GetCharacterByIdandMaterialId(string userId, int id);
+
+        public List<Material> GetAllCharactersById(string userId);
     }
 }

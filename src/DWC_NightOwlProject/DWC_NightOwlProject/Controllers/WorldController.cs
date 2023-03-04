@@ -16,13 +16,16 @@ public class WorldController : Controller
 {
     private readonly ILogger<WorldController> _logger;
     private IWorldRepository worldRepo;
-        private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<IdentityUser> _userManager;
+    private readonly IMaterialRepository _materialRepository;
 
-    public WorldController(ILogger<WorldController> logger, IWorldRepository repo, UserManager<IdentityUser> um)
+
+    public WorldController(ILogger<WorldController> logger, IWorldRepository repo, UserManager<IdentityUser> um, IMaterialRepository materialRepository)
     {
-        _userManager=um;
+        _userManager = um;
         _logger = logger;
-        worldRepo=repo;
+        worldRepo = repo;
+        _materialRepository = materialRepository;
     }
 
     [Authorize]
@@ -31,6 +34,21 @@ public class WorldController : Controller
         String userId = _userManager.GetUserId(User);
         ViewModelWorld vmw=new ViewModelWorld();
         World userWorld=getUserWorld(userId);
+
+        var material = new Material();
+        material = _materialRepository.GetBackstoryById(userId);
+
+        if (material != null)
+        {
+            ViewBag.Completion = material.Completion;
+        }
+
+        else
+        {
+            ViewBag.Completion = "No Backstory Yet...";
+        }
+
+        
         if(userWorld!=null)
         {
             vmw.ThisWorld=userWorld;
