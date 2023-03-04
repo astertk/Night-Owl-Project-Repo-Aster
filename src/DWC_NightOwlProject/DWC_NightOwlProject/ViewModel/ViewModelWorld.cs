@@ -15,7 +15,7 @@ namespace DWC_NightOwlProject.ViewModel
             return thisWorld;
         }
 
-        public bool setWorld(IWorldRepository worldRepo, string userid)
+/**        public bool setWorld(IWorldRepository worldRepo, string userid)
         {
             World w=worldRepo.GetUserWorld(userid);
             if(w!=null)
@@ -24,6 +24,6 @@ namespace DWC_NightOwlProject.ViewModel
                 return true;
             }
             return false;
-        }
+        }**/
     }
 }

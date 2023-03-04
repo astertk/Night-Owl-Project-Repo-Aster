@@ -1,10 +1,24 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using DWC_NightOwlProject.DAL.Abstract;
 
 namespace DWC_NightOwlProject.Controllers
 {
     public class QuestsController : Controller
     {
+        private readonly IConfiguration _config;
+        private readonly UserManager<IdentityUser> _userManager;
+        private IMaterialRepository _materialRepository;
+        private readonly string materialType="Quest";
+
+        public QuestsController(IConfiguration config, UserManager<IdentityUser> um, IMaterialRepository mrepo)
+        {
+            _config=config;
+            _userManager=um;
+            _materialRepository=mrepo;
+        }
+
         // GET: QuestController
         public ActionResult Index()
         {
@@ -13,6 +27,11 @@ namespace DWC_NightOwlProject.Controllers
 
         // GET: QuestController/Details/5
         public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        public ActionResult GuidedQuestTemplate()
         {
             return View();
         }
