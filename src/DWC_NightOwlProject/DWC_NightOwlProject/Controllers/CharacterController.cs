@@ -25,10 +25,13 @@ public class CharacterController : Controller
     [Authorize]
     public IActionResult Index()
     {
+        var vm = new MaterialVM();
         string id = _userManager.GetUserId(User);
         var result = new List<Material>();
         result = _materialRepository.GetAllCharactersById(id);
-        return View(result);
+
+        vm.materials = result;
+        return View(vm);
     }
 
     [Authorize]
