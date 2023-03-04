@@ -34,5 +34,8 @@
 </div>
    
 <h2>Backstory:</h2>    
-<h3>@ViewBag.Backstory</h3>
+@if (Model != null)
+{
+    <h3>@Model.Completion</h3>
+}
 
