@@ -42,14 +42,9 @@ namespace DWC_NightOwlProject.DAL.Concrete
         {
             var result = new List<Material>();
 
-            //var count = _materials.Where(x => x.UserId == userId).Where(x => x.Type == "Character").ToList().Count();
 
             result = _materials.Where(x => x.UserId == userId).Where(x => x.Type == "Character").ToList();
 
-            /*for(int i = 0; i < count; ++i)
-            {
-                result.Add(GetCharacterByIdandMaterialId(userId, i));
-            }*/
 
             return result;
 
