@@ -5,7 +5,7 @@
 namespace DWCNightOwlProject.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class CustomUserData : Migration
+    public partial class IdentityUserData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
