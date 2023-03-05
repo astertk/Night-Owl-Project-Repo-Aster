@@ -13,6 +13,10 @@ public partial class Material
     [Column("ID")]
     public int Id { get; set; }
 
+    [Column("UserID")]
+    [StringLength(450)]
+    public string UserId { get; set; } = null!;
+
     [StringLength(40)]
     public string Type { get; set; } = null!;
 
@@ -30,12 +34,4 @@ public partial class Material
 
     [Column("TemplateID")]
     public int TemplateId { get; set; }
-
-    [ForeignKey("TemplateId")]
-    [InverseProperty("Materials")]
-    public virtual Template Template { get; set; } = null!;
-
-    [ForeignKey("WorldId")]
-    [InverseProperty("Materials")]
-    public virtual World World { get; set; } = null!;
 }

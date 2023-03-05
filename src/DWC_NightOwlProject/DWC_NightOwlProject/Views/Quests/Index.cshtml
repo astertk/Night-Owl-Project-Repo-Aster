@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<div class="text-center">
+    <h2>Quest Creation</h2>
+</div>
+
+<div class="text-center">
+    <span>You may be preparing to set out on your journey, but for what reason are you going?</span>
+    <span>Create your quests with a template or create your own!</span>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1>Create your Quest with a template?</h1>
+            Much easier, leads you step by step <br />
+            <button type="button" class="" value="Create a Quest" onclick="window.location='@Url.Action("Template", "Quests")'"></button>
+        </div>
+
+        <div class="col-sm">
+            <h1>Create your backstory from Scratch?</h1>
+            More advanced, but potentially more creative! <br />
+            <button type="button" class="" value="Create a Quest" onclick="window.location='@Url.Action("Scratch", "Quests")'"></button>
+        </div>
+    </div>
+</div>
