@@ -35,15 +35,16 @@
 
 <h2>Completions:</h2>
 @if (Model != null)
-{
+{<div class="row">
     @for(var i = 0; i < Model.materials.Count; ++i)
     {
+        
         <div class="col">
         @if (Model.materials[i] != null)
         {
             <div class="row">@Model.materials[i].Name</div>
             <div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
-             <div class="row">@Model.materials[i].CreationDate.ToString()</div>
+             <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
             <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
             <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Edit</a>
@@ -51,5 +52,6 @@
         }
         </div>
     }
+    </div>
 }
 
