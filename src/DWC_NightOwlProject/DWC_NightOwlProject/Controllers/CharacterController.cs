@@ -82,9 +82,11 @@ public class CharacterController : Controller
 
 
         var material = new Material();
+        
         material.UserId = userId;
         material.Id = 0;
         material.Type = "Character";
+        material.Name = "";
         material.CreationDate = DateTime.Now;
         material.Prompt = TempData.Peek("HoldPrompt").ToString();
         material.Prompt += "...";
@@ -113,6 +115,7 @@ public class CharacterController : Controller
         material.UserId = userId;
         material.Id = 0;
         material.Type = "Character";
+        material.Name = "";
         material.CreationDate = DateTime.Now;
         material.Prompt = TempData.Peek("HoldPrompt").ToString();
         material.Prompt += "...";
@@ -120,5 +123,53 @@ public class CharacterController : Controller
 
         _materialRepository.AddOrUpdate(material);
         return RedirectToAction("Index", material);
+    }
+
+    // GET: HomeController1/Details/5
+    public ActionResult Details(int id)
+    {
+        return View();
+    }
+
+    // GET: HomeController1/Edit/5
+    public ActionResult Edit(int id)
+    {
+        return View();
+    }
+
+    // POST: HomeController1/Edit/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Edit(int id, IFormCollection collection)
+    {
+        try
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        catch
+        {
+            return View();
+        }
+    }
+
+    // GET: HomeController1/Delete/5
+    public ActionResult Delete(int id)
+    {
+        return View();
+    }
+
+    // POST: HomeController1/Delete/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Delete(int id, IFormCollection collection)
+    {
+        try
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        catch
+        {
+            return View();
+        }
     }
 }

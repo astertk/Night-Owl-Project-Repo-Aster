@@ -40,7 +40,9 @@
     {
         @if (Model.materials[i] != null)
         {
-            <iframe style="width: 1000px; height: 1000px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe>
+            <iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe>
+            @Model.materials[i].Name
+            @Model.materials[i].CreationDate.ToString()
         }
     }
 }
