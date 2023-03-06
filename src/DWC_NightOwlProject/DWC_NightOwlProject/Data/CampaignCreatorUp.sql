@@ -15,6 +15,7 @@ CREATE TABLE [Material]
     [ID]            INT             PRIMARY KEY     IDENTITY(1, 1),
     [UserID]        NVARCHAR(450)         NOT NULL,
     [Type]          NVARCHAR(40)    NOT NULL, 
+    [Name]          NVARCHAR(450)  NOT NULL,
     [CreationDate]  DATE            NOT NULL,
     [WorldID]       INT             NOT NULL,
     [Prompt]        NVARCHAR(1000)   NOT NULL,
