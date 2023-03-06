@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 
 
-namespace DWC_NightOwlProject.Data
+namespace DWC_NightOwlProject.Data;
+
+public class ApplicationUser : IdentityUser
 {
-    public class ApplicationUser : IdentityUser
-    {
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-    }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
 }
 
