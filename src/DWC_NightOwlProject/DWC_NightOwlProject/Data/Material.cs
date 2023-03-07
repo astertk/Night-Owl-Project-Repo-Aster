@@ -7,21 +7,16 @@ using Microsoft.EntityFrameworkCore;
 namespace DWC_NightOwlProject.Data;
 
 [Table("Material")]
+[Index("TemplateId", Name = "IX_Material_TemplateID")]
+[Index("WorldId", Name = "IX_Material_WorldID")]
 public partial class Material
 {
     [Key]
     [Column("ID")]
     public int Id { get; set; }
 
-    [Column("UserID")]
-    [StringLength(450)]
-    public string UserId { get; set; } = null!;
-
     [StringLength(40)]
     public string Type { get; set; } = null!;
-
-    [StringLength(450)]
-    public string Name { get; set; } = null!;
 
     [Column(TypeName = "date")]
     public DateTime CreationDate { get; set; }
@@ -41,4 +36,16 @@ public partial class Material
 
     [Column("TemplateID")]
     public int TemplateId { get; set; }
+
+    [Column("UserID")]
+    [StringLength(450)]
+    public string UserId { get; set; } = null!;
+
+    [ForeignKey("TemplateId")]
+    [InverseProperty("Materials")]
+    public virtual Template Template { get; set; } = null!;
+
+    [ForeignKey("WorldId")]
+    [InverseProperty("Materials")]
+    public virtual World World { get; set; } = null!;
 }
