@@ -38,3 +38,5 @@ public partial class Material
     [Column("TemplateID")]
     public int TemplateId { get; set; }
 }
+
+//Id, userId, Type, Name, CreationDate, WorldId, Prompt, Completion, TemplateId
