@@ -84,6 +84,11 @@ namespace DWC_NightOwlProject.Controllers
             }
             return View("ContinueGuidedQuest", qm);
         }
+
+        public IActionResult GuidedQuestTemplate()
+        {
+            return View();
+        }
         public World getUserWorld(string userid)
         {
             World w = worldRepo.GetUserWorld(userid);
