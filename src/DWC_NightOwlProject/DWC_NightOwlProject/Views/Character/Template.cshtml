@@ -1,5 +1,8 @@
 ﻿@model DWC_NightOwlProject.Data.Material
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+<script src="~/sketch.js" type="text/javascript"></script>
 
 <div class="text-center" id="title">
     <h2>Character Creation</h2>
@@ -72,9 +75,12 @@
 
 
 
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
-<script src="~/sketch.js" type="text/javascript"></script>
-*@
+<button onclick="draw()">Copy Text</button>
+
+function myFunction() {
+  document.getElementById("field2").value =   document.getElementById("field1").value;
+}
+</script>
 
 
 

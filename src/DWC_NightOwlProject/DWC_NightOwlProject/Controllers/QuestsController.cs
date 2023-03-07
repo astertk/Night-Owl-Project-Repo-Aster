@@ -283,7 +283,7 @@ namespace DWC_NightOwlProject.Controllers
         {
             var userId = _userManager.GetUserId(User);
             var material = new Material();
-            material = _materialRepository.GetQuestById(userId);
+            material = _materialRepository.GetQuestById(userId, id);
             return View(material);
         }
 
@@ -296,7 +296,7 @@ namespace DWC_NightOwlProject.Controllers
             {
                 var userId = _userManager.GetUserId(User);
                 var material = new Material();
-                material = _materialRepository.GetQuestById(userId);
+                material = _materialRepository.GetQuestById(userId, id);
                 _materialRepository.Delete(material);
 
 
