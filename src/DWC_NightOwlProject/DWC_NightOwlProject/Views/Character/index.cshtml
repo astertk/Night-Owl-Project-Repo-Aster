@@ -11,7 +11,7 @@
 </div>
 
 <div class="text-center" id="adviceBox">
-    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+    <span>"It builds character. Keep at it!" - Calvin and Hobbes</span>
     <p>Fill your prophecy with a template, or create your own</p>
 </div>
 
@@ -43,7 +43,7 @@
         @if (Model.materials[i] != null)
         {
             <div class="row">@Model.materials[i].Name</div>
-            <div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
+            <div class="row"><iframe style="width:256px; height: 256px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
              <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
             <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
