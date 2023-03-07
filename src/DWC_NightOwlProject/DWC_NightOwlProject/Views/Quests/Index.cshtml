@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DWC_NightOwlProject.Data.MaterialVM;
+@{
     ViewData["Title"] = "Index";
 }
 <div class="text-center">
@@ -15,13 +16,33 @@
         <div class="col-sm">
             <h1>Create your Quest with a template?</h1>
             Much easier, leads you step by step <br />
-            <button type="button" class="" value="Create a Quest" onclick="window.location='@Url.Action("Template", "Quests")'"></button>
+            <button type="button" class="" value="Create a Quest" onclick="window.location='@Url.Action("Template", "Quests")'">Create your Quests</button>
         </div>
 
         <div class="col-sm">
-            <h1>Create your backstory from Scratch?</h1>
+            <h1>Create your Quest from Scratch?</h1>
             More advanced, but potentially more creative! <br />
-            <button type="button" class="" value="Create a Quest" onclick="window.location='@Url.Action("Scratch", "Quests")'"></button>
+            <button type="button" class="" value="Create a Quest" onclick="window.location='@Url.Action("Scratch", "Quests")'">Create your Quests</button>
         </div>
     </div>
 </div>
+
+<h2>Quests:</h2>
+@if (Model != null)
+{
+    <div class="row">
+        @for (var i = 0; i < Model.materials.Count; ++i)
+        {
+            <div class="col">
+                @if (Model.materials[i] != null)
+                {
+                    <div class="row">@Model.materials[i].Completion</div>
+                    <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+
+                    <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
+                    <a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
+                }
+            </div>
+        }
+    </div>
+}

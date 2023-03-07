@@ -1,0 +1,91 @@
+﻿@model DWC_NightOwlProject.Data.Material
+
+
+<div class="text-center" id="title">
+    <h2>Quest Creation</h2>
+</div>
+
+<div class="text-center" id="adviceBox">
+    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+</div>
+
+
+<h2>Questions</h2>
+
+<form id="create-template-form">
+    <div class="container">
+        <div class="row-cols-lg-1">
+            <div class="col">
+
+                <label for="AnswerOne" class="control-label">Are you looking for a combat-heavy adventure or a more story-driven one?</label>
+                <input id="AnswerOne-input" name="AnswerOne" class="form-control" type="text" required />
+
+
+
+
+
+                <label for="AnswerTwo" class="control-label">Where are you starting your adventure?</label>
+                <input id="AnswerTwo-input" name="AnswerTwo" class="form-control" type="text" required />
+
+
+
+
+
+                <label for="AnswerThree" class="control-label">Where is your destination?</label>
+                <input id="AnswerThree-input" name="AnswerThree" class="form-control" type="text" required />
+
+
+
+
+
+                <label for="AnswerFour" class="control-label">What kind of reward or outcome would you like to see at the end of the quest? Do you want a magical item, a large sum of gold, or perhaps some other kind of intangible reward like a boost to reputation or influence?</label>
+                <input id="AnswerFour-input" name="AnswerFour" class="form-control" type="text" required />
+
+            </div>
+            <div class="col">
+
+
+
+
+
+                <label for="maxLength" class="control-label">How long should this quest be, from 100 to 1000 characters?</label>
+                <input id="maxLength-input" name="maxLength" class="form-control" type="range" required min="100" max="1000" />
+
+
+
+
+
+                <label for="temp" class="control-label">Please adjust AI Temperature, ie, randomness!</label>
+                <input id="temp-input" name="temp" class="form-control" type="range" required step=0.1 min="0" max="1" />
+
+
+
+
+
+                <label for="presence" class="control-label">Please adjust Presence, ie, how different each idea in the quest will be.</label>
+                <input id="presence-input" name="presence" class="form-control" type="range" required min="-2.0" max="2.0" />
+
+
+
+
+
+                <label for="frequency" class="control-label">Please adjust Frequency, ie, how different each word will be.</label>
+                <input id="frequency-input" name="frequency" class="form-control" type="range" required min="-2.0" max="2.0" />
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group mt-3 text-center">
+        <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
+        <div class="text-danger">
+            These questions are optional, but please fill out as many as you can before clicking "Create Quest"
+        </div>
+        <input type="button" class="" value="Create Your Quest" onclick="window.location= '@Url.Action( "Completion", "Quests")'" />
+
+    </div>
+</form>
