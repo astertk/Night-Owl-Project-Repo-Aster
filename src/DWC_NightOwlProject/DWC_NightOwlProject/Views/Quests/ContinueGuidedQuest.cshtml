@@ -14,10 +14,9 @@
         }
         <p>This is a quest where @Model.OverallQuest</p>
         <span style="white-space: pre-line;">@Model.Results</span>
-        <p>Add a new step to your quest</p>
         <form asp-action="ContinueGuidedQuest" method="post">
             <div class="form-group">
-                <label asp-for="CurrentStep" class="control-label">Describe the general concept of your quest</label>
+                <label asp-for="CurrentStep" class="control-label">Add a new step to your quest</label>
                 <input asp-for="CurrentStep" class="form-control">
                 <span asp-validation-for="CurrentStep" class="text-danger"></span>
             </div>
