@@ -1,0 +1,45 @@
+﻿@model DWC_NightOwlProject.Data.Material
+
+
+<div class="text-center" id="title">
+    <h2>Quest Creation</h2>
+</div>
+
+<div class="text-center" id="adviceBox">
+    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+</div>
+
+<h2>Crafting Table</h2>
+
+<form id="create-template-form">
+    <div class="container">
+        <div class="row-cols-lg-1">
+            <div class="col">
+
+                <label for="fromScratch" class="control-label">Create a Quest in as little or as much details as you like:</label>
+                <input id="fromScratch-input" name="fromScratch" class="text-xxl-center" type="text" required min="0" max="1000" />
+
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="form-group mt-3 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
+                </div>
+                <div class="col-sm">
+                </div>
+                <div class="col-sm">
+                    <input type="button" class="" value="Create Your Quest" onclick="window.location= '@Url.Action( "Completion", "Quests")'" />
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</form>
