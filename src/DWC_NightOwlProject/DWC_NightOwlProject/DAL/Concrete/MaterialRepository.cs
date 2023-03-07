@@ -31,7 +31,7 @@ namespace DWC_NightOwlProject.DAL.Concrete
 
         }
 
-        public Material GetQuestById(string userId)
+        public Material GetQuestById(string userId, int id)
         {
             var result = new Material();
             result = _materials.Where(x => x.UserId == userId).Where(x=>x.Type == "Quest").FirstOrDefault();

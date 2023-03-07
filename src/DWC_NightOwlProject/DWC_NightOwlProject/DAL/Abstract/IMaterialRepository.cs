@@ -7,7 +7,7 @@ namespace DWC_NightOwlProject.DAL.Abstract
     public interface IMaterialRepository: IRepository<Material>
     {
         public Material GetBackstoryById(string userId);
-        public Material GetQuestById(string userId);
+        public Material GetQuestById(string userId, int id);
         public List<Material> GetAllQuestsById(string userId);
 
         public Material GetCharacterByIdandMaterialId(string userId, int id);
