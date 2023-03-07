@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,11 +20,4 @@ public partial class World
     [Column("UserID")]
     [StringLength(450)]
     public string UserId { get; set; } = null!;
-
-    [Column("NAME")]
-    [StringLength(250)]
-    public string Name { get; set; } = null!;
-
-    [InverseProperty("World")]
-    public virtual ICollection<Material> Materials { get; } = new List<Material>();
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using DWC_NightOwlProject.Data;
 
 namespace DWC_NightOwlProject.Data;
 

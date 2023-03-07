@@ -32,8 +32,8 @@ public class WorldController : Controller
     public IActionResult Index()
     {
         String userId = _userManager.GetUserId(User);
-        ViewModelWorld vmw=new ViewModelWorld();
-        World userWorld=getUserWorld(userId);
+        ViewModelWorld vmw = new ViewModelWorld();
+        World userWorld = getUserWorld(userId);
 
         var material = new Material();
         material = _materialRepository.GetBackstoryById(userId);
@@ -48,10 +48,10 @@ public class WorldController : Controller
             ViewBag.Completion = "No Backstory Yet...";
         }
 
-        
-        if(userWorld!=null)
+
+        if (userWorld != null)
         {
-            vmw.ThisWorld=userWorld;
+            vmw.ThisWorld = userWorld;
             return View(vmw);
         }
         return View();
@@ -61,19 +61,19 @@ public class WorldController : Controller
     public IActionResult Index(ViewModelWorld w)
     {
         String userId = _userManager.GetUserId(User);
-        if(userId!=null)
+        if (userId != null)
         {
-            World newWorld=new World();
-            newWorld.UserId=userId;
-            newWorld.CreationDate=DateTime.Now;
-            newWorld.Name=w.WorldName;
+            World newWorld = new World();
+            newWorld.UserId = userId;
+            newWorld.CreationDate = DateTime.Now;
+            newWorld.Name = w.WorldName;
             try
             {
                 worldRepo.AddOrUpdate(newWorld);
-                ViewBag.Message="World created";
+                ViewBag.Message = "World created";
                 return View();
             }
-            catch(DbUpdateConcurrencyException e)
+            catch (DbUpdateConcurrencyException e)
             {
                 ViewBag.Message = "An unknown database error occurred while trying to create the item.  Please try again.";
                 return View();
@@ -92,12 +92,12 @@ public class WorldController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
-    
+
 
     public World getUserWorld(string userid)
     {
-        World w=worldRepo.GetUserWorld(userid);
-        if(w!=null)
+        World w = worldRepo.GetUserWorld(userid);
+        if (w != null)
         {
             return w;
         }
