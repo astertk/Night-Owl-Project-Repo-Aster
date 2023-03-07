@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using NuGet.ProjectModel;
 using DWC_NightOwlProject.DAL.Concrete;
 using NuGet.Protocol;
+using Microsoft.EntityFrameworkCore;
+using DWC_NightOwlProject.ViewModel;
 
 namespace DWC_NightOwlProject.Controllers
 {
@@ -21,19 +23,76 @@ namespace DWC_NightOwlProject.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IRepository<Template> _templateRepository;
         private readonly IRepository<World> _worldRepository;
+        private readonly string materialType="Quest";
+        private IWorldRepository worldRepo;
 
         public QuestsController(IMaterialRepository materialRepository, IConfiguration config,
                                    UserManager<IdentityUser> userManager, IRepository<Template> templateRepository,
-                                   IRepository<World> worldRepository)
+                                   IRepository<World> worldRepository, IWorldRepository wRepo)
         {
             _materialRepository = materialRepository;
             _config = config;
             _userManager = userManager;
             _templateRepository = templateRepository;
             _worldRepository = worldRepository;
+            worldRepo=wRepo;
         }
 
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> ContinueGuidedQuest(GuidedQuestViewModel qm)
+        {
+            GuidedQuestViewModel prevModel;
+            var key=_config["APIKey"];
+            var api=new OpenAIClient(new OpenAIAuthentication(key));
+            if(qm.CurrentStep==null)
+            {
+                ViewBag.Message= "Must provide step input.";
+                return View(qm);
+            }
+            else
+            {
+                var result = await api.CompletionsEndpoint.CreateCompletionAsync(qm.LatestStep(), max_tokens: 1000, temperature: .5, presencePenalty: .5, frequencyPenalty: .5, model: OpenAI.Models.Model.Davinci);
+                qm.AddResult(result.ToString());
+                return View(qm);
+            }
+        }
 
+        [HttpPost]
+        public IActionResult SaveGuidedQuest(GuidedQuestViewModel qm)
+        {
+            String userId = _userManager.GetUserId(User);
+            World userWorld=getUserWorld(userId);
+            Material m= new Material();
+            m.Type=materialType;
+            m.UserId=userId;
+            m.WorldId=userWorld.Id;
+            m.Completion=qm.Results;
+            if(userId!=null)
+            {
+                try
+                {
+                    _materialRepository.AddOrUpdate(m);
+                    ViewBag.Message("Quest saved");
+                    return View("ContinueGuidedQuest", qm);
+                }
+                catch(DbUpdateConcurrencyException e)
+                {
+                    ViewBag.Message = "An unknown database error occurred while trying to create the item.  Please try again.";
+                    return View("ContinueGuidedQuest", qm);
+                }
+            }
+            return View("ContinueGuidedQuest", qm);
+        }
+        public World getUserWorld(string userid)
+        {
+            World w = worldRepo.GetUserWorld(userid);
+            if (w != null)
+            {
+                return w;
+            }
+            return null;
+        }
 
         [Authorize]
         public IActionResult Index()
