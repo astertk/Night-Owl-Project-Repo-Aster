@@ -4,7 +4,7 @@
 --ALTER TABLE [Material] DROP CONSTRAINT [Material_Fk_Template];
 --ALTER TABLE [Material] DROP CONSTRAINT [Material_Fk_TemplateType];
 
---DROP TABLE  [User];
+DROP TABLE  [User];
 DROP TABLE  [World];
 DROP TABLE  [Material];
 DROP TABLE  [Template];
