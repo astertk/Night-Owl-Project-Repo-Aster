@@ -40,7 +40,6 @@
                     <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
                     <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
-                    <a asp-controller="Quests" asp-action="Edit" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Edit</a>
                     <a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
                 }
             </div>
