@@ -59,14 +59,14 @@ public class CharacterController : Controller
             ViewBag.Height = height;
             ViewBag.Weight = weight;
 
-        string prompt = " Create a Character for my Dungeons and Dragons Campaign with these attributes:  "
-                        + "Class: " + cClass
-                        + ". Race: " + race
-                        + ". Age: " + age.ToString()
-                        + ". Skin Tone: " + tone
-                        + ". Height in Inches: " + height.ToString()
-                        + ". Weight in Lbs: " + weight.ToString()
-                        + ".";
+        string prompt = " Character for my Dungeons and Dragons Campaign.  "
+                        + "They are a: " + cClass
+                        + ". Their race is: " + race
+                        + ". Their age is: " + age.ToString()
+                        + ". Their skin tone is: " + tone
+                        + ". Their height in inches is: " + height.ToString()
+                        + ". Their weight is: " + weight.ToString()
+                        + " Only include the character. Do not include text or columns. Show the full body and face.";
 
 
             //ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
@@ -82,9 +82,11 @@ public class CharacterController : Controller
 
 
         var material = new Material();
+        
         material.UserId = userId;
         material.Id = 0;
         material.Type = "Character";
+        material.Name = "";
         material.CreationDate = DateTime.Now;
         material.Prompt = TempData.Peek("HoldPrompt").ToString();
         material.Prompt += "...";
@@ -113,6 +115,7 @@ public class CharacterController : Controller
         material.UserId = userId;
         material.Id = 0;
         material.Type = "Character";
+        material.Name = "";
         material.CreationDate = DateTime.Now;
         material.Prompt = TempData.Peek("HoldPrompt").ToString();
         material.Prompt += "...";
@@ -120,5 +123,74 @@ public class CharacterController : Controller
 
         _materialRepository.AddOrUpdate(material);
         return RedirectToAction("Index", material);
+    }
+
+    // GET: HomeController1/Details/5
+    public ActionResult Details(int id)
+    {
+        var userId = _userManager.GetUserId(User);
+        var material = new Material();
+        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+        
+        return View(material);
+    }
+
+    // GET: HomeController1/Edit/5
+    public ActionResult Edit(int id)
+    {
+        var userId = _userManager.GetUserId(User);
+        var material = new Material();
+        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+        return View(material);
+    }
+
+    // POST: HomeController1/Edit/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Edit(int id, IFormCollection collection)
+    {
+        try
+        {
+            var userId = _userManager.GetUserId(User);
+            var material = new Material();
+            material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+            material.Name = Request.Form["Name"].ToString();
+            _materialRepository.AddOrUpdate(material);
+            return RedirectToAction(nameof(Index));
+        }
+        catch
+        {
+            return View();
+        }
+    }
+
+    // GET: HomeController1/Delete/5
+    public ActionResult Delete(int id)
+    {
+        var userId = _userManager.GetUserId(User);
+        var material = new Material();
+        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+        return View(material);
+    }
+
+    // POST: HomeController1/Delete/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Delete(int id, IFormCollection collection)
+    {
+        try
+        {
+            var userId = _userManager.GetUserId(User);
+            var material = new Material();
+            material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+            _materialRepository.Delete(material);
+
+
+            return RedirectToAction(nameof(Index));
+        }
+        catch
+        {
+            return View();
+        }
     }
 }

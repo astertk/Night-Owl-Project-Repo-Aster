@@ -12,6 +12,8 @@ namespace DWC_NightOwlProject.DAL.Concrete
     {
     private DbSet<Material> _materials;
     private readonly UserManager<IdentityUser> _userManager;
+    
+
         public MaterialRepository(WebAppDbContext ctx, UserManager<IdentityUser> userManager) : base(ctx)
         {
             _materials = ctx.Materials;
@@ -20,19 +22,7 @@ namespace DWC_NightOwlProject.DAL.Concrete
 
        
 
-        public string SuggestionOne = "The overall tone is:";
-        public string SuggestionTwo = "The villains are:";
-        public string SuggestionThree = "The heros are:";
-        public string SuggestionFour = "The world is:";
-
-
-        public string AnswerOne;
-        public string AnswerTwo;
-        public string AnswerThree;
-        public string AnswerFour;
-
-
-       public Material GetBackstoryById(string userId)
+        public Material GetBackstoryById(string userId)
         {
             var result = new Material();
             result = _materials.Where(x => x.UserId == userId).Where(x=>x.Type == "Backstory").FirstOrDefault();
@@ -59,11 +49,10 @@ namespace DWC_NightOwlProject.DAL.Concrete
         public List<Material> GetAllCharactersById(string userId)
         {
             var result = new List<Material>();
-            var count = _materials.Where(x => x.UserId == userId).Where(x => x.Type == "Character").ToList().Count();
-            for(int i = 0; i < count; ++i)
-            {
-                result.Add(GetCharacterByIdandMaterialId(userId, i));
-            }
+
+
+            result = _materials.Where(x => x.UserId == userId).Where(x => x.Type == "Character").ToList();
+
 
             return result;
 
