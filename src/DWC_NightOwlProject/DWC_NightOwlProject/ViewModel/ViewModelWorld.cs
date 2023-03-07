@@ -1,4 +1,5 @@
 using DWC_NightOwlProject.Data;
+using DWC_NightOwlProject.DAL.Abstract;
 
 namespace DWC_NightOwlProject.ViewModel
 {
