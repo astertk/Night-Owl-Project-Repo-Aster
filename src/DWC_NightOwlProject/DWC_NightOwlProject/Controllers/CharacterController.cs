@@ -45,7 +45,7 @@ public class CharacterController : Controller
     }
 
     [Authorize]
-    public async Task<ActionResult> Template(string cClass, string race, int age, string tone, double height, int weight)
+    public async Task<ActionResult> Template(string cClass, string race, int age, string gender, string tone, double height, int weight)
     {
         
        /* class, race, age, tone, height, weight*/
@@ -55,22 +55,24 @@ public class CharacterController : Controller
             ViewBag.Class = cClass;
             ViewBag.Race = race;
             ViewBag.Age = age;
+            ViewBag.Gender = gender;
             ViewBag.Tone = tone;
             ViewBag.Height = height;
             ViewBag.Weight = weight;
+
 
         string prompt = " Character for my Dungeons and Dragons Campaign.  "
                         + "They are a: " + cClass
                         + ". Their race is: " + race
                         + ". Their age is: " + age.ToString()
+                        + ". Their gender is: " + gender
                         + ". Their skin tone is: " + tone
                         + ". Their height in inches is: " + height.ToString()
                         + ". Their weight is: " + weight.ToString()
                         + " Only include the character. Do not include text or columns. Show the full body and face.";
 
-
-            //ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
-            TempData["HoldPrompt"] = prompt;
+        //ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
+        TempData["HoldPrompt"] = prompt;
 
         return View();
     }

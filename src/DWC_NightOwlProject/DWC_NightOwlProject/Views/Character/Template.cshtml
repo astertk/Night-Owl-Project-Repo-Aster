@@ -1,4 +1,10 @@
 ﻿@model DWC_NightOwlProject.Data.Material
+<script src="~/js/sketch.js?newversion"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
 
 
 <div class="text-center" id="title">
@@ -6,7 +12,7 @@
 </div>
 
 <div class="text-center" id="adviceBox">
-    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+    <span>"It builds character. Keep at it!" - Calvin and Hobbes</span>
 </div>
 
 
@@ -30,6 +36,9 @@
                 <label for="Age" class="control-label">Age</label>
                 <input id="Age-input" name="Age" class="form-control" type="text" required />
 
+                <label for="Gender" class="control-label">Gender</label>
+                <input id="Gender-input" name="Gender" class="form-control" type="text" required />
+
 
 
 
@@ -41,13 +50,13 @@
 
 
 
-                <label for="Height" class="control-label">Height</label>
+                <label for="Height" class="control-label">Height in Inches</label>
                 <input id="Height-input" name="Height" class="form-control" type="text" required />
 
 
 
 
-                <label for="Weight" class="control-label">Weight</label>
+                <label for="Weight" class="control-label">Weight in lbs</label>
                 <input id="Weight-input" name="Weight" class="form-control" type="text" required />
 
             </div>
@@ -62,19 +71,26 @@
     <div class="form-group mt-3 text-center">
         <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
         <div class="text-danger">
-            These questions are optional, but please fill out as many as you can before clicking "Create Character"
+            These questions are optional, but please fill out as many as you can before clicking "Create Character".
+            <br />
+            To create a random character, leave everything blank!
         </div>
         <input type="button" class="" value="Create Your Backstory" onclick="window.location= '@Url.Action( "Completion", "Character")'" />
 
     </div>
 </form>
 
+<input type="button" onclick="animation" value="Animation">
+
+<script>
+    function animation() {
+        <iframe style="width: 2000px; height: 400px; overflow: hidden;" scrolling = "no" frameborder = "0" src = "https://editor.p5js.org/jennifishv/full/NBHy7QmNj" > </iframe>
+    }
+</script>
 
 
 
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
-<script src="~/sketch.js" type="text/javascript"></script>
-*@
+
 
 
 

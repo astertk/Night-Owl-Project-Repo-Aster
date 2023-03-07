@@ -2,7 +2,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
-<script src="sketch.js"></script>
+
+
 <div class="text-center" id="title">
     <h2>Character Creation Result</h2>
 </div>
@@ -21,9 +22,8 @@
     Completion:  <br />
 </h4>
 
-<iframe style="width: 250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.Completion></iframe>
+<iframe style="width: 256px; height: 256px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.Completion></iframe>
 
-@*@Model.Completion*@
 
 <br />
 
@@ -32,30 +32,8 @@
 
 
 
-@*<input type="button" value="Save" onclick="location.href='@Url.Action("Save", "Backstory")'" />*@
-
-@*<button onclick="Save">Save</button>*@
 
 
-
-@*<script>
-function Save(){
-$.post("/Backstory/Save", {material: @Model.Completion}, function (data) {
-         alert(data);
-     });
-}
-</script>*@
-
-
-@*<button type="button" value = "Save" class="btn btn-info" onclick='window.location = "@Url.Action("Save", "Backstory", "Model.Completion" )";'/>*@
-
-@*<button type="button" class="btn btn-default active" onclick="location.href='@Url.Action("Save", "Backstory", Model.Completion))'">Save</button>*@
-
-@*@Html.ActionLink()*@
-
-
-
-@*@Html.ActionLink("Add Balance", "Balance", "Home", new {model = Model.user}, new { @class = "navbar-brand" })*@
 
 
 
