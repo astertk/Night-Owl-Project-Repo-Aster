@@ -14,6 +14,10 @@ public partial class World
     [Column("ID")]
     public int Id { get; set; }
 
+    [Column("NAME")]
+    [StringLength(250)]
+    public string Name { get; set; } = null!;
+
     [Column(TypeName = "date")]
     public DateTime CreationDate { get; set; }
 
