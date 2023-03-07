@@ -48,7 +48,7 @@
 
 
 
-                <label for="maxLength" class="control-label">How long should this backstory be, from 100 to 1000 characters?</label>
+                <label for="maxLength" class="control-label">How long should this quest be, from 100 to 1000 characters?</label>
                 <input id="maxLength-input" name="maxLength" class="form-control" type="range" required min="100" max="1000" />
 
 
@@ -62,7 +62,7 @@
 
 
 
-                <label for="presence" class="control-label">Please adjust Presence, ie, how different each idea in the backstory will be.</label>
+                <label for="presence" class="control-label">Please adjust Presence, ie, how different each idea in the quest will be.</label>
                 <input id="presence-input" name="presence" class="form-control" type="range" required min="-2.0" max="2.0" />
 
 
@@ -85,7 +85,7 @@
         <div class="text-danger">
             These questions are optional, but please fill out as many as you can before clicking "Create Quest"
         </div>
-        <input type="button" class="" value="Create Your Quest" onclick="window.location= '@Url.Action( "Completion", "Backstory")'" />
+        <input type="button" class="" value="Create Your Quest" onclick="window.location= '@Url.Action( "Completion", "Quests")'" />
 
     </div>
 </form>

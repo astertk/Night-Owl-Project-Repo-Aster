@@ -8,6 +8,7 @@ namespace DWC_NightOwlProject.DAL.Abstract
     {
         public Material GetBackstoryById(string userId);
         public Material GetQuestById(string userId);
+        public List<Material> GetAllQuestsById(string userId);
 
         public Material GetCharacterByIdandMaterialId(string userId, int id);
 

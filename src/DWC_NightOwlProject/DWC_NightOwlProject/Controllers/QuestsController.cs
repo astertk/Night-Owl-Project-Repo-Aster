@@ -36,23 +36,15 @@ namespace DWC_NightOwlProject.Controllers
 
 
         [Authorize]
-        public ActionResult Index()
+        public IActionResult Index()
         {
+            var vm = new MaterialVM();
             string id = _userManager.GetUserId(User);
+            var result = new List<Material>();
+            result = _materialRepository.GetAllQuestsById(id);
 
-            /*if (_materialRepository.GetBackstoryById(id) == null)
-            {
-                return View();
-            }*/
-            /*ViewBag.Backstory = _materialRepository.GetBackstoryById(id);*/
-
-            var material = _materialRepository.GetBackstoryById(id);
-
-            //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
-
-            /*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
-
-            return View(material);
+            vm.materials = result;
+            return View(vm);
         }
 
         [Authorize]
@@ -63,7 +55,7 @@ namespace DWC_NightOwlProject.Controllers
             ViewBag.Temp = temp;
             ViewBag.Presence = presence;
             ViewBag.Frequency = frequency;
-            ViewBag.Prompt = " Create a Dungeons and Dragons Quest.  " + ViewBag.FromScratch + " Make the length of the backstory roughly " + ViewBag.MaxLength + " characters.";
+            ViewBag.Prompt = " Create a Dungeons and Dragons Quest.  " + ViewBag.FromScratch + " Make the length of the quest roughly " + ViewBag.MaxLength + " characters.";
             TempData["HoldPrompt"] = ViewBag.Prompt;
             TempData["HoldTemp"] = temp.ToString();
             TempData["HoldPresence"] = presence.ToString();
@@ -101,15 +93,15 @@ namespace DWC_NightOwlProject.Controllers
                 ViewBag.Presence = presence;
                 ViewBag.Frequency = frequency;
                 ViewBag.SuggestionOne = " Are you looking for a combat-heavy adventure or a more story-driven one? ";
-                ViewBag.SuggestionTwo = " Where are you starting your adventure and where is your destination? ";
-                ViewBag.SuggestionThree = " Would you like a quest with a clear objective or are you open to more open-ended adventures where your choices have a greater impact on the outcome? ";
+                ViewBag.SuggestionTwo = " Where are you starting your adventure? ";
+                ViewBag.SuggestionThree = " Where is your destination? ";
                 ViewBag.SuggestionFour = " What kind of reward or outcome would you like to see at the end of the quest? Do you want a magical item, a large sum of gold, or perhaps some other kind of intangible reward like a boost to reputation or influence? ";
                 ViewBag.Prompt = " Write me a DND quest where it is "
                     + answerOne + " where the players start at "
                     + answerTwo + " and are travelling to "
                     + answerThree + " . "
                     + " The reward is a " + answerFour + " . "
-                    + " Make it " + ViewBag.MaxLength + " characters long. Make this have 3 acts and an epilogue. ";
+                    + " Make it approximately " + ViewBag.MaxLength + " characters long. Make this have 3 acts and an epilogue. ";
 
                    
                 
@@ -137,6 +129,7 @@ namespace DWC_NightOwlProject.Controllers
             var material = new Material();
             material.UserId = userId;
             material.Id = 0;
+            material.Name = "";
             material.Type = "Backstory";
             material.CreationDate = DateTime.Now;
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
@@ -176,6 +169,7 @@ namespace DWC_NightOwlProject.Controllers
             var material = new Material();
             material.UserId = userId;
             material.Id = 0;
+            material.Name = "";
             material.Type = "Quest";
             material.CreationDate = DateTime.Now;
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
