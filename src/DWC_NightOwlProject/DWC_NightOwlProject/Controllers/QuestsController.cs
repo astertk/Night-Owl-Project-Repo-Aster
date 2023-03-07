@@ -125,7 +125,10 @@ namespace DWC_NightOwlProject.Controllers
         // GET: QuestController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var userId = _userManager.GetUserId(User);
+            var material = new Material();
+            material = _materialRepository.GetQuestById(userId);
+            return View(material);
         }
 
         // GET: QuestController/Create
