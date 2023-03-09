@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DWC_NightOwlProject.Data.Material
+@{
     ViewData["Title"] = "Index";
 }
 
@@ -32,6 +33,20 @@
     </div>
 </div>
    
+<div class="container">
+    <div class="row">
+        
     
+<h2>Backstory:</h2>    
+@if (Model != null)
+{
+    <div class="col">
+                <a>@Model.Completion</a>
+                <a>@Model.CreationDate.ToString()</a>
 
+    
+    </div>
+}
+    </div>
+</div>
 

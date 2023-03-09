@@ -6,7 +6,11 @@ using OpenAI;
 using System.Threading.Tasks.Dataflow;
 using System.Threading.Tasks;
 using System.Runtime;
-
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using NuGet.ProjectModel;
+using DWC_NightOwlProject.DAL.Concrete;
+using NuGet.Protocol;
 
 namespace DWC_NightOwlProject.Controllers
 {
@@ -14,19 +18,42 @@ namespace DWC_NightOwlProject.Controllers
     {
         private IMaterialRepository _materialRepository;
         private readonly IConfiguration _config;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IRepository<Template> _templateRepository;
+        private readonly IRepository<World> _worldRepository;
 
-        public BackstoryController(IMaterialRepository materialRepository, IConfiguration config)
+        public BackstoryController(IMaterialRepository materialRepository, IConfiguration config, 
+                                   UserManager<IdentityUser> userManager, IRepository<Template> templateRepository, 
+                                   IRepository<World> worldRepository)
         {
             _materialRepository = materialRepository;
             _config = config;
+            _userManager = userManager;
+            _templateRepository = templateRepository;
+            _worldRepository = worldRepository;
         }
 
         // GET: HomeController1
+        [Authorize]
         public ActionResult Index()
         {
-            return View();
-        }
+            string id = _userManager.GetUserId(User);
 
+            /*if (_materialRepository.GetBackstoryById(id) == null)
+            {
+                return View();
+            }*/
+            /*ViewBag.Backstory = _materialRepository.GetBackstoryById(id);*/
+            
+            var material = _materialRepository.GetBackstoryById(id);
+
+            //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
+
+/*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
+
+            return View(material);
+        }
+        [Authorize]
         public ActionResult Scratch(string fromScratch, int maxLength, double temp, double presence, double frequency)
         {
             ViewBag.FromScratch = fromScratch;
@@ -34,7 +61,7 @@ namespace DWC_NightOwlProject.Controllers
             ViewBag.Temp = temp;
             ViewBag.Presence = presence;
             ViewBag.Frequency = frequency;
-            ViewBag.Prompt = " Create a Dungeons and Dragons Backstory.  " + ViewBag.FromScratch + "Make the length of the backstory roughly" + ViewBag.MaxLength + " words.";
+            ViewBag.Prompt = " Create a Dungeons and Dragons Backstory.  " + ViewBag.FromScratch + " Make the length of the backstory roughly " + ViewBag.MaxLength + " characters.";
             TempData["HoldPrompt"] = ViewBag.Prompt;
             TempData["HoldTemp"] = temp.ToString();
             TempData["HoldPresence"] = presence.ToString();
@@ -52,45 +79,59 @@ namespace DWC_NightOwlProject.Controllers
         // GET: HomeController1/Create
         public ActionResult Create()
         {
-            return View();
+            return View(); 
         }
 
+        [Authorize]
         public async Task<ActionResult> Template(string answerOne, string answerTwo, string answerThree, string answerFour, int maxLength, double temp, double presence, double frequency)
         {
             /*            var template = new TemplateViewModel();*/
+            if (User.Identity.IsAuthenticated)
+            {
 
 
-            ViewBag.AnswerOne = answerOne;
-            ViewBag.AnswerTwo = answerTwo;
-            ViewBag.AnswerThree = answerThree;
-            ViewBag.AnswerFour = answerFour;
-            ViewBag.MaxLength = maxLength.ToString();
-            ViewBag.Temp = temp;
-            ViewBag.Presence = presence;
-            ViewBag.Frequency = frequency;
-            ViewBag.SuggestionOne = " The overall tone is: ";
-            ViewBag.SuggestionTwo = " The villains are: ";
-            ViewBag.SuggestionThree = " The heros are: ";
-            ViewBag.SuggestionFour = " The world is: ";
-            ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
-            TempData["HoldPrompt"] = ViewBag.Prompt;
-            TempData["HoldTemp"] = temp.ToString();
-            TempData["HoldPresence"] = presence.ToString();
-            TempData["HoldFrequency"] = frequency.ToString();
+
+                ViewBag.AnswerOne = answerOne;
+                ViewBag.AnswerTwo = answerTwo;
+                ViewBag.AnswerThree = answerThree;
+                ViewBag.AnswerFour = answerFour;
+                ViewBag.MaxLength = maxLength.ToString();
+                ViewBag.Temp = temp;
+                ViewBag.Presence = presence;
+                ViewBag.Frequency = frequency;
+                ViewBag.SuggestionOne = " The overall tone is: ";
+                ViewBag.SuggestionTwo = " The villains are: ";
+                ViewBag.SuggestionThree = " The heros are: ";
+                ViewBag.SuggestionFour = " The world is: ";
+                ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
+                TempData["HoldPrompt"] = ViewBag.Prompt;
+                TempData["HoldTemp"] = temp.ToString();
+                TempData["HoldPresence"] = presence.ToString();
+                TempData["HoldFrequency"] = frequency.ToString();
+            }
 
 
 
             return View();
         }
-        public async Task<ActionResult> Completion(TemplateViewModel template)
+
+        [Authorize]
+        public async Task<ActionResult> Completion()
         {
+            var userId = _userManager.GetUserId(User);
+
+           
+
+
 
             var material = new Material();
+            material.UserId = userId;
             material.Id = 0;
             material.Type = "Backstory";
             material.CreationDate = DateTime.Now;
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
             material.Prompt += "...";
+            
 
             var temp = TempData.Peek("HoldTemp").ToString();           
             var presence = TempData.Peek("HoldPresence").ToString(); ;
@@ -111,19 +152,37 @@ namespace DWC_NightOwlProject.Controllers
 
             material.Completion = result;
             ViewBag.Completion = result;
+            TempData["HoldCompletion"] = material.Completion;
+
 
             return View(material);
 
         }
 
-        public async Task<string> BuildCompletion(string completion)
-        {
-            var APIKey = _config["APIKey"];
-            var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
-            var backstory = await api.CompletionsEndpoint.CreateCompletionAsync("Create my background story for my Dungeons and Dragons Campaign. Theme: Comical. Mogarr the Loser wants to steal all the music from the realm!", max_tokens: 200, temperature: 0.8, presencePenalty: 0.1, frequencyPenalty: 0.1, model: OpenAI.Models.Model.Davinci);
-            var result = backstory.ToString();
 
-            return result;
+        public ActionResult Save()
+        {
+            var userId = _userManager.GetUserId(User);
+
+            var backstoryCache = _materialRepository.GetAll().Where(x => x.UserId == userId).ToList();
+
+            for (int i = 0; i < backstoryCache.Count; i++)
+            {
+                _materialRepository.Delete(backstoryCache[i]);
+            }
+
+           
+            var material = new Material();
+            material.UserId = userId;
+            material.Id = 0;
+            material.Type = "Backstory";
+            material.CreationDate = DateTime.Now;
+            material.Prompt = TempData.Peek("HoldPrompt").ToString();
+            material.Prompt += "...";
+            material.Completion = TempData.Peek("HoldCompletion").ToString();
+
+            _materialRepository.AddOrUpdate(material);
+            return RedirectToAction("Index", material);
         }
 
 

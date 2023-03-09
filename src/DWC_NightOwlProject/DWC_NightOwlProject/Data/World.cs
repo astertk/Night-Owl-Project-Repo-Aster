@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,12 +14,14 @@ public partial class World
     [Column("ID")]
     public int Id { get; set; }
 
+    [Column("NAME")]
+    [StringLength(250)]
+    public string Name { get; set; } = null!;
+
     [Column(TypeName = "date")]
     public DateTime CreationDate { get; set; }
 
     [Column("UserID")]
-    public String UserId { get; set; }
-
-    [InverseProperty("World")]
-    public virtual ICollection<Material> Materials { get; } = new List<Material>();
+    [StringLength(450)]
+    public string UserId { get; set; } = null!;
 }

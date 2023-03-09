@@ -28,25 +28,17 @@ public partial class WebAppDbContext : DbContext
     {
         modelBuilder.Entity<Material>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC2785581C70");
-
-            entity.HasOne(d => d.Template).WithMany(p => p.Materials)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Material_Fk_Template");
-
-            entity.HasOne(d => d.World).WithMany(p => p.Materials)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Material_Fk_World");
+            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC277DF42520");
         });
 
         modelBuilder.Entity<Template>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Template__3214EC27F3675E38");
+            entity.HasKey(e => e.Id).HasName("PK__Template__3214EC272597D55B");
         });
 
         modelBuilder.Entity<World>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__World__3214EC27495DB421");
+            entity.HasKey(e => e.Id).HasName("PK__World__3214EC2718A658A3");
         });
 
         OnModelCreatingPartial(modelBuilder);

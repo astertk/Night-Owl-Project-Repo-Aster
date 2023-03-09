@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
+
 namespace DWC_NightOwlProject.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
@@ -70,7 +71,7 @@ namespace DWC_NightOwlProject.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            /*[Required]
+            [Required]
             [StringLength(255, ErrorMessage = "The first name field should have a maximum of 255 characters.")]
             [Display(Name = "Firstname")]
             public string FirstName { get; set; }
@@ -78,7 +79,7 @@ namespace DWC_NightOwlProject.Areas.Identity.Pages.Account
             [Required]
             [StringLength(255, ErrorMessage = "The last name field should have a maximum of 255 characters.")]
             [Display(Name = "Lastname")]
-            public string LastName { get; set; }*/
+            public string LastName { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -122,9 +123,9 @@ namespace DWC_NightOwlProject.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                /*var user = CreateUser();
+                var user = CreateUser();
 
-                user.FirstName = Input.FirstName;
+                /*user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;*/
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);

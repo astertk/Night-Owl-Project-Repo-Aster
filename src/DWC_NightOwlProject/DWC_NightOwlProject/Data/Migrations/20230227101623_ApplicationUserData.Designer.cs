@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DWCNightOwlProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230216040052_CustomUserData")]
-    partial class CustomUserData
+    [Migration("20230227101623_IdentityUserData")]
+    partial class IdentityUserData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
