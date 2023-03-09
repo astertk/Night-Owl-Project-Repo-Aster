@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWC_NightOwlProject", "DWC_NightOwlProject\DWC_NightOwlProject.csproj", "{7F11A141-D57D-460E-89D7-FFA1243FB1FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWC_NightOwlTests", "DWC_NightOwlTests\DWC_NightOwlTests.csproj", "{3281810C-34D5-4DA1-A513-AD328F88409A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7F11A141-D57D-460E-89D7-FFA1243FB1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F11A141-D57D-460E-89D7-FFA1243FB1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F11A141-D57D-460E-89D7-FFA1243FB1FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3281810C-34D5-4DA1-A513-AD328F88409A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3281810C-34D5-4DA1-A513-AD328F88409A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3281810C-34D5-4DA1-A513-AD328F88409A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3281810C-34D5-4DA1-A513-AD328F88409A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
