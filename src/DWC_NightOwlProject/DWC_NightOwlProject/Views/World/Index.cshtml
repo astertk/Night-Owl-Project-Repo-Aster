@@ -4,11 +4,21 @@
 }
 
 <div class="text-center">
-    @if(Model!=null)
+    @if(Model != null)
     {
-        <h2>@Model.ThisWorld.Name</h2>
-        <a class="nav" style="color:brown;font-size:24" asp-controller="Character" asp-action="Index">World Characters</a>
-        <a class="nav" style="color:brown;font-size:24" asp-controller="Quests" asp-action="Index">World Quests</a>
+        <h1>@Model.ThisWorld.Name</h1>
+
+        <a asp-controller="Backstory" asp-action="Index"><h2>Backstory:</h2></a>
+        <h3>@ViewBag.Completion</h3>
+
+        <a asp-controller="Quests" asp-action="Index"><h2>Quests:</h2></a>
+        <h3>Still filling in stuff</h3>
+
+        <a asp-controller="Characters" asp-action="Index"><h2>Characters:</h2></a>
+        <h3>Also still filling it in</h3>
+
+        <h2>Maps:</h2>
+        <h3>filling in for some shtuff</h3>
     }
     else
     {
@@ -19,14 +29,8 @@
             <input type="submit" value="Create world">
         </form>
     }
-    @if(ViewBag.Message!=null)
+    @if(ViewBag.Message != null)
     {
         <p>@ViewBag.Message</p>
-    }
-
-    <h2>Backstory:</h2>
-    @if (Model != null)
-    {
-        <h3>@ViewBag.Completion</h3>
     }
 </div>
