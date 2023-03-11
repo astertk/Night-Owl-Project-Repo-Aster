@@ -21,7 +21,4 @@ public partial class Template
 
     [StringLength(250)]
     public string Type { get; set; } = null!;
-
-    [InverseProperty("Template")]
-    public virtual ICollection<Material> Materials { get; } = new List<Material>();
 }

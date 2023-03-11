@@ -20,6 +20,9 @@ public partial class Material
     [StringLength(40)]
     public string Type { get; set; } = null!;
 
+    [StringLength(450)]
+    public string Name { get; set; } = null!;
+
     [Column(TypeName = "date")]
     public DateTime CreationDate { get; set; }
 
@@ -34,12 +37,4 @@ public partial class Material
 
     [Column("TemplateID")]
     public int TemplateId { get; set; }
-
-    [ForeignKey("TemplateId")]
-    [InverseProperty("Materials")]
-    public virtual Template Template { get; set; } = null!;
-
-    [ForeignKey("WorldId")]
-    [InverseProperty("Materials")]
-    public virtual World World { get; set; } = null!;
 }
