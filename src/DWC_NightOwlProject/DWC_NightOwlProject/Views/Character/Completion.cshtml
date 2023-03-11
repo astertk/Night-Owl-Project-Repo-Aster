@@ -1,8 +1,10 @@
 ﻿@model DWC_NightOwlProject.Data.Material
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+<script src="sketch.js"></script>
 <div class="text-center" id="title">
-    <h2>Backstory Result</h2>
+    <h2>Character Creation Result</h2>
 </div>
 
 <div class="text-center" id="adviceBox">
@@ -19,26 +21,15 @@
     Completion:  <br />
 </h4>
 
+<iframe style="width: 250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.Completion></iframe>
 
-
-@Model.Completion
+@*@Model.Completion*@
 
 <br />
 
-<a href="@Url.Action("Save","Backstory")">Save</a> &nbsp; <a href="@Url.Action("Index","Backstory")">Discard</a> &nbsp; <button class="btn btn-secondary" onclick="downloadFile()">Download your Backstory!</button>
+<a href="@Url.Action("Save","Character")">Save</a>  <a href="@Url.Action("Index","Character")">Discard</a>
 
 
-<script>
-    function downloadFile() {
-        const link = document.createElement("a");
-        const content = "@Html.Raw(Model.Completion).ToString().Substring(2)";
-        const file = new Blob([content], {type: "text/plain"});
-        link.href = URL.createObjectURL(file);
-        link.download = "backstory.txt";
-        link.click();
-        URL.revokeObjectURL(link.href);
-    };
-</script>
 
 
 @*<input type="button" value="Save" onclick="location.href='@Url.Action("Save", "Backstory")'" />*@
@@ -49,8 +40,8 @@
 
 @*<script>
 function Save(){
-$.post("/Backstory/Save", {material: @Model.Completion}, function (data) {  
-         alert(data);  
+$.post("/Backstory/Save", {material: @Model.Completion}, function (data) {
+         alert(data);
      });
 }
 </script>*@

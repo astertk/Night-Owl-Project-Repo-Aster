@@ -1,0 +1,37 @@
+@model DWC_NightOwlProject.ViewModel.GuidedQuestViewModel
+@{
+    ViewData["Title"] = "Guided quest creation";
+}
+<div>
+    <h2>Guided quest</h2>
+    <p>If you want to add more steps to your quest, you can do that here.
+    </p>
+    @if(Model!=null)
+    {
+        @if(ViewBag.Message!=null)
+        {
+            <p>@ViewBag.Message</p>
+        }
+        <p>This is a quest where @Model.OverallQuest</p>
+        <span style="white-space: pre-line;">@Model.Results</span>
+        <form asp-action="ContinueGuidedQuest" method="post">
+            <div class="form-group">
+                <label asp-for="CurrentStep" class="control-label">Add a new step to your quest</label>
+                <input asp-for="CurrentStep" class="form-control">
+                <span asp-validation-for="CurrentStep" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Results" class="form-control" value="@Model.Results">
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="OverallQuest" class="form-control" value="@Model.OverallQuest">
+            </div>
+            <input type="submit" value="Continue quest">
+            <input type="submit" value="Save this quest" asp-action="SaveGuidedQuest" method="post"> 
+        </form>
+    }
+    else
+    {
+        <p>No quest found</p>
+    }
+</div>

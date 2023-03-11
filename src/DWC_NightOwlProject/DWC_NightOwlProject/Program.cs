@@ -3,9 +3,26 @@ using Microsoft.EntityFrameworkCore;
 using DWC_NightOwlProject.Data;
 using DWC_NightOwlProject.DAL.Abstract;
 using DWC_NightOwlProject.DAL.Concrete;
-
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.GPT3.Extensions;
+using OpenAI.GPT3.ObjectModels.RequestModels;
+using OpenAI.GPT3.ObjectModels;
+using OpenAI.GPT3.Managers;
+using Microsoft.Build.Framework;
+using OpenAI.Edits;
+using OpenAI;
+using OpenAI.Images;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddOpenAIService(settings => { settings.ApiKey = Environment.GetEnvironmentVariable("APIKey"); });
+
+//var api = new OpenAIClient(new OpenAIAuthentication("")); // insert your APIKey 
+
+//var mapList = await api.ImagesEndPoint.GenerateImageAsync("Draw an icon for the word \"Backstory\". It should be a little book with its pages open, facing outward. Make it a black-and-white image. Very simple, and clean, to be used on a website. Make it a png that I can screenshot.", 1, ImageSize.Large);
+
+
+
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("IdentityConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -26,6 +43,7 @@ builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
 builder.Services.AddScoped<IWorldRepository, WorldRepository>();
 builder.Services.AddScoped<DbContext, WebAppDbContext>();
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -33,6 +33,20 @@
     </div>
 </div>
    
+<div class="container">
+    <div class="row">
+        
+    
 <h2>Backstory:</h2>    
-<h3>@ViewBag.Backstory</h3>
+@if (Model != null)
+{
+    <div class="col">
+                <a>@Model.Completion</a>
+                <a>@Model.CreationDate.ToString()</a>
+
+    
+    </div>
+}
+    </div>
+</div>
 

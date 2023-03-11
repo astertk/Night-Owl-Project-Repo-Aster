@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using NuGet.ProjectModel;
 using DWC_NightOwlProject.DAL.Concrete;
+using NuGet.Protocol;
 
 namespace DWC_NightOwlProject.Controllers
 {
@@ -38,17 +39,19 @@ namespace DWC_NightOwlProject.Controllers
         {
             string id = _userManager.GetUserId(User);
 
-            if (_materialRepository.GetMaterialByUserId(id) == null)
+            /*if (_materialRepository.GetBackstoryById(id) == null)
             {
                 return View();
-            }
-            /*ViewBag.Backstory = _materialRepository.GetMaterialByUserId(id);*/
+            }*/
+            /*ViewBag.Backstory = _materialRepository.GetBackstoryById(id);*/
             
-            var material = _materialRepository.GetMaterialByUserId(id);
+            var material = _materialRepository.GetBackstoryById(id);
 
-            ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
+            //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
 
-            return View();
+/*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
+
+            return View(material);
         }
         [Authorize]
         public ActionResult Scratch(string fromScratch, int maxLength, double temp, double presence, double frequency)
@@ -111,31 +114,13 @@ namespace DWC_NightOwlProject.Controllers
 
             return View();
         }
+
         [Authorize]
         public async Task<ActionResult> Completion()
         {
-            var backstoryCache = _materialRepository.GetAll().ToList();
-
-            for(int i = 0;i < backstoryCache.Count; i++)
-            {
-                _materialRepository.Delete(backstoryCache[i]);
-            }
-
             var userId = _userManager.GetUserId(User);
 
-            /*var world = new World();
-            world.Id = 0;
-            world.CreationDate = DateTime.Now;
-            world.UserId = userId;*/
-
-
-           /* var template = new Template();
-            template.Id = 0;
-            template.CreationDate = DateTime.Now;
-            template.Type = "Backstory";*/
-            
-
-
+           
 
 
 
@@ -147,13 +132,6 @@ namespace DWC_NightOwlProject.Controllers
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
             material.Prompt += "...";
             
-       
-            
-            
-
-            
-
-
 
             var temp = TempData.Peek("HoldTemp").ToString();           
             var presence = TempData.Peek("HoldPresence").ToString(); ;
@@ -174,33 +152,37 @@ namespace DWC_NightOwlProject.Controllers
 
             material.Completion = result;
             ViewBag.Completion = result;
+            TempData["HoldCompletion"] = material.Completion;
 
-
-
-          /*  world.Materials.Add(material);*/
-
-
-            _materialRepository.AddOrUpdate(material);
-
-          /*  world.Materials.Add(material);
-            _worldRepository.AddOrUpdate(world);*/
-
-          /*  template.Materials.Add(material);
-            _templateRepository.AddOrUpdate(template);*/
-            
 
             return View(material);
 
         }
 
-        public async Task<string> BuildCompletion(string completion)
-        {
-            var APIKey = _config["APIKey"];
-            var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
-            var backstory = await api.CompletionsEndpoint.CreateCompletionAsync("Create my background story for my Dungeons and Dragons Campaign. Theme: Comical. Mogarr the Loser wants to steal all the music from the realm!", max_tokens: 200, temperature: 0.8, presencePenalty: 0.1, frequencyPenalty: 0.1, model: OpenAI.Models.Model.Davinci);
-            var result = backstory.ToString();
 
-            return result;
+        public ActionResult Save()
+        {
+            var userId = _userManager.GetUserId(User);
+
+            var backstoryCache = _materialRepository.GetAll().Where(x => x.UserId == userId).ToList();
+
+            for (int i = 0; i < backstoryCache.Count; i++)
+            {
+                _materialRepository.Delete(backstoryCache[i]);
+            }
+
+           
+            var material = new Material();
+            material.UserId = userId;
+            material.Id = 0;
+            material.Type = "Backstory";
+            material.CreationDate = DateTime.Now;
+            material.Prompt = TempData.Peek("HoldPrompt").ToString();
+            material.Prompt += "...";
+            material.Completion = TempData.Peek("HoldCompletion").ToString();
+
+            _materialRepository.AddOrUpdate(material);
+            return RedirectToAction("Index", material);
         }
 
 
