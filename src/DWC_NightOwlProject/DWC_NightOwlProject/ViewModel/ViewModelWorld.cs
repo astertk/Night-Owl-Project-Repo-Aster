@@ -10,7 +10,7 @@ namespace DWC_NightOwlProject.ViewModel
 
         public World ThisWorld{get;set;}
 
-        public Material Material { get;set;}
+        public List<Material> Material { get;set;}
 
     }
 }
