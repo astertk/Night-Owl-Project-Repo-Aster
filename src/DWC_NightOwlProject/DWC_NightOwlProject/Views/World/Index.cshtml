@@ -9,13 +9,41 @@
         <h1>@Model.ThisWorld.Name</h1>
 
         <a asp-controller="Backstory" asp-action="Index"><h2>Backstory:</h2></a>
-        <h3>@ViewBag.Completion</h3>
+        <h4>@ViewBag.Completion</h4>
 
         <a asp-controller="Quests" asp-action="Index"><h2>Quests:</h2></a>
-        <h3>Still filling in stuff</h3>
+        <div class="row">
+        @for (int i = 0; i < Model.quests.Count; ++i)
+        {
+            <div class="col">
+            @if(Model.quests[i] != null)
+            {
+                <h4 class="row">@Model.quests[i].Completion</h4>
 
-        <a asp-controller="Characters" asp-action="Index"><h2>Characters:</h2></a>
-        <h3>Also still filling it in</h3>
+                <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.quests[i].Id" class="btn btn-primary m-1">Details</a>
+                <a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.quests[i].Id" class="btn btn-primary m-1">Delete</a>
+            }
+            </div>
+        }
+        </div>
+
+        <a asp-controller="Character" asp-action="Index"><h2>Characters:</h2></a>
+        <div class="row">
+        @for (int i = 0; i < Model.characters.Count; ++i)
+        {
+            <div class="col">
+            @if(Model.characters[i] != null)
+            {
+                <div class="row">@Model.characters[i].Name</div>
+                <div class="row"><iframe style="width:250px; height:250px; overflow: hidden;" scrolling="no" frameborder="0" src="@Model.characters[i].Completion"> </iframe> </div>
+
+                <a asp-controller="Character" asp-action="Details" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Details</a>
+                <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Edit</a>
+                <a asp-controller="Character" asp-action="Delete" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Delete</a>
+            }
+            </div>
+        }
+        </div>
 
         <h2>Maps:</h2>
         <h3>filling in for some shtuff</h3>

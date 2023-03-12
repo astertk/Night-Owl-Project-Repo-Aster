@@ -35,14 +35,17 @@ public class WorldController : Controller
         ViewModelWorld vmw = new ViewModelWorld();
         World userWorld = getUserWorld(userId);
 
-        var material = new Material();
-        material = _materialRepository.GetBackstoryById(userId);
+        var backstory = new Material();
+        var quests = new List<Material>();
+        var characters = new List<Material>();
+        backstory = _materialRepository.GetBackstoryById(userId);
+        quests = _materialRepository.GetAllQuestsById(userId);
+        characters = _materialRepository.GetAllCharactersById(userId);
 
-        if (material != null)
+        if (backstory != null)
         {
-            ViewBag.Completion = material.Completion;
+            ViewBag.Completion = backstory.Completion;
         }
-
         else
         {
             ViewBag.Completion = "No Backstory Yet...";
@@ -52,6 +55,8 @@ public class WorldController : Controller
         if (userWorld != null)
         {
             vmw.ThisWorld = userWorld;
+            vmw.quests = quests;
+            vmw.characters = characters;
             return View(vmw);
         }
         return View();
