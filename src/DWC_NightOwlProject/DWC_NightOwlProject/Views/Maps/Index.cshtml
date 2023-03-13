@@ -1,0 +1,61 @@
+﻿@model DWC_NightOwlProject.Data.MaterialVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
+
+<div class="text-center" id="title">
+    <h2>Map Creation</h2>
+</div>
+
+<div class="text-center" id="adviceBox">
+    <span>Map is power!</span>
+    <p>Fill your prophecy with a template, or create your own</p>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1> Create your Character with a template?</h1>
+            Easier, Step-by-Step <br />
+            <input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
+        </div>
+        <div class="col-sm">
+            <h1> Create your Character all from Scratch?</h1>
+            More advanced, but potentially more creative! <br />
+            <input type="button" class="" value="From Scratch" onclick="window.location= '@Url.Action( "Scratch", "Character")'" />
+        </div>
+
+    </div>
+</div>
+
+<h2>Completions:</h2>
+@if (Model != null)
+{
+    <div class="row">
+        @for (var i = 0; i < Model.materials.Count; ++i)
+        {
+
+            <div class="col">
+                @if (Model.materials[i] != null)
+                {
+                    <div class="row">@Model.materials[i].Name</div>
+                    <div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
+                    <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+
+                    <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
+                    <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Edit</a>
+                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
+                }
+            </div>
+        }
+    </div>
+}
+
+

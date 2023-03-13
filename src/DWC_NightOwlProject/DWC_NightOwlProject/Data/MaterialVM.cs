@@ -4,6 +4,9 @@
     {
         public MaterialVM() { }
         public List<Material> materials { get; set; }
+
+        public List<String> Responses { get; set; }
+
     }
 
     

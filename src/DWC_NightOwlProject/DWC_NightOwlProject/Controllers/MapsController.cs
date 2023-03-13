@@ -23,9 +23,20 @@ public class MapsController : Controller
         _userManager = userManager;
     }
     [Authorize]
-    public IActionResult Index()
+    public IActionResult Index(string r0, string r1, string r2, string r3, string r4, string r5)
     {
         var vm = new MaterialVM();
+        var responses = new List<string>();
+        responses.Add(r0);
+        responses.Add(r1);
+        responses.Add(r2);
+        responses.Add(r3);
+        responses.Add(r4);
+        responses.Add(r5);
+
+        vm.Responses= responses;
+
+
         string id = _userManager.GetUserId(User);
         var result = new List<Material>();
         result = _materialRepository.GetAllCharactersById(id);
@@ -34,46 +45,7 @@ public class MapsController : Controller
         return View(vm);
     }
 
-    [Authorize]
-    public ActionResult Scratch(string fromScratch)
-    {
-        ViewBag.FromScratch = fromScratch;
-        ViewBag.Prompt = " Create a Map for my Dungeons and Dragons Campaign:  " + ViewBag.FromScratch;
-        TempData["HoldPrompt"] = ViewBag.Prompt;
-
-        return View();
-    }
-
-    [Authorize]
-    public async Task<ActionResult> Template(string cClass, string race, int age, string tone, double height, int weight)
-    {
-
-        /* class, race, age, tone, height, weight*/
-
-
-
-        ViewBag.Class = cClass;
-        ViewBag.Race = race;
-        ViewBag.Age = age;
-        ViewBag.Tone = tone;
-        ViewBag.Height = height;
-        ViewBag.Weight = weight;
-
-        string prompt = "Create a Map for my Dungeons and Dragons Campaign.  "
-                        + "They are a: " + cClass
-                        + ". Their race is: " + race
-                        + ". Their age is: " + age.ToString()
-                        + ". Their skin tone is: " + tone
-                        + ". Their height in inches is: " + height.ToString()
-                        + ". Their weight is: " + weight.ToString()
-                        + " Only include the character. Do not include text or columns. Show the full body and face.";
-
-
-        //ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
-        TempData["HoldPrompt"] = prompt;
-
-        return View();
-    }
+   
 
     [Authorize]
     public async Task<ActionResult> Completion()
