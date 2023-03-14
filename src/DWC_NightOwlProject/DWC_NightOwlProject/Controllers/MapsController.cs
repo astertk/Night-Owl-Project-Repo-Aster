@@ -24,17 +24,14 @@ public class MapsController : Controller
         _userManager = userManager;
     }
     [Authorize]
-    public IActionResult Index(string r0, string r1, string r2, string r3, string r4, string r5)
+    public IActionResult Index(string r0, string r1, string r2)
     {
         var vm = new MaterialVM();
         var responses = new List<string>
         {
             r0,
             r1,
-            r2,
-            r3,
-            r4,
-            r5
+            r2
         };
 
        vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. The map should have a square grid overlaying it. "
@@ -78,9 +75,6 @@ public class MapsController : Controller
         var result = map.ToString();
 
         material.Completion = result;
-        
-        /*ViewBag.Completion = result;
-        TempData["HoldCompletion"] = material.Completion;*/
 
 
 
