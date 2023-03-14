@@ -3,15 +3,21 @@
     ViewData["Title"] = "World";
 }
 
-<div class="text-center">
+<div>
     @if(Model != null)
     {
+        <div class="text-center">
         <h1>@Model.ThisWorld.Name</h1>
+        
 
         <a asp-controller="Backstory" asp-action="Index"><h2>Backstory:</h2></a>
         <h4>@ViewBag.Completion</h4>
+        </div>
 
+        <div class="text-center">
         <a asp-controller="Quests" asp-action="Index"><h2>Quests:</h2></a>
+        </div>
+
         <div class="row">
         @for (int i = 0; i < Model.quests.Count; ++i)
         {
@@ -20,14 +26,19 @@
             {
                 <h4 class="row">@Model.quests[i].Completion</h4>
 
+                <div class="row">
                 <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.quests[i].Id" class="btn btn-primary m-1">Details</a>
                 <a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.quests[i].Id" class="btn btn-primary m-1">Delete</a>
+                </div>
             }
             </div>
         }
         </div>
 
+        <div class="text-center">
         <a asp-controller="Character" asp-action="Index"><h2>Characters:</h2></a>
+        </div>
+
         <div class="row">
         @for (int i = 0; i < Model.characters.Count; ++i)
         {
@@ -36,6 +47,7 @@
             {
                 <div class="row">@Model.characters[i].Name</div>
                 <div class="row"><iframe style="width:250px; height:250px; overflow: hidden;" scrolling="no" frameborder="0" src="@Model.characters[i].Completion"> </iframe> </div>
+                <div class="row">Creation Date: @Model.characters[i].CreationDate.ToString()</div>
 
                 <a asp-controller="Character" asp-action="Details" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Details</a>
                 <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Edit</a>
@@ -45,7 +57,10 @@
         }
         </div>
 
+        <div class="text-center">
         <h2>Maps:</h2>
+        </div>
+
         <h3>filling in for some shtuff</h3>
     }
     else
