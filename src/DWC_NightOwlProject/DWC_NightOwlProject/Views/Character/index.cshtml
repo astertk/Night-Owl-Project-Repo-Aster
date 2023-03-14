@@ -49,9 +49,23 @@
             <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
             <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Edit</a>
             <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
+            <a class="btn btn-primary" onclick="downloadFile">Download</a>
+
+            <script>
+                function downloadFile() {
+                    const link = document.createElement("a");
+                    const content = "@Html.Raw(Model.materials[i].Completion).ToString()";
+                    const file = new Blob([content], { type: "image/png" });
+                    link.href = URL.createObjectURL(file);
+                    link.download = "character.png";
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+                };
+            </script>
         }
         </div>
     }
     </div>
 }
+
 
