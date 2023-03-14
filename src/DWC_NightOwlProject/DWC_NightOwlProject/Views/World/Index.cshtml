@@ -26,10 +26,8 @@
             {
                 <h4 class="row">@Model.quests[i].Completion</h4>
 
-                <div class="row">
                 <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.quests[i].Id" class="btn btn-primary m-1">Details</a>
                 <a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.quests[i].Id" class="btn btn-primary m-1">Delete</a>
-                </div>
             }
             </div>
         }
