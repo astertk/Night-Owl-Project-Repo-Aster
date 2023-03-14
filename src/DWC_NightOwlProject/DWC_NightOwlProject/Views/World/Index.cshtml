@@ -18,20 +18,24 @@
         <a asp-controller="Quests" asp-action="Index"><h2>Quests:</h2></a>
         </div>
 
-        <div class="row">
-        @for (int i = 0; i < Model.quests.Count; ++i)
-        {
-            <div class="col">
-            @if(Model.quests[i] != null)
-            {
-                <h4 class="row">@Model.quests[i].Completion</h4>
+        <table class="table">
+            <tbody>
+                @for (int i = 0; i < Model.quests.Count; ++i)
+                {
+            
+                    @if(Model.quests[i] != null)
+                    {
+                        <tr>
+                            <td><h4>@Model.quests[i].Completion</h4></td>
 
-                <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.quests[i].Id" class="btn btn-primary m-1">Details</a>
-                <a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.quests[i].Id" class="btn btn-primary m-1">Delete</a>
-            }
-            </div>
-        }
-        </div>
+                            <td><a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.quests[i].Id" class="text-center btn btn-primary m-md-2">Details</a></td>
+                            <td><a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.quests[i].Id" class="text-center btn btn-danger m-md-2">Delete</a></td>
+                        </tr>
+                    }
+                }
+                
+            </tbody>
+        </table>
 
         <div class="text-center">
         <a asp-controller="Character" asp-action="Index"><h2>Characters:</h2></a>
@@ -48,8 +52,8 @@
                 <div class="row">Creation Date: @Model.characters[i].CreationDate.ToString()</div>
 
                 <a asp-controller="Character" asp-action="Details" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Details</a>
-                <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Edit</a>
-                <a asp-controller="Character" asp-action="Delete" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Delete</a>
+                <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.characters[i].Id" class="btn btn-secondary m-1">Edit</a>
+                <a asp-controller="Character" asp-action="Delete" asp-route-id="@Model.characters[i].Id" class="btn btn-danger m-1">Delete</a>
             }
             </div>
         }
