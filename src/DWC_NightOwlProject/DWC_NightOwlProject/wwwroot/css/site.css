@@ -57,10 +57,14 @@ canvas {
     z-index: -1;
 }
 
+.vnav{
+    
+}
+
 
 .image{
     margin-left:25px;
-   
+    
 
 }
 
@@ -87,7 +91,7 @@ li a {
     padding-left: 10%;
     padding-right:20px;
     text-decoration: none;
-    width:12%;
+    width:5%;
 }
 
 li {
@@ -104,12 +108,12 @@ li {
 
     li a.active {
         background-color: #04AA6D;
-        color: white;
+        color: #00ffff;
     }
 
     li a:hover:not(.active) {
         background-color: #555;
-        color: white;
+        color: #00ffff;
     }
 h2{
     color:brown;
