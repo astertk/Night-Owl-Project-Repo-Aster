@@ -7,6 +7,7 @@ using DWC_NightOwlProject.Data;
 using Microsoft.AspNetCore.Authorization;
 using OpenAI;
 using OpenAI.Images;
+using System.Security.Policy;
 
 namespace DWC_NightOwlProject.Controllers;
 
@@ -26,20 +27,26 @@ public class MapsController : Controller
     public IActionResult Index(string r0, string r1, string r2, string r3, string r4, string r5)
     {
         var vm = new MaterialVM();
-        var responses = new List<string>();
-        responses.Add(r0);
-        responses.Add(r1);
-        responses.Add(r2);
-        responses.Add(r3);
-        responses.Add(r4);
-        responses.Add(r5);
+        var responses = new List<string>
+        {
+            r0,
+            r1,
+            r2,
+            r3,
+            r4,
+            r5
+        };
+
+       vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. The map should have a square grid overlaying it. "
+                       + "It is: " + r0
+                       + ". The biome type is: " + r1
+                       + ". The map should have: " + r2 + "squares.";
 
         vm.Responses= responses;
 
-
         string id = _userManager.GetUserId(User);
         var result = new List<Material>();
-        result = _materialRepository.GetAllCharactersById(id);
+        result = _materialRepository.GetAllMapsById(id);
 
         vm.materials = result;
         return View(vm);
@@ -48,8 +55,9 @@ public class MapsController : Controller
    
 
     [Authorize]
-    public async Task<ActionResult> Completion()
+    public async Task<ActionResult> Completion(MaterialVM vm)
     {
+
         var userId = _userManager.GetUserId(User);
 
 
@@ -57,21 +65,22 @@ public class MapsController : Controller
 
         material.UserId = userId;
         material.Id = 0;
-        material.Type = "Character";
-        material.Name = "";
+        material.Type = "Map";
+        material.Name = "Name";
         material.CreationDate = DateTime.Now;
-        material.Prompt = TempData.Peek("HoldPrompt").ToString();
+        material.Prompt = vm.Prompt;
         material.Prompt += "...";
 
         var APIKey = _config["APIKey"];
         var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
-        var characterList = await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Small);
-        var character = characterList.FirstOrDefault();
-        var result = character.ToString();
+        var mapList = await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Small);
+        var map = mapList.FirstOrDefault();
+        var result = map.ToString();
 
         material.Completion = result;
-        ViewBag.Completion = result;
-        TempData["HoldCompletion"] = material.Completion;
+        
+        /*ViewBag.Completion = result;
+        TempData["HoldCompletion"] = material.Completion;*/
 
 
 
@@ -79,19 +88,8 @@ public class MapsController : Controller
 
     }
 
-    public ActionResult Save()
+    public ActionResult Save(Material material)
     {
-        var userId = _userManager.GetUserId(User);
-        var material = new Material();
-        material.UserId = userId;
-        material.Id = 0;
-        material.Type = "Character";
-        material.Name = "";
-        material.CreationDate = DateTime.Now;
-        material.Prompt = TempData.Peek("HoldPrompt").ToString();
-        material.Prompt += "...";
-        material.Completion = TempData.Peek("HoldCompletion").ToString();
-
         _materialRepository.AddOrUpdate(material);
         return RedirectToAction("Index", material);
     }
@@ -101,7 +99,7 @@ public class MapsController : Controller
     {
         var userId = _userManager.GetUserId(User);
         var material = new Material();
-        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+        material = _materialRepository.GetMapByIdandMaterialId(userId, id);
 
         return View(material);
     }
@@ -111,7 +109,7 @@ public class MapsController : Controller
     {
         var userId = _userManager.GetUserId(User);
         var material = new Material();
-        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+        material = _materialRepository.GetMapByIdandMaterialId(userId, id);
         return View(material);
     }
 
@@ -124,7 +122,7 @@ public class MapsController : Controller
         {
             var userId = _userManager.GetUserId(User);
             var material = new Material();
-            material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+            material = _materialRepository.GetMapByIdandMaterialId(userId, id);
             material.Name = Request.Form["Name"].ToString();
             _materialRepository.AddOrUpdate(material);
             return RedirectToAction(nameof(Index));
@@ -140,7 +138,7 @@ public class MapsController : Controller
     {
         var userId = _userManager.GetUserId(User);
         var material = new Material();
-        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+        material = _materialRepository.GetMapByIdandMaterialId(userId, id);
         return View(material);
     }
 
@@ -153,7 +151,7 @@ public class MapsController : Controller
         {
             var userId = _userManager.GetUserId(User);
             var material = new Material();
-            material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+            material = _materialRepository.GetMapByIdandMaterialId(userId, id);
             _materialRepository.Delete(material);
 
 

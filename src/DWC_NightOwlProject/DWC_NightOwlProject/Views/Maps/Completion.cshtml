@@ -1,5 +1,67 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model DWC_NightOwlProject.Data.Material
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+<script src="sketch.js"></script>
+<div class="text-center" id="title">
+    <h2>Map Creation Result</h2>
+</div>
+
+<div class="text-center" id="adviceBox">
+    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+</div>
+
+
+
+
+
+
+
+<h4>
+    Completion:  <br />
+</h4>
+
+<iframe style="width: 250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.Completion></iframe>
+
+@*@Model.Completion*@
+
+<br />
+
+<a href="@Url.Action("Save","Maps", Model)">Save</a>  <a href="@Url.Action("Index","Maps")">Discard</a>
+
+
+
+
+@*<input type="button" value="Save" onclick="location.href='@Url.Action("Save", "Backstory")'" />*@
+
+@*<button onclick="Save">Save</button>*@
+
+
+
+@*<script>
+function Save(){
+$.post("/Backstory/Save", {material: @Model.Completion}, function (data) {
+         alert(data);
+     });
 }
+</script>*@
+
+
+@*<button type="button" value = "Save" class="btn btn-info" onclick='window.location = "@Url.Action("Save", "Backstory", "Model.Completion" )";'/>*@
+
+@*<button type="button" class="btn btn-default active" onclick="location.href='@Url.Action("Save", "Backstory", Model.Completion))'">Save</button>*@
+
+@*@Html.ActionLink()*@
+
+
+
+@*@Html.ActionLink("Add Balance", "Balance", "Home", new {model = Model.user}, new { @class = "navbar-brand" })*@
+
+
+
+
+
+
+
+
+
