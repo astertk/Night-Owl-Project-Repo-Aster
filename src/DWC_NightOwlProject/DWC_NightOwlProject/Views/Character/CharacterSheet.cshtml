@@ -1,0 +1,133 @@
+@model DWC_NightOwlProject.Models.SheetRandomizer
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div id="basicinfo">
+                    <h1>@Model.Name</h1>
+                    <p>LVL 1 @Model.Race @Model.Class</p>
+                    <div class="row">
+                        @for(int i=0;i<6;i++)
+                        {
+                            <div class="col-sm-2" id=@DWC_NightOwlProject.Models.CharacterOptions.Abilities[i]>
+                                <p>@DWC_NightOwlProject.Models.CharacterOptions.Abilities[i] </p>
+                                <p id="value">@Model.Scores[i], @DWC_NightOwlProject.Models.CharacterOptions.Modifier(@Model.Scores[i])</p></div>
+                        }
+                    </div>
+                </div>
+                <div id="moreinfo">
+                    <p>Roll a die</p>
+                    <div id="dice">
+                        <button id="roll" style="background-color: purple;">4</button>
+                        <button id="roll" style="background-color: red;">6</button>
+                        <button id="roll" style="background-color: pink;">8</button>
+                        <button id="roll" style="background-color: green;">10</button>
+                        <button id="roll" style="background-color: orange;">12</button>
+                        <button id="roll" style="background-color: yellow;">20</button>
+                        <button id="roll" style="background-color: blue;">100</button>
+                    </div>
+                    <div id="result"></div>
+                    <div id="weapons">
+                        <table id="attacks" class="abilities">
+                            @foreach(string[] weapon in Model.GetWeapons())
+                            {
+                                <p>@weapon[0]</p>
+                                <p>@weapon[1]</p>
+                            }
+                        </table>
+                    </div>
+                    <div id="spells">
+                        <table id="spellsheet" class="abilities">
+                            <thead><th>Level</th><th>Spell</th></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2" id="stats">
+                <table id="Str" class="prof">
+                    <thead><th>Proficient</th><th>Skill</th><th>Bonus</th></thead>
+                    <tbody>
+                    @foreach(string s in @DWC_NightOwlProject.Models.CharacterOptions.StrProficiencies)
+                    {
+                        <tr><td><input type="checkbox"></td><td>@s</td><td id="modifier">@DWC_NightOwlProject.Models.CharacterOptions.Modifier(@Model.Scores[0])</td></tr>
+                    }
+                    </tbody>
+                </table>
+                <table id="Dex" class="prof">
+                    <thead><th>Proficient</th><th>Skill</th><th>Bonus</th></thead>
+                    <tbody>
+                    @foreach(string s in @DWC_NightOwlProject.Models.CharacterOptions.DexProficiencies)
+                    {
+                        <tr><td><input type="checkbox"></td><td>@s</td><td id="modifier">@DWC_NightOwlProject.Models.CharacterOptions.Modifier(@Model.Scores[1])</td></tr>
+                    }
+                    </tbody>
+                </table>
+                <table id="Con" class="prof">
+                    <thead><th>Proficient</th><th>Skill</th><th>Bonus</th></thead>
+                    <tbody>
+                    @foreach(string s in @DWC_NightOwlProject.Models.CharacterOptions.ConProficiencies)
+                    {
+                        <tr><td><input type="checkbox"></td><td>@s</td><td id="modifier">@DWC_NightOwlProject.Models.CharacterOptions.Modifier(@Model.Scores[2])</td></tr>
+                    }
+                    </tbody>
+                </table>
+                <table id="Int" class="prof">
+                    <thead><th>Proficient</th><th>Skill</th><th>Bonus</th></thead>
+                    <tbody>
+                    @foreach(string s in @DWC_NightOwlProject.Models.CharacterOptions.IntProficiencies)
+                    {
+                        <tr><td><input type="checkbox"></td><td>@s</td><td id="modifier">@DWC_NightOwlProject.Models.CharacterOptions.Modifier(@Model.Scores[3])</td></tr>
+                    }
+                    </tbody>
+                </table>
+                <table id="Wis" class="prof">
+                    <thead><th>Proficient</th><th>Skill</th><th>Bonus</th></thead>
+                    <tbody>
+                    @foreach(string s in @DWC_NightOwlProject.Models.CharacterOptions.WisProficiencies)
+                    {
+                        <tr><td><input type="checkbox"></td><td>@s</td><td id="modifier">@DWC_NightOwlProject.Models.CharacterOptions.Modifier(@Model.Scores[4])</td></tr>
+                    }
+                    </tbody>
+                </table>
+                <table id="Cha" class="prof">
+                    <thead><th>Proficient</th><th>Skill</th><th>Bonus</th></thead>
+                    <tbody>
+                    @foreach(string s in @DWC_NightOwlProject.Models.CharacterOptions.ChaProficiencies)
+                    {
+                        <tr><td><input type="checkbox"></td><td>@s</td><td id="modifier">@DWC_NightOwlProject.Models.CharacterOptions.Modifier(@Model.Scores[05])</td></tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-6" id="details">
+                <div id="features">
+                    <h3>Other features</h3>
+                </div>
+                <div id="addfeatures">
+                    <h3>Add new feature</h3>
+                    <input type="text" id="newfeature"><br>
+                    <button type="button" id="addnewfeature">Add Feature</button>
+                </div>
+                <div id="addweapon">
+                    <h3>Add weapon attack</h3>
+                    <input type="text" id="newweapon" placeholder="Weapon"><br>
+                    <input type="text" id="newatk" placeholder="ATK bonus"><br>
+                    <input type="text" id="newdamage" placeholder="Damage"><br>
+                    <input type="text" id="newtype" placeholder="DMG type"><br>
+                    <input type="text" id="newrange" placeholder="Range"><br>
+                    <button type="button" id="addnewweapon">Add Weapon</button>
+                </div>
+                <div id="addspell">
+                    <h3>Add spell</h3>
+                    <input type="text" id="newspelllevel" placeholder="Spell level"><br>
+                    <input type="text" id="newspell" placeholder="Spell name"><br>
+                    <button type="button" id="addnewspell">Add Spell</button>
+                </div>
+            </div>
+        </div>
+    <script src="../../wwwroot/js/sheetabilities.js"></script>
+</div>

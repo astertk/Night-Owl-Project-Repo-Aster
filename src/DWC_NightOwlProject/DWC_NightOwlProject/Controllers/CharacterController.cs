@@ -193,4 +193,11 @@ public class CharacterController : Controller
             return View();
         }
     }
+
+    public IActionResult CharacterSheet()
+    {
+        SheetRandomizer c=new SheetRandomizer();
+        c.Generate(null,null);
+        return View(c);
+    }
 }

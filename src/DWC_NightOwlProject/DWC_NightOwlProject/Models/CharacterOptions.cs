@@ -1,6 +1,6 @@
 namespace DWC_NightOwlProject.Models;
 
-public class CharacterOptions
+public static class CharacterOptions
 {
     public static readonly string[] Abilities={"Str","Dex","Con","Int","Wis","Cha"};
     public static readonly string[] RaceOptions={"Dragonborn","Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Tiefling"};
@@ -16,4 +16,105 @@ public class CharacterOptions
     public static readonly string[] IntProficiencies= new string[] {"Intelligence Save","Arcana","Investigation","Nature","History","Religion"};
     public static readonly string[] WisProficiencies= new string[] {"Wisdom Save","Animal Handling","Medicine","Insight","Perception","Survival"};
     public static readonly string[] ChaProficiencies= new string[] {"Charisma Save","Deception","Intimidation","Performance","Persuasion"};
+    private static readonly int maxLevel=20;
+    private static readonly int numberOfClasses=ClassOptions.Length;
+    private static readonly int numberOfRaces=RaceOptions.Length;
+    private static readonly string featuresPath="features.txt";
+    private static int[,] classFeatureIndices=new int[numberOfClasses,maxLevel];
+    private static int[] raceFeatureIndices=new int[numberOfRaces];
+    
+    public static int ClassIndex(string s)
+    {
+        for(int i=0;i<ClassOptions.Length;i++)
+        {
+            if(s.Equals(ClassOptions[i]))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public static int RaceIndex(string s)
+    {
+        for(int i=0;i<RaceOptions.Length;i++)
+        {
+            if(s.Equals(RaceOptions[i]))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public static string Modifier(int i)
+    {
+        int mod;
+        if(i>0&&i<=20)
+        {
+            if(i%2==0)
+            {
+                mod=(i-10)/2;
+            }
+            else
+            {
+                mod=(i-11)/2;
+            }
+            if(mod<0)
+            {
+                return ""+mod;
+            }
+            else
+            {
+                return "+"+mod;
+            }
+        }
+        else
+        {
+            throw new ArgumentException("Ability score must a value 1-20");
+        }
+    }
+    public static int ModifierValue(int i)
+    {
+        if(i>0&&i<=20)
+        {
+            if(i%2==0)
+            {
+                return (i-10)/2;
+            }
+            else
+            {
+                return (i-11)/2;
+            }
+        }
+        else
+        {
+            throw new ArgumentException("Ability score must a value 1-20");
+        }
+    }
+    public static int Roll(int i)
+    {
+        Random die=new Random();
+        return die.Next(i);
+    }
+    public static int NewScore()
+    {
+        int[] rolls=new int[4];
+        for(int i=0;i<4;i++)
+        {
+            rolls[i]=Roll(6)+1;
+        }
+        int lowest=0;
+        for(int i=1;i<4;i++)
+        {
+            if(rolls[lowest]>rolls[i])
+            {
+                lowest=i;
+            }
+        }
+        rolls[lowest]=0;
+        return rolls.Sum();
+    }
+    public static void ConfigureFeatures()
+    {
+
+    }
 }
