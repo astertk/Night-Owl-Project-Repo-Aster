@@ -3,12 +3,82 @@
     ViewData["Title"] = "World";
 }
 
-<div class="text-center">
-    @if(Model!=null)
+<div>
+    @if(Model != null)
     {
-        <h2>@Model.ThisWorld.Name</h2>
-        <a class="nav" style="color:brown;font-size:24" asp-controller="Character" asp-action="Index">World Characters</a>
-        <a class="nav" style="color:brown;font-size:24" asp-controller="Quests" asp-action="Index">World Quests</a>
+        <div class="text-center">
+        <h1>@Model.ThisWorld.Name</h1>
+        
+
+        <a asp-controller="Backstory" asp-action="Index"><h2>Backstory:</h2></a>
+        <h4>@Model.Backstory.Completion</h4>
+        </div>
+
+        <div class="text-center">
+        <a asp-controller="Quests" asp-action="Index"><h2>Quests:</h2></a>
+        </div>
+
+        <table class="table">
+            <tbody>
+                @for (int i = 0; i < Model.quests.Count; ++i)
+                {
+            
+                    @if(Model.quests[i] != null)
+                    {
+                        <tr>
+                            <td><h4>@Model.quests[i].Completion</h4></td>
+
+                            <td><a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.quests[i].Id" class="text-center btn btn-primary m-md-2">Details</a></td>
+                            <td><a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.quests[i].Id" class="text-center btn btn-danger m-md-2">Delete</a></td>
+                        </tr>
+                    }
+                }
+                
+            </tbody>
+        </table>
+
+        <div class="text-center">
+        <a asp-controller="Character" asp-action="Index"><h2>Characters:</h2></a>
+        </div>
+
+        <div class="row">
+        @for (int i = 0; i < Model.characters.Count; ++i)
+        {
+            <div class="col">
+            @if(Model.characters[i] != null)
+            {
+                <div class="row">@Model.characters[i].Name</div>
+                <div class="row"><iframe style="width:250px; height:250px; overflow: hidden;" scrolling="no" frameborder="0" src="@Model.characters[i].Completion"> </iframe> </div>
+                <div class="row">Creation Date: @Model.characters[i].CreationDate.ToString()</div>
+
+                <a asp-controller="Character" asp-action="Details" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Details</a>
+                <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.characters[i].Id" class="btn btn-secondary m-1">Edit</a>
+                <a asp-controller="Character" asp-action="Delete" asp-route-id="@Model.characters[i].Id" class="btn btn-danger m-1">Delete</a>
+            }
+            </div>
+        }
+        </div>
+
+        <div class="text-center">
+        <h2>Maps:</h2>
+        </div>
+
+        @*<div class="row"> 
+            for (int i = 0; i < Model.maps.Count; ++i)
+            {
+                <div class="col">
+                @if (Model.maps[i] != null)
+                {
+                    <div class="row"><iframe style="width: 250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src="@Model.maps[i].Completion"> </iframe></div>
+                    <div class="row">Creation Date: @Model.maps[i].CreationDate.ToString()</div>
+
+                    <a asp-controller="Maps" asp-action="Details" asp-route-id="@Model.maps[i].Id" class="btn btn-primary m-1">Details</a>
+                    <a asp-controller="Maps" asp-action="Edit" asp-route-id="@Model.maps[i].Id" class="btn btn-secondary m-1">Edit</a>
+                    <a asp-controller="Maps" asp-action="Delete" asp-route-id="@Model.maps[i].Id" class="btn btn-danger m-1">Delete</a>
+.               }
+                </div>
+            }
+        </div>*@
     }
     else
     {
@@ -19,14 +89,8 @@
             <input type="submit" value="Create world">
         </form>
     }
-    @if(ViewBag.Message!=null)
+    @if(ViewBag.Message != null)
     {
         <p>@ViewBag.Message</p>
-    }
-
-    <h2>Backstory:</h2>
-    @if (Model != null)
-    {
-        <h3>@ViewBag.Completion</h3>
     }
 </div>

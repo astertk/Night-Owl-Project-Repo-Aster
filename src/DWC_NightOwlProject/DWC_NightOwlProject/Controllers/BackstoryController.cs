@@ -174,6 +174,7 @@ namespace DWC_NightOwlProject.Controllers
            
             var material = new Material();
             material.UserId = userId;
+            material.Name = "Backstory";
             material.Id = 0;
             material.Type = "Backstory";
             material.CreationDate = DateTime.Now;
