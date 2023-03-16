@@ -7,6 +7,7 @@ public class SheetRandomizer
     public string Name{get;set;}
     public string Race{get;set;}
     public string Class{get;set;}
+    public int Level;
     public string[] Weapons{get;set;}
     public string Armor{get;set;}
     public bool Shield{get;set;}
@@ -31,6 +32,7 @@ public class SheetRandomizer
     public void Generate(String selectedRace, String selectedClass)
     {
         Name="Coolguy";
+        Level=1;
         RandomizeOptions();
         if(!string.IsNullOrEmpty(selectedRace))
         {
@@ -95,5 +97,9 @@ public class SheetRandomizer
             }
         }
         return weapons;
+    }
+    public List<string> GetFeatures()
+    {
+        return CharacterOptions.GetFeatures(Race,Class,Level);
     }
 }

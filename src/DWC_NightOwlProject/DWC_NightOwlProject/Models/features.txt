@@ -1,65 +1,47 @@
-CLASSFEATURES:
+CLASSFEATURES
 Artificer
 Magical Tinkering
-CLASSFEATURES:
 Barbarian
 Rage, Unarmored Defense
-CLASSFEATURES:
 Bard
 Bardic Inspiration 
-CLASSFEATURES:
 Cleric
 Divine Domain
-CLASSFEATURES:
 Druid
 Druidic
-CLASSFEATURES:
 Fighter
 Fighting Style, Second Wind
-CLASSFEATURES:
 Monk
 Unarmored Defense, Martial Arts
-CLASSFEATURES:
 Paladin
 Divine Sense, Lay on Hands
 CLASSFEATURES:
 Ranger
 Favored Enemy, Natural Explorer
-CLASSFEATURES:
 Rogue
 Expertise, Sneak Attack, Thieves’ Cant
-CLASSFEATURES:
 Sorcerer
 Sorcerous Origin
-CLASSFEATURES:
 Warlock
 Otherworldly Patron
-CLASSFEATURES:
 Wizard
 Arcane Recovery
-RACEFEATURES:
+RACEFEATURES
 Dragonborn
 Draconic Ancestry, Breath Weapon, Damage Resistance
-RACEFEATURES:
 Dwarf
 Dwarven resilience, Dwarven combat training, Dwarven cunning
-RACEFEATURES:
 Elf
 Darkvision, Keen senses, Fey ancestry, Trance
-RACEFEATURES:
 Gnome
 Darkvision, Gnome cunning
-RACEFEATURES:
 Half-Elf
 Darkvision, Fey ancestry, Skill versatility
-RACEFEATURES:
 Halfling
 Lucky, Brave, Halfling nimbleness
-RACEFEATURES:
 Half-Orc
 Darkvision, Menacing, Relentless endurance, Savage attacks
-RACEFEATURES:
 Human
-RACEFEATURES:
+NONE
 Tiefling
 Darkvision, Hellish resistance, Infernal legacy

@@ -19,9 +19,12 @@ public static class CharacterOptions
     private static readonly int maxLevel=20;
     private static readonly int numberOfClasses=ClassOptions.Length;
     private static readonly int numberOfRaces=RaceOptions.Length;
-    private static readonly string featuresPath="features.txt";
+    private static readonly string featuresPath="Models\\features.txt";
     private static int[,] classFeatureIndices=new int[numberOfClasses,maxLevel];
     private static int[] raceFeatureIndices=new int[numberOfRaces];
+    private static List<string> featuresList;
+    private static string classFeat="CLASSFEATURES";
+    private static string raceFeat="RACEFEATURES";
     
     public static int ClassIndex(string s)
     {
@@ -113,8 +116,93 @@ public static class CharacterOptions
         rolls[lowest]=0;
         return rolls.Sum();
     }
+    public static List<string> GetFeatures(string r, string c, int l)
+    {
+        List<string> features=new List<string>();
+        features.Capacity=25;
+        int rc=RaceIndex(r);
+        int cls=ClassIndex(c);
+        features.Add(featuresList[raceFeatureIndices[rc]]);
+        for(int i=0;i<l;i++)
+        {
+            features.Add(featuresList[classFeatureIndices[cls,i]]);
+        }
+        return features;
+    }
     public static void ConfigureFeatures()
     {
+        featuresList=new List<string>();
+        featuresList.Capacity=(ClassOptions.Length*20)+RaceOptions.Length;
+        IEnumerator<string> file=System.IO.File.ReadLines(featuresPath).GetEnumerator();
+        bool hasNext=file.MoveNext();
+        bool isClass=false;
+        bool isRace=false;
+        bool isFeature=false;
+        int featIndex=0;
+        int index=0;
+        int level=0;
+        while(hasNext)
+        {
+            string s=file.Current;
+            isFeature=false;
+            if(s.Equals(classFeat))
+            {
+                isClass=true;
+                isRace=false;
 
+            }
+            else if(s.Equals(raceFeat))
+            {
+                isRace=true;
+                isClass=false;
+            }
+            else if(ClassIndex(s)!=-1)
+            {
+                index=ClassIndex(s);
+                level=0;
+            }
+            else if(RaceIndex(s)!=-1)
+            {
+                index=RaceIndex(s);
+            }
+            else
+            {
+                isFeature=true;
+            }
+            if(isFeature)
+            {
+                if(isClass)
+                {
+                    featuresList.Add(s);
+                    classFeatureIndices[index,level]=featIndex;
+                    level++;
+                }
+                else if(isRace)
+                {
+                    featuresList.Add(s);
+                    raceFeatureIndices[index]=featIndex;
+                }
+                featIndex++;
+            }
+            hasNext=file.MoveNext();
+        }
+    }
+    private static void configureIndices()
+    {
+        int index=0;
+        for(int i=0;i<classFeatureIndices.Length;i++)
+        {
+            for(int l=0;l<20;l++)
+            {
+                classFeatureIndices[i,l]=index;
+                index++;
+            }
+        }
+        for(int i=0;i<raceFeatureIndices.Length;i++)
+        {
+            raceFeatureIndices[i]=index;
+            index++;
+        }
+        featuresList.Capacity=(ClassOptions.Length*20)+RaceOptions.Length;
     }
 }

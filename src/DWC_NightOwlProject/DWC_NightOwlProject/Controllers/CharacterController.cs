@@ -196,6 +196,7 @@ public class CharacterController : Controller
 
     public IActionResult CharacterSheet()
     {
+        CharacterOptions.ConfigureFeatures();
         SheetRandomizer c=new SheetRandomizer();
         c.Generate(null,null);
         return View(c);

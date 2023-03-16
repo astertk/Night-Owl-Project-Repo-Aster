@@ -39,6 +39,14 @@
                             }
                         </table>
                     </div>
+                    <div>
+                        <table id="features" class="abilities">
+                            @foreach(string feature in Model.GetFeatures())
+                            {
+                                <p>@feature</p>
+                            }
+                        </table>
+                    </div>
                     <div id="spells">
                         <table id="spellsheet" class="abilities">
                             <thead><th>Level</th><th>Spell</th></thead>
