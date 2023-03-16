@@ -25,6 +25,14 @@
             <input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
         </div>
         <div class="col-sm">
+            <h1>Upload a character image</h1>
+            Upload the image and enter what other detail you want it to add into your image into the text<br />
+            <input type="file" id="myFile" name="File Name:" class="btn btn-outline-light" value="Upload an Image" />
+            <input type="text"  class="form-control" required/>
+            <input type="submit" onclick="window.location= '@Url.Action( "Completion", "Character")'" />
+        </div>
+
+        <div class="col-sm">
             <h1> Create your Character all from Scratch?</h1>
             More advanced, but potentially more creative! <br />
             <input type="button" class="" value="From Scratch" onclick="window.location= '@Url.Action( "Scratch", "Character")'" />
@@ -43,6 +51,7 @@
         @if (Model.materials[i] != null)
         {
             <div class="row">@Model.materials[i].Name</div>
+            <br />
             <div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
              <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
