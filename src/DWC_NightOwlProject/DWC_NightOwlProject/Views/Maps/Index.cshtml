@@ -1,0 +1,96 @@
+﻿@model DWC_NightOwlProject.Data.MaterialVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<div class="text-center" id="title">
+    <h2>Map Creation</h2>
+</div>
+
+<div class="text-center" id="adviceBox">
+    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+    <p>Fill your prophecy with a template, or create your own</p>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1> Create your Map with a template?</h1>
+            Easier, Step-by-Step <br />
+
+            <form id="create-template-form">
+                <div class="container">
+                    <div class="row-cols-lg-1">
+                        <div class="col">
+
+                            <label for="@Model.Responses[0]" class="control-label">Is this map inside or outside?</label>
+                            <input id="zeroth-input" name="zeroth" class="form-control" type="text" required />
+
+
+                            <label for="@Model.Responses[1]" class="control-label">What type of biome is the map?</label>
+                            <input id="first-input" name="first" class="form-control" type="text" required />
+
+
+                            <label for="@Model.Responses[2]" class="control-label">How many squares should the map have?</label>
+                            <input id="second-input" name="second" class="form-control" type="range" required min="100" max="1000" />
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group mt-3 text-center">
+                    <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
+                    <div class="text-danger">
+                        These questions are optional, but please fill out as many as you can before clicking "Create Map"
+                    </div>
+                    <input type="button" class="" value="Create Map" onclick="window.location= '@Url.Action( "Completion", "Maps", Model)'" />
+
+                </div>
+            </form>
+
+
+
+            @*<input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
+            </div>*@
+
+
+
+            
+        </div>
+    </div>
+</div>
+
+    <h2>Completions:</h2>
+    @if (Model != null)
+    {
+        <div class="row">
+            @for (var i = 0; i < Model.materials.Count; ++i)
+            {
+
+                <div class="col">
+                    @if (Model.materials[i] != null)
+                    {
+                        <div class="row">@Model.materials[i].Name</div>
+                        <div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
+                        <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+
+                        <a asp-controller="Maps" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
+                        <a asp-controller="Maps" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Edit</a>
+                        <a asp-controller="Maps" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
+                    }
+                </div>
+            }
+        </div>
+    }
+

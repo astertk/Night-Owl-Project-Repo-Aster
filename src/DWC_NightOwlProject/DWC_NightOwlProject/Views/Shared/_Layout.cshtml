@@ -26,7 +26,6 @@
             </div>
         </nav>
     </header>
-    <header>
 
 
 
@@ -34,50 +33,60 @@
 
 
 
-<nav class ="navbar bg-white">
- <ul class="nav navbar-nav">
+
+                <div class="vnav"
+                    <ul>
+                        <li>
+                             <div class="image">
+                                <img src="~/css//home.png" width="50" height="auto" alt="nav-pic">
+                            
+                            
+                               </div>
+                               <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
                         <li class="nav-item2">
                             <div class="image">
-                                <img src="~/css//home.png" width="50" height="auto" alt="nav-pic">
+                                <img src="~/css/global.png" width="50" height="auto" alt="nav-pic">
                             </div>
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>  
-                            
+                            <a class="nav-link" asp-area="" asp-controller="World" asp-action="Index">World</a>
+
                         </li>
                         
-                        <li class="nav-item2">
+                        <li>
                             <div class="image">
                         <img src="~/css//open-book.png" width="50" height="auto" alt="nav-pic">
                             </div>
                             <a class="nav-link" asp-area="" asp-controller="Backstory" asp-action="Index">Backstory</a>
                             
                         </li>
-                        <li class="nav-item2"><div class="image">
-                        <img src="~/css/global.png" width="50" height="auto" alt="nav-pic">
-                            </div>
-                            <a class="nav-link" asp-area="" asp-controller="World" asp-action="Index">World</a>
-                            
-                        </li>
+                        
 
-                        <li class="nav-item2">
+                        <li>
                             <div class="image">
                                 <img src="~/css/question-mark.png" width="50" height="auto" alt="nav-pic"/>
                             </div>
                             <a class="nav-link" asp-area="" asp-controller="Quests" asp-action="Index">Quests</a>
                         </li>
 
-                         <li class="nav-item2"><div class="image">
+                         <li><div class="image">
                         <img src="~/css/knight.png" width="50" height="auto" alt="nav-pic">
                             </div>
                             <a class="nav-link" asp-area="" asp-controller="Character" asp-action="Index">Characters</a>
                             
                         </li>
+                        <li>
+                            <div class="image">
+                                <img src="~/css/maps.png" width="50" height="auto" alt="nav-pic" />
+                            </div>
+                            <a class="nav-link" asp-area="" asp-controller="Maps" asp-action="Index">Maps</a>
+                        </li>
                     </ul>
-</nav>
+                    </div>
 
-       
-     
-    </header>
-    <div class="container">
+
+
+    <div class="main">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
