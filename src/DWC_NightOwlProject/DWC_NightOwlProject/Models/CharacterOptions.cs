@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 namespace DWC_NightOwlProject.Models;
 
 public static class CharacterOptions
@@ -16,6 +18,9 @@ public static class CharacterOptions
     public static readonly string[] IntProficiencies= new string[] {"Intelligence Save","Arcana","Investigation","Nature","History","Religion"};
     public static readonly string[] WisProficiencies= new string[] {"Wisdom Save","Animal Handling","Medicine","Insight","Perception","Survival"};
     public static readonly string[] ChaProficiencies= new string[] {"Charisma Save","Deception","Intimidation","Performance","Persuasion"};
+    public static IEnumerable<SelectListItem> RaceViewList;
+    public static IEnumerable<SelectListItem> ClassViewList;
+    public static readonly string Random="RANDOM";
     private static readonly int maxLevel=20;
     private static readonly int numberOfClasses=ClassOptions.Length;
     private static readonly int numberOfRaces=RaceOptions.Length;
@@ -131,6 +136,8 @@ public static class CharacterOptions
     }
     public static void ConfigureFeatures()
     {
+        RaceViewList=raceList();
+        ClassViewList=classList();
         featuresList=new List<string>();
         featuresList.Capacity=(ClassOptions.Length*20)+RaceOptions.Length;
         IEnumerator<string> file=System.IO.File.ReadLines(featuresPath).GetEnumerator();
@@ -186,6 +193,26 @@ public static class CharacterOptions
             }
             hasNext=file.MoveNext();
         }
+    }
+    private static IEnumerable<SelectListItem> raceList()
+    {
+        List<SelectListItem> list= new List<SelectListItem>();
+        list.Add(new SelectListItem("Random",Random));
+        for(int i=0;i<RaceOptions.Count();i++)
+        {
+            list.Add(new SelectListItem(RaceOptions[i],RaceOptions[i]));
+        }
+        return list;
+    }
+    private static IEnumerable<SelectListItem> classList()
+    {
+        List<SelectListItem> list= new List<SelectListItem>();
+        list.Add(new SelectListItem("Random",Random));
+        for(int i=0;i<ClassOptions.Count();i++)
+        {
+            list.Add(new SelectListItem(ClassOptions[i],ClassOptions[i]));
+        }
+        return list;
     }
     private static void configureIndices()
     {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DWC_NightOwlProject.Data;
 
 namespace DWC_NightOwlProject.Models;
 public class SheetRandomizer
@@ -24,21 +25,23 @@ public class SheetRandomizer
         }
         return stats;
     }
-    private void RandomizeOptions()
-    {
-        Race=CharacterOptions.RaceOptions[CharacterOptions.Roll(CharacterOptions.RaceOptions.Length)];
-        Class=CharacterOptions.ClassOptions[CharacterOptions.Roll(CharacterOptions.ClassOptions.Length)];
-    }
     public void Generate(String selectedRace, String selectedClass)
     {
         Name="Coolguy";
         Level=1;
-        RandomizeOptions();
-        if(!string.IsNullOrEmpty(selectedRace))
+        if(selectedRace.Equals(CharacterOptions.Random))
+        {
+            Race=CharacterOptions.RaceOptions[CharacterOptions.Roll(CharacterOptions.RaceOptions.Length)];   
+        }
+        else
         {
             Race=selectedRace;
         }
-        if(!string.IsNullOrEmpty(selectedClass))
+        if(selectedClass.Equals(CharacterOptions.Random))
+        {
+            Class=CharacterOptions.ClassOptions[CharacterOptions.Roll(CharacterOptions.ClassOptions.Length)]; 
+        }
+        else
         {
             Class=selectedClass;
         }

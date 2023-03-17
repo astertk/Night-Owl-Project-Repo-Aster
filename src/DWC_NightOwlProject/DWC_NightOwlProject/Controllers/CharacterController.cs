@@ -21,6 +21,7 @@ public class CharacterController : Controller
         _materialRepository = materialRepository;
         _config = config;
         _userManager = userManager;
+        CharacterOptions.ConfigureFeatures();
     }
     [Authorize]
     public IActionResult Index()
@@ -194,11 +195,16 @@ public class CharacterController : Controller
         }
     }
 
-    public IActionResult CharacterSheet()
+    public IActionResult CharacterSheet(SheetRandomizer sr)
     {
         CharacterOptions.ConfigureFeatures();
         SheetRandomizer c=new SheetRandomizer();
-        c.Generate(null,null);
+        c.Generate(sr.Race,sr.Class);
         return View(c);
+    }
+
+    public IActionResult CreateSheet()
+    {
+        return View();
     }
 }
