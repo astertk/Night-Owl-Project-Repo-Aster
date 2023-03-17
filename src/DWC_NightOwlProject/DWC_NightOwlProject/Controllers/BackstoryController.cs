@@ -127,6 +127,7 @@ namespace DWC_NightOwlProject.Controllers
             var material = new Material();
             material.UserId = userId;
             material.Id = 0;
+            material.Name = "";
             material.Type = "Backstory";
             material.CreationDate = DateTime.Now;
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
@@ -176,6 +177,7 @@ namespace DWC_NightOwlProject.Controllers
             material.UserId = userId;
             material.Name = "Backstory";
             material.Id = 0;
+            material.Name = "";
             material.Type = "Backstory";
             material.CreationDate = DateTime.Now;
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
