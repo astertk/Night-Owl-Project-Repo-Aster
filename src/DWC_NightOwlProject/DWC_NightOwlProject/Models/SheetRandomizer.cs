@@ -13,6 +13,7 @@ public class SheetRandomizer
     public string Armor{get;set;}
     public bool Shield{get;set;}
     public int Proficiency=2;
+    public Material Character;
 
     
 
@@ -27,7 +28,10 @@ public class SheetRandomizer
     }
     public void Generate(String selectedRace, String selectedClass)
     {
-        Name="Coolguy";
+        if(Name==null)
+        {
+            Name="Coolguy";
+        }
         Level=1;
         if(selectedRace.Equals(CharacterOptions.Random))
         {
@@ -83,6 +87,16 @@ public class SheetRandomizer
         {
             Scores[i]=Scores[i]+CharacterOptions.StatBonuses[r,i];
         }
+    }
+    public string GetFile()
+    {
+        string file=Name+" Level "+Level+" "+Race+" "+Class+"\\n"+AllStats();
+        List<string[]> weapons=GetWeapons();
+        foreach(string[] s in weapons)
+        {
+            file=file+"\\n"+s[0]+": "+s[1];
+        }
+        return file;
     }
     public List<string[]> GetWeapons()
     {

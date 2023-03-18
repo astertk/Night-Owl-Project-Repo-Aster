@@ -20,6 +20,7 @@
 
 
 <div class="container">
+                    <a asp-controller="Character" asp-action="CreateSheet" class="btn btn-primary m-1">Create a randomized character sheet</a>
     <div class="row">
         <div class="col-sm">
             <h1> Create your Character with a template?</h1>
@@ -52,6 +53,7 @@
                     <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
                     <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Edit</a>
                     <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
+                    <a asp-controller="Character" asp-action="CreateSheetWithCharacter" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Generate character sheet</a>
                 }
             </div>
         }

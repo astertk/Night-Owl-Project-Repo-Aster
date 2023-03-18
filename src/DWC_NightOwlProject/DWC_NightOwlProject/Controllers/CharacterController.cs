@@ -197,14 +197,21 @@ public class CharacterController : Controller
 
     public IActionResult CharacterSheet(SheetRandomizer sr)
     {
-        CharacterOptions.ConfigureFeatures();
-        SheetRandomizer c=new SheetRandomizer();
-        c.Generate(sr.Race,sr.Class);
-        return View(c);
+        sr.Generate(sr.Race,sr.Class);
+        return View(sr);
     }
 
     public IActionResult CreateSheet()
     {
         return View();
+    }
+    public ActionResult CreateSheetWithCharacter(int id)
+    {
+        var userId = _userManager.GetUserId(User);
+        var material = new Material();
+        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+        SheetRandomizer sr=new SheetRandomizer();
+        sr.Character=material;
+        return View("CreateSheet",sr);
     }
 }

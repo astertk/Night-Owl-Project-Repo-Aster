@@ -106,7 +106,7 @@ public static class Equipment
             rangeString="            ";
         }
         int toHit=abilityBonus+prof;
-        return "To hit: +"+toHit+"    Damage: "+dmgString+"+"+abilityBonus+""+rangeString;
+        return "To hit: +"+toHit+"    Damage: "+dmgString+"+"+abilityBonus+" "+rangeString;
         
     }
     private static int armorIndex(string a)
