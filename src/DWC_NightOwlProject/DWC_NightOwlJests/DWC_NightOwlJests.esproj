@@ -9,7 +9,4 @@
     <JavaScriptTestRoot>tests\</JavaScriptTestRoot>
     <JavaScriptTestFramework>Jest</JavaScriptTestFramework>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Tests\" />
-  </ItemGroup>
 </Project>
