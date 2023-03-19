@@ -9,7 +9,11 @@ using DWC_NightOwlProject.Data;
 using Microsoft.AspNetCore.Authorization;
 using OpenAI;
 using OpenAI.Images;
+using OpenAI.Files;
 using DWC_NightOwlProject.ViewModel;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.AspNetCore.Routing.Constraints;
 
 namespace DWC_NightOwlProject.Controllers;
 
@@ -18,12 +22,14 @@ public class CharacterController : Controller
     private IMaterialRepository _materialRepository;
     private readonly IConfiguration _config;
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly IWebHostEnvironment _he;
     public CharacterController(IMaterialRepository materialRepository, IConfiguration config,
-                                   UserManager<IdentityUser> userManager)
+                                   UserManager<IdentityUser> userManager, IWebHostEnvironment he)
     {
         _materialRepository = materialRepository;
         _config = config;
         _userManager = userManager;
+        _he = he;
         CharacterOptions.ConfigureFeatures();
     }
     [Authorize]
@@ -118,20 +124,11 @@ public class CharacterController : Controller
     }
 
     [HttpPost]
-    public async Task<ActionResult> UploadCompletion(UploadViewModel uvm)
+    public async Task<ActionResult> UploadCompletion(IFormFile img)
     {
         var userId = _userManager.GetUserId(User);
 
         var material = new Material();
-
-        string fileName = Path.GetFileNameWithoutExtension(uvm.imageFile.FileName);
-        string fileExtension = Path.GetExtension(uvm.imageFile.FileName);
-
-        fileName = DateTime.Now.ToString("yyyyMMdd") + "+" + fileName.Trim() + fileExtension;
-
-        string uploadPath = System.Configuration.ConfigurationManager.AppSettings["UserImagePath"].ToString();
-
-        uvm.imagePath = uploadPath + fileName;
 
         material.UserId = userId;
         material.Id = 0;
@@ -141,9 +138,21 @@ public class CharacterController : Controller
         material.Prompt = TempData.Peek("HoldPrompt").ToString();
         material.Prompt += "...";
 
+        string webroot = _he.WebRootPath;
+        var imgName = Path.GetFileName(img.FileName);
+        //string extension = Path.GetExtension(img.FileName);
+        //string fileName = imgName + DateTime.Now.ToString("yymmssfff") + extension;
+
+        string path = Path.Combine(webroot + "/Image/", imgName);
+
+        //using (var fileStream = new FileStream(path, FileMode.Create))
+        //{
+            //await img.CopyToAsync(fileStream);
+        //}
+
         var APIKey = _config["APIKey"];
         var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
-        var characterList = await api.ImagesEndPoint.CreateImageEditAsync(Path.GetFullPath(uvm.imagePath), Path.GetFullPath(uvm.imagePath), material.Prompt, 1, ImageSize.Small);
+        var characterList = await api.ImagesEndPoint.CreateImageEditAsync(Path.GetFullPath(path), "C:\\Users\\jazzp\\Github\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\wwwroot\\output-onlinepngtools.png", material.Prompt, 1, ImageSize.Small);
         var character = characterList.FirstOrDefault();
         var result = character.ToString();
 
