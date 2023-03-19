@@ -20,7 +20,9 @@ CREATE TABLE [Material]
     [WorldID]       INT             NOT NULL,
     [Prompt]        NVARCHAR(1000)   NOT NULL,
     [Completion]    NVARCHAR(4000)   NOT NULL,
-    [TemplateID]    INT             NOT NULL 
+    [TemplateID]    INT             NOT NULL,
+    [FileName]      NVARCHAR(100) ,
+    [PictureData]   VARBINARY(max)
 );
 
 CREATE TABLE [Template]
