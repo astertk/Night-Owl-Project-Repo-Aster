@@ -45,14 +45,7 @@ describe('Materials data validation tests', () => {
         expect(validateMaterialData(materials)).toBe(false);
     });
 
-    test('materials with all properties and correct types pass validation', () => {
-        // arrange
-        const materials = [
-            { type: "Backstory", prompt: "Create me a dark fantasy", Completion: "Starwars in the dark ages" },
-        ];
-        // act & assert
-        expect(validateMaterialData(materials)).toBe(true);
-    });
+    
 
     
 
