@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.IO;
+using System.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using DWC_NightOwlProject.Models;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +9,7 @@ using DWC_NightOwlProject.Data;
 using Microsoft.AspNetCore.Authorization;
 using OpenAI;
 using OpenAI.Images;
+using DWC_NightOwlProject.ViewModel;
 
 namespace DWC_NightOwlProject.Controllers;
 
@@ -105,6 +108,47 @@ public class CharacterController : Controller
 
         return View(material);
 
+    }
+
+    [Authorize]
+    public ActionResult Upload()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> UploadCompletion(UploadViewModel uvm)
+    {
+        var userId = _userManager.GetUserId(User);
+
+        var material = new Material();
+
+        string fileName = Path.GetFileNameWithoutExtension(uvm.imageFile.FileName);
+        string fileExtension = Path.GetExtension(uvm.imageFile.FileName);
+
+        fileName = DateTime.Now.ToString("yyyyMMdd") + "+" + fileName.Trim() + fileExtension;
+
+        string uploadPath = System.Configuration.ConfigurationManager.AppSettings["UserImagePath"].ToString();
+
+        uvm.imagePath = uploadPath + fileName;
+
+        material.UserId = userId;
+        material.Id = 0;
+        material.Type = "Character";
+        material.Name = "";
+        material.CreationDate = DateTime.Now;
+        material.Prompt = TempData.Peek("HoldPrompt").ToString();
+        material.Prompt += "...";
+
+        var APIKey = _config["APIKey"];
+        var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
+        var characterList = await api.ImagesEndPoint.CreateImageEditAsync(Path.GetFullPath(uvm.imagePath), Path.GetFullPath(uvm.imagePath), material.Prompt, 1, ImageSize.Small);
+        var character = characterList.FirstOrDefault();
+        var result = character.ToString();
+
+        material.Completion = result;
+
+        return View(material);
     }
 
     public ActionResult Save()
