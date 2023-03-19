@@ -21,6 +21,7 @@ html {
 }
 
 body {
+  
   margin-bottom: 200px;
   background: white;
 }
@@ -28,7 +29,7 @@ img {
     float: none;
     margin-left: auto;
     margin-right: auto;
-    display: block;
+    display: inline;
 
 }
 
@@ -39,7 +40,6 @@ footer {
     height: 200px;
     background-color: black;
     clear: both;
-    display: block;
     color:white;
     overflow:hidden;
     text-align:center;
@@ -57,43 +57,70 @@ canvas {
     z-index: -1;
 }
 
-#imginthefooter {
-   
-    display:block;
+.vnav{
+    
 }
 
-#image{
-    height:30px;
+
+.image{
+    margin-left:25px;
+    
+
+}
+
+.main{
+    display:flex;
+    margin-top:-500px;
+    padding-left:25%;
 }
 
 ​​​​​​​​​
 
 ul {
+    display: inline;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 25%;
     background-color: #f1f1f1;
-    height: 100%; /* Full height */
-    position: fixed; /* Make it stick, even on scroll */
-    overflow: auto; /* Enable scrolling if the sidenav has too much content */
+    border: 1px solid #555;
 }
 
 li a {
-    display: block;
+    display: inline;
     color: #000;
-    padding: 8px 16px;
+    padding-left: 10%;
+    padding-right:20px;
     text-decoration: none;
+    width:5%;
 }
+
+li {
+    display: inline;
+    text-align: left;
+    border-bottom: 1px solid #555;
+
+    
+}
+
+    li:last-child {
+        border-bottom: none;
+    }
+
+    li a.active {
+        background-color: #04AA6D;
+        color: #00ffff;
+    }
+
+    li a:hover:not(.active) {
+        background-color: #555;
+        color: #00ffff;
+    }
 h2{
     color:brown;
     padding-top:50px;
 }
 
     /* Change the link color on hover */
-    li a:hover {
-        background-color: #555;
-        color: white;
-    }
+   
 #Logo{
 }
