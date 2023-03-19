@@ -152,7 +152,7 @@ public class CharacterController : Controller
 
         var APIKey = _config["APIKey"];
         var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
-        var characterList = await api.ImagesEndPoint.CreateImageEditAsync("C:\\fakepath\\" + imgName, "C:\\fakepath\\" + imgName, material.Prompt, 1, ImageSize.Small);
+        var characterList = await api.ImagesEndPoint.CreateImageEditAsync(Path.GetFullPath(imgName), Path.GetFullPath(imgName), material.Prompt, 1, ImageSize.Small);
         var character = characterList.FirstOrDefault();
         var result = character.ToString();
 
