@@ -1,0 +1,30 @@
+﻿@model DWC_NightOwlProject.Data.Material
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+<script src="sketch.js"></script>
+<div class="text-center" id="title">
+    <h2>Character Edit Result</h2>
+</div>
+
+<div class="text-center" id="adviceBox">
+    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+</div>
+
+
+
+
+
+
+
+<h4>
+    Completion:  <br />
+</h4>
+
+<iframe style="width: 250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.Completion></iframe>
+
+@*@Model.Completion*@
+
+<br />
+
+<a href="@Url.Action("Save","Character")">Save</a>  <a href="@Url.Action("Index","Character")">Discard</a>
