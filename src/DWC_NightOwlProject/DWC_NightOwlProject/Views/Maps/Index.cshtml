@@ -3,6 +3,14 @@
     ViewData["Title"] = "Index";
 }
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+<script src="~/js/MapAnimation.js"></script>
+<link rel="left-shoe-footprint.png" href="~/css/left-shoe-footprint.png">
+<link rel="right-shoe-footprint.png" href="~/css/right-shoe-footprint.png">
+<img src ="~/css/left-shoe-footprint.png" width="0" height="0" alt="animation-pic/>
+<img src ="~/css/right-shoe-footprint.png" width="0" height="0" alt="animation-pic/>
+
 
 
 
@@ -22,6 +30,11 @@
         <div class="col-sm">
             <h1> Create your Map with a template?</h1>
             Easier, Step-by-Step <br />
+
+            <button class="btn" id="template">Template</button>
+
+            
+
 
             <form id="create-template-form">
                 <div class="container">
@@ -68,6 +81,50 @@
 
             
         </div>
+        <div class="col-sm">
+            <h1> Create your Map From Scratch</h1>
+           More difficult, but potentially more creative <br />
+
+            <button class="btn" id="scratch">From Scratch</button>
+
+
+
+
+            <form id="create-template-form">
+                <div class="container">
+                    <div class="row-cols-lg-1">
+                        <div class="col">
+
+                            <label for="@Model.Responses[3]" class="control-label">Please describe your map in as little or as much detail as you like:</label>
+                            <textarea id="third-input" name="third" rows ="8" cols="50" class="form-control" type="text" required></textarea>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group mt-3 text-center">
+                    <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
+                  
+                    <input type="button" class="" value="Create Map" onclick="window.location= '@Url.Action( "Completion", "Maps", Model)'" />
+
+                </div>
+            </form>
+
+
+
+            @*<input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
+            </div>*@
+
+
+
+
+        </div>
+
     </div>
 </div>
 
@@ -93,4 +150,18 @@
             }
         </div>
     }
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+                const btnEl = document.querySelector('.btn');
+
+                btnEl.addEventListener('click', saveImage);
+
+                function saveImage() {
+
+          
+
+          
+                }
+
+            </script>
 
