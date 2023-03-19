@@ -23,24 +23,46 @@ public class MapsController : Controller
         _config = config;
         _userManager = userManager;
     }
+   /* [Authorize]
+    public IActionResult Index()
+    {
+        var vm = new MaterialVM();
+        
+        string id = _userManager.GetUserId(User);
+        var result = new List<Material>();
+        result = _materialRepository.GetAllMapsById(id);
+
+        vm.materials = result;
+        return View(vm);
+    }*/
+
     [Authorize]
-    public IActionResult Index(string r0, string r1, string r2)
+    
+    public IActionResult Index(string r0, string r1, string r2, string r3)
     {
         var vm = new MaterialVM();
         var responses = new List<string>
         {
             r0,
             r1,
-            r2
+            r2,
+            r3
+
         };
 
-       vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. The map should have a square grid overlaying it. "
-                       + "It is: " + r0
-                       + ". The biome type is: " + r1
-                       + ". The map should have: " + r2 + "squares.";
 
-        vm.Responses= responses;
 
+        vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
+                    "The map should have a square grid overlaying it. " + r3
+                        + "It is: " + r0
+                        + ". The biome type is: " + r1
+                        + ". The map should have: " + r2
+                        + "squares.";
+
+
+
+
+        vm.Responses = responses;
         string id = _userManager.GetUserId(User);
         var result = new List<Material>();
         result = _materialRepository.GetAllMapsById(id);
@@ -49,7 +71,7 @@ public class MapsController : Controller
         return View(vm);
     }
 
-   
+
 
     [Authorize]
     public async Task<ActionResult> Completion(MaterialVM vm)
@@ -70,9 +92,10 @@ public class MapsController : Controller
 
         var APIKey = _config["APIKey"];
         var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
-        var mapList = await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Small);
+        var mapList = await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Large);
         var map = mapList.FirstOrDefault();
         var result = map.ToString();
+        
 
         material.Completion = result;
 

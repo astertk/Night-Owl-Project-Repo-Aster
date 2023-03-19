@@ -32,9 +32,14 @@ public partial class Material
     [StringLength(1000)]
     public string Prompt { get; set; } = null!;
 
-    [StringLength(1000)]
+    [StringLength(4000)]
     public string Completion { get; set; } = null!;
 
     [Column("TemplateID")]
     public int TemplateId { get; set; }
+
+    [StringLength(100)]
+    public string? FileName { get; set; }
+
+    public byte[]? PictureData { get; set; }
 }
