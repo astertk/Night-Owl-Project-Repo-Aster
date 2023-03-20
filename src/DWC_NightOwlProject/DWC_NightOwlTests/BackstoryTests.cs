@@ -82,11 +82,45 @@ namespace DWC_NightOwlTests
             var mockUserManager = _mockUserManager;
             IMaterialRepository materialRepo = new MaterialRepository(_mockContext.Object, mockUserManager);
 
-            var expected = " ";
+            string expected = " ";
 
             //Act
             var mockBackstory = materialRepo.GetBackstoryById("1928283764738198");
-            var actual = mockBackstory.Completion;
+            string actual = mockBackstory.Completion;
+
+            //Assert
+            Assert.That(actual, Does.Not.EqualTo(expected));
+        }
+
+        [Test]
+        public void BackstoryPromptContainsAPromptAndIsNotEmpty()
+        {
+            //Arrange
+            var mockUserManager = _mockUserManager;
+            IMaterialRepository materialRepo = new MaterialRepository(_mockContext.Object, mockUserManager);
+
+            string expected = "Create a DnD Backstory where everyone has turned into snowmen!";
+
+            //Act
+            var mockBackstory = materialRepo.GetBackstoryById("683910938473829");
+            string actual = mockBackstory.Prompt;
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void BackstoryPromptExpectedToBeEmptyButActuallyHasAPromptAndShouldFail()
+        {
+            //Arrange
+            var mockUserManager = _mockUserManager;
+            IMaterialRepository materialRepo = new MaterialRepository(_mockContext.Object, mockUserManager);
+
+            string expected = " ";
+
+            //Act
+            var mockBackstory = materialRepo.GetBackstoryById("683910938473829");
+            string actual = mockBackstory.Prompt;
 
             //Assert
             Assert.That(actual, Does.Not.EqualTo(expected));
