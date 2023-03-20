@@ -121,7 +121,12 @@ public static class CharacterOptions
         rolls[lowest]=0;
         return rolls.Sum();
     }
-    public static List<string> GetFeatures(string r, string c, int l)
+    public static void ConfigureLists()
+    {
+        RaceViewList=raceList();
+        ClassViewList=classList();
+    }
+    /*public static List<string> GetFeatures(string r, string c, int l)
     {
         List<string> features=new List<string>();
         features.Capacity=25;
@@ -133,8 +138,8 @@ public static class CharacterOptions
             features.Add(featuresList[classFeatureIndices[cls,i]]);
         }
         return features;
-    }
-    public static void ConfigureFeatures()
+    }*/
+    /**public static void ConfigureFeatures()
     {
         RaceViewList=raceList();
         ClassViewList=classList();
@@ -193,7 +198,7 @@ public static class CharacterOptions
             }
             hasNext=file.MoveNext();
         }
-    }
+    }*/
     private static IEnumerable<SelectListItem> raceList()
     {
         List<SelectListItem> list= new List<SelectListItem>();
@@ -214,7 +219,7 @@ public static class CharacterOptions
         }
         return list;
     }
-    private static void configureIndices()
+    /*private static void configureIndices()
     {
         int index=0;
         for(int i=0;i<classFeatureIndices.Length;i++)
@@ -231,5 +236,5 @@ public static class CharacterOptions
             index++;
         }
         featuresList.Capacity=(ClassOptions.Length*20)+RaceOptions.Length;
-    }
+    }*/
 }
