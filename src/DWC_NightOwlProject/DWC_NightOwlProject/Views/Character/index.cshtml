@@ -13,11 +13,7 @@
 </div>
 
 <div class="text-center" id="adviceBox">
-<<<<<<< HEAD
     <span>Who will be joining you on your journey?</span>
-=======
-    <span>You may be venturing out into the world, but who are you in this story?</span>
->>>>>>> develop
     <p>Fill your prophecy with a template, or create your own</p>
 </div>
 
@@ -28,23 +24,12 @@
         <div class="col-sm">
             <h1> Create your Character with a template?</h1>
             Easier, Step-by-Step <br />
-            <input type="button" class="btn btn-secondary" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
+            <input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
         </div>
-        <div class="col-sm">
-            <h1>Upload a character image</h1>
-            Upload the image and enter what other detail you want it to add into your image into the text<br />
-            <input type="button" class="btn btn-secondary" value="Upload a Character" onclick="window.location = '@Url.Action("Upload", "Character")'"/>
-        </div>
-
         <div class="col-sm">
             <h1> Create your Character all from Scratch?</h1>
             More advanced, but potentially more creative! <br />
-            <input type="button" class="btn btn-secondary" value="From Scratch" onclick="window.location= '@Url.Action( "Scratch", "Character")'" />
-        </div>
-        <div class="col-sm">
-            <h1>Create a Character Sheet</h1>
-            Create a character sheet that randomizes your whole character and its stats <br />
-            <a asp-controller="Character" asp-action="CreateSheet" class="btn btn-secondary" >Create a randomized character sheet</a>
+            <input type="button" class="" value="From Scratch" onclick="window.location= '@Url.Action( "Scratch", "Character")'" />
         </div>
 
     </div>
@@ -65,7 +50,6 @@
                     <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
                     <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
-<<<<<<< HEAD
                     <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-secondary m-1">Edit</a>
                     <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>
                     <a class="btn btn-outline-primary m-1" onclick="downloadFile()">Download</a>
@@ -81,11 +65,6 @@
                             URL.revokeObjectURL(link.href);
                         };
                     </script>
-=======
-                    <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Edit</a>
-                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
-                    <a asp-controller="Character" asp-action="CreateSheetWithCharacter" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Generate character sheet</a>
->>>>>>> develop
                 }
             </div>
         }
