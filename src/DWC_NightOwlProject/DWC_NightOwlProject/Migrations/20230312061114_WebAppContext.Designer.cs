@@ -4,20 +4,22 @@ using DWC_NightOwlProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DWCNightOwlProject.Migrations
+namespace DWC_NightOwlProject.Migrations
 {
     [DbContext(typeof(WebAppDbContext))]
-    partial class WebAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230312061114_WebAppContext")]
+    partial class WebAppContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
@@ -73,11 +75,7 @@ namespace DWCNightOwlProject.Migrations
                         .HasColumnName("WorldID");
 
                     b.HasKey("Id")
-                        .HasName("PK__Material__3214EC2785581C70");
-
-                    b.HasIndex(new[] { "TemplateId" }, "IX_Material_TemplateID");
-
-                    b.HasIndex(new[] { "WorldId" }, "IX_Material_WorldID");
+                        .HasName("PK__Material__3214EC277DF42520");
 
                     b.ToTable("Material");
                 });
@@ -128,16 +126,8 @@ namespace DWCNightOwlProject.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasColumnName("NAME");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)")
-                        .HasColumnName("NAME");
-
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)")
                         .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("UserID");

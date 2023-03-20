@@ -1,0 +1,45 @@
+@model DWC_NightOwlProject.Models.SheetRandomizer
+@{
+    ViewData["Title"] = "Create sheet";
+}
+
+<div>
+    <p>Create a randomized character sheet!</p>
+    <p>You can use this form to select a race and class
+        and generate a randomized character sheet for 
+        Dungeons and Dragons 5th Edition. Weapons
+        and ability score bonuses will be automatically
+        assigned based on class and race.
+    </p>
+    <form asp-action="CharacterSheet">
+        <div class="row">
+            <div class="col-sm-8">
+            @if(@Model!=null&&@Model.Character!=null&&@Model.Character.Name!=null)
+            {
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Character name</label>
+                    <input asp-for="Name" class="form-control" value="@Model.Character.Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Character name</label>
+                    <input asp-for="Name" class="form-control">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="Race" class="control-label">Select character race</label>
+                <select asp-for="Race" asp-items="@DWC_NightOwlProject.Models.CharacterOptions.RaceViewList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class" class="control-label">Select character class</label>
+                <select asp-for="Class" asp-items="@DWC_NightOwlProject.Models.CharacterOptions.ClassViewList"></select>
+            </div>
+            <input type="submit" value="Generate character sheet">
+    </form>
+</div>
+</div>
+</div>
