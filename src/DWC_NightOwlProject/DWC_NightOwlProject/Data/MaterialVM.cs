@@ -1,4 +1,6 @@
-﻿namespace DWC_NightOwlProject.Data
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace DWC_NightOwlProject.Data
 {
     public class MaterialVM
     {

@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "ignored": "true",
+      "type": "secrets.keyVault"
+    },
+    "secrets2": {
+      "ignored": "true",
+      "type": "secrets",
+      "connectionId": "APIKey",
+      "dynamicId": null
+    }
+  }
+}
