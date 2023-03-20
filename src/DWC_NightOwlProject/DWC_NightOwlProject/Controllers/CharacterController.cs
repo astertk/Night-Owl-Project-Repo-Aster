@@ -21,7 +21,8 @@ public class CharacterController : Controller
         _materialRepository = materialRepository;
         _config = config;
         _userManager = userManager;
-        CharacterOptions.ConfigureFeatures();
+        //CharacterOptions.ConfigureFeatures();
+        CharacterOptions.ConfigureLists();
     }
     [Authorize]
     public IActionResult Index()
