@@ -115,8 +115,8 @@ public class SheetRandomizer
         }
         return weapons;
     }
-    public List<string> GetFeatures()
+    /*public List<string> GetFeatures()
     {
         return CharacterOptions.GetFeatures(Race,Class,Level);
-    }
+    }*/
 }

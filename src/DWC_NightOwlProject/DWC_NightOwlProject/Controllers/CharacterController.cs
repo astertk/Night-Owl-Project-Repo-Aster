@@ -30,7 +30,8 @@ public class CharacterController : Controller
         _config = config;
         _userManager = userManager;
         _he = he;
-        CharacterOptions.ConfigureFeatures();
+        //CharacterOptions.ConfigureFeatures();
+        CharacterOptions.ConfigureLists();
     }
     [Authorize]
     public IActionResult Index()
