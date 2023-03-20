@@ -259,7 +259,7 @@ namespace DWC_NightOwlTests
             Assert.That(actualLength, Is.EqualTo(expectedLength));
             Assert.That(actualName, Is.EqualTo(expectedName));
         }
-        public void GetMapsById_ReturnsCorrectCharacterGivenCorrectUserIdandId()
+        public void GetMapsById_ReturnsCorrectMapGivenCorrectUserIdandId()
         {
             // Arrange
             var mockUserManager = _mockUserManager;
@@ -276,7 +276,7 @@ namespace DWC_NightOwlTests
         }
 
         [Test]
-        public void GetAllMapsById_ReturnsCorrectCharactersGivenCorrectUserId()
+        public void GetAllMapsById_ReturnsCorrectMapsGivenCorrectUserId()
         {
             // Arrange
             var mockUserManager = _mockUserManager;
