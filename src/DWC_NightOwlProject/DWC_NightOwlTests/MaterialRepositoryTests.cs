@@ -88,6 +88,60 @@ namespace DWC_NightOwlTests
                     Completion = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-hXKuB5CM3EtOZEwlvXkd1Ns4/user-wqHgZ8LRjgCAnFjGIt4nE4Vg/img-5VMN9uB463Fqk70xwBQKgUvZ.png?st=2023-03-07T10%3A09%3A12Z&se=2023-03-07T12%3A09%3A12Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-03-06T21%3A29%3A12Z&ske=2023-03-07T21%3A29%3A12Z&sks=b&skv=2021-08-06&sig=asgquzQL%2Bbh0pbxjyu5CLRD25XuybtTEiUmd/NbXxiU%3D",
                     TemplateId= 0},
 
+                  new Material {
+                    Id = 6,
+                    UserId = "6861681681841",
+                    Type = "Map",
+                    Name = "Labyrinth of Loss",
+                    CreationDate = DateTime.Now,
+                    WorldId = 0,
+                    Prompt = "Make me a labyrinth full of darkness, traps and despair.",
+                    Completion = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-hXKuB5CM3EtOZEwlvXkd1Ns4/user-wqHgZ8LRjgCAnFjGIt4nE4Vg/img-5VMN9uB463Fqk70xwBQKgUvZ.png?st=2023-03-07T10%3A09%3A12Z&se=2023-03-07T12%3A09%3A12Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-03-06T21%3A29%3A12Z&ske=2023-03-07T21%3A29%3A12Z&sks=b&skv=2021-08-06&sig=asgquzQL%2Bbh0pbxjyu5CLRD25XuybtTEiUmd/NbXxiU%3D",
+                    TemplateId= 0},
+
+                   new Material {
+                    Id = 7,
+                    UserId = "6861681681841",
+                    Type = "Map",
+                    Name = "Forest of the Ancients",
+                    CreationDate = DateTime.Now,
+                    WorldId = 0,
+                    Prompt = "Make me a dnd Map called the Forest of the Ancients. It should have lots of trees, ancient ruins, lots of greenery.",
+                    Completion = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-hXKuB5CM3EtOZEwlvXkd1Ns4/user-wqHgZ8LRjgCAnFjGIt4nE4Vg/img-5VMN9uB463Fqk70xwBQKgUvZ.png?st=2023-03-07T10%3A09%3A12Z&se=2023-03-07T12%3A09%3A12Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-03-06T21%3A29%3A12Z&ske=2023-03-07T21%3A29%3A12Z&sks=b&skv=2021-08-06&sig=asgquzQL%2Bbh0pbxjyu5CLRD25XuybtTEiUmd/NbXxiU%3D",
+                    TemplateId= 0},
+
+                   new Material {
+                    Id = 8,
+                    UserId = "568511681961843",
+                    Type = "Quest",
+                    Name = "Mystical Bag of Farts",
+                    CreationDate = DateTime.Now,
+                    WorldId = 0,
+                    Prompt = "Write me a DND quest where it is Story-driven where the players start at Eingald and are travelling to Depromonth .  The reward is a The Mystical bag of farts .  Make it approximately 550 characters long. Make this have 3 acts and an epilogue. ...",
+                    Completion = "  Act 1: The adventurers start in Eingald, where they are approached by a mysterious figure. He tells them of a powerful artifact, the Mystical Bag of Farts, that can be found in the far-off city of Depromonth. He gives them a map and a magical compass that will guide them to the city.  Act 2: The adventurers travel through treacherous lands, facing danger and mystery. They must brave harsh conditions, strange creatures, and a powerful magical force that seeks to keep them from their goal.  Act 3: The adventurers finally reach Depromonth, only to find that the city is in ruins. It appears that the city has been destroyed by a powerful magical force. The adventurers must brave the ruins in search of the Mystical Bag of Farts.  Epilogue: The adventurers manage to find the Mystical Bag of Farts and return it to the mysterious figure. He rewards them with riches beyond their wildest dreams and thanks them for their help. The adventurers have completed their quest and can now enjoy the spoils of their success.",
+                    TemplateId= 0},
+
+                   new Material {
+                    Id = 9,
+                    UserId = "568511681961842",
+                    Type = "Quest",
+                    Name = "",
+                    CreationDate = DateTime.Now,
+                    WorldId = 0,
+                    Prompt = "",
+                    Completion = "",
+                    TemplateId= 0},
+
+                   new Material {
+                    Id = 10,
+                    UserId = "568511681961842",
+                    Type = "Quest",
+                    Name = "",
+                    CreationDate = DateTime.Now,
+                    WorldId = 0,
+                    Prompt = "",
+                    Completion = "",
+                    TemplateId= 0},
             };
 
             _mockContext = new Mock<WebAppDbContext>();
@@ -155,6 +209,23 @@ namespace DWC_NightOwlTests
         }
 
         [Test]
+        public void GetQuestsById_ReturnsEmptyList_WhenGivenEmptyList()
+        {
+            // Arrange
+            var mockUserManager = _mockUserManager;
+            IMaterialRepository materialRepository = new MaterialRepository(_mockContext.Object, mockUserManager);
+            string expected = "";
+
+            // Act
+            var mockQuest = materialRepository.GetQuestById("568511681961842", 9);
+            string actual = mockQuest.Name;
+
+            // Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+
+        [Test]
         public void GetCharacterById_ReturnsCorrectCharacterGivenCorrectUserIdandId()
         {
             // Arrange
@@ -184,6 +255,39 @@ namespace DWC_NightOwlTests
             // Act
             int actualLength = materialRepository.GetAllCharactersById("6861681681841").Count();
             string actualName = materialRepository.GetAllCharactersById("6861681681841").ToList()[1].Name;
+            // Assert
+            Assert.That(actualLength, Is.EqualTo(expectedLength));
+            Assert.That(actualName, Is.EqualTo(expectedName));
+        }
+        public void GetMapsById_ReturnsCorrectMapGivenCorrectUserIdandId()
+        {
+            // Arrange
+            var mockUserManager = _mockUserManager;
+            IMaterialRepository materialRepository = new MaterialRepository(_mockContext.Object, mockUserManager);
+
+            string expected = "Labyrinth of Loss";
+
+            // Act
+            var mockMap = materialRepository.GetMapByIdandMaterialId("6861681681841", 6);
+            string actual = mockMap.Name;
+
+            // Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void GetAllMapsById_ReturnsCorrectMapsGivenCorrectUserId()
+        {
+            // Arrange
+            var mockUserManager = _mockUserManager;
+            IMaterialRepository materialRepository = new MaterialRepository(_mockContext.Object, mockUserManager);
+
+            int expectedLength = 2;
+            string expectedName = "Forest of the Ancients";
+
+            // Act
+            int actualLength = materialRepository.GetAllMapsById("6861681681841").Count();
+            string actualName = materialRepository.GetAllMapsById("6861681681841").ToList()[1].Name;
             // Assert
             Assert.That(actualLength, Is.EqualTo(expectedLength));
             Assert.That(actualName, Is.EqualTo(expectedName));

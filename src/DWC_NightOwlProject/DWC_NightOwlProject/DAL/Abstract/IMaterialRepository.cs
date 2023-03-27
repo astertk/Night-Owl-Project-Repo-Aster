@@ -13,5 +13,9 @@ namespace DWC_NightOwlProject.DAL.Abstract
         public Material GetCharacterByIdandMaterialId(string userId, int id);
 
         public List<Material> GetAllCharactersById(string userId);
+
+        public Material GetMapByIdandMaterialId(string userId, int id);
+
+        public List<Material> GetAllMapsById(string userId);
     }
 }

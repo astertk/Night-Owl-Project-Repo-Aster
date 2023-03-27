@@ -127,12 +127,14 @@ namespace DWC_NightOwlProject.Controllers
             var material = new Material();
             material.UserId = userId;
             material.Id = 0;
+            material.Name = "";
             material.Type = "Backstory";
             material.CreationDate = DateTime.Now;
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
             material.Prompt += "...";
-            
 
+
+          
             var temp = TempData.Peek("HoldTemp").ToString();           
             var presence = TempData.Peek("HoldPresence").ToString(); ;
             var frequency = TempData.Peek("HoldFrequency").ToString(); ;
@@ -174,7 +176,9 @@ namespace DWC_NightOwlProject.Controllers
            
             var material = new Material();
             material.UserId = userId;
+            material.Name = "Backstory";
             material.Id = 0;
+            material.Name = "";
             material.Type = "Backstory";
             material.CreationDate = DateTime.Now;
             material.Prompt = TempData.Peek("HoldPrompt").ToString();

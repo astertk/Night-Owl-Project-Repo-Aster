@@ -70,6 +70,25 @@ namespace DWC_NightOwlProject.DAL.Concrete
 
         }
 
+        public Material GetMapByIdandMaterialId(string userId, int id)
+        {
+            var result = new Material();
+            result = _materials.Where(x => x.UserId == userId).Where(x => x.Type == "Map").Where(x => x.Id == id).FirstOrDefault();
+            return result;
+        }
+
+        public List<Material> GetAllMapsById(string userId)
+        {
+            var result = new List<Material>();
+
+
+            result = _materials.Where(x => x.UserId == userId).Where(x => x.Type == "Map").ToList();
+
+
+            return result;
+
+        }
+
 
     }
     

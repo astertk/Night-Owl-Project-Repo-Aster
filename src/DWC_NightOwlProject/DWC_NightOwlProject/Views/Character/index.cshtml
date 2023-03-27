@@ -3,6 +3,8 @@
     ViewData["Title"] = "Index";
 }
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 
 
 
@@ -11,7 +13,7 @@
 </div>
 
 <div class="text-center" id="adviceBox">
-    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+    <span>Who will be joining you on your journey?</span>
     <p>Fill your prophecy with a template, or create your own</p>
 </div>
 
@@ -35,23 +37,38 @@
 
 <h2>Completions:</h2>
 @if (Model != null)
-{<div class="row">
-    @for(var i = 0; i < Model.materials.Count; ++i)
-    {
-        
-        <div class="col">
-        @if (Model.materials[i] != null)
+{
+    <div class="row">
+        @for (var i = 0; i < Model.materials.Count; ++i)
         {
-            <div class="row">@Model.materials[i].Name</div>
-            <div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
-             <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
-            <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
-            <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Edit</a>
-            <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
+            <div class="col">
+                @if (Model.materials[i] != null)
+                {
+                    <div class="row">@Model.materials[i].Name</div>
+                    <div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
+                    <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+
+                    <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
+                    <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-secondary m-1">Edit</a>
+                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>
+                    <a class="btn btn-outline-primary m-1" onclick="downloadFile()">Download</a>
+
+                    <script>
+                        function downloadFile() {
+                            const link = document.createElement("a");
+                            const content = "@Html.Raw(Model.materials[i].Completion).ToString()" + ".png";
+                            const file = new Blob([content], { type: "image/png" });
+                            link.href = URL.createObjectURL(file);
+                            link.download = "character.png";
+                            link.click();
+                            URL.revokeObjectURL(link.href);
+                        };
+                    </script>
+                }
+            </div>
         }
-        </div>
-    }
     </div>
 }
+
 

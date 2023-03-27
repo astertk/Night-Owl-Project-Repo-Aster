@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using DWC_NightOwlProject.Services;
 using DWC_NightOwlProject.Data;
 using DWC_NightOwlProject.DAL.Abstract;
 using DWC_NightOwlProject.DAL.Concrete;
@@ -30,7 +32,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
@@ -42,6 +44,16 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
 builder.Services.AddScoped<IWorldRepository, WorldRepository>();
 builder.Services.AddScoped<DbContext, WebAppDbContext>();
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+
+builder.Services.ConfigureApplicationCookie(o => {
+    o.ExpireTimeSpan = TimeSpan.FromDays(5);
+    o.SlidingExpiration = true;
+});
+
+
 var app = builder.Build();
 
 

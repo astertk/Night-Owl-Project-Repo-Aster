@@ -14,7 +14,7 @@ public partial class World
     [Column("ID")]
     public int Id { get; set; }
 
-    [Column("NAME")]
+    [Column("Name")]
     [StringLength(250)]
     public string Name { get; set; } = null!;
 
