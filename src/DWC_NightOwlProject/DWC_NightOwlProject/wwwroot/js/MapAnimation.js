@@ -2,6 +2,8 @@
 let leftY;
 let rightX;
 let rightY;
+let drawToggle = 0;
+let tButton = document.getElementById("Test");
 
 function preload() {
     left = loadImage('css/left-shoe-footprint.png');
@@ -17,11 +19,17 @@ function setup() {
     rightX = 0;
     leftY = height / 2;
     rightY = height / 2;
+    button = document.getElementById("Test");
+    
 }
 
 function draw() {
 
-    //document.getElementById("Create").addEventListener("click", alert("this is working"));
+    
+
+    if (drawToggle == 1) { 
+    
+  
 
 
     rightRate = frameCount + 60;
@@ -44,6 +52,16 @@ function draw() {
     }
 
 
-
+    }
 }
+
+
+function toggle() {
+    drawToggle = 1;
+}
+
+
+
+
+
 

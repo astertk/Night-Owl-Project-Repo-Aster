@@ -70,10 +70,14 @@
                     <div class="text-danger">
                         These questions are optional, but please fill out as many as you can before clicking "Create Map"
                     </div>
-                    <input type="button" class="btn" id="Create" value="Create Map" onclick="window.location= '@Url.Action( "Completion", "Maps", Model)'" />
+                    <input type="button" class="btn" id="Create" value="Create Map" onclick="toggle(); window.location=  '@Url.Action( "Completion", "Maps", Model)'"/>
 
                 </div>
             </form>
+
+           @* <button class="btn" id="Test" onclick= >Test</button>*@
+
+           
 
 
 
@@ -153,7 +157,7 @@
             }
         </div>
     }
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+@*<script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
                 const btnEl = document.querySelector('.btn');
 
@@ -166,5 +170,5 @@
           
                 }
 
-            </script>
+            </script>*@
 
