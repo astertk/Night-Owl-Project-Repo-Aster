@@ -5,8 +5,14 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+
 <script src="~/js/MapAnimation.js"></script>
 
+
+<p>
+<img src="~/css/left-shoe-footprint.png" alt="left_shoe" />
+<img src="~/css/right-shoe-footprint.png" alt="right_shoe" />/>
+</p>
 
 
 
@@ -64,7 +70,7 @@
                     <div class="text-danger">
                         These questions are optional, but please fill out as many as you can before clicking "Create Map"
                     </div>
-                    <input type="button" class="" value="Create Map" onclick="window.location= '@Url.Action( "Completion", "Maps", Model)'" />
+                    <input type="button" class="btn" id="Create" value="Create Map" onclick="window.location= '@Url.Action( "Completion", "Maps", Model)'" />
 
                 </div>
             </form>

@@ -119,6 +119,9 @@ h2{
     color:brown;
     padding-top:50px;
 }
+p{
+    display:none;
+}
 
     /* Change the link color on hover */
    
