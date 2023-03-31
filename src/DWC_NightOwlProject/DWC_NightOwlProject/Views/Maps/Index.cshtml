@@ -7,6 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
 
 <script src="~/js/MapAnimation.js"></script>
+<script src="~/js/site.js"></script>
 
 
 <p>
@@ -34,11 +35,11 @@
             <h1> Create your Map with a template?</h1>
             Easier, Step-by-Step <br />
 
-            <button class="btn" id="template">Template</button>
+            <button class="btn" id="template" onclick="reveal('t','s')">Template</button>
 
             
 
-
+            <t id="t">
             <form id="create-template-form">
                 <div class="container">
                     <div class="row-cols-lg-1">
@@ -75,28 +76,18 @@
                 </div>
             </form>
 
-           @* <button class="btn" id="Test" onclick= >Test</button>*@
-
-           
-
-
-
-            @*<input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
-            </div>*@
-
-
-
+            </t>
             
         </div>
         <div class="col-sm">
             <h1> Create your Map From Scratch</h1>
            More difficult, but potentially more creative <br />
 
-            <button class="btn" id="scratch">From Scratch</button>
+            <button class="btn" id="scratch" onclick="reveal('s','t')">From Scratch</button>
 
 
 
-
+            <s id= "s">
             <form id="create-template-form">
                 <div class="container">
                     <div class="row-cols-lg-1">
@@ -117,11 +108,11 @@
                 <div class="form-group mt-3 text-center">
                     <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
                   
-                    <input type="button" class="" value="Create Map" onclick="window.location= '@Url.Action( "Completion", "Maps", Model)'" />
+                    <input type="button" class="" value="Create Map" onclick="toggle(); window.location= '@Url.Action( "Completion", "Maps", Model)'" />
 
                 </div>
             </form>
-
+            </s>
 
 
             @*<input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
@@ -171,4 +162,8 @@
                 }
 
             </script>*@
+
+<script>
+   
+</script>
 

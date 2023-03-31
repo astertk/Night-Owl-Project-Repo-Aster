@@ -122,6 +122,12 @@ h2{
 p{
     display:none;
 }
+t {
+    display: none;
+}
+s {
+    display: none;
+}
 
     /* Change the link color on hover */
    
