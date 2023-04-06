@@ -23,52 +23,52 @@ public class MapsController : Controller
         _config = config;
         _userManager = userManager;
     }
-   /* [Authorize]
+    [Authorize]
     public IActionResult Index()
     {
         var vm = new MaterialVM();
-        
+       
+
         string id = _userManager.GetUserId(User);
         var result = new List<Material>();
         result = _materialRepository.GetAllMapsById(id);
 
         vm.materials = result;
         return View(vm);
-    }*/
+    }
 
     [Authorize]
-    
-    public IActionResult Index(string r0, string r1, string r2, string r3)
+    [HttpPost]
+    public IActionResult Index(IFormCollection collection)
     {
-        var vm = new MaterialVM();
-        var responses = new List<string>
+
+        try
         {
-            r0,
-            r1,
-            r2,
-            r3
-
-        };
-
-
-
-        vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
-                    "The map should have a square grid overlaying it. " + r3
-                        + "It is: " + r0
-                        + ". The biome type is: " + r1
-                        + ". The map should have: " + r2
-                        + "squares.";
+            var vm = new MaterialVM();
+            vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
+                        "The map should have a square grid overlaying it. " + vm.r3
+                            + "It is: " + vm.r0
+                            + ". The biome type is: " + vm.r1
+                            + ". The map should have: " + vm.r2
+                            + "squares.";
 
 
 
 
-        vm.Responses = responses;
-        string id = _userManager.GetUserId(User);
-        var result = new List<Material>();
-        result = _materialRepository.GetAllMapsById(id);
 
-        vm.materials = result;
-        return View(vm);
+            string id = _userManager.GetUserId(User);
+            var result = new List<Material>();
+            result = _materialRepository.GetAllMapsById(id);
+            vm.materials = result;
+            return View(Completion(vm));
+        }
+
+        catch
+        {
+            return View();
+        }
+
+       
     }
 
 
