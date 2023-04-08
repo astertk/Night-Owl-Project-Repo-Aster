@@ -1,3 +1,5 @@
+using DWC_NightOwlProject.DAL.Concrete;
+using OpenAI.GPT3.ObjectModels.ResponseModels;
 using System;
 using TechTalk.SpecFlow;
 
@@ -6,28 +8,31 @@ namespace DWC_BDD_Tests.StepDefinitions
     [Binding]
     public class CalculatorStepDefinitions
     {
+
+        private Calculator calculator = new Calculator();
+        private int _result;
         [Given(@"the first number is (.*)")]
         public void GivenTheFirstNumberIs(int p0)
         {
-            throw new PendingStepException();
+            calculator.FirstNumber= p0;
         }
 
         [Given(@"the second number is (.*)")]
         public void GivenTheSecondNumberIs(int p0)
         {
-            throw new PendingStepException();
+            calculator.SecondNumber = p0;
         }
 
         [When(@"the two numbers are added")]
         public void WhenTheTwoNumbersAreAdded()
         {
-            throw new PendingStepException();
+            _result = calculator.Add();
         }
 
         [Then(@"the result should be (.*)")]
         public void ThenTheResultShouldBe(int p0)
         {
-            throw new PendingStepException();
+            p0.Should().Be(_result);
         }
     }
 }
