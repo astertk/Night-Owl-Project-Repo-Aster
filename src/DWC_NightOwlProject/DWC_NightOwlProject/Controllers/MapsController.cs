@@ -39,14 +39,14 @@ public class MapsController : Controller
 
     [Authorize]
     [HttpPost]
-    public IActionResult Index(IFormCollection collection)
+    public ActionResult Template(IFormCollection collection)
     {
 
         try
         {
             var vm = new MaterialVM();
             vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
-                        "The map should have a square grid overlaying it. " + vm.r3
+                        "The map should have a square grid overlaying it. "
                             + "It is: " + vm.r0
                             + ". The biome type is: " + vm.r1
                             + ". The map should have: " + vm.r2
@@ -60,7 +60,8 @@ public class MapsController : Controller
             var result = new List<Material>();
             result = _materialRepository.GetAllMapsById(id);
             vm.materials = result;
-            return View(Completion(vm));
+            
+            return RedirectToAction("Completion","Maps", vm);
         }
 
         catch
@@ -69,6 +70,36 @@ public class MapsController : Controller
         }
 
        
+    }
+
+    [Authorize]
+    [HttpPost]
+    public ActionResult Scratch(IFormCollection collection)
+    {
+
+        try
+        {
+            var vm = new MaterialVM();
+            vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
+                        "The map should have a square grid overlaying it. " + vm.r3;
+
+
+
+
+
+            string id = _userManager.GetUserId(User);
+            var result = new List<Material>();
+            result = _materialRepository.GetAllMapsById(id);
+            vm.materials = result;
+            return RedirectToAction("Completion", "Maps", vm);
+        }
+
+        catch
+        {
+            return View();
+        }
+
+
     }
 
 
@@ -99,7 +130,7 @@ public class MapsController : Controller
 
         material.Completion = result;
 
-
+        ViewBag.Prompt = vm.Prompt;
 
         return View(material);
 

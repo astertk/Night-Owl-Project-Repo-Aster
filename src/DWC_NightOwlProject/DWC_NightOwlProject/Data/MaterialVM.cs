@@ -15,7 +15,7 @@ namespace DWC_NightOwlProject.Data
 
 
         public string Prompt { get; set; }
-
+ 
     }
 
     

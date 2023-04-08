@@ -40,21 +40,30 @@
             
 
             <t id="t">
-            <form id="create-template-form">
+            <form asp-action="Template" id="create-template-form">
                 <div class="container">
                     <div class="row-cols-lg-1">
                         <div class="col">
 
-                            <label for="@Model.r0" class="control-label">Is this map inside or outside?</label>
-                            <input id="zeroth-input" name="zeroth" class="form-control" type="text" required />
+                                <label asp-for="r0" class="control-label">Is this map inside or outside?</label>
+                                <input asp-for="r0" class="form-control" />
+                                <span asp-validation-for="r0" class="text-danger"></span>
 
+                                <label asp-for="r1" class="control-label">What type of biome is the map?</label>
+                                <input asp-for="r1" class="form-control" />
+                                <span asp-validation-for="r0" class="text-danger"></span>
 
-                                <label for="@Model.r1" class="control-label">What type of biome is the map?</label>
+                                <label asp-for="r2" class="control-label">What type of biome is the map?</label>
+                                <input asp-for="r2" class="form-control" />
+                                <span asp-validation-for="r2" class="text-danger"></span>
+
+@*
+                                <label for="r1" class="control-label">What type of biome is the map?</label>
                             <input id="first-input" name="first" class="form-control" type="text" required />
 
 
-                            <label for="@Model.r2" class="control-label">How many squares should the map have?</label>
-                            <input id="second-input" name="second" class="form-control" type="range" required min="100" max="1000" />
+                                <label for="r2" class="control-label">What type of biome is the map?</label>
+                            <input id="second-input" name="second" class="form-control" type="range" required min="100" max="1000" />*@
 
 
                         </div>
@@ -67,11 +76,8 @@
 
 
                 <div class="form-group mt-3 text-center">
-                    <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
-                    <div class="text-danger">
-                        These questions are optional, but please fill out as many as you can before clicking "Create Map"
-                    </div>
-                    <input type="button" class="btn" id="Create" value="Create Map" onclick="toggle(); window.location=  '@Url.Action( "Completion", "Maps", Model)'"/>
+
+                    <input type="submit" class="btn" id="Create" value="Create Map" onclick="toggle()"/>
 
                 </div>
             </form>
@@ -88,12 +94,12 @@
 
 
             <s id= "s">
-            <form id="create-template-form">
+            <form asp-action="Scratch" id="create-template-form">
                 <div class="container">
                     <div class="row-cols-lg-1">
                         <div class="col">
 
-                                <label for="@Model.r3" class="control-label">Please describe your map in as little or as much detail as you like:</label>
+                                <label for="r3" class="control-label">Please describe your map in as little or as much detail as you like:</label>
                             <textarea id="third-input" name="third" rows ="8" cols="50" class="form-control" type="text" required></textarea>
 
                         </div>
@@ -106,9 +112,9 @@
 
 
                 <div class="form-group mt-3 text-center">
-                    <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
-                  
-                    <input type="button" class="" value="Create Map" onclick="toggle(); window.location= '@Url.Action( "Completion", "Maps", Model)'" />
+                   
+
+                        <input type="submit" class="btn" id="Create" value="Create Map" onclick="toggle()" />
 
                 </div>
             </form>
