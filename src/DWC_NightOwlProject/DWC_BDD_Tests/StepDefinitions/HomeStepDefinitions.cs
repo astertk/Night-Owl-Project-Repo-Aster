@@ -15,7 +15,7 @@ namespace DWC_BDD_Tests.StepDefinitions
         private readonly HomePageObject _homePage;
         public HomeStepDefinitions(BrowserDriver browserDriver)
         {
-
+            _homePage = new HomePageObject(browserDriver.Current);
         }
 
         [Given(@"I am a visitor")]
