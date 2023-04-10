@@ -57,7 +57,7 @@ public class MapsController : Controller
             byte[] Image;
             if (!picture.IsNullOrEmpty())
             {
-              /*  using (var binaryReader = new BinaryReader(picture.InputStream))*/
+                using (var binaryReader = new BinaryReader(picture.InputStream))
             }
 
 

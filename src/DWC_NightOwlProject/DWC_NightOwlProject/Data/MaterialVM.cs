@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Web;
 using System.Net;
 using System.Drawing;
+using Microsoft.DotNet;
+using System.Web.HttpPostedFileWrapper;
 
 namespace DWC_NightOwlProject.Data
 {
@@ -19,7 +21,7 @@ namespace DWC_NightOwlProject.Data
         public string r3 { get; set; }
         public string r4 { get; set; }
 
-        public Image upload { get; set; }
+        public IFormFile upload { get; set; }
 
 
         public string Prompt { get; set; }
