@@ -47,10 +47,10 @@ public class MapsController : Controller
             var vm = new MaterialVM();
             vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
                         "The map should have a square grid overlaying it. "
-                            + "It is: " + vm.r0
-                            + ". The biome type is: " + vm.r1
-                            + ". The map should have: " + vm.r2
-                            + "squares.";
+                            + "It is: " + collection["r0"]
+                            + ". The biome type is: " + collection["r1"]
+                            + ". The map should have: " + collection["r2"]
+                            + " squares.";
 
 
 
@@ -103,7 +103,7 @@ public class MapsController : Controller
     }
 
 
-
+ 
     [Authorize]
     public async Task<ActionResult> Completion(MaterialVM vm)
     {
@@ -129,8 +129,6 @@ public class MapsController : Controller
         
 
         material.Completion = result;
-
-        ViewBag.Prompt = vm.Prompt;
 
         return View(material);
 

@@ -40,7 +40,7 @@
             
 
             <t id="t">
-            <form asp-action="Template" id="create-template-form">
+            <form asp-action="Template" id="create-template-form" method="post">
                 <div class="container">
                     <div class="row-cols-lg-1">
                         <div class="col">
@@ -51,9 +51,9 @@
 
                                 <label asp-for="r1" class="control-label">What type of biome is the map?</label>
                                 <input asp-for="r1" class="form-control" />
-                                <span asp-validation-for="r0" class="text-danger"></span>
+                                <span asp-validation-for="r1" class="text-danger"></span>
 
-                                <label asp-for="r2" class="control-label">What type of biome is the map?</label>
+                                <label asp-for="r2" class="control-label">How many squares should the map contain, roughly?</label>
                                 <input asp-for="r2" class="form-control" />
                                 <span asp-validation-for="r2" class="text-danger"></span>
 
