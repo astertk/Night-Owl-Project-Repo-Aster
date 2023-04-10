@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using OpenAI;
 using OpenAI.Images;
 using System.Security.Policy;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DWC_NightOwlProject.Controllers;
 
@@ -52,11 +53,16 @@ public class MapsController : Controller
                             + ". The map should have: " + collection["r2"]
                             + " squares.";
 
+            var picture = collection["upload"];
+            byte[] Image;
+            if (!picture.IsNullOrEmpty())
+            {
+              /*  using (var binaryReader = new BinaryReader(picture.InputStream))*/
+            }
 
 
 
-
-            string id = _userManager.GetUserId(User);
+                string id = _userManager.GetUserId(User);
             var result = new List<Material>();
             result = _materialRepository.GetAllMapsById(id);
             vm.materials = result;
@@ -71,6 +77,17 @@ public class MapsController : Controller
 
        
     }
+
+   /* [Authorize]
+    [HttpPost]
+    public ActionResult Upload(IFormCollection collection)
+    {
+
+
+        byte[] Image;
+        
+
+    }*/
 
     [Authorize]
     [HttpPost]
