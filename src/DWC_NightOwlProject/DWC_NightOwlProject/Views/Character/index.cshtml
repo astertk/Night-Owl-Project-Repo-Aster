@@ -57,7 +57,7 @@
                     <script>
                         function downloadFile() {
                             const link = document.createElement("a");
-                            const content = "@Html.Raw(Model.materials[i].Completion).ToString()" + ".png";
+                            const content = "@Html.Raw(Model.materials[i].Completion).ToString()";
                             const file = new Blob([content], { type: "image/png" });
                             link.href = URL.createObjectURL(file);
                             link.download = "character.png";
