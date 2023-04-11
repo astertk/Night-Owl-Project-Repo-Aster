@@ -1,4 +1,4 @@
-﻿@model DWC_NightOwlProject.Data.Material
+﻿@model DWC_NightOwlProject.Data.MaterialVM
 @{
     ViewData["Title"] = "Index";
 }
@@ -35,18 +35,14 @@
    
 <div class="container">
     <div class="row">
-        
-    
-<h2>Backstory:</h2>    
-@if (Model != null)
-{
-    <div class="col">
-                <a>@Model.Completion</a> <br />
-                <a>@Model.CreationDate.ToString()</a>
-
-    
-    </div>
-}
+        <h2>Backstory:</h2>    
+        <div class="column"> 
+        @if (Model != null)
+        {
+            <a>@Model.material.Completion</a> <br />
+            <a>@Model.material.CreationDate.ToString()</a>
+            <a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.material.Id" class="text-center btn btn-danger m-md-2">Delete</a>
+        }
+        </div>
     </div>
 </div>
-

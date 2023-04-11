@@ -37,6 +37,7 @@ namespace DWC_NightOwlProject.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            var vm = new MaterialVM();
             string id = _userManager.GetUserId(User);
 
             /*if (_materialRepository.GetBackstoryById(id) == null)
@@ -44,14 +45,15 @@ namespace DWC_NightOwlProject.Controllers
                 return View();
             }*/
             /*ViewBag.Backstory = _materialRepository.GetBackstoryById(id);*/
-            
-            var material = _materialRepository.GetBackstoryById(id);
+
+            var result = new Material();
+            result = _materialRepository.GetBackstoryById(id);
 
             //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
 
-/*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
-
-            return View(material);
+            /*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
+            vm.material = result;
+            return View(vm);
         }
         [Authorize]
         public ActionResult Scratch(string fromScratch, int maxLength, double temp, double presence, double frequency)
