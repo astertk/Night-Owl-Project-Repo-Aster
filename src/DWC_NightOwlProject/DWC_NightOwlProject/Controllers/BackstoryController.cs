@@ -232,7 +232,10 @@ namespace DWC_NightOwlProject.Controllers
         // GET: HomeController1/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var userId = _userManager.GetUserId(User);
+            var material = new Material();
+            material = _materialRepository.GetBackstoryById(userId);
+            return View(material);
         }
 
         // POST: HomeController1/Delete/5
@@ -242,6 +245,11 @@ namespace DWC_NightOwlProject.Controllers
         {
             try
             {
+                var userId = _userManager.GetUserId(User);
+                var material = new Material();
+                material = _materialRepository.GetBackstoryById(userId);
+                _materialRepository.Delete(material);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

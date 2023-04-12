@@ -39,9 +39,12 @@
         <div class="column"> 
         @if (Model != null)
         {
-            <a>@Model.material.Completion</a> <br />
-            <a>@Model.material.CreationDate.ToString()</a>
-            <a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.material.Id" class="text-center btn btn-danger m-md-2">Delete</a>
+                @if (Model.material != null)
+                {
+                    <a>@Model.material.Completion</a> <br />
+                    <a>@Model.material.CreationDate.ToString()</a>
+                    <a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.material.Id" class="text-center btn btn-danger m-md-2">Delete</a>
+                }
         }
         </div>
     </div>
