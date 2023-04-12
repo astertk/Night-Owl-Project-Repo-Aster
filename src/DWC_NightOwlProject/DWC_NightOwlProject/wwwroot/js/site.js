@@ -1,4 +1,7 @@
 ﻿var rToggle = 0;
+var png;
+
+
 
 
 function reveal(id, id2) {
@@ -24,4 +27,22 @@ function reveal(id, id2) {
 
     hide.style.display = 'none';
 
+}
+
+
+    function uploading(){
+   
+
+     png = document.getElementById("fileInput");
+
+
+    /*let formData = new FormData(e.target);
+    formData.set('file', file, 'example.png');
+
+    fetch('/', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => console.log(data));*/
 }

@@ -55,14 +55,14 @@ public class MapsController : Controller
 
             var picture = collection["upload"];
             byte[] Image;
-            if (!picture.IsNullOrEmpty())
+           /* if (!picture.IsNullOrEmpty())
             {
                 using (var binaryReader = new BinaryReader(picture.InputStream))
-            }
+            }*/
 
 
 
-                string id = _userManager.GetUserId(User);
+            string id = _userManager.GetUserId(User);
             var result = new List<Material>();
             result = _materialRepository.GetAllMapsById(id);
             vm.materials = result;
