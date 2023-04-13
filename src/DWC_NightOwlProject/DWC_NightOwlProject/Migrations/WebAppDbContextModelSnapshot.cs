@@ -18,6 +18,7 @@ namespace DWCNightOwlProject.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.3")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -41,6 +42,11 @@ namespace DWCNightOwlProject.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("date");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Prompt")
                         .IsRequired()
@@ -87,8 +93,8 @@ namespace DWCNightOwlProject.Migrations
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("date");
@@ -99,7 +105,7 @@ namespace DWCNightOwlProject.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.HasKey("Id")
-                        .HasName("PK__Template__3214EC27F3675E38");
+                        .HasName("PK__Template__3214EC272597D55B");
 
                     b.ToTable("Template");
                 });
@@ -122,45 +128,24 @@ namespace DWCNightOwlProject.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasColumnName("NAME");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)")
+                        .HasColumnName("NAME");
+
                     b.Property<string>("UserId")
                         .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)")
                         .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("UserID");
 
                     b.HasKey("Id")
-                        .HasName("PK__World__3214EC27495DB421");
+                        .HasName("PK__World__3214EC2718A658A3");
 
                     b.ToTable("World");
-                });
-
-            modelBuilder.Entity("DWC_NightOwlProject.Data.Material", b =>
-                {
-                    b.HasOne("DWC_NightOwlProject.Data.Template", "Template")
-                        .WithMany("Materials")
-                        .HasForeignKey("TemplateId")
-                        .IsRequired()
-                        .HasConstraintName("Material_Fk_Template");
-
-                    b.HasOne("DWC_NightOwlProject.Data.World", "World")
-                        .WithMany("Materials")
-                        .HasForeignKey("WorldId")
-                        .IsRequired()
-                        .HasConstraintName("Material_Fk_World");
-
-                    b.Navigation("Template");
-
-                    b.Navigation("World");
-                });
-
-            modelBuilder.Entity("DWC_NightOwlProject.Data.Template", b =>
-                {
-                    b.Navigation("Materials");
-                });
-
-            modelBuilder.Entity("DWC_NightOwlProject.Data.World", b =>
-                {
-                    b.Navigation("Materials");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,4 @@
-﻿DROP TABLE [AspNetUserRoles]
+DROP TABLE [AspNetUserRoles]
 DROP TABLE [AspNetRoleClaims]
 DROP TABLE [AspNetRoles]
 DROP TABLE [AspNetUserClaims]
