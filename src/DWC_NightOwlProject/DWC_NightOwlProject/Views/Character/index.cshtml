@@ -52,21 +52,22 @@
                     <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
                     <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-secondary m-1">Edit</a>
                     <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>
-                    <a class="btn btn-outline-primary m-1" href="@Html.Raw(Model.materials[i].Completion)" download="character">Download</a>
+                    <a class="btn btn-outline-primary m-1" onclick="downloadFile()" id="downloadButton">Download</a>
 
-                   /* <script>
+                   <script>
                         function downloadFile() {
-                            const link = document.createElement("a");
-                            const content = new URL("@Html.Raw(Model.materials[i].Completion)");
-                            content.search = '';
-                            const url = content.toString();
-                            const file = new Blob([url], { type: "image/*" });
-                            link.href = URL.createObjectURL(file);
-                            link.download = "character.png";
-                            link.click();
-                            URL.revokeObjectURL(link.href);
+                            const aElement = document.createElement('a');
+                            const content = "@Html.Raw(Model.materials[i].Completion)"
+                            const href = URL.createObjectURL(content);
+                            href.search = '';
+                            const url = href.toString();
+                            aElement.href = url;
+                            const file = new Blob([url], {type: 'image/*' });
+                            aElement.download = 'character.png';
+                            aElement.click();
+                            URL.revokeObjectURL(url);
                         };
-                    </script> */
+                    </script>
                 }
             </div>
         }
