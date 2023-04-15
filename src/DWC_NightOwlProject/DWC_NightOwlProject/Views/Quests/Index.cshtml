@@ -52,3 +52,9 @@
         }
     </div>
 }
+<script>
+    var completion = document.querySelectorAll(".row:first-child");
+    completion.forEach(function (element) {
+        element.innerHTML = element.innerHTML.replaceAll(/(Act \d+|Epilogue):/g, "<br><br>$1<br><br>");
+    });
+</script>

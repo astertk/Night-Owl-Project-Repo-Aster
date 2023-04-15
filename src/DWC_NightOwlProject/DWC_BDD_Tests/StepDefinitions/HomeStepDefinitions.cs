@@ -2,7 +2,6 @@ using DWC_BDD_Tests.Drivers;
 using System;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
-using DWC_BDD_Tests.Drivers;
 using DWC_BDD_Tests.PageObjects;
 using System;
 using TechTalk.SpecFlow;
@@ -34,6 +33,12 @@ namespace DWC_BDD_Tests.StepDefinitions
         public void ThenThePageFooterContains(string p0)
         {
             _homePage.GetLogo().ToString().Contains(p0);
+        }
+
+        [Then(@"The page title contains ""([^""]*)""")]
+        public void ThenThePageTitleContains(string p0)
+        {
+            _homePage.GetTitle().Should().ContainEquivalentOf(p0, AtLeast.Once());
         }
     }
 }
