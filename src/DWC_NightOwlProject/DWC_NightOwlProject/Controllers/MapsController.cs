@@ -53,8 +53,8 @@ public class MapsController : Controller
                             + ". The map should have: " + collection["r2"]
                             + " squares.";
 
-            var picture = collection["upload"];
-            byte[] Image;
+           /* var picture = collection["upload"];
+            byte[] Image;*/
            /* if (!picture.IsNullOrEmpty())
             {
                 using (var binaryReader = new BinaryReader(picture.InputStream))
@@ -66,7 +66,8 @@ public class MapsController : Controller
             var result = new List<Material>();
             result = _materialRepository.GetAllMapsById(id);
             vm.materials = result;
-            
+
+            //return RedirectToAction("Completion","Maps", vm);
             return RedirectToAction("Completion","Maps", vm);
         }
 
@@ -78,16 +79,43 @@ public class MapsController : Controller
        
     }
 
-   /* [Authorize]
+    [Authorize]
     [HttpPost]
-    public ActionResult Upload(IFormCollection collection)
+    public ActionResult ImageEdit(IFormCollection collection)
     {
 
+        try
+        {
+            var vm = new MaterialVM();
+            vm.Prompt = "Edit my DnD Map: " + collection["r0"];
 
-        byte[] Image;
-        
+            string id = _userManager.GetUserId(User);
+            var result = new List<Material>();
+            result = _materialRepository.GetAllMapsById(id);
+            vm.materials = result;
 
-    }*/
+            //return RedirectToAction("Completion","Maps", vm);
+            return RedirectToAction("EditCompletion", "Maps", vm);
+        }
+
+        catch
+        {
+            return View();
+        }
+
+
+    }
+
+    /* [Authorize]
+     [HttpPost]
+     public ActionResult Upload(IFormCollection collection)
+     {
+
+
+         byte[] Image;
+
+
+     }*/
 
     [Authorize]
     [HttpPost]
@@ -99,10 +127,6 @@ public class MapsController : Controller
             var vm = new MaterialVM();
             vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
                         "The map should have a square grid overlaying it. " + vm.r3;
-
-
-
-
 
             string id = _userManager.GetUserId(User);
             var result = new List<Material>();
@@ -151,6 +175,64 @@ public class MapsController : Controller
 
     }
 
+    [Authorize]
+    public async Task<ActionResult> EditCompletion(MaterialVM vm)
+    {
+        var userId = _userManager.GetUserId(User);
+
+        var material = new Material();
+
+        material.UserId = userId;
+        material.Id = 0;
+        material.Type = "Map";
+        material.Name = "Map";
+        material.CreationDate = DateTime.Now;
+        material.Prompt = vm.Prompt;
+        material.Prompt += "...";
+
+        string fileName = "LavaMountain.png";
+        string prompt = vm.Prompt;
+        string size = "1024x1024";
+        var APIKey = _config["APIKey"];
+
+        using (HttpClient client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + APIKey);
+
+            using (MultipartFormDataContent content = new MultipartFormDataContent())
+            {
+                content.Add(new StringContent(prompt), "prompt");
+                content.Add(new StringContent("1"), "n");
+                content.Add(new StringContent(size), "size");
+                content.Add(new ByteArrayContent(System.IO.File.ReadAllBytes(fileName)), "image", fileName);
+
+                HttpResponseMessage response = client.PostAsync("https://api.openai.com/v1/images/edits", content).Result;
+                var body = response.Content.ReadAsStringAsync().Result;
+                body.ToString();
+
+                var bodyArray = body.Split('\"');
+
+                //The split string from the HttpResponseMessageBody, this is only the url. Don't change the 7 value.
+                var result = bodyArray[7];
+
+                material.Completion = result;
+
+                //Console.WriteLine(url);
+            }
+        }
+
+
+        //var mapList = await api.ImagesEndPoint.CreateImageEditAsync("~css\\Doge.png", Path.GetFullPath("C:\\Users\\Jade\\Desktop\\Mask.png"), "Create a Map for my Dungeons and Dragons Campaign.", 1, ImageSize.Small);
+        //var map = mapList.FirstOrDefault();
+        //var result = map.ToString();
+
+
+        
+
+        return View(material);
+
+    }
+
     public ActionResult Save(Material material)
     {
         _materialRepository.AddOrUpdate(material);
@@ -166,6 +248,7 @@ public class MapsController : Controller
 
         return View(material);
     }
+
 
     // GET: HomeController1/Edit/5
     public ActionResult Edit(int id)

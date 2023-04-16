@@ -33,7 +33,8 @@ function reveal(id, id2) {
     function uploading(){
    
 
-     png = document.getElementById("fileInput");
+        png = document.getElementById("fileInput");
+
 
 
     /*let formData = new FormData(e.target);

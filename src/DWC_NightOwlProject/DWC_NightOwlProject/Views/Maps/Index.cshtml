@@ -35,22 +35,73 @@
     <div class="row">
 
         <div class="col-sm">
-            <h1> Upload an image to give the AI something to go off of</h1>
+            <h1> Upload your own Map that you would like to edit.</h1>
+
+            <h4 class="text-danger">Please upload a PNG image with transparency (alpha) in the parts you want edited, for example an image of a mountain map with the peak erased.</h4>
+            <h4 class="text-danger">The PNG must also have the same width and height, so 256x256, 512x512, etc. </h4>
 
             <button class="btn" id="upload" onclick="reveal('u','s')">Upload</button>
 
         <u id="u">
 
-        <form id="pickfile" method="post">
 
-        <div class="file-upload-wrapper">
-        <input type="file" id="fileInput" class="file-upload" />
+
+
+
+                        <form asp-action="ImageEdit" id="edit_image_form" method="post">
+                            <div class="container">
+                                <div class="row-cols-lg-1">
+                                    <div class="col">
+
+                                        <label asp-for="r0" class="control-label">How would you like your image edited?</label>
+                                        <input asp-for="r0" class="form-control" />
+                                        <span asp-validation-for="r0" class="text-danger"></span>
+
+                                        <div class="file-upload-wrapper">
+                                        <input type="file" id="fileInput" class="file-upload" />
+
+
+                                        @* <div class="file-upload-wrapper">
+                                        <label asp-for="upload" class="control-label">Optionally, upload a sample image for the completion to be based on.</label>
+                                        <input asp-for="upload" id="input-file-now" class="file-upload" />
+                                        <span asp-validation-for="upload" class="text-danger"></span>
+                                        </div>*@
+
+                                        @*   <div class="file-upload-wrapper">
+                                        <input asp-for= "upload" type="file" id="input-file-now" class="file-upload" />
+                                        </div>
+                                        *@
+
+                                        @*
+                                        <label for="r1" class="control-label">What type of biome is the map?</label>
+                                        <input id="first-input" name="first" class="form-control" type="text" required />
+
+
+                                        <label for="r2" class="control-label">What type of biome is the map?</label>
+                                        <input id="second-input" name="second" class="form-control" type="range" required min="100" max="1000" />*@
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="form-group mt-3 text-center">
+
+                                <input type="submit" class="btn" id="Create" value="Create Map" onclick="toggle()" />
+
+                            </div>
+                       
         
-        </div>
-        </form>
+                            </div>
 
-                <button class="btn" id="uploadButton" onclick="uploading()">Submit</button>
 
+                     <button class="btn" id="uploadButton" onclick="uploading()">Submit</button>
+                 </form>
         </u>
 
            
