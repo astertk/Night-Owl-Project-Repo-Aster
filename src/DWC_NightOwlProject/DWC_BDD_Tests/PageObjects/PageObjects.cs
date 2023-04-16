@@ -49,7 +49,9 @@ namespace DWC_BDD_Tests.PageObjects
         public string GetTitle() => _webDriver.Title;
         public string GetURL() => _webDriver.Url;
 
-        public IWebElement GetLogo() => _webDriver.FindElement(By.Id("Logo"));
+        public IWebElement GetLogo() => _webDriver.FindElement(By.Id("Company_Name"));
+
+        public IWebElement GetHeader() => _webDriver.FindElement(By.Id("wellMetHeader"));
 
         public bool SaveAllCookies()
         {
