@@ -9,6 +9,10 @@ using OpenAI;
 using OpenAI.Images;
 using System.Security.Policy;
 using Microsoft.IdentityModel.Tokens;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Drawing;
+using System.IO.Compression;
+using Microsoft.Web.Helpers;
 
 namespace DWC_NightOwlProject.Controllers;
 
@@ -53,12 +57,7 @@ public class MapsController : Controller
                             + ". The map should have: " + collection["r2"]
                             + " squares.";
 
-           /* var picture = collection["upload"];
-            byte[] Image;*/
-           /* if (!picture.IsNullOrEmpty())
-            {
-                using (var binaryReader = new BinaryReader(picture.InputStream))
-            }*/
+          
 
 
 
@@ -81,13 +80,23 @@ public class MapsController : Controller
 
     [Authorize]
     [HttpPost]
-    public ActionResult ImageEdit(IFormCollection collection)
+    public async Task <ActionResult> ImageEdit(IFormCollection collection)
     {
 
-        try
-        {
+        //try
+       // {
             var vm = new MaterialVM();
             vm.Prompt = "Edit my DnD Map: " + collection["r0"];
+
+            using (var memoryStream = new MemoryStream())
+            {
+
+               await vm.upload.CopyToAsync(memoryStream);
+                vm.FileName = collection["upload"];
+                vm.PictureData = memoryStream.ToArray();
+                
+            }
+
 
             string id = _userManager.GetUserId(User);
             var result = new List<Material>();
@@ -96,26 +105,17 @@ public class MapsController : Controller
 
             //return RedirectToAction("Completion","Maps", vm);
             return RedirectToAction("EditCompletion", "Maps", vm);
-        }
+       // }
 
-        catch
+        /*catch
         {
-            return View();
-        }
+            return View(Index);
+        }*/
 
 
     }
 
-    /* [Authorize]
-     [HttpPost]
-     public ActionResult Upload(IFormCollection collection)
-     {
-
-
-         byte[] Image;
-
-
-     }*/
+ 
 
     [Authorize]
     [HttpPost]
@@ -178,6 +178,8 @@ public class MapsController : Controller
     [Authorize]
     public async Task<ActionResult> EditCompletion(MaterialVM vm)
     {
+
+
         var userId = _userManager.GetUserId(User);
 
         var material = new Material();
@@ -190,7 +192,13 @@ public class MapsController : Controller
         material.Prompt = vm.Prompt;
         material.Prompt += "...";
 
-        string fileName = "LavaMountain.png";
+        ImageConverter imageConverter = new ImageConverter();
+        //byte[] vmByte = (byte[])imageConverter.ConvertTo(vm.upload, typeof(byte[]));
+        //ByteArrayContent imageByteArrayContent = new ByteArrayContent(vmByte);
+        ByteArrayContent imageByteArrayContent = new ByteArrayContent(vm.PictureData);
+
+        string fileName = vm.upload.FileName.ToString();
+        //string fileName = "C:\\Users\\Jade\\Desktop\\dev\\CS461\\Night-Owl-Project-Repo\\src\\DWC_NightOwlProject\\DWC_NightOwlProject\\wwwroot\\css\\Forest.png";
         string prompt = vm.Prompt;
         string size = "1024x1024";
         var APIKey = _config["APIKey"];
@@ -204,7 +212,7 @@ public class MapsController : Controller
                 content.Add(new StringContent(prompt), "prompt");
                 content.Add(new StringContent("1"), "n");
                 content.Add(new StringContent(size), "size");
-                content.Add(new ByteArrayContent(System.IO.File.ReadAllBytes(fileName)), "image", fileName);
+                content.Add(imageByteArrayContent, "image", fileName);
 
                 HttpResponseMessage response = client.PostAsync("https://api.openai.com/v1/images/edits", content).Result;
                 var body = response.Content.ReadAsStringAsync().Result;
@@ -217,7 +225,7 @@ public class MapsController : Controller
 
                 material.Completion = result;
 
-                //Console.WriteLine(url);
+                
             }
         }
 
