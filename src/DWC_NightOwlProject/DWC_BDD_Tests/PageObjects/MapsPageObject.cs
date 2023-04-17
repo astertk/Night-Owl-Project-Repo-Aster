@@ -6,20 +6,20 @@ using System.Collections.ObjectModel;
 
 namespace DWC_BDD_Tests.PageObjects
 {
-    public class HomePageObject : PageObject
+    public class MapsPageObject : PageObject
     {
-        public HomePageObject(IWebDriver webDriver) : base(webDriver)
+        public MapsPageObject(IWebDriver webDriver) : base(webDriver)
         {
             // using a named page (in Common.cs)
-            _pageName = "Home";
+            _pageName = "Maps";
         }
 
         public IWebElement RegisterButton => _webDriver.FindElement(By.Id("register-link"));
         public IWebElement NavBarHelloLink => _webDriver.FindElement(By.CssSelector("a[href=\"/Identity/Account/Manage\"]"));
 
-       
 
-        
+
+
 
         public string NavbarWelcomeText()
         {
