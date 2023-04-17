@@ -2,7 +2,6 @@ using DWC_BDD_Tests.Drivers;
 using System;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
-using DWC_BDD_Tests.Drivers;
 using DWC_BDD_Tests.PageObjects;
 using System;
 using TechTalk.SpecFlow;
@@ -55,6 +54,19 @@ namespace DWC_BDD_Tests.StepDefinitions
         public void ThenIShouldBeRedirectedTo(string p0)
         {
            Assert.AreEqual(_homePage.GetURL(), p0);
+        }
+
+
+        [Then(@"The page title contains ""([^""]*)""")]
+        public void ThenThePageTitleContains(string p0)
+        {
+            _homePage.GetTitle().Should().ContainEquivalentOf(p0, AtLeast.Once());
+        }
+
+        [Then(@"the page header contains ""([^""]*)""")]
+        public void ThenThePageHeaderContains(string p0)
+        {
+            _homePage.GetHeader().ToString().Contains(p0);
         }
 
     }

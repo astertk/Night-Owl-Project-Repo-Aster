@@ -38,22 +38,49 @@ public class WorldController : Controller
         var backstory = new Material();
         var quests = new List<Material>();
         var characters = new List<Material>();
-        //var maps = new List<Material>();
+        var maps = new List<Material>();
         backstory = _materialRepository.GetBackstoryById(userId);
         quests = _materialRepository.GetAllQuestsById(userId);
         characters = _materialRepository.GetAllCharactersById(userId);
-        //maps = _materialRepository.GetAllMapsById(userId);
+        maps = _materialRepository.GetAllMapsById(userId);
 
         if (userWorld != null)
         {
             vmw.ThisWorld = userWorld;
             vmw.Backstory = backstory;
+
+            if (backstory == null)
+            {
+                ViewBag.Backstory = "Backstory has not been created yet...";
+            }
+
             vmw.quests = quests;
+
+            if (quests == null)
+            {
+                ViewBag.Quests = "Quests have not been created yet...";
+            }
+
             vmw.characters = characters;
-            //vmw.maps = maps;
+
+            if (characters == null)
+            {
+                ViewBag.Characters = "Character(s) have not been created yet...";
+            }
+
+            vmw.maps = maps;
+
+            if(maps == null)
+            {
+                ViewBag.Maps = "Map(s) have not been created yet...";
+            }
+
             return View(vmw);
         }
-        return View();
+        else
+        {
+            return View();
+        }
     }
 
     [HttpPost]
