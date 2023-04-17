@@ -17,12 +17,19 @@ namespace DWC_BDD_Tests.PageObjects
         public IWebElement RegisterButton => _webDriver.FindElement(By.Id("register-link"));
         public IWebElement NavBarHelloLink => _webDriver.FindElement(By.CssSelector("a[href=\"/Identity/Account/Manage\"]"));
         public IWebElement BackstoryButton => _webDriver.FindElement(By.Id("backstoryButton"));
+        public IWebElement CharactersButton => _webDriver.FindElement(By.Id("Nav_Bar_Character"));
 
-        
+
 
         public string NavbarWelcomeText()
         {
             return NavBarHelloLink.Text;
+        }
+
+        public void SelectCharactersLink()
+        {
+            IWebElement charactersLink = _webDriver.FindElement(By.Id("Nav_Bar_Character"));
+            charactersLink.Click();
         }
 
         public void Logout()
