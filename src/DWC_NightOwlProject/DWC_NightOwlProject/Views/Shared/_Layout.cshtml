@@ -4,6 +4,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DWC_NightOwlProject</title>
@@ -22,16 +23,10 @@
                 </button>
 
                     <partial name="_LoginPartial" />
-               @*Put the audio tag and music src on here*@
+               
             </div>
         </nav>
     </header>
-
-
-
-
-
-
 
 
                 <div class="vnav">
@@ -80,6 +75,13 @@
                                 <img src="~/css/maps.png" width="50" height="auto" alt="nav-pic" />
                             </div>
                             <a class="nav-link" asp-area="" asp-controller="Maps" asp-action="Index">Maps</a>
+                        </li>
+                        <li>
+                            <audio src="~/please-calm-my-mind-125566.mp3" loop="" class="float-sm-end"></audio>
+                            <button class="btn btn-check">
+                                <i class="fa fa-play-circle-o"></i>
+                                <i class="fa fa-pause-circle-o"></i>
+                            </button>
                         </li>
                     </ul>
                     </div>
