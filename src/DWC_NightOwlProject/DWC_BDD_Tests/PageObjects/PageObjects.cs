@@ -53,6 +53,10 @@ namespace DWC_BDD_Tests.PageObjects
 
         public IWebElement GetHeader() => _webDriver.FindElement(By.Id("wellMetHeader"));
 
+        public IWebElement GetLoginButton() => _webDriver.FindElement(By.Id("login-submit"));
+
+        public IWebElement GetForgotPasswordButton() => _webDriver.FindElement(By.Id("forgot-password"));
+
         public bool SaveAllCookies()
         {
             ReadOnlyCollection<Cookie> cookies = _webDriver.Manage().Cookies.AllCookies;
