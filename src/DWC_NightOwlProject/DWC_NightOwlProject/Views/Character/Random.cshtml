@@ -1,0 +1,21 @@
+﻿@model DWC_NightOwlProject.Data.Material
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+<script src="~/js/CharacterAnimation.js" type="text/javascript"></script>
+
+<div class="text-center" id="title">
+    <h2>Character Creation</h2>
+</div>
+
+<div class="text-center" id="adviceBox">
+    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
+</div>
+
+<h2>Character Randomizer</h2>
+
+<p>Press the button to create a random DND character:</p>
+
+<form action="@Url.Action("Completion", "Character")" method="post">
+    <button type="submit" class="btn btn-primary">Create a random character</button>
+</form>
