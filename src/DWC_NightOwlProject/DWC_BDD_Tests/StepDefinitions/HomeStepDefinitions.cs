@@ -5,6 +5,7 @@ using NUnit.Framework;
 using DWC_BDD_Tests.PageObjects;
 using System;
 using TechTalk.SpecFlow;
+using System.Security.Policy;
 
 namespace DWC_BDD_Tests.StepDefinitions
 {
@@ -23,6 +24,13 @@ namespace DWC_BDD_Tests.StepDefinitions
             // nothing to do!!
         }
 
+        [Given(@"I am not logged in")]
+        public void GivenIAmNotLoggedIn()
+        {
+            //nothing here...
+        }
+
+
         [When(@"I am on the ""([^""]*)"" page")]
         public void WhenIAmOnThePage(string pageName)
         {
@@ -34,6 +42,20 @@ namespace DWC_BDD_Tests.StepDefinitions
         {
             _homePage.GetLogo().ToString().Contains(p0);
         }
+
+        [When(@"I click on the ""([^""]*)"" Nav-Bar Link")]
+        public void WhenIClickOnTheNav_BarLink(string p0)
+        {
+            _homePage.ClickNavBarHome();
+            _homePage.GoTo("Home");
+        }
+
+        [Then(@"I should be redirected to ""([^""]*)""")]
+        public void ThenIShouldBeRedirectedTo(string p0)
+        {
+           Assert.AreEqual(_homePage.GetURL(), p0);
+        }
+
 
         [Then(@"The page title contains ""([^""]*)""")]
         public void ThenThePageTitleContains(string p0)
