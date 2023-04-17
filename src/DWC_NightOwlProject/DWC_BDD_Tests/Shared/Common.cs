@@ -20,7 +20,8 @@ namespace DWC_BDD_Tests.Shared
         public static readonly Dictionary<string, string> Paths = new()
         {
             { "Home" , "/" },
-            { "Login", "/Identity/Account/Login" }
+            { "Login", "/Identity/Account/Login" },
+            { "Backstory", "/Backstory" }
         };
 
         public static string PathFor(string pathName) => Paths[pathName];

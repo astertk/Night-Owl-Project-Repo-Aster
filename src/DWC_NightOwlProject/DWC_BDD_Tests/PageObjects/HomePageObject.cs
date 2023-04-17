@@ -16,8 +16,7 @@ namespace DWC_BDD_Tests.PageObjects
 
         public IWebElement RegisterButton => _webDriver.FindElement(By.Id("register-link"));
         public IWebElement NavBarHelloLink => _webDriver.FindElement(By.CssSelector("a[href=\"/Identity/Account/Manage\"]"));
-
-        
+        public IWebElement BackstoryButton => _webDriver.FindElement(By.Id("backstoryButton"));
 
         public string NavbarWelcomeText()
         {

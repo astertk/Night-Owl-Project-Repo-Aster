@@ -40,5 +40,12 @@ namespace DWC_BDD_Tests.StepDefinitions
         {
             _homePage.GetTitle().Should().ContainEquivalentOf(p0, AtLeast.Once());
         }
+
+        [Then(@"the page header contains ""([^""]*)""")]
+        public void ThenThePageHeaderContains(string p0)
+        {
+            _homePage.GetHeader().ToString().Contains(p0);
+        }
+
     }
 }

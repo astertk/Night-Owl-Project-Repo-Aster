@@ -8,10 +8,24 @@
     {
         <div class="text-center">
         <h1>@Model.ThisWorld.Name</h1>
-        
+        <br /> 
 
         <a asp-controller="Backstory" asp-action="Index"><h2>Backstory:</h2></a>
-        <h4>@Model.Backstory.Completion</h4>
+        @if (Model.Backstory.Completion != null)
+        {
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td><h4>@Model.Backstory.Completion</h4></td>
+                            <td><a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.Backstory.Id" class="text-center btn btn-danger m-md-2">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+        }
+        else 
+        {
+            <h4>@ViewBag.Backstory</h4>
+        }
         </div>
 
         <div class="text-center">
@@ -31,6 +45,10 @@
                             <td><a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.quests[i].Id" class="text-center btn btn-primary m-md-2">Details</a></td>
                             <td><a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.quests[i].Id" class="text-center btn btn-danger m-md-2">Delete</a></td>
                         </tr>
+                    }
+                    else
+                    {
+                        <tr><td><h4>@ViewBag.Quests</h4></td></tr>
                     }
                 }
                 
@@ -55,16 +73,20 @@
                 <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.characters[i].Id" class="btn btn-secondary m-1">Edit</a>
                 <a asp-controller="Character" asp-action="Delete" asp-route-id="@Model.characters[i].Id" class="btn btn-danger m-1">Delete</a>
             }
+            else
+            {
+                <h4>@ViewBag.Characters</h4>
+            }
             </div>
         }
         </div>
 
         <div class="text-center">
-        <h2>Maps:</h2>
+        <a asp-controller="Maps" asp-action="Index"><h2>Maps:</h2></a>
         </div>
 
-        @*<div class="row"> 
-            for (int i = 0; i < Model.maps.Count; ++i)
+        <div class="row"> 
+            @for (int i = 0; i < Model.maps.Count; ++i)
             {
                 <div class="col">
                 @if (Model.maps[i] != null)
@@ -75,22 +97,31 @@
                     <a asp-controller="Maps" asp-action="Details" asp-route-id="@Model.maps[i].Id" class="btn btn-primary m-1">Details</a>
                     <a asp-controller="Maps" asp-action="Edit" asp-route-id="@Model.maps[i].Id" class="btn btn-secondary m-1">Edit</a>
                     <a asp-controller="Maps" asp-action="Delete" asp-route-id="@Model.maps[i].Id" class="btn btn-danger m-1">Delete</a>
-.               }
+                }
+                else
+                {
+                    <h4>@ViewBag.Maps</h4>
+                }
                 </div>
             }
-        </div>*@
+        </div>
     }
     else
     {
-        <form asp-action="Index"  method="post">
-            <label asp-for="WorldName" class="control-label">World name</label>
-            <input asp-for="WorldName" class="form-control">
-            <span asp-validation-for="WorldName" class="text-danger"></span>
-            <input type="submit" value="Create world">
+        <div id="NameWorld" class="text-center">
+            <form asp-action="Index"  method="post">
+                <label asp-for="WorldName" class="control-label">World name</label>
+                <br />
+                <input asp-for="WorldName" class="form-control">
+                <span asp-validation-for="WorldName" class="text-danger"></span>
+                <br />
+                <input type="submit" value="Create world">
         </form>
+        </div>
     }
     @if(ViewBag.Message != null)
     {
-        <p>@ViewBag.Message</p>
+        <br />
+        <p class="text-center">@ViewBag.Message</p>
     }
 </div>
