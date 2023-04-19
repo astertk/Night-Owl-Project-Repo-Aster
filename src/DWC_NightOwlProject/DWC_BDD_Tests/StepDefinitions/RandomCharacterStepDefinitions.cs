@@ -2,11 +2,11 @@ using DWC_BDD_Tests.Drivers;
 using DWC_BDD_Tests.PageObjects;
 using System;
 using TechTalk.SpecFlow;
-using NUnit.Framework;
 
 namespace DWC_BDD_Tests.StepDefinitions
 {
     [Binding]
+    {
     public class RandomCharacterStepDefinitions
     {
         private readonly CharactersPageObject _charactersPage;
@@ -17,11 +17,10 @@ namespace DWC_BDD_Tests.StepDefinitions
             _homePage = new HomePageObject(browserDriver.Current);
         }
 
-
         [Given(@"I am logged in as a registered user")]
-        public void GivenIAmLoggedInAsARegisteredUser(string home)
+        public void GivenIAmLoggedInAsARegisteredUser()
         {
-            _homePage.GoTo(home);
+            //Workshoppin
         }
 
         [When(@"I select the ""([^""]*)"" link on the homepage")]
@@ -34,6 +33,30 @@ namespace DWC_BDD_Tests.StepDefinitions
         public void ThenIAmRedirectedToTheCharactersPage()
         {
             Assert.True(_charactersPage.IsAtCharactersPage());
+        }
+
+        [Given(@"I select the ""([^""]*)"" button")]
+        public void GivenISelectTheButton(string random)
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"I am on the Characters page")]
+        public void GivenIAmOnTheCharactersPage()
+        {
+            throw new PendingStepException();
+        }
+
+        [When(@"I click the Random button")]
+        public void WhenIClickTheRandomButton()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"I am redirected to the Random page")]
+        public void ThenIAmRedirectedToTheRandomPage()
+        {
+            throw new PendingStepException();
         }
     }
 }

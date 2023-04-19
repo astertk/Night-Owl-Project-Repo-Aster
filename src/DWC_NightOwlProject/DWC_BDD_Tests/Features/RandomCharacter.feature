@@ -14,3 +14,8 @@ Scenario: Clicking on Character page link
 	Given I am logged in as a registered user
 	When I select the "Characters" link on the homepage
 	Then I am redirected to the Characters page
+
+	Scenario: Clicking on Random button redirects to Random page
+    Given I am on the Characters page
+    When I click the Random button
+    Then I am redirected to the Random page
