@@ -37,6 +37,7 @@ namespace DWC_NightOwlProject.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            var vm = new MaterialVM();
             string id = _userManager.GetUserId(User);
 
             /*if (_materialRepository.GetBackstoryById(id) == null)
@@ -44,14 +45,15 @@ namespace DWC_NightOwlProject.Controllers
                 return View();
             }*/
             /*ViewBag.Backstory = _materialRepository.GetBackstoryById(id);*/
-            
-            var material = _materialRepository.GetBackstoryById(id);
+
+            var result = new Material();
+            result = _materialRepository.GetBackstoryById(id);
 
             //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
 
-/*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
-
-            return View(material);
+            /*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
+            vm.material = result;
+            return View(vm);
         }
         [Authorize]
         public ActionResult Scratch(string fromScratch, int maxLength, double temp, double presence, double frequency)
@@ -230,7 +232,10 @@ namespace DWC_NightOwlProject.Controllers
         // GET: HomeController1/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var userId = _userManager.GetUserId(User);
+            var material = new Material();
+            material = _materialRepository.GetBackstoryById(userId);
+            return View(material);
         }
 
         // POST: HomeController1/Delete/5
@@ -240,6 +245,11 @@ namespace DWC_NightOwlProject.Controllers
         {
             try
             {
+                var userId = _userManager.GetUserId(User);
+                var material = new Material();
+                material = _materialRepository.GetBackstoryById(userId);
+                _materialRepository.Delete(material);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
