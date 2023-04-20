@@ -37,7 +37,7 @@ public partial class Material
     public string Prompt { get; set; } = null!;
 
   
-    [StringLength(4000)]
+   
     public string Completion { get; set; } = null!;
 
     [Column("TemplateID")]
