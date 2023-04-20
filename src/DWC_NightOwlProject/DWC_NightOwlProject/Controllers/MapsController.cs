@@ -156,7 +156,7 @@ public class MapsController : Controller
 
         material.UserId = userId;
         material.Id = 0;
-        material.Type = "Map";
+        material.Type = "MapPreview";
         material.Name = "Name";
         material.CreationDate = DateTime.Now;
         material.Prompt = vm.Prompt;
@@ -167,7 +167,7 @@ public class MapsController : Controller
         var mapList = await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Large);
         var map = mapList.FirstOrDefault();
         var url = map.ToString();
-        material.Completion = url;
+        
 
         using (var client = new HttpClient())
         {
@@ -175,13 +175,18 @@ public class MapsController : Controller
             {
                 material.PictureData =
                     await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
-            }
+            }  
         }
 
-        MemoryStream ms = new MemoryStream(material.PictureData);
+        /*MemoryStream ms = new MemoryStream(material.PictureData);
         Image returnImage = Image.FromStream(ms);
-        ViewBag.Image = returnImage;
+        returnImage.Save("Map.png");*/
 
+
+        string b64String = Convert.ToBase64String(material.PictureData);
+        material.Completion = b64String;
+
+        _materialRepository.AddOrUpdate(material);
 
         return View(material);
 
@@ -253,6 +258,7 @@ public class MapsController : Controller
 
     public ActionResult Save(Material material)
     {
+        material.Type = "Map";
         _materialRepository.AddOrUpdate(material);
         return RedirectToAction("Index", material);
     }
