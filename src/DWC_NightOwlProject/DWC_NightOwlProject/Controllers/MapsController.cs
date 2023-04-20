@@ -88,14 +88,14 @@ public class MapsController : Controller
             var vm = new MaterialVM();
             vm.Prompt = "Edit my DnD Map: " + collection["r0"];
 
-            using (var memoryStream = new MemoryStream())
+           /* using (var memoryStream = new MemoryStream())
             {
 
                await vm.upload.CopyToAsync(memoryStream);
                 vm.FileName = collection["upload"];
                 vm.PictureData = memoryStream.ToArray();
                 
-            }
+            }*/
 
 
             string id = _userManager.GetUserId(User);
@@ -166,10 +166,22 @@ public class MapsController : Controller
         var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
         var mapList = await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Large);
         var map = mapList.FirstOrDefault();
-        var result = map.ToString();
-        
+        var url = map.ToString();
+        material.Completion = url;
 
-        material.Completion = result;
+        using (var client = new HttpClient())
+        {
+            using (var response = await client.GetAsync(url))
+            {
+                material.PictureData =
+                    await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
+            }
+        }
+
+        MemoryStream ms = new MemoryStream(material.PictureData);
+        Image returnImage = Image.FromStream(ms);
+        ViewBag.Image = returnImage;
+
 
         return View(material);
 
@@ -203,7 +215,7 @@ public class MapsController : Controller
         string size = "1024x1024";
         var APIKey = _config["APIKey"];
 
-        //ByteArrayContent imageByteArrayContent(Byte[] bytes, fileName)
+      
 
         using (HttpClient client = new HttpClient())
         {
@@ -214,7 +226,7 @@ public class MapsController : Controller
                 content.Add(new StringContent(prompt), "prompt");
                 content.Add(new StringContent("1"), "n");
                 content.Add(new StringContent(size), "size");
-                //content.Add(imageByteArrayContent(), "image", fileName);
+                content.Add(new ByteArrayContent(System.IO.File.ReadAllBytes(fileName)), "image", fileName);
 
                 HttpResponseMessage response = client.PostAsync("https://api.openai.com/v1/images/edits", content).Result;
                 var body = response.Content.ReadAsStringAsync().Result;
