@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-DWC_NightOwlProject-2acd64d1-0d07-40a6-9aee-a2d279ca9af8</UserSecretsId>
+    <ApplicationIcon>wwwroot\Group_Logo_Head.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
