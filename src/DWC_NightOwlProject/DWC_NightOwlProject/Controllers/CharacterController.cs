@@ -14,7 +14,6 @@ using DWC_NightOwlProject.ViewModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.AspNetCore.Routing.Constraints;
-using Faker;
 
 namespace DWC_NightOwlProject.Controllers;
 
