@@ -13,6 +13,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Drawing;
 using System.IO.Compression;
 using Microsoft.Web.Helpers;
+using System.Net;
 
 namespace DWC_NightOwlProject.Controllers;
 
@@ -167,24 +168,33 @@ public class MapsController : Controller
         var mapList = await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Large);
         var map = mapList.FirstOrDefault();
         var url = map.ToString();
-        
 
-        using (var client = new HttpClient())
+
+       // material.PictureData = Convert.ToBase64String(url);
+        using (var ms = new MemoryStream(material.PictureData, 0, material.PictureData.Length))
         {
-            using (var response = await client.GetAsync(url))
-            {
-                material.PictureData =
-                    await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
-            }  
+            Image image = Image.FromStream(ms, true);
+            //image.Save("image.jpg");
         }
 
+        // byte[] imageAsByteArray;
+
+
+        /*  using (var client = new HttpClient())
+          {
+              using (var response = await client.GetAsync(url))
+              {
+                  material.PictureData =
+                      await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
+              }  
+          }
+  */
         /*MemoryStream ms = new MemoryStream(material.PictureData);
         Image returnImage = Image.FromStream(ms);
         returnImage.Save("Map.png");*/
 
 
-        string b64String = Convert.ToBase64String(material.PictureData);
-        material.Completion = b64String;
+    
 
         _materialRepository.AddOrUpdate(material);
 
