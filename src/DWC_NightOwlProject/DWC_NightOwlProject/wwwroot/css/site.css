@@ -97,7 +97,7 @@ li a {
 li {
     display: inline;
     text-align: left;
-    border-bottom: 1px solid #555;
+    /*border-bottom: 1px solid #555;*/
 
     
 }
@@ -128,10 +128,11 @@ h2{
 /*Code from https://blog.shahednasser.com/how-to-style-an-audio-element/ by Shahed Nasser*/
 .audio-player {
     --player-button-width: 2em;
-    --sound-button-width: 1em;
-    --space: .5em;
-    width: 15rem;
-    height: 15rem;
+    --sound-button-width: 2em;
+    --space: 10em;
+    width: 5rem;
+    height: 1rem;
+
 }
 
 .icon-container {
@@ -164,6 +165,8 @@ h2{
     height: var(--player-button-width);
     cursor: pointer;
     padding: 0;
+    padding-left: initial;
+    padding-right: initial;
 }
 
 .timeline {
@@ -263,4 +266,5 @@ h2{
     height: var(--sound-button-width);
     cursor: pointer;
     padding: 0;
+    padding-left: initial;
 }
