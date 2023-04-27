@@ -66,10 +66,10 @@ public class MapsController : Controller
 
 
 
-            string id = _userManager.GetUserId(User);
-            var result = new List<Material>();
-            result = _materialRepository.GetAllMapsById(id);
-            vm.materials = result;
+            //string id = _userManager.GetUserId(User);
+            //var result = new List<Material>();
+            //result = _materialRepository.GetAllMapsById(id);
+            //vm.materials = result;
 
             //return RedirectToAction("Completion","Maps", vm);
             return RedirectToAction("Completion","Maps", vm);
@@ -103,10 +103,10 @@ public class MapsController : Controller
             }*/
 
 
-            string id = _userManager.GetUserId(User);
+           /* string id = _userManager.GetUserId(User);
             var result = new List<Material>();
             result = _materialRepository.GetAllMapsById(id);
-            vm.materials = result;
+            vm.materials = result;*/
 
             //return RedirectToAction("Completion","Maps", vm);
             return RedirectToAction("EditCompletion", "Maps", vm);
@@ -162,7 +162,7 @@ public class MapsController : Controller
         material.UserId = userId;
         material.Id = 0;
         material.Type = "Map";
-        material.Name = "Name";
+        material.Name = "New Map";
         material.CreationDate = DateTime.Now;
         material.Prompt = vm.Prompt;
         material.Prompt += "...";
@@ -255,7 +255,7 @@ public class MapsController : Controller
     {
         material.Type = "Map";
         _materialRepository.AddOrUpdate(material);
-        return RedirectToAction("Index");
+        return RedirectToAction("Maps/Index");
     }
 
     // GET: HomeController1/Details/5

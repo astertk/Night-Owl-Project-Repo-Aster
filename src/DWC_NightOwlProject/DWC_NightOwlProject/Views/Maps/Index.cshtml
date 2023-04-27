@@ -19,12 +19,12 @@
 
 
 <div class="text-center" id="title">
-    <h2>Map Creation</h2>
+    <h1>Map Creation</h1>
 </div>
 
 <div class="text-center" id="adviceBox">
     
-    <p>Fill your prophecy with a template, or create your own</p>
+
 </div>
 
 
@@ -34,7 +34,7 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-sm">
+       @* <div class="col-sm">
             <h1> Upload your own Map that you would like to edit.</h1>
 
             
@@ -64,7 +64,7 @@
                                         @*<div class="file-upload-wrapper">
                                         <input type="image" id="fileInput" class="file-upload" accept=".png" />/>*@
 
-                                    <div class="file-upload-wrapper">
+                                    @*<div class="file-upload-wrapper">
                                     <input asp-for="upload" type="file" id="input-file-now" class="file-upload" accept=".png" />
                                     </div>
 
@@ -83,20 +83,20 @@
 
                             @*<input type = "submit" class="btn" id="Create" value="Create Map" onclick="toggle()" />*@
 
-                            </div>
+                           @* </div>
                            </div>
                  </form>
         </u>
 
            
 
-        </div>
+        </div>*@
 
         <div class="col-sm">
-            <h1> Create your Map with a template</h1>
+            <h2> Create your Map with a template</h2>
             Easier, Step-by-Step <br />
 
-            <button class="btn" id="template" onclick="reveal('t','s')">Template</button>
+            <button class="btn btn-primary m-1" id="template" onclick="reveal('t','s')">Template</button>
 
             
 
@@ -133,7 +133,7 @@
 
                 <div class="form-group mt-3 text-center">
 
-                    <input type="submit" class="btn" id="Create" value="Create Map" onclick="toggle()"/>
+                        <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Map" onclick="toggle()" />
 
                 </div>
             </form>
@@ -142,10 +142,10 @@
             
         </div>
         <div class="col-sm">
-            <h1> Create your Map From Scratch</h1>
+            <h2> Create your Map From Scratch</h2>
            More difficult, but potentially more creative <br />
 
-            <button class="btn" id="scratch" onclick="reveal('s','t')">From Scratch</button>
+            <button class="btn btn-primary m-1" id="scratch" onclick="reveal('s','t')">From Scratch</button>
 
 
 
@@ -155,8 +155,9 @@
                     <div class="row-cols-lg-1">
                         <div class="col">
 
-                                <label for="r3" class="control-label">Please describe your map in as little or as much detail as you like:</label>
-                            <textarea id="third-input" name="third" rows ="8" cols="50" class="form-control" type="text" required></textarea>
+                               <label asp-for="r0" class="control-label">Describe Your Map:</label>
+                                <input asp-for="r0" class="form-control-lg" required/>
+                                <span asp-validation-for="r0" class="text-danger"></span>
 
                         </div>
 
@@ -170,7 +171,7 @@
                 <div class="form-group mt-3 text-center">
                    
 
-                        <input type="submit" class="btn" id="Create" value="Create Map" onclick="toggle()" />
+                        <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Map" onclick="toggle()" />
 
                 </div>
             </form>
@@ -199,13 +200,15 @@
                     @if (Model.materials[i] != null)
                     {
                         <div class="row">@Model.materials[i].Name</div>
+                        <a asp-controller="Maps" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn">Edit Map Name</a>
+                    <br />
                     <img src="data:image;base64,@System.Convert.ToBase64String(Model.materials[i].PictureData)" width="256" height="256" />
                         @*<div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].PictureData></iframe></div>*@
-                        <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+                        @*<div class="row">Creation Date: @Model.materials[i].CreationDate.ToOADate().ToString();</div>*@
+                        <br />
 
                         <a asp-controller="Maps" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
-                        <a asp-controller="Maps" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Edit</a>
-                        <a asp-controller="Maps" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
+                        <a asp-controller="Maps" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>
                     }
                 </div>
             }
