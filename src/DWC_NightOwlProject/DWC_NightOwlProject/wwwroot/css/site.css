@@ -20,10 +20,13 @@ html {
     min-height: 100%;
 }
 
+nav {
+    background-color: #1c2424;
+}
+
 body {
-  
-  margin-bottom: 200px;
-  background: white;
+    margin-bottom: 200px;
+    background-color: #F2D7C5;
 }
 img {
     float: none;
@@ -87,7 +90,7 @@ ul {
 
 li a {
     display: inline;
-    color: #000;
+    color: white;
     padding-left: 10%;
     padding-right:20px;
     text-decoration: none;
@@ -115,6 +118,7 @@ li {
         background-color: #555;
         color: #00ffff;
     }
+
 h2{
     color:brown;
     padding-top:50px;
