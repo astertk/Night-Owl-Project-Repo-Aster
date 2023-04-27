@@ -137,6 +137,10 @@ u {
     display: none;
 }
 
+h1{
+    color:darkred;
+}
+
     /* Change the link color on hover */
    
 #Logo{
