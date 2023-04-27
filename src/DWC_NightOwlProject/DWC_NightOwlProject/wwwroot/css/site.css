@@ -124,6 +124,18 @@ h2{
     color:brown;
     padding-top:50px;
 }
+p{
+    display:none;
+}
+t {
+    display: none;
+}
+s {
+    display: none;
+}
+u {
+    display: none;
+}
 
     /* Change the link color on hover */
    

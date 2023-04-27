@@ -3,6 +3,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
 <script src="~/js/CharacterAnimation.js" type="text/javascript"></script>
 
+@*<p>
+    <img src="css/icosahedron.png" alt="d20" />
+</p>*@
+
 <div class="text-center" id="title">
     <h2>Character Creation</h2>
 </div>
@@ -42,7 +46,7 @@
                 <div class="col-sm">
                 </div>
                 <div class="col-sm">
-                    <input type="button" class="" value="Create Your Character" onclick="window.location= '@Url.Action( "Completion", "Character")'" />
+                    <input type="button" class="" value="Create Your Character" onclick="toggle(); window.location= '@Url.Action( "Completion", "Character")'" />
                 </div>
             </div>
         </div>
@@ -54,11 +58,6 @@
 </form>
 
 
-
-
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
-<script src="~/sketch.js" type="text/javascript"></script>
-*@
 
 
 
