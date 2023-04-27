@@ -107,36 +107,19 @@
                         <div class="col">
 
                                 <label asp-for="r0" class="control-label">Is this map inside or outside?</label>
-                                <input asp-for="r0" class="form-control" />
+                                <input asp-for="r0" class="form-control" required/>
                                 <span asp-validation-for="r0" class="text-danger"></span>
 
                                 <label asp-for="r1" class="control-label">What type of biome is the map?</label>
-                                <input asp-for="r1" class="form-control" />
+                                <input asp-for="r1" class="form-control" required />
                                 <span asp-validation-for="r1" class="text-danger"></span>
 
                                 <label asp-for="r2" class="control-label">How many squares should the map contain, roughly?</label>
-                                <input asp-for="r2" class="form-control" />
+                                <input asp-for="r2" class="form-control" required />
                                 <span asp-validation-for="r2" class="text-danger"></span>
 
 
-                               @* <div class="file-upload-wrapper">
-                                <label asp-for="upload" class="control-label">Optionally, upload a sample image for the completion to be based on.</label>
-                                <input asp-for="upload" id="input-file-now" class="file-upload" />
-                                <span asp-validation-for="upload" class="text-danger"></span>
-                                </div>*@
-
-                            @*   <div class="file-upload-wrapper">
-                                <input asp-for= "upload" type="file" id="input-file-now" class="file-upload" />
-                                </div>
-*@
-
-@*
-                                <label for="r1" class="control-label">What type of biome is the map?</label>
-                            <input id="first-input" name="first" class="form-control" type="text" required />
-
-
-                                <label for="r2" class="control-label">What type of biome is the map?</label>
-                            <input id="second-input" name="second" class="form-control" type="range" required min="100" max="1000" />*@
+                              
 
 
                         </div>
@@ -216,7 +199,8 @@
                     @if (Model.materials[i] != null)
                     {
                         <div class="row">@Model.materials[i].Name</div>
-                        <div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.materials[i].PictureData)" width="256" height="256" />
+                        @*<div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].PictureData></iframe></div>*@
                         <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
                         <a asp-controller="Maps" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>

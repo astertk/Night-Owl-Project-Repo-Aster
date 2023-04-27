@@ -14,10 +14,10 @@ function setup() {
     background(255);
     createCanvas(windowWidth, windowHeight);
     angleMode(DEGREES);
-    leftX = 1;
-    rightX = 0;
-    leftY = height / 2;
-    rightY = height / 2;
+    leftX = width/7;
+    rightX = width / 7 - 1;
+    leftY = height / 5;
+    rightY = height / 5;
     
 }
 

@@ -14,6 +14,10 @@ using System.Drawing;
 using System.IO.Compression;
 using Microsoft.Web.Helpers;
 using System.Net;
+using EllipticCurve.Utils;
+using static OpenAI.GPT3.ObjectModels.SharedModels.IOpenAiModels;
+using static System.Net.Mime.MediaTypeNames;
+using Image = System.Drawing.Image;
 
 namespace DWC_NightOwlProject.Controllers;
 
@@ -157,7 +161,7 @@ public class MapsController : Controller
 
         material.UserId = userId;
         material.Id = 0;
-        material.Type = "MapPreview";
+        material.Type = "Map";
         material.Name = "Name";
         material.CreationDate = DateTime.Now;
         material.Prompt = vm.Prompt;
@@ -168,39 +172,20 @@ public class MapsController : Controller
         var mapList = await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Large);
         var map = mapList.FirstOrDefault();
         var url = map.ToString();
+        material.Completion = url;
+        //string tempPath = Path.GetTempPath();
 
-
-       // material.PictureData = Convert.ToBase64String(url);
-        using (var ms = new MemoryStream(material.PictureData, 0, material.PictureData.Length))
-        {
-            Image image = Image.FromStream(ms, true);
-            //image.Save("image.jpg");
-        }
-
-        // byte[] imageAsByteArray;
-
-
-        /*  using (var client = new HttpClient())
-          {
-              using (var response = await client.GetAsync(url))
-              {
-                  material.PictureData =
-                      await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
-              }  
-          }
-  */
-        /*MemoryStream ms = new MemoryStream(material.PictureData);
-        Image returnImage = Image.FromStream(ms);
-        returnImage.Save("Map.png");*/
-
-
-    
+        // Scrape web page
+        WebClient webClient = new WebClient();
+        material.PictureData = webClient.DownloadData(url);
 
         _materialRepository.AddOrUpdate(material);
 
         return View(material);
 
     }
+
+
 
     [Authorize]
     public async Task<ActionResult> EditCompletion(MaterialVM vm)
@@ -270,7 +255,7 @@ public class MapsController : Controller
     {
         material.Type = "Map";
         _materialRepository.AddOrUpdate(material);
-        return RedirectToAction("Index", material);
+        return RedirectToAction("Index");
     }
 
     // GET: HomeController1/Details/5
