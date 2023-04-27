@@ -36,7 +36,11 @@
             Let fate and destiny take over your choices! <br />
             <input id="random-character" type="button" class="" value="Random" onclick="window.location= '@Url.Action( "Random", "Character")'" />
         </div>
-
+        <div class="col-sm">
+            <h1>Create a Character Sheet</h1>
+            Create a character sheet that randomizes your whole character and its stats <br />
+            <a asp-controller="Character" asp-action="CreateSheet" class="btn btn-secondary" >Create a randomized character sheet</a>
+        </div>
     </div>
 </div>
 
@@ -56,7 +60,8 @@
 
                     <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
                     <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-secondary m-1">Edit</a>
-                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>
+                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>  
+                    <a asp-controller="Character" asp-action="CreateSheetWithCharacter" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Generate character sheet</a>
                     <a class="btn btn-outline-primary m-1" onclick="downloadFile()" id="downloadButton">Download</a>
 
                    <script>
@@ -78,5 +83,3 @@
         }
     </div>
 }
-
-
