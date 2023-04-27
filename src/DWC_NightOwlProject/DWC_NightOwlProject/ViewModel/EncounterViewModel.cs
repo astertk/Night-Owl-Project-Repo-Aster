@@ -13,4 +13,8 @@ public class EncounterViewModel
         }
         return null;
     }
+    public string Description()
+    {
+        return "A "+Type+" encounter in a "+Biome+" Environment";
+    }
 }
