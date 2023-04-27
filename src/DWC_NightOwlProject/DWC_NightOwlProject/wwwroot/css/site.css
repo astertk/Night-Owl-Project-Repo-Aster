@@ -21,12 +21,13 @@ html {
 }
 
 nav {
-    background-color: #1c2424;
+    background-color: #311d24; /*#1c2424*/
 }
 
 body {
-    margin-bottom: 200px;
-    background-color: #F2D7C5;
+    margin-bottom: 300px;
+    /*background-color: #F2D7C5;*/
+    background-color: #a1797c;
 }
 img {
     float: none;
@@ -100,7 +101,7 @@ li a {
 li {
     display: inline;
     text-align: left;
-    border-bottom: 1px solid #555;
+
 
     
 }
