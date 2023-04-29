@@ -16,9 +16,7 @@ public partial class Material
     [Column("UserID")]
     [StringLength(450)]
     public string UserId { get; set; } = null!;
-    
-    [RegularExpression(@"^[/^[a-z][a-z\s]*$/]{1,40}$",
-        ErrorMessage = "Characters are not allowed.")]
+
     [StringLength(40)]
     public string Type { get; set; } = null!;
 
@@ -31,13 +29,10 @@ public partial class Material
     [Column("WorldID")]
     public int WorldId { get; set; }
 
-    [RegularExpression(@"^[/^[a-z][a-z\s]*$/]{1,40}$",
-        ErrorMessage = "Characters are not allowed.")]
     [StringLength(1000)]
     public string Prompt { get; set; } = null!;
 
-  
-    [StringLength(4000)]
+    
     public string Completion { get; set; } = null!;
 
     [Column("TemplateID")]
