@@ -101,8 +101,7 @@ li a {
 li {
     display: inline;
     text-align: left;
-    border-bottom: 1px solid #555;
-
+    /*border-bottom: 1px solid #555;*/
     
 }
 
@@ -153,7 +152,6 @@ h1{
     --space: 10em;
     width: 5rem;
     height: 1rem;
-
 }
 
 .icon-container {
@@ -287,5 +285,5 @@ h1{
     height: var(--sound-button-width);
     cursor: pointer;
     padding: 0;
-    padding-left: initial;
+    padding-left: inherit;
 }
