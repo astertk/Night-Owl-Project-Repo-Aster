@@ -150,11 +150,11 @@ h1{
     --player-button-width: 2em;
     --sound-button-width: 2em;
     --space: 10em;
-    width: 5rem;
-    height: 1rem;
+    width: auto;
+    height: auto;
 }
 
-.icon-container {
+/*.icon-container {
     width: 45%;
     height: 45%;
     background-color: #B2081E;
@@ -162,15 +162,15 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-}
+}*/
 
 .audio-icon {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
 }
 
 .controls {
-    display: flex;
+    display: block;
     flex-direction: row;
     align-items: center;
     width: 100%;
@@ -179,16 +179,16 @@ h1{
 
 .player-button {
     background-color: transparent;
-    border: 0;
-    width: var(--player-button-width);
-    height: var(--player-button-width);
+    border: none;
+    width: 50px;
+    height: 30px;
     cursor: pointer;
-    padding: 0;
-    padding-left: initial;
-    padding-right: initial;
+    margin-left: 2px;
+    margin-right: 2px;
+    color: #b8a3a5;
 }
 
-.timeline {
+/*.timeline {
     -webkit-appearance: none;
     width: calc(100% - (var(--player-button-width) + var(--sound-button-width) + var(--space)));
     height: .5em;
@@ -276,14 +276,14 @@ h1{
         box-shadow: none;
         border: none;
         background: transparent;
-    }
+    }*/
 
 .sound-button {
     background-color: transparent;
     border: 0;
-    width: var(--sound-button-width);
-    height: var(--sound-button-width);
+    width: 50px;
+    height: 30px;
     cursor: pointer;
-    padding: 0;
-    padding-left: inherit;
+    margin-right: 55px;
+    color: #b8a3a5;
 }
