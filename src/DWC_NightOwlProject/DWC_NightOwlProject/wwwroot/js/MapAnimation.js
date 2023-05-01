@@ -13,7 +13,7 @@ let y = 0;
 
 function setup() {
     w = min(windowWidth, windowHeight);
-    createCanvas(windowWidth, 100);
+    createCanvas(windowWidth, 300);
 
     // gridWidth = w;
     // gridHeight = w;
@@ -47,7 +47,7 @@ function draw() {
 
 
 
-        background(255);
+        background(18, 54, 30);
         imageMode(CENTER);
 
         fill(it / 10, 0, 0);
