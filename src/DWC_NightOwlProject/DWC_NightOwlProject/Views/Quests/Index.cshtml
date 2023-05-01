@@ -62,7 +62,7 @@
             <div class="col">
                 @if (Model.materials[i] != null)
                 {
-                    <div class="row" class="results">@Model.materials[i].Completion</div>
+                    <div class="row" id="results">@Model.materials[i].Completion</div>
                     <div class="row" id="notes">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
                     <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
