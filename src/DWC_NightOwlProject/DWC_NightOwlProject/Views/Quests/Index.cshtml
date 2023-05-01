@@ -23,8 +23,8 @@
 </div>
 
 <div class="text-center">
-    <span>You may be preparing to set out on your journey, but for what reason are you going?</span>
-    <span>Create your quests with a template or create your own!</span>
+    <h3>You may be preparing to set out on your journey, but for what reason are you going?
+    Create your quests with a template or create your own!</h3>
 </div>
 
 <div class="container">
@@ -32,21 +32,21 @@
         <div class="col-sm">
             <br />
             <h2>Create your Quest with a template?</h2>
-            Much easier, leads you step by step <br /> <br />
+            <p>Much easier, leads you step by step</p> <br /> <br />
             <button type="button" class="btn btn-dark" value="Create a Quest" onclick="window.location='@Url.Action("Template", "Quests")'">Create your Quests</button>
         </div>
 
         <div class="col-sm">
             <br />
             <h2>Create your Quest from Scratch?</h2>
-            More advanced, but potentially more creative! <br /> <br />
+            <p>More advanced, but potentially more creative!</p> <br /> <br />
             <button type="button" class="btn btn-dark" value="Create a Quest" onclick="window.location='@Url.Action("Scratch", "Quests")'">Create your Quests</button>
         </div>
 
         <div class="col-sm">
             <br />
             <h2>Create a guided quest?</h2>
-            Make a quest with steps along the way that much be reach<br />
+            <p>Make a quest with steps along the way that much be reached</p><br />
             <button type="button" class="" value="Create a Quest" onclick="window.location='@Url.Action("GuidedQuestTemplate", "Quests")'">Create your Quests</button>
         </div>
     </div>
@@ -61,8 +61,8 @@
             <div class="col">
                 @if (Model.materials[i] != null)
                 {
-                    <div class="row">@Model.materials[i].Completion</div>
-                    <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+                    <div class="row" class="results">@Model.materials[i].Completion</div>
+                    <div class="row" id="notes">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
                     <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
                     <a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>

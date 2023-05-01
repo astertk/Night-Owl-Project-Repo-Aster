@@ -10,7 +10,7 @@
         <h1>@Model.ThisWorld.Name</h1>
         <br /> 
 
-        <a asp-controller="Backstory" asp-action="Index"><h2>Backstory:</h2></a>
+        <a id="linklabel" asp-controller="Backstory" asp-action="Index"><h2>Backstory:</h2></a>
         @if (Model.Backstory != null)
         {
                 <table class="table">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="text-center">
-        <a asp-controller="Quests" asp-action="Index"><h2>Quests:</h2></a>
+        <a id="linklabel" asp-controller="Quests" asp-action="Index"><h2>Quests:</h2></a>
         </div>
 
         <table class="table">
@@ -56,7 +56,7 @@
         </table>
 
         <div class="text-center">
-        <a asp-controller="Character" asp-action="Index"><h2>Characters:</h2></a>
+        <a id="linklabel" asp-controller="Character" asp-action="Index"><h2>Characters:</h2></a>
         </div>
 
         <div class="row">
@@ -65,9 +65,9 @@
             <div class="col">
             @if(Model.characters[i] != null)
             {
-                <div class="row">@Model.characters[i].Name</div>
+                <div class="row" id="notes">@Model.characters[i].Name</div>
                 <div class="row"><iframe style="width:250px; height:250px; overflow: hidden;" scrolling="no" frameborder="0" src="@Model.characters[i].Completion"> </iframe> </div>
-                <div class="row">Creation Date: @Model.characters[i].CreationDate.ToString()</div>
+                <div class="row" id="notes">Creation Date: @Model.characters[i].CreationDate.ToString()</div>
 
                 <a asp-controller="Character" asp-action="Details" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Details</a>
                 <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.characters[i].Id" class="btn btn-secondary m-1">Edit</a>
@@ -82,7 +82,7 @@
         </div>
 
         <div class="text-center">
-        <a asp-controller="Maps" asp-action="Index"><h2>Maps:</h2></a>
+        <a id="linklabel" asp-controller="Maps" asp-action="Index"><h2>Maps:</h2></a>
         </div>
 
         <div class="row"> 
@@ -92,7 +92,7 @@
                 @if (Model.maps[i] != null)
                 {
                     <div class="row"><iframe style="width: 250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src="@Model.maps[i].Completion"> </iframe></div>
-                    <div class="row">Creation Date: @Model.maps[i].CreationDate.ToString()</div>
+                    <div class="row" id="notes">Creation Date: @Model.maps[i].CreationDate.ToString()</div>
 
                     <a asp-controller="Maps" asp-action="Details" asp-route-id="@Model.maps[i].Id" class="btn btn-primary m-1">Details</a>
                     <a asp-controller="Maps" asp-action="Edit" asp-route-id="@Model.maps[i].Id" class="btn btn-secondary m-1">Edit</a>

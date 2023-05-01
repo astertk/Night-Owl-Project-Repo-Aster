@@ -139,7 +139,7 @@
 
         <div class="col-sm">
             <h2> Create your Map with a template</h2>
-            Easier, Step-by-Step <br /> <br />
+            <h4>Easier, Step-by-Step</h4> <br /> <br />
 
             <button class="btn btn-dark m-1" id="template" onclick="reveal('t','s')">Template</button>
 
@@ -188,7 +188,7 @@
         </div>
         <div class="col-sm">
             <h2> Create your Map From Scratch</h2>
-            More difficult, but potentially more creative <br /> <br />
+            <h4>More difficult, but potentially more creative</h4> <br /> <br />
 
             <button class="btn btn-dark m-1" id="scratch" onclick="reveal('s','t')">From Scratch</button>
 
@@ -245,7 +245,7 @@
                 <div class="col">
                     @if (Model.materials[i] != null)
                     {
-                        <div class="row">@Model.materials[i].Name</div>
+                        <div class="row" id="notes">@Model.materials[i].Name</div>
                         <a asp-controller="Maps" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn">Edit Map Name</a>
                     <br />
                     <img src="data:image;base64,@System.Convert.ToBase64String(Model.materials[i].PictureData)" width="256" height="256" />

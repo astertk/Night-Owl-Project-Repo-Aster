@@ -107,8 +107,7 @@ li a {
 li {
     display: inline;
     text-align: left;
-
-
+    /*border-bottom: 1px solid #555;*/
     
 }
 
@@ -131,9 +130,9 @@ li {
 h2 {
     color: red;
     padding-top: 50px;
-}
-p{
-    display:none;
+    text-decoration-line:none;
+    text-decoration-color: white;
+    text-decoration-style: solid;
 }
 t {
     display: none;
