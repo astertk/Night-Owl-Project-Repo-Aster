@@ -21,13 +21,13 @@ html {
 }
 
 nav {
-    background-color: #000000; /*#1c2424*/
+    background-color: rgb(20, 12, 0); /*#1c2424*/
 }
 
 body {
     margin-bottom: 300px;
     /*background-color: #F2D7C5;*/
-    background-color: #ffffff;
+    background-color: rgb(18, 54, 30);
 }
 img {
     float: none;
@@ -61,14 +61,7 @@ canvas {
     z-index: -1;
 }
 
-.vnav {
-    border-color:black;
-    border:dotted;
-    background-color: white;
-    width: fit-content;
-    height:fit-content;
-    border-radius: 25px;
-}
+
 
 
 .image{
@@ -101,7 +94,6 @@ li a {
     padding-right:20px;
     text-decoration: none;
     width:5%;
-
 }
 
 li {
@@ -125,14 +117,18 @@ li {
     }
 
     li a:hover:not(.active) {
-        background-color: black;
-        color: red;
-        width: fit-content;
-        border-radius: 25px;
+        background-color: #555;
+        color: #00ffff;
+<<<<<<< HEAD
+    }*/
+h2{
+    color:brown;
+    padding-top:50px;
+=======
     }
 
 h2 {
-    color: red;
+    color: rgb(254, 240, 244);
     padding-top: 50px;
     text-decoration-line:none;
     text-decoration-color: white;
@@ -145,16 +141,12 @@ s {
     display: none;
 }
 u {
-    display: none; 
+    display: none;
 }
 
-h1 {
-    color: red;
-    margin-bottom: 40px;
-    background: black;
-    width: fit-content;
-    border-radius: 15px 50px 30px;
-    padding:20px;
+h1{
+    color:rgb(254, 240, 244);
+>>>>>>> 8ee7a9f39387e41e03fad440dab29a1429d7949d
 }
 
     /* Change the link color on hover */
@@ -217,14 +209,6 @@ body.offcanvas-open {
     overflow: hidden;
 }
 
-.card {
- 
-  color:white;
-  background:black;
-  border-radius: 15px 50px 30px;
-  padding: 20px;
-  margin:10px;
-  font-size:26px;
     .sidebar-icon:hover .sidebar-title {
         animation: slide-in 0.5s forwards;
     }
@@ -320,10 +304,35 @@ body.offcanvas-open {
     height: 100%;
 }
 
+.controls {
+    display: block;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
 
- 
-.card-title{
-    color:red;
+.player-button {
+    background-color: transparent;
+    border: none;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 2px;
+    margin-right: 2px;
+    color: #b8a3a5;
+}
+
+/*.timeline {
+    -webkit-appearance: none;
+    width: calc(100% - (var(--player-button-width) + var(--sound-button-width) + var(--space)));
+    height: .5em;
+    background-color: #e5e5e5;
+    border-radius: 5px;
+    background-size: 0% 100%;
+    background-image: linear-gradient(#DE5E97, #DE5E97);
+    background-repeat: no-repeat;
+    margin-right: var(--space);
 }
 
     .timeline::-webkit-slider-thumb {
