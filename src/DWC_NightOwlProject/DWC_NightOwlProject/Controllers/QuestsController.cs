@@ -68,6 +68,10 @@ namespace DWC_NightOwlProject.Controllers
             m.UserId=userId;
             m.WorldId=userWorld.Id;
             m.Completion=qm.Results;
+            m.Name="";
+            m.Prompt="";
+            m.Id=0;
+            m.CreationDate=DateTime.Now;
             if(userId!=null)
             {
                 try

@@ -1,0 +1,21 @@
+@model DWC_NightOwlProject.ViewModel.EncounterViewModel
+@{
+    ViewData["Title"] = "Encounter";
+}
+<div><div class="container"><div class="row"><div class="col">
+    <p class="results">
+        @Model.Result
+    </p>
+        <form asp-action="ContinueGuidedQuest" method="post">
+            <div class="form-group">
+                <input type="hidden" asp-for="Result" class="form-control" value="@Model.Result">
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Biome" class="form-control" value="@Model.Biome">
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Type" class="form-control" value="@Model.Type">
+            </div>
+            <input type="submit" value="Save this encounter" asp-action="Save" method="post"> 
+        </form>
+</div></div></div></div>

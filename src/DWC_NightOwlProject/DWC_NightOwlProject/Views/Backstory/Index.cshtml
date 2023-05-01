@@ -3,11 +3,25 @@
     ViewData["Title"] = "Index";
 }
 
+<header>
+    <h1>
+        Backstory
+    </h1>
 
+    <h4>
+        A Backstory is the central theme of your world. The overarching plot of your adventure.
+        <br />
+        <br />
+        Craft your backstory in one of two ways.
+        <br />
+        You may have only one backstory at a time,but you can change it by simply recreating it!
+    </h4>
+    
+</header>
 
 
     <div class="text-center" id="title">
-        <h2>Backstory Creation</h2>
+        <h1>Backstory Creation</h1>
     </div>
 
     <div class="text-center" id="adviceBox">
@@ -20,14 +34,15 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <h1> Create your backstory with a template?</h1>
-         Easier, Step-by-Step <br />
-         <input type="button" class="" value="Create Your Backstory" id="templateButton" onclick="window.location= '@Url.Action( "Template", "Backstory")'" />
+            <br />
+            <h2> Create your backstory with a template?</h2>
+         <h4>Easier, Step-by-Step</h4> <br /> <br />
+         <input type="button" class="btn btn-dark" value="Create Your Backstory" id="templateButton" onclick="window.location= '@Url.Action( "Template", "Backstory")'" />
         </div>
         <div class="col-sm">
-            <h1> Create your backstory all from Scratch?</h1>
-    More advanced, but potentially more creative! <br />
-    <input type="button" class="" value="Create Your Backstory" id="scratchButton" onclick="window.location= '@Url.Action( "Scratch", "Backstory")'" />
+            <h2> Create your backstory all from Scratch?</h2>
+    <h4>More advanced, but potentially more creative!</h4> <br />
+    <input type="button" class="btn btn-dark" value="Create Your Backstory" id="scratchButton" onclick="window.location= '@Url.Action( "Scratch", "Backstory")'" />
         </div>
         
     </div>
@@ -41,8 +56,8 @@
         {
                 @if (Model.material != null)
                 {
-                    <a>@Model.material.Completion</a> <br />
-                    <a>@Model.material.CreationDate.ToString()</a>
+                    <a class="results">@Model.material.Completion</a> <br />
+                    <a id="notes">@Model.material.CreationDate.ToString()</a>
                     <a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.material.Id" class="text-center btn btn-danger m-md-2">Delete</a>
                 }
         }

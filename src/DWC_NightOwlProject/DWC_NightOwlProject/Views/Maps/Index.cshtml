@@ -5,49 +5,133 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+
 <script src="~/js/MapAnimation.js"></script>
+<script async src="~/js/site.js"></script>
 
 
+<p>
+<img src="~/css/left-shoe-footprint.png" alt="left_shoe" />
+<img src="~/css/right-shoe-footprint.png" alt="right_shoe" />
+</p>
 
+<header>
+    <h1>
+        Map
+    </h1>
+
+    <h4>
+        A Map is a Game Master's best friend, and the pivotal material for game interactions to take place.
+        <br />
+        <br />
+        Craft your Map in one of two ways.
+    </h4>
+
+</header>
 
 
 <div class="text-center" id="title">
-    <h2>Map Creation</h2>
+    <h1>Map Creation</h1>
 </div>
 
 <div class="text-center" id="adviceBox">
-    <span>There is a lot to explore in the vastness of the world, but the question lies within yourself...</span>
-    <p>Fill your prophecy with a template, or create your own</p>
+    
+
 </div>
+
+
 
 
 
 <div class="container">
     <div class="row">
-        <div class="col-sm">
-            <h1> Create your Map with a template?</h1>
-            Easier, Step-by-Step <br />
 
-            <button class="btn" id="template">Template</button>
+       @* <div class="col-sm">
+            <h1> Upload your own Map that you would like to edit.</h1>
+
+            
+            
+
+            <button class="btn" id="upload" onclick="reveal('u','s')">Upload</button>
+
+        <u id="u">
+
+
+                <a class="text-danger">Please upload a PNG image with transparency (alpha) in the parts you want edited, for example an image of a mountain map with the peak erased.</a>
+                <br />
+                <br />
+                <a class="text-danger">The PNG must also have the same width and height, so 256x256, 512x512, etc. </a>
+                <br />
+                <br />
+
+                <form enctype="multipart/form-data" asp-action="ImageEdit" id="edit_image_form" method="post">
+                            <div class="container">
+                                <div class="row-cols-lg-1">
+                                    <div class="col">
+
+                                        <label asp-for="r0" class="control-label">How would you like your image edited?</label>
+                                        <input asp-for="r0" class="form-control" />
+                                        <span asp-validation-for="r0" class="text-danger"></span>
+
+                                        @*<div class="file-upload-wrapper">
+                                        <input type="image" id="fileInput" class="file-upload" accept=".png" />/>*@
+
+                                    @*<div class="file-upload-wrapper">
+                                    <input asp-for="upload" type="file" id="input-file-now" class="file-upload" accept=".png" />
+                                    </div>
+
+                                <input class="btn" type="submit" value="Upload" onclick="toggle()"/>
+
+                                  
+
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="form-group mt-3 text-center">
+
+                            @*<input type = "submit" class="btn" id="Create" value="Create Map" onclick="toggle()" />*@
+
+                           @* </div>
+                           </div>
+                 </form>
+        </u>
+
+           
+
+        </div>*@
+
+        <div class="col-sm">
+            <h2> Create your Map with a template</h2>
+            <h4>Easier, Step-by-Step</h4> <br /> <br />
+
+            <button class="btn btn-dark m-1" id="template" onclick="reveal('t','s')">Template</button>
 
             
 
-
-            <form id="create-template-form">
+            <t id="t">
+            <form asp-action="Template" id="create_template_form" method="post">
                 <div class="container">
                     <div class="row-cols-lg-1">
                         <div class="col">
 
-                            <label for="@Model.Responses[0]" class="control-label">Is this map inside or outside?</label>
-                            <input id="zeroth-input" name="zeroth" class="form-control" type="text" required />
+                                <label asp-for="r0" class="control-label">Is this map inside or outside?</label>
+                                <input asp-for="r0" class="form-control" required/>
+                                <span asp-validation-for="r0" class="text-danger"></span>
+
+                                <label asp-for="r1" class="control-label">What type of biome is the map?</label>
+                                <input asp-for="r1" class="form-control" required />
+                                <span asp-validation-for="r1" class="text-danger"></span>
+
+                                <label asp-for="r2" class="control-label">How many squares should the map contain, roughly?</label>
+                                <input asp-for="r2" class="form-control" required />
+                                <span asp-validation-for="r2" class="text-danger"></span>
 
 
-                            <label for="@Model.Responses[1]" class="control-label">What type of biome is the map?</label>
-                            <input id="first-input" name="first" class="form-control" type="text" required />
-
-
-                            <label for="@Model.Responses[2]" class="control-label">How many squares should the map have?</label>
-                            <input id="second-input" name="second" class="form-control" type="range" required min="100" max="1000" />
+                              
 
 
                         </div>
@@ -60,40 +144,32 @@
 
 
                 <div class="form-group mt-3 text-center">
-                    <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
-                    <div class="text-danger">
-                        These questions are optional, but please fill out as many as you can before clicking "Create Map"
-                    </div>
-                    <input type="button" class="" value="Create Map" onclick="window.location= '@Url.Action( "Completion", "Maps", Model)'" />
+
+                        <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Map" onclick="toggle()" />
 
                 </div>
             </form>
 
-
-
-            @*<input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
-            </div>*@
-
-
-
+            </t>
             
         </div>
         <div class="col-sm">
-            <h1> Create your Map From Scratch</h1>
-           More difficult, but potentially more creative <br />
+            <h2> Create your Map From Scratch</h2>
+            <h4>More difficult, but potentially more creative</h4> <br /> <br />
 
-            <button class="btn" id="scratch">From Scratch</button>
-
-
+            <button class="btn btn-dark m-1" id="scratch" onclick="reveal('s','t')">From Scratch</button>
 
 
-            <form id="create-template-form">
+
+            <s id= "s">
+            <form asp-action="Scratch" id="create_scratch_form">
                 <div class="container">
                     <div class="row-cols-lg-1">
                         <div class="col">
 
-                            <label for="@Model.Responses[3]" class="control-label">Please describe your map in as little or as much detail as you like:</label>
-                            <textarea id="third-input" name="third" rows ="8" cols="50" class="form-control" type="text" required></textarea>
+                               <label asp-for="r0" class="control-label">Describe Your Map:</label>
+                                <input asp-for="r0" class="form-control-lg" required/>
+                                <span asp-validation-for="r0" class="text-danger"></span>
 
                         </div>
 
@@ -105,13 +181,13 @@
 
 
                 <div class="form-group mt-3 text-center">
-                    <input type="submit" class="Prompt" value="Submit Your Template" /> <br /> <br />
-                  
-                    <input type="button" class="" value="Create Map" onclick="window.location= '@Url.Action( "Completion", "Maps", Model)'" />
+                   
+
+                        <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Map" onclick="toggle()" />
 
                 </div>
             </form>
-
+            </s>
 
 
             @*<input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
@@ -135,19 +211,22 @@
                 <div class="col">
                     @if (Model.materials[i] != null)
                     {
-                        <div class="row">@Model.materials[i].Name</div>
-                        <div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
-                        <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+                        <div class="row" id="notes">@Model.materials[i].Name</div>
+                        <a asp-controller="Maps" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn">Edit Map Name</a>
+                    <br />
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.materials[i].PictureData)" width="256" height="256" />
+                        @*<div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].PictureData></iframe></div>*@
+                        @*<div class="row">Creation Date: @Model.materials[i].CreationDate.ToOADate().ToString();</div>*@
+                        <br />
 
                         <a asp-controller="Maps" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
-                        <a asp-controller="Maps" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Edit</a>
-                        <a asp-controller="Maps" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
+                        <a asp-controller="Maps" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>
                     }
                 </div>
             }
         </div>
     }
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+@*<script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
                 const btnEl = document.querySelector('.btn');
 
@@ -160,5 +239,9 @@
           
                 }
 
-            </script>
+            </script>*@
+
+<script>
+   
+</script>
 

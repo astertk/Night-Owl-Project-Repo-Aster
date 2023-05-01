@@ -30,7 +30,7 @@ public class SheetRandomizer
     {
         if(Name==null)
         {
-            Name="Coolguy";
+            Name="Character";
         }
         Level=1;
         if(selectedRace.Equals(CharacterOptions.Random))
