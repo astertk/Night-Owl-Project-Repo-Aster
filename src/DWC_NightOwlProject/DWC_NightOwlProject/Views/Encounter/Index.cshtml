@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm">
             <h1>Create an encounter for your game</h1><br />
-            <p>Not sure what will happen to your players on the way? Let us figure it out!</p>
+            <h3>Not sure what will happen to your players on the way? Let us figure it out!</h3>
             <input type="button" class="" value="Encounter Form" onclick="window.location= '@Url.Action( "EncounterForm", "Encounter")'" />
         </div>
     </div>
@@ -22,7 +22,7 @@
             <div class="col">
                 @if (Model.materials[i] != null)
                 {
-                    <a class="btn btn-outline-primary m-1" onclick="showContent()">@Model.materials[i].Name</a>
+                    <a class="btn btn-outline-primary m-1" id="linklabel" onclick="showContent()">@Model.materials[i].Name</a>
 
                     <script>
                         function showContent() {
