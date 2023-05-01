@@ -7,6 +7,7 @@ using System;
 using TechTalk.SpecFlow;
 using System.Security.Policy;
 
+
 namespace DWC_BDD_Tests.StepDefinitions
 {
     [Binding]
@@ -41,19 +42,26 @@ namespace DWC_BDD_Tests.StepDefinitions
         [Given(@"the vistor has opened the navigation menu")]
         public void GivenTheVistorHasOpenedTheNavigationMenu()
         {
-            throw new PendingStepException();
+            var offcanvasNavbar = _homePage.offcanvasNavbar;
+            Assert.IsTrue(offcanvasNavbar.Displayed);
+            
         }
 
-        [When(@"the vistor clicks the ""([^""]*)"" button on the navigation menu")]
-        public void WhenTheVistorClicksTheButtonOnTheNavigationMenu(string close)
+        
+        [When(@"the vistor clicks the close button on the navigation menu")]
+        public void WhenTheVistorClicksTheCloseButtonOnTheNavigationMenu()
         {
-            throw new PendingStepException();
+            _homePage.ClickOffcanvasCloseButton();
+            
         }
+
 
         [Then(@"navigation menu should disappear from the screen")]
         public void ThenNavigationMenuShouldDisappearFromTheScreen()
         {
-            throw new PendingStepException();
+            var offcanvasNavbar = _homePage.offcanvasNavbar;
+            Assert.IsTrue(offcanvasNavbar.Displayed);
+
         }
     }
 }

@@ -10,5 +10,5 @@ Scenario: Visitor clicks the navbar-toggler
 
 Scenario: Visitor closes the navigation menu
 	Given the vistor has opened the navigation menu
-	When the vistor clicks the "Close" button on the navigation menu
+	When the vistor clicks the close button on the navigation menu
 	Then navigation menu should disappear from the screen

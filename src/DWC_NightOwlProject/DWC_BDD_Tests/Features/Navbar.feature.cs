@@ -146,7 +146,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the vistor has opened the navigation menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 13
- testRunner.When("the vistor clicks the \"Close\" button on the navigation menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the vistor clicks the close button on the navigation menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
  testRunner.Then("navigation menu should disappear from the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
