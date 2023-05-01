@@ -23,7 +23,7 @@ namespace DWC_NightOwlProject.Data
         public string r3 { get; set; }
         public string r4 { get; set; }
 
-        public IFormFile upload { get; set; }
+        public IFormFile Upload { get; set; }
 
 
         public string Prompt { get; set; }
