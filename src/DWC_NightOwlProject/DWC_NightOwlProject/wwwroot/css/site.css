@@ -30,6 +30,7 @@ nav {
     background-color: rgb(20, 12, 0); /*#1c2424*/
 }
 
+
 body {
     margin-bottom: 300px;
     /*background-color: #F2D7C5;*/
@@ -78,7 +79,7 @@ canvas {
 
 .main{
     display:flex;
-    margin-top:75px;
+    margin-top:115px;
     padding-left:23%;
 }
 
