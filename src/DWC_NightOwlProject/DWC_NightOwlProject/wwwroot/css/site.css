@@ -154,7 +154,7 @@ h1{
 #Logo{
 }
 <<<<<<< HEAD
-.sidebar {
+/*.sidebar {
     width: 10%;
     height: 530px;
     border-radius: 20px;
@@ -172,7 +172,7 @@ h1{
         height: 70px;
         text-align: center;
     }
-}
+}*/
 
 .offcanvas-start {
     width: 320px;
