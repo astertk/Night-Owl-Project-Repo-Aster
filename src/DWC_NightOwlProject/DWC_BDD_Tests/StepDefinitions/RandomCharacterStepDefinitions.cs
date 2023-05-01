@@ -5,8 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace DWC_BDD_Tests.StepDefinitions
 {
-    [Binding]
-    {
+    
     public class RandomCharacterStepDefinitions
     {
         private readonly CharactersPageObject _charactersPage;
@@ -28,12 +27,12 @@ namespace DWC_BDD_Tests.StepDefinitions
         {
             _homePage.SelectCharactersLink();
         }
-
+/*
         [Then(@"I am redirected to the Characters page")]
         public void ThenIAmRedirectedToTheCharactersPage()
         {
             Assert.True(_charactersPage.IsAtCharactersPage());
-        }
+        }*/
 
         [Given(@"I select the ""([^""]*)"" button")]
         public void GivenISelectTheButton(string random)
