@@ -48,12 +48,8 @@
 
   <ItemGroup>
     <PackageReference Include="Betalgo.OpenAI.GPT3" Version="6.7.2" />
-<<<<<<< HEAD
     <PackageReference Include="Faker.Net.Portable" Version="2.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.5" />
-=======
-    <PackageReference Include="Microsoft.AspNet.WebHelpers" Version="3.2.9" />
->>>>>>> a1dad649737192d9b6c54ff78ff997854ee7ff31
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5" />
