@@ -171,9 +171,63 @@ public async Task<IActionResult> OnPostUploadAsync()
 
         }
 
+    [Authorize]
+    public async Task<ActionResult> Scratch(IFormCollection collection)
+    {
 
-       
-    
+        var userId = _userManager.GetUserId(User);
+
+        try
+        {
+            if (_materialRepository.GetAllMapsById(userId).Count() < 4)
+            {
+                ViewBag.Error = "";
+
+
+                var material = new Material();
+                material.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
+                                    "The map should have a square grid overlaying it. " + collection["r0"];
+
+
+                material.UserId = userId;
+                material.Id = 0;
+                material.Type = "Map";
+                material.Name = "New Map";
+                material.CreationDate = DateTime.Now;
+                material.Prompt += "...";
+
+                var APIKey = _config["APIKey"];
+                var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
+                var mapList = await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Large);
+                var map = mapList.FirstOrDefault();
+                var url = map.ToString();
+                material.Completion = url;
+                //string tempPath = Path.GetTempPath();
+
+                // Scrape web page
+                WebClient webClient = new WebClient();
+                material.PictureData = webClient.DownloadData(url);
+                _materialRepository.AddOrUpdate(material);
+            }
+
+            else
+            {
+                ViewBag.Error = "Too many Map Materials. Please delete 1 or more to create a new map!";
+            }
+        }
+
+        catch
+        {
+            throw new Exception("Too many map materials in Database");
+        }
+
+        return RedirectToAction("Index", "Maps");
+
+    }
+
+
+
+
 
     [Authorize]
     [HttpPost]
@@ -220,34 +274,9 @@ public async Task<IActionResult> OnPostUploadAsync()
      
     }
 
- 
-
-    [Authorize]
-    [HttpPost]
-    public ActionResult Scratch(IFormCollection collection)
-    {
-
-        try
-        {
-            var vm = new MaterialVM();
-            vm.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
-                        "The map should have a square grid overlaying it. " + vm.r3;
-
-            string id = _userManager.GetUserId(User);
-            var result = new List<Material>();
-            result = _materialRepository.GetAllMapsById(id);
-            vm.materials = result;
-            return RedirectToAction("Completion", "Maps", vm);
-        }
-
-        catch
-        {
-            return View();
-        }
 
 
-    }
-
+    
 
  
     [Authorize]
