@@ -19,8 +19,17 @@ namespace DWC_BDD_Tests.PageObjects
         public IWebElement BackstoryButton => _webDriver.FindElement(By.Id("backstoryButton"));
         public IWebElement CharactersButton => _webDriver.FindElement(By.Id("Nav_Bar_Character"));
 
+        public IWebElement NavbarTogglerButton => _webDriver.FindElement(By.CssSelector("button.navbar-toggler"));
+        public IWebElement offcanvasNavbar => _webDriver.FindElement(By.Id("offcanvasNavbar"));
 
-
+        public void NavigateTo()
+        {
+            _webDriver.Navigate().GoToUrl("https://localhost:7282/");
+        }
+        public string GetPageName()
+        {
+            return _pageName;
+        }
         public string NavbarWelcomeText()
         {
             return NavBarHelloLink.Text;
@@ -36,6 +45,10 @@ namespace DWC_BDD_Tests.PageObjects
         {
             IWebElement navbarLogoutButton = _webDriver.FindElement(By.Id("logout-button"));
             navbarLogoutButton.Click();
+        }
+        public void ClickNavbarTogglerButton()
+        {
+            NavbarTogglerButton.Click();
         }
     }
 }

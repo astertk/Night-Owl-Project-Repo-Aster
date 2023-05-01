@@ -56,7 +56,7 @@
         {
                 @if (Model.material != null)
                 {
-                    <a class="results">@Model.material.Completion</a> <br />
+                    <p class="resultsBackstory">@Model.material.Completion</p> <br />
                     <a id="notes">@Model.material.CreationDate.ToString()</a>
                     <a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.material.Id" class="text-center btn btn-danger m-md-2">Delete</a>
                 }
