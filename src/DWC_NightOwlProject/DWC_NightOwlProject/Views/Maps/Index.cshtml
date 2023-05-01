@@ -10,11 +10,6 @@
 <script async src="~/js/site.js"></script>
 
 
-<p>
-<img src="~/css/left-shoe-footprint.png" alt="left_shoe" />
-<img src="~/css/right-shoe-footprint.png" alt="right_shoe" />
-</p>
-
 <header>
     <h1>
         Map
@@ -24,7 +19,7 @@
         A Map is a Game Master's best friend, and the pivotal material for game interactions to take place.
         <br />
         <br />
-        Craft your Map in one of two ways.
+        Craft your Map in one of two ways. You can have up to 4 map materials at once before you have to start deleting them!
     </h4>
 
 </header>
@@ -212,7 +207,7 @@
                     @if (Model.materials[i] != null)
                     {
                         <div class="row" id="notes">@Model.materials[i].Name</div>
-                        <a asp-controller="Maps" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn">Edit Map Name</a>
+                       
                     <br />
                     <img src="data:image;base64,@System.Convert.ToBase64String(Model.materials[i].PictureData)" width="256" height="256" />
                         @*<div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].PictureData></iframe></div>*@
