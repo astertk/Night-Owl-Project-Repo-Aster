@@ -164,9 +164,9 @@ h1{
     width: 10%;
     height: 530px;
     border-radius: 20px;
-    background-color: white;
+    background-color: rgb(20, 12, 0);
     text-align: center;
-    color: white;
+    color: rgb(20, 12, 0);
 }
 @media (max-width: 770px) {
     .body-section {
@@ -186,14 +186,17 @@ h1{
 
 .offcanvas-header {
     padding: 1rem;
+    background-color: #46343a;
 }
 
 .offcanvas-title {
     margin-bottom: 0;
+    color: #b8a3a5;
 }
 
 .offcanvas-body {
     padding: 1rem;
+    background-color: #5a4a50;
 }
 
 /* Blur effect */
@@ -453,7 +456,7 @@ h4,p,span
 }
 #EncounterContent
 {
-    background-color: rgb(33, 60, 41);
+    /*background-color: rgb(33, 60, 41);*/
     padding: 10px;
     border-radius: 15px;
     color: rgb(255, 227, 233);
