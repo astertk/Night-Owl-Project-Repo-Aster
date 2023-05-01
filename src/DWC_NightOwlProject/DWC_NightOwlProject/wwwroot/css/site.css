@@ -21,13 +21,13 @@ html {
 }
 
 nav {
-    background-color: #311d24; /*#1c2424*/
+    background-color: rgb(20, 12, 0); /*#1c2424*/
 }
 
 body {
     margin-bottom: 300px;
     /*background-color: #F2D7C5;*/
-    background-color: #a1797c;
+    background-color: rgb(18, 54, 30);
 }
 img {
     float: none;
@@ -121,11 +121,11 @@ li {
     }
 
 h2 {
-    color: #d0bcbd;
+    color: rgb(254, 240, 244);
     padding-top: 50px;
-}
-p{
-    display:none;
+    text-decoration-line:none;
+    text-decoration-color: white;
+    text-decoration-style: solid;
 }
 t {
     display: none;
@@ -138,10 +138,65 @@ u {
 }
 
 h1{
-    color:darkred;
+    color:rgb(254, 240, 244);
 }
 
     /* Change the link color on hover */
    
 #Logo{
+}
+
+#linklabel
+{
+    border: none;
+    color: black;
+    font-weight: bold;
+    background-color: rgb(109, 3, 3);
+}
+.nav-link
+{
+    color: rgb(235, 207, 213);
+}
+h3
+{
+    background-color: rgb(33, 60, 41);
+    padding: 10px;
+    border-radius: 15px;
+    color: rgb(255, 227, 233);
+}
+h4,p,span
+{
+    color:rgb(238, 217, 222);
+}
+#EncounterContent
+{
+    background-color: rgb(33, 60, 41);
+    padding: 10px;
+    border-radius: 15px;
+    color: rgb(255, 227, 233);
+}
+
+input[type=button], button[type=button],a.btn,button.btn,input.btn
+{
+    color: white;
+    background-color: black;
+    border-color: rgb(37, 1, 1);
+}
+.results
+{
+    background-color: rgb(215, 184, 116);
+    padding: 10px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    border-style: inset;
+    border-color: rgb(239, 208, 140);
+    border-width: 1%;
+}
+#notes
+{
+    color: white;
+}
+label
+{
+    color: white;
 }

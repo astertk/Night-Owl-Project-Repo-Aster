@@ -37,25 +37,25 @@
         <div class="col-sm">
             <br />
             <h2> Create your Character with a template?</h2>
-            Easier, Step-by-Step <br /> <br />
+            <p>Easier, Step-by-Step</p> <br /> <br />
             <input type="button" class="btn btn-dark" value="Create a Character" onclick="window.location= '@Url.Action( "Template", "Character")'" />
         </div>
         <div class="col-sm">
             <br />
             <h2> Create your Character all from Scratch?</h2>
-            More advanced, but potentially more creative! <br /> <br />
+            <p>More advanced, but potentially more creative!</p> <br /> <br />
             <input type="button" class="btn btn-dark" value="Create a Character" onclick="window.location= '@Url.Action( "Scratch", "Character")'" />
         </div>
         <div class="col-sm">
             <br />
             <h2> Create a Random Character!</h2>
-            Let fate and destiny take over your choices! <br /> <br />
+            <p>Let fate and destiny take over your choices!</p> <br /> <br />
             <input id="random-character" type="button" class="btn btn-dark" value="Create a Random Character" onclick="window.location= '@Url.Action( "Random", "Character")'" />
         </div>
         <div class="col-sm">
             <br />
             <h2>Create a Character Sheet</h2>
-            Create a character sheet that randomizes your whole character and its stats <br /> <br />
+            <p>Create a character sheet that randomizes your whole character and its stats</p> <br /> <br />
             <a asp-controller="Character" asp-action="CreateSheet" class="btn btn-dark">Create a randomized character sheet</a>
         </div>
     </div>
@@ -71,9 +71,9 @@
             <div class="col">
                 @if (Model.materials[i] != null)
                 {
-                    <div class="row">@Model.materials[i].Name</div>
+                    <div class="row" id="notes">@Model.materials[i].Name</div>
                     <div class="row"><iframe style="width:256px; height: 256px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
-                    <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+                    <div class="row" id="notes">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
                     <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
                     <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-secondary m-1">Edit</a>

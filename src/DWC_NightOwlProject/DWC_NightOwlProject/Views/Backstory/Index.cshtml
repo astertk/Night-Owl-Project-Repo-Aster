@@ -36,12 +36,12 @@
         <div class="col-sm">
             <br />
             <h2> Create your backstory with a template?</h2>
-         Easier, Step-by-Step <br /> <br />
+         <h4>Easier, Step-by-Step</h4> <br /> <br />
          <input type="button" class="btn btn-dark" value="Create Your Backstory" id="templateButton" onclick="window.location= '@Url.Action( "Template", "Backstory")'" />
         </div>
         <div class="col-sm">
             <h2> Create your backstory all from Scratch?</h2>
-    More advanced, but potentially more creative! <br />
+    <h4>More advanced, but potentially more creative!</h4> <br />
     <input type="button" class="btn btn-dark" value="Create Your Backstory" id="scratchButton" onclick="window.location= '@Url.Action( "Scratch", "Backstory")'" />
         </div>
         
@@ -56,8 +56,8 @@
         {
                 @if (Model.material != null)
                 {
-                    <a>@Model.material.Completion</a> <br />
-                    <a>@Model.material.CreationDate.ToString()</a>
+                    <a class="results">@Model.material.Completion</a> <br />
+                    <a id="notes">@Model.material.CreationDate.ToString()</a>
                     <a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.material.Id" class="text-center btn btn-danger m-md-2">Delete</a>
                 }
         }
