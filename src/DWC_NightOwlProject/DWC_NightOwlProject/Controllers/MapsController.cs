@@ -12,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Drawing;
 using System.IO.Compression;
-using Microsoft.Web.Helpers;
+//using Microsoft.Web.Helpers;
 using System.Net;
 using EllipticCurve.Utils;
 using static OpenAI.GPT3.ObjectModels.SharedModels.IOpenAiModels;
