@@ -21,13 +21,13 @@ html {
 }
 
 nav {
-    background-color: #311d24; /*#1c2424*/
+    background-color: #000000; /*#1c2424*/
 }
 
 body {
     margin-bottom: 300px;
     /*background-color: #F2D7C5;*/
-    background-color: #a1797c;
+    background-color: #ffffff;
 }
 img {
     float: none;
@@ -61,8 +61,13 @@ canvas {
     z-index: -1;
 }
 
-.vnav{
-    
+.vnav {
+    border-color:black;
+    border:dotted;
+    background-color: white;
+    width: fit-content;
+    height:fit-content;
+    border-radius: 25px;
 }
 
 
@@ -96,6 +101,7 @@ li a {
     padding-right:20px;
     text-decoration: none;
     width:5%;
+
 }
 
 li {
@@ -116,12 +122,14 @@ li {
     }
 
     li a:hover:not(.active) {
-        background-color: #555;
-        color: #00ffff;
+        background-color: black;
+        color: red;
+        width: fit-content;
+        border-radius: 25px;
     }
 
 h2 {
-    color: #d0bcbd;
+    color: red;
     padding-top: 50px;
 }
 p{
@@ -134,14 +142,39 @@ s {
     display: none;
 }
 u {
-    display: none;
+    display: none; 
 }
 
-h1{
-    color:darkred;
+h1 {
+    color: red;
+    margin-bottom: 40px;
+    background: black;
+    width: fit-content;
+    border-radius: 15px 50px 30px;
+    padding:20px;
 }
 
     /* Change the link color on hover */
    
 #Logo{
+}
+
+.card {
+ 
+  color:white;
+  background:black;
+  border-radius: 15px 50px 30px;
+  padding: 20px;
+  margin:10px;
+  font-size:26px;
+}
+
+
+ 
+.card-title{
+    color:red;
+}
+
+.body {
+ color:gray;
 }
