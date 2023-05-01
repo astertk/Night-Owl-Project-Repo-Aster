@@ -107,7 +107,9 @@
         </nav>*@
         <nav class="navbar navbar-light bg-light fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="@Url.Action("Index", "Home")">DND World Creator</a>
+                @*<a class="navbar-brand" href="@Url.Action("Index", "Home")">DND World Creator</a>*@
+                <img src="~/css/motto 1.png" alt="The night is ours, but the future is yours!" style="width: 450px; height: 80px" />
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/css/dragon_Logo.png" alt="dragon logo for Campaign Creator" style="width: 80px; height: 80px" /></a>
                 <button class="navbar-toggler order-first" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
