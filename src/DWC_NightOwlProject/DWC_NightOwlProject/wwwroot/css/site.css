@@ -72,7 +72,7 @@ canvas {
 
 .main{
     display:flex;
-    margin-top:-500px;
+    margin-top:75px;
     padding-left:23%;
 }
 
@@ -453,12 +453,12 @@ h4,p,span
     color: rgb(255, 227, 233);
 }
 
-input[type=button], button[type=button],a.btn,button.btn,input.btn
+/*input[type=button], button[type=button],a.btn,button.btn,input.btn
 {
     color: white;
     background-color: black;
     border-color: rgb(37, 1, 1);
-}
+}*/
 .results
 {
     background-color: rgb(215, 184, 116);
