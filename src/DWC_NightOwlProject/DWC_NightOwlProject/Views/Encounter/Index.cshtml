@@ -1,0 +1,44 @@
+@model DWC_NightOwlProject.Data.MaterialVM
+@{
+    ViewData["Title"] = "Encounters";
+}
+<div class="container">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div class="text-center" id="title"><div class="container">
+    <div class="row">
+        <div class="col-sm">
+                    <br />
+                    <br />
+            <h1>Create an encounter for your game</h1><br />
+            <h3>Not sure what will happen to your players on the way? Let us figure it out!</h3>
+            <input type="button" class="btn btn-dark m-1" value="Encounter Form" onclick="window.location= '@Url.Action( "EncounterForm", "Encounter")'" />
+        </div>
+    </div>
+</div>
+@if(Model!=null)
+{
+    <div class="row">
+        <div class="col-sm">
+        @for (var i = 0; i < Model.materials.Count; ++i)
+        {
+            <div class="col">
+                @if (Model.materials[i] != null)
+                {
+                    <a class="btn btn-outline-primary m-1" id="linklabel" onclick="showContent()">@Model.materials[i].Name</a>
+
+                    <script>
+                        function showContent() {
+                            document.getElementById("EncounterContent").innerHTML="@Model.materials[i].Completion";
+                        };
+                    </script>
+                }
+            </div>
+        }
+        </div>
+        <div class="col-sm">
+            <div id="EncounterContent"></div>
+        </div>
+    </div>
+}
+</div>
+

@@ -2,33 +2,55 @@
 @{
     ViewData["Title"] = "Index";
 }
+
+<header>
+    <br />
+    <br />
+    <h1>
+        Quest
+    </h1>
+
+    <h4>
+        A Quest is the party's current mission or obstacle that they must overcome.
+        <br />
+        <br />
+        Craft your Quest in one of three ways.
+    </h4>
+    
+
+
+
 <div class="text-center">
-    <h2>Quest Creation</h2>
+    <br />
+    <h1>Quest Creation</h1>
 </div>
 
 <div class="text-center">
-    <span>You may be preparing to set out on your journey, but for what reason are you going?</span>
-    <span>Create your quests with a template or create your own!</span>
+    <h3>You may be preparing to set out on your journey, but for what reason are you going?
+    Create your quests with a template or create your own!</h3>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <h1>Create your Quest with a template?</h1>
-            Much easier, leads you step by step <br />
-            <button type="button" class="" value="Create a Quest" onclick="window.location='@Url.Action("Template", "Quests")'">Create your Quests</button>
+            <br />
+            <h2>Create your Quest with a template?</h2>
+            <p>Much easier, leads you step by step</p> <br /> <br />
+            <button type="button" class="btn btn-dark" value="Create a Quest" onclick="window.location='@Url.Action("Template", "Quests")'">Create your Quests</button>
         </div>
 
         <div class="col-sm">
-            <h1>Create your Quest from Scratch?</h1>
-            More advanced, but potentially more creative! <br />
-            <button type="button" class="" value="Create a Quest" onclick="window.location='@Url.Action("Scratch", "Quests")'">Create your Quests</button>
+            <br />
+            <h2>Create your Quest from Scratch?</h2>
+            <p>More advanced, but potentially more creative!</p> <br />
+            <button type="button" class="btn btn-dark" value="Create a Quest" onclick="window.location='@Url.Action("Scratch", "Quests")'">Create your Quests</button>
         </div>
 
         <div class="col-sm">
-            <h1>Create a guided quest?</h1>
-            Make a quest with steps along the way that much be reach<br />
-            <button type="button" class="" value="Create a Quest" onclick="window.location='@Url.Action("GuidedQuestTemplate", "Quests")'">Create your Quests</button>
+            <br />
+            <h2>Create a guided quest?</h2>
+            <p>Make a quest with steps along the way that much be reached</p><br />
+            <button type="button" class="btn btn-dark" value="Create a Quest" onclick="window.location='@Url.Action("GuidedQuestTemplate", "Quests")'">Create your Quests</button>
         </div>
     </div>
 </div>
@@ -42,8 +64,8 @@
             <div class="col">
                 @if (Model.materials[i] != null)
                 {
-                    <div class="row">@Model.materials[i].Completion</div>
-                    <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+                    <div class="row" id="results" style="color: rgb(238, 217, 222)">@Model.materials[i].Completion</div>
+                    <div class="row" id="notes">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
                     <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
                     <a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>

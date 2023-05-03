@@ -5,16 +5,33 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+<header>
+    <br />
+    <br />
+    <h1>
+        Character
+    </h1>
 
+    <h4>
+        A Character material is your customized avatar that you use in game. 
+        <br />
+
+        <br />
+        Craft your Character model in one of three ways, then add on to it with a character sheet.
+        <br />
+    </h4>
+    
+</header>
 
 
 <div class="text-center" id="title">
-    <h2>Character Creation</h2>
+    <br />
+    <h1>Character Creation</h1>
 </div>
 
 <div class="text-center" id="adviceBox">
-    <span>Who will be joining you on your journey?</span>
-    <p>Fill your prophecy with a template, or create your own</p>
+    <h4>Who will be joining you on your journey?</h4>
+    <h4>Fill your prophecy with a template, or create your own</h4>
 </div>
 
 
@@ -22,21 +39,25 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <h1> Create your Character with a template?</h1>
-            Easier, Step-by-Step <br />
-            <input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
+            <h2> Create your Character with a template?</h2>
+            <p>Easier, Step-by-Step</p> <br /> <br />
+            <input type="button" class="btn btn-dark" value="Create a Character" onclick="window.location= '@Url.Action( "Template", "Character")'" />
         </div>
         <div class="col-sm">
-            <h1> Create your Character all from Scratch?</h1>
-            More advanced, but potentially more creative! <br />
-            <input type="button" class="" value="From Scratch" onclick="window.location= '@Url.Action( "Scratch", "Character")'" />
+            <h2> Create your Character all from Scratch?</h2>
+            <p>More advanced, but potentially more creative!</p> <br />
+            <input type="button" class="btn btn-dark" value="Create a Character" onclick="window.location= '@Url.Action( "Scratch", "Character")'" />
         </div>
         <div class="col-sm">
-            <h1> Create a Random Character!</h1>
-            Let fate and destiny take over your choices! <br />
-            <input id="random-character" type="button" class="" value="Random" onclick="window.location= '@Url.Action( "Random", "Character")'" />
+            <h2> Create a Random Character!</h2>
+            <p>Let fate and destiny take over your choices!</p> <br />
+            <input id="random-character" type="button" class="btn btn-dark" value="Create a Random Character" onclick="window.location= '@Url.Action( "Random", "Character")'" />
         </div>
-
+        <div class="col-sm">
+            <h2>Create a Character Sheet</h2>
+            <p>Create a character sheet that randomizes your whole character and its stats</p> <br />
+            <a asp-controller="Character" asp-action="CreateSheet" class="btn btn-dark">Create a randomized character sheet</a>
+        </div>
     </div>
 </div>
 
@@ -50,14 +71,15 @@
             <div class="col">
                 @if (Model.materials[i] != null)
                 {
-                    <div class="row">@Model.materials[i].Name</div>
-                    <div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
-                    <div class="row">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+                    <div class="row" id="notes">@Model.materials[i].Name</div>
+                    <div class="row"><iframe style="width:256px; height: 256px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
+                    <div class="row" id="notes">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
 
                     <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
                     <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-secondary m-1">Edit</a>
-                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>
-                    <a class="btn btn-outline-primary m-1" onclick="downloadFile()" id="downloadButton">Download</a>
+                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>  
+                    <a asp-controller="Character" asp-action="CreateSheetWithCharacter" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Generate character sheet</a>
+                    /*<a class="btn btn-outline-primary m-1" onclick="downloadFile()" id="downloadButton">Download</a>
 
                    <script>
                         function downloadFile() {
@@ -72,11 +94,9 @@
                             aElement.click();
                             URL.revokeObjectURL(url);
                         };
-                    </script>
+                    </script>*/
                 }
             </div>
         }
     </div>
 }
-
-
