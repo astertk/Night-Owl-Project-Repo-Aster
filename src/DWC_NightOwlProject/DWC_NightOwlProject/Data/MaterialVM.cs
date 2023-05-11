@@ -17,6 +17,12 @@ namespace DWC_NightOwlProject.Data
         public Material material { get; set; }
         public List<Material> materials { get; set; }
 
+        public List<Character> characters { get; set; }
+
+        public List<Quest> quests { get; set; }
+
+        public List<Map> maps { get; set; }
+
         public string r0 { get; set; }
         public string r1 { get; set; }
         public string r2 { get; set; }
