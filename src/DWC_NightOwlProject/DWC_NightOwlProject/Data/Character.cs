@@ -6,8 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DWC_NightOwlProject.Data;
 
-[Table("Material")]
-public partial class Material
+public partial class Character
 {
     [Key]
     [Column("ID")]
@@ -32,10 +31,8 @@ public partial class Material
     [StringLength(1000)]
     public string Prompt { get; set; } = null!;
 
+    [StringLength(4000)]
     public string Completion { get; set; } = null!;
-
-    [StringLength(100)]
-    public string? FileName { get; set; }
 
     public byte[]? PictureData { get; set; }
 }

@@ -202,22 +202,22 @@
     @if (Model != null)
     {
         <div class="row">
-            @for (var i = 0; i < Model.materials.Count; ++i)
+            @for (var i = 0; i < Model.maps.Count; ++i)
             {
 
                 <div class="col">
-                    @if (Model.materials[i] != null)
+                    @if (Model.maps[i] != null)
                     {
-                        <div class="row" id="notes">@Model.materials[i].Name</div>
+                        <div class="row" id="notes">@Model.maps[i].Name</div>
                        
                     <br />
-                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.materials[i].PictureData)" width="256" height="256" />
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.maps[i].PictureData)" width="256" height="256" />
                         @*<div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].PictureData></iframe></div>*@
                         @*<div class="row">Creation Date: @Model.materials[i].CreationDate.ToOADate().ToString();</div>*@
                         <br />
 
-                        <a asp-controller="Maps" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
-                        <a asp-controller="Maps" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>
+                        <a asp-controller="Maps" asp-action="details" asp-route-id="@Model.maps[i].Id" class="btn btn-primary m-1">Details</a>
+                        <a asp-controller="Maps" asp-action="delete" asp-route-id="@Model.maps[i].Id" class="btn btn-danger m-1">Delete</a>
                     }
                 </div>
             }

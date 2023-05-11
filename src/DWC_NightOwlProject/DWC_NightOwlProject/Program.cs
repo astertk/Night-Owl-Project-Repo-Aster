@@ -43,6 +43,7 @@ builder.Services.AddDbContext<WebAppDbContext>(options => options
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
 builder.Services.AddScoped<IWorldRepository, WorldRepository>();
+builder.Services.AddScoped<IMapRepository, MapRepository>();
 builder.Services.AddScoped<DbContext, WebAppDbContext>();
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();

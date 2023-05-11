@@ -18,14 +18,16 @@ public class WorldController : Controller
     private IWorldRepository worldRepo;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IMaterialRepository _materialRepository;
+    private readonly IMapRepository _mapRepository;
 
 
-    public WorldController(ILogger<WorldController> logger, IWorldRepository repo, UserManager<IdentityUser> um, IMaterialRepository materialRepository)
+    public WorldController(ILogger<WorldController> logger, IWorldRepository repo, UserManager<IdentityUser> um, IMaterialRepository materialRepository, IMapRepository mapRepository)
     {
         _userManager = um;
         _logger = logger;
         worldRepo = repo;
         _materialRepository = materialRepository;
+        _mapRepository = mapRepository;
     }
 
     [Authorize]
@@ -38,11 +40,11 @@ public class WorldController : Controller
         var backstory = new Material();
         var quests = new List<Material>();
         var characters = new List<Material>();
-        var maps = new List<Material>();
+        var maps = new List<Map>();
         backstory = _materialRepository.GetBackstoryById(userId);
         quests = _materialRepository.GetAllQuestsById(userId);
         characters = _materialRepository.GetAllCharactersById(userId);
-        maps = _materialRepository.GetAllMapsById(userId);
+        maps = _mapRepository.GetAllMapsById(userId);
 
         if (userWorld != null)
         {
