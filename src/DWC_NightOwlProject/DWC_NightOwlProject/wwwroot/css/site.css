@@ -1,6 +1,32 @@
 ﻿* {
     font-family: 'Comfortaa', cursive;
 }
+/*Code from McCambley on https://codepen.io/mccambley/pen/ExWmoQB*/
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    75% {
+        transform: rotate(0deg);
+    }
+
+    80% {
+        transform: rotate(-5deg);
+    }
+
+    85% {
+        transform: rotate(5deg);
+    }
+
+    95% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
 
 
 @media (min-width: 768px) {
@@ -111,7 +137,6 @@ li {
 =======
     /*border-bottom: 1px solid #555;*/
     
->>>>>>> 8ee7a9f39387e41e03fad440dab29a1429d7949d
 }
 
     li:last-child {
@@ -126,12 +151,10 @@ li {
     li a:hover:not(.active) {
         background-color: #555;
         color: #00ffff;
-<<<<<<< HEAD
-    }*/
+    }
 h2{
     color:brown;
     padding-top:50px;
-=======
     }
 
 h2 {
@@ -153,14 +176,13 @@ u {
 
 h1{
     color:rgb(254, 240, 244);
->>>>>>> 8ee7a9f39387e41e03fad440dab29a1429d7949d
+
 }
 
     /* Change the link color on hover */
    
 #Logo{
 }
-<<<<<<< HEAD
 /*.sidebar {
     width: 10%;
     height: 530px;
@@ -288,7 +310,24 @@ body.offcanvas-open {
     white-space: nowrap;
 }*/
 
-=======
+
+.darkMode {
+    --main-bg: ;
+    --text-bg: ;
+    --shadow: ;
+    --text-sec: ;
+    --text-main: ;
+}
+
+.lightMode {
+    --main-bg: ;
+    --text-bg: ;
+    --shadow: ;
+    --text-sec: ;
+    --text-main: ;
+}
+
+
 
 /*Code from https://blog.shahednasser.com/how-to-style-an-audio-element/ by Shahed Nasser*/
 .audio-player {
