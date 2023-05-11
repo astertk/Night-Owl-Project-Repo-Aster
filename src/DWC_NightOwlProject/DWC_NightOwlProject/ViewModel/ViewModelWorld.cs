@@ -15,6 +15,6 @@ namespace DWC_NightOwlProject.ViewModel
 
         public List<Material> characters { get;set;}
 
-        public List<Material> maps { get;set;}
+        public List<Map> maps { get;set;}
     }
 }

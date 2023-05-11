@@ -11,6 +11,7 @@ namespace DWC_NightOwlProject.DAL.Concrete
     public class MaterialRepository: Repository<Material>, IMaterialRepository
     {
     private DbSet<Material> _materials;
+    private DbSet<Map> _maps;
     private readonly UserManager<IdentityUser> _userManager;
     
 
@@ -18,6 +19,7 @@ namespace DWC_NightOwlProject.DAL.Concrete
         {
             _materials = ctx.Materials;
             _userManager = userManager;
+            _maps = ctx.Maps;
         }
 
        
@@ -82,19 +84,19 @@ namespace DWC_NightOwlProject.DAL.Concrete
 
         }
 
-        public Material GetMapByIdandMaterialId(string userId, int id)
+        public Map GetMapByIdandMaterialId(string userId, int id)
         {
-            var result = new Material();
-            result = _materials.Where(x => x.UserId == userId).Where(x => x.Type == "Map").Where(x => x.Id == id).FirstOrDefault();
+            var result = new Map();
+            result = _maps.Where(x => x.UserId == userId).Where(x => x.Id == id).FirstOrDefault();
             return result;
         }
 
-        public List<Material> GetAllMapsById(string userId)
+        public List<Map> GetAllMapsById(string userId)
         {
-            var result = new List<Material>();
+            var result = new List<Map>();
 
 
-            result = _materials.Where(x => x.UserId == userId).Where(x => x.Type == "Map").ToList();
+            result = _maps.Where(x => x.UserId == userId).ToList();
 
 
             return result;
