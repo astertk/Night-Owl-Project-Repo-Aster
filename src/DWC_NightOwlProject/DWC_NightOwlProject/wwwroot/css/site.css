@@ -53,14 +53,14 @@ html {
 }*/
 
 nav {
-    background-color: rgb(20, 12, 0); /*#1c2424*/
+    background-color: #1e0d0b; /*#1c2424*/
 }
 
 
 body {
     margin-bottom: 300px;
     /*background-color: #F2D7C5;*/
-    background-color: rgb(18, 54, 30);
+    background-color: #f8fdfa;
 }
 img {
     float: none;
@@ -158,7 +158,7 @@ h2{
     }
 
 h2 {
-    color: rgb(254, 240, 244);
+    color: #0b0504;
     padding-top: 50px;
     text-decoration-line:none;
     text-decoration-color: white;
@@ -175,7 +175,7 @@ u {
 }
 
 h1{
-    color:rgb(254, 240, 244);
+    color: #0b0504;
 
 }
 
@@ -209,17 +209,18 @@ h1{
 
 .offcanvas-header {
     padding: 1rem;
-    background-color: #46343a;
+    background-color: #1e0d0b;
 }
 
 .offcanvas-title {
     margin-bottom: 0;
-    color: #b8a3a5;
+    color: #ffffff;
 }
 
 .offcanvas-body {
     padding: 1rem;
-    background-color: #5a4a50;
+    background-color: #87302a;
+    background-image: linear-gradient(to bottom right, #1e0d0b, #5c231e, #ba3f36);
 }
 
 /* Blur effect */
@@ -485,14 +486,20 @@ body.offcanvas-open {
 }
 h3
 {
-    background-color: rgb(33, 60, 41);
+    background-color: #ba3f36;
+    background-image: linear-gradient(to bottom right, #ba3f36,  #e7aca7);
     padding: 10px;
     border-radius: 15px;
+    color: #ffffff;
+}
+
+span {
     color: rgb(255, 227, 233);
 }
-h4,p,span
+
+h4,p
 {
-    color:rgb(238, 217, 222);
+    color: #87302a;
 }
 #EncounterContent
 {
@@ -524,6 +531,6 @@ h4,p,span
 }
 label
 {
-    color: white;
+    color: black;
 }
 

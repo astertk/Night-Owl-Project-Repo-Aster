@@ -37,7 +37,7 @@
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-light">Logout</button>
+                <button type="submit" class="nav-link text-light text-decoration-underline">Logout</button>
         </form>
     </li>
 }
@@ -68,6 +68,8 @@ else
             </div>
     </li>
     <li class="nav-item">
+        <br />
+        <br />
         <a class="nav-link text-light text-decoration-underline" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">
