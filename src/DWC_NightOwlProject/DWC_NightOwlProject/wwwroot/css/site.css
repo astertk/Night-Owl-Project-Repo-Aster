@@ -45,23 +45,17 @@ html {
     min-height: 100%;
 }
 
-
-
-/*body {
-    margin-bottom: 200px;
-    background: white;
-}*/
-
 nav {
-    background-color: #1e0d0b; /*#1c2424*/
+    background-color: var(--nav-bar-color); /*#1c2424*/
 }
 
 
 body {
     margin-bottom: 300px;
     /*background-color: #F2D7C5;*/
-    background-color: #f8fdfa;
+    background-color: var(--main-bg);
 }
+
 img {
     float: none;
     margin-left: auto;
@@ -106,7 +100,7 @@ canvas {
 .main{
     display:flex;
     margin-top:115px;
-    padding-left:23%;
+    padding-left: 18%;
 }
 
 ​​​​​​​​​
@@ -152,13 +146,9 @@ li {
         background-color: #555;
         color: #00ffff;
     }
-h2{
-    color:brown;
-    padding-top:50px;
-    }
 
 h2 {
-    color: #0b0504;
+    color: var(--text-h2);
     padding-top: 50px;
     text-decoration-line:none;
     text-decoration-color: white;
@@ -175,7 +165,7 @@ u {
 }
 
 h1{
-    color: #0b0504;
+    color: var(--text-h1);
 
 }
 
@@ -183,25 +173,6 @@ h1{
    
 #Logo{
 }
-/*.sidebar {
-    width: 10%;
-    height: 530px;
-    border-radius: 20px;
-    background-color: rgb(20, 12, 0);
-    text-align: center;
-    color: rgb(20, 12, 0);
-}
-@media (max-width: 770px) {
-    .body-section {
-        display: block;
-    }
-
-    .sidebar {
-        width: 10%;
-        height: 70px;
-        text-align: center;
-    }
-}*/
 
 .offcanvas-start {
     width: 320px;
@@ -209,7 +180,7 @@ h1{
 
 .offcanvas-header {
     padding: 1rem;
-    background-color: #1e0d0b;
+    background-color: var(--sidebar-header-color); /*#1e0d0b*/
 }
 
 .offcanvas-title {
@@ -220,7 +191,7 @@ h1{
 .offcanvas-body {
     padding: 1rem;
     background-color: #87302a;
-    background-image: linear-gradient(to bottom right, #1e0d0b, #5c231e, #ba3f36);
+    background-image: var(--sidebar-color);
 }
 
 /* Blur effect */
@@ -230,103 +201,87 @@ body.offcanvas-open {
     filter: blur(3px);
 }
 
-/* Icon styles */
-/*.sidebar-icon {
-    display: inline-block;
-    width: 48px;
-    height: 48px;
-    background-color: #eee;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    position: relative;
-    overflow: hidden;
-}
-
-    .sidebar-icon:hover .sidebar-title {
-        animation: slide-in 0.5s forwards;
-    }
-
-    .sidebar-icon:before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 24px;
-        color: #333;
-    }
-
-.sidebar-home:before {
-    content: "\f015";
-    font-family: "Font Awesome 5 Free";
-}
-
-.sidebar-world:before {
-    content: "\f0ac";
-    font-family: "Font Awesome 5 Free";
-}
-
-.sidebar-backstory:before {
-    content: "\f1e6";
-    font-family: "Font Awesome 5 Free";
-}
-
-.sidebar-quests:before {
-    content: "\f0ae";
-    font-family: "Font Awesome 5 Free";
-}
-
-.sidebar-maps:before {
-    content: "\f279";
-    font-family: "Font Awesome 5 Free";
-}
-
-.sidebar-characters:before {
-    content: "\f007";
-    font-family: "Font Awesome 5 Free";
-}*/
-
-/* Animation styles */
-/*@keyframes slide-in {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-.sidebar-title {
-    display: none;
-    position: absolute;
-    bottom: -1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    font-weight: bold;
-    white-space: nowrap;
-}*/
-
-
+/*Code from McCambley on https://codepen.io/mccambley/pen/ExWmoQB*/
 .darkMode {
-    --main-bg: ;
-    --text-bg: ;
-    --shadow: ;
-    --text-sec: ;
-    --text-main: ;
+    --nav-bar-color: #1e0d0b;
+    --sidebar-color: linear-gradient(to bottom right, #1e0d0b, #5c231e, #ba3f36);
+    --sidebar-header-color: #1e0d0b;
+    --main-bg: #f8fdfa;
+    --text-bg: beige;
+    --shadow: #a1c6ea;
+    --text-h1: #0b0504;
+    --text-h2: #0b0504;
+    --text-bg-img-h3: linear-gradient(to bottom right, #ba3f36, #e7aca7);
+    --text-h3: #ffffff;
+    --text-h4: #87302a;
+    --text-sec: #bbd1ea;
+    --text-main: #dae3e5;
 }
 
 .lightMode {
-    --main-bg: ;
-    --text-bg: ;
-    --shadow: ;
-    --text-sec: ;
-    --text-main: ;
+    --nav-bar-color: black;
+    --sidebar-color: linear-gradient(to bottom right, #102A43, #243b53, #486581, #829AB1);
+    --sidebar-header-color: black;
+    --main-bg: #102A43;
+    --text-bg: #627D98;
+    --shadow: #a1c6ea;
+    --text-h1: #fbf4ef;
+    --text-h2: #D9e2ec; /*#D9e2ec*/
+    --text-bg-img-h3: linear-gradient(to bottom right, #243b53, #486581, #829AB1);
+    --text-h3: #ffffff;
+    --text-h4: #b1b1b1; /*#b1b1b1*/
+    --text-sec: #507dbc;
+    --text-main: #16263b;
 }
+
+.toggler {
+    position: relative;
+    margin-bottom: 24px;
+    user-select: none;
+}
+
+.content:hover .toggler_icon {
+    animation: wiggle 1s linear;
+}
+
+.toggler_input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    user-select: none;
+}
+
+.toggler_label {
+    display: flex;
+    align-items:start;
+    cursor: pointer;
+    border: 3px solid var(--text-main);
+    padding: 2px;
+    border-radius: 50px;
+    width: 50px;
+    margin: 0 auto;
+    background-color: var(--text-bg);
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.toggler_label:hover {
+    background-color: var(--shadow);
+}
+
+.toggler_label:active {
+    transform: scale(0.95);
+}
+
+.transparency {
+    opacity: 1;
+    transition: all 0.1s ease;
+}
+
+    .transparency:hover {
+        opacity: 0.7;
+    }
 
 
 
@@ -338,16 +293,6 @@ body.offcanvas-open {
     width: auto;
     height: auto;
 }
-
-/*.icon-container {
-    width: 45%;
-    height: 45%;
-    background-color: #B2081E;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}*/
 
 .audio-icon {
     width: 100%;
@@ -373,96 +318,6 @@ body.offcanvas-open {
     color: #b8a3a5;
 }
 
-/*.timeline {
-    -webkit-appearance: none;
-    width: calc(100% - (var(--player-button-width) + var(--sound-button-width) + var(--space)));
-    height: .5em;
-    background-color: #e5e5e5;
-    border-radius: 5px;
-    background-size: 0% 100%;
-    background-image: linear-gradient(#DE5E97, #DE5E97);
-    background-repeat: no-repeat;
-    margin-right: var(--space);
-}
-
-    .timeline::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 1em;
-        height: 1em;
-        border-radius: 50%;
-        cursor: pointer;
-        opacity: 0;
-        transition: all .1s;
-        background-color: #a94672;
-    }
-
-    .timeline::-moz-range-thumb {
-        -webkit-appearance: none;
-        width: 1em;
-        height: 1em;
-        border-radius: 50%;
-        cursor: pointer;
-        opacity: 0;
-        transition: all .1s;
-        background-color: #a94672;
-    }
-
-    .timeline::-ms-thumb {
-        -webkit-appearance: none;
-        width: 1em;
-        height: 1em;
-        border-radius: 50%;
-        cursor: pointer;
-        opacity: 0;
-        transition: all .1s;
-        background-color: #a94672;
-    }
-
-    .timeline::-webkit-slider-thumb:hover {
-        background-color: #943f65;
-    }
-
-    .timeline:hover::-webkit-slider-thumb {
-        opacity: 1;
-    }
-
-    .timeline::-moz-range-thumb:hover {
-        background-color: #943f65;
-    }
-
-    .timeline:hover::-moz-range-thumb {
-        opacity: 1;
-    }
-
-    .timeline::-ms-thumb:hover {
-        background-color: #943f65;
-    }
-
-    .timeline:hover::-ms-thumb {
-        opacity: 1;
-    }
-
-    .timeline::-webkit-slider-runnable-track {
-        -webkit-appearance: none;
-        box-shadow: none;
-        border: none;
-        background: transparent;
-    }
-
-    .timeline::-moz-range-track {
-        -webkit-appearance: none;
-        box-shadow: none;
-        border: none;
-        background: transparent;
-    }
-
-    .timeline::-ms-track {
-        -webkit-appearance: none;
-        box-shadow: none;
-        border: none;
-        background: transparent;
-    }*/
-
 .sound-button {
     background-color: transparent;
     border: 0;
@@ -484,13 +339,12 @@ body.offcanvas-open {
 {
     color: rgb(235, 207, 213);
 }
-h3
-{
+h3 {
     background-color: #ba3f36;
-    background-image: linear-gradient(to bottom right, #ba3f36,  #e7aca7);
+    background-image: var(--text-bg-img-h3);
     padding: 10px;
     border-radius: 15px;
-    color: #ffffff;
+    color: var(--text-h3);
 }
 
 span {
@@ -499,7 +353,7 @@ span {
 
 h4,p
 {
-    color: #87302a;
+    color: var(--text-h4);
 }
 #EncounterContent
 {
