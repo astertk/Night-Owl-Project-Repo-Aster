@@ -41,6 +41,7 @@ public class MapsController : Controller
 
         vm.maps = result;
         return View(vm);
+        return View();
     }
 
 
