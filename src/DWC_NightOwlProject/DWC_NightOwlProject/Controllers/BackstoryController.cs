@@ -21,16 +21,18 @@ namespace DWC_NightOwlProject.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IRepository<Template> _templateRepository;
         private readonly IRepository<World> _worldRepository;
+        private readonly IBackstoryRepository backstoryRepository;
 
         public BackstoryController(IMaterialRepository materialRepository, IConfiguration config, 
                                    UserManager<IdentityUser> userManager, IRepository<Template> templateRepository, 
-                                   IRepository<World> worldRepository)
+                                   IRepository<World> worldRepository,IBackstoryRepository backstoryRepo)
         {
             _materialRepository = materialRepository;
             _config = config;
             _userManager = userManager;
             _templateRepository = templateRepository;
             _worldRepository = worldRepository;
+            backstoryRepository=backstoryRepo;
         }
 
         // GET: HomeController1
@@ -46,13 +48,21 @@ namespace DWC_NightOwlProject.Controllers
             }*/
             /*ViewBag.Backstory = _materialRepository.GetBackstoryById(id);*/
 
-            var result = new Material();
-            result = _materialRepository.GetBackstoryById(id);
+            var result = new Backstory();
+            var list = backstoryRepository.GetAllBackstoriesById(id);
+            if(list!=null)
+            {
+                result=list.First();
+            }
+            else
+            {
+                result=null;
+            }
 
             //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
 
             /*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
-            vm.material = result;
+            vm.backstory = result;
             return View(vm);
         }
         [Authorize]
@@ -126,11 +136,11 @@ namespace DWC_NightOwlProject.Controllers
 
 
 
-            var material = new Material();
+            var material = new Backstory();
             material.UserId = userId;
             material.Id = 0;
             material.Name = "";
-            material.Type = "Backstory";
+            //material.Type = "Backstory";
             material.CreationDate = DateTime.Now;
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
             material.Prompt += "...";
@@ -176,18 +186,18 @@ namespace DWC_NightOwlProject.Controllers
             }
 
            
-            var material = new Material();
+            var material = new Backstory();
             material.UserId = userId;
             material.Name = "Backstory";
             material.Id = 0;
             material.Name = "";
-            material.Type = "Backstory";
+            //material.Type = "Backstory";
             material.CreationDate = DateTime.Now;
             material.Prompt = TempData.Peek("HoldPrompt").ToString();
             material.Prompt += "...";
             material.Completion = TempData.Peek("HoldCompletion").ToString();
 
-            _materialRepository.AddOrUpdate(material);
+            backstoryRepository.AddOrUpdate(material);
             return RedirectToAction("Index", material);
         }
 
@@ -233,8 +243,8 @@ namespace DWC_NightOwlProject.Controllers
         public ActionResult Delete(int id)
         {
             var userId = _userManager.GetUserId(User);
-            var material = new Material();
-            material = _materialRepository.GetBackstoryById(userId);
+            var material = new Backstory();
+            material = backstoryRepository.GetAllBackstoriesById(userId).First();
             return View(material);
         }
 
