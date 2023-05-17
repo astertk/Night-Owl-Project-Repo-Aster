@@ -30,6 +30,10 @@ public class HomeController : Controller
         ViewBag.Message = $"User {name} = is authenticated? {isAthenticated} using type {authType}, ID from Identity is {id}";
         return View();
     }
+    public IActionResult About()
+    {
+        return View();
+    }
 
     public IActionResult Privacy()
     {
