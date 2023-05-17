@@ -56,9 +56,21 @@
         {
                 @if (Model.material != null)
                 {
-                    <p class="resultsBackstory">@Model.material.Completion</p> <br />
-                    <a id="notes">@Model.material.CreationDate.ToString()</a>
-                    <a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.material.Id" class="text-center btn btn-danger m-md-2">Delete</a>
+                    <p class="resultsBackstory">@Model.backstory.Completion</p> <br />
+                    <a id="notes">@Model.backstory.CreationDate.ToString()</a>
+                    <a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.backstory.Id" class="text-center btn btn-danger m-md-2">Delete</a>
+                    <a class="btn btn-outline-primary m-1" onclick="downloadFile()">Download this backstory!</a>
+                    <script>
+                        function downloadFile() {
+                            const link = document.createElement("a");
+                            const content = "@Html.Raw(@Model.backstory.Completion)";
+                            const file = new Blob([content], { type: "text/plain" });
+                            link.href = URL.createObjectURL(file);
+                            link.download = "charactersheet.txt";
+                            link.click();
+                            URL.revokeObjectURL(link.href);
+                        };
+                    </script>
                 }
         }
         </div>
