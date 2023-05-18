@@ -63,9 +63,7 @@ public partial class WebAppDbContext : DbContext
 
         modelBuilder.Entity<Quest>(entity =>
         {
-<<<<<<< HEAD
             entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC27EC70E163");
-=======
             entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC2705807337");
             entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC27C9724F1A");
         });
@@ -73,7 +71,6 @@ public partial class WebAppDbContext : DbContext
         modelBuilder.Entity<Song>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Songs__3214EC2711E89ACD");
->>>>>>> 5c627412535f69510694d1ffbcdb0f57d99233da
         });
 
         modelBuilder.Entity<World>(entity =>
