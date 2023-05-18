@@ -47,6 +47,7 @@ public class CharacterController : Controller
 
         vm.characters = result;
         return View(vm);
+        return View();
     }
 
     [Authorize]

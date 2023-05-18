@@ -22,6 +22,9 @@ namespace DWC_NightOwlProject.Data
         public List<Quest> quests { get; set; }
 
         public List<Map> maps { get; set; }
+        public List<Backstory> backstories{get;set;}
+        public List<Encounter> encounters {get;set;}
+        public Backstory backstory{get;set;}
 
         public List<Song> songs { get; set; }
 

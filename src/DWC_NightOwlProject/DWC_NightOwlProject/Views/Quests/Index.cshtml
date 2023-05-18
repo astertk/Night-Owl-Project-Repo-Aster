@@ -16,6 +16,7 @@
         <br />
         Craft your Quest in one of three ways.
     </h4>
+</header>
     
 
 
@@ -59,16 +60,28 @@
 @if (Model != null)
 {
     <div class="row">
-        @for (var i = 0; i < Model.materials.Count; ++i)
+        @for (var i = 0; i < Model.quests.Count; ++i)
         {
             <div class="col">
-                @if (Model.materials[i] != null)
+                @if (Model.quests[i] != null)
                 {
-                    <div class="row" id="results" style="color: rgb(238, 217, 222)">@Model.materials[i].Completion</div>
-                    <div class="row" id="notes">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+                    <div class="row" id="results" style="color: rgb(238, 217, 222)">@Model.quests[i].Completion</div>
+                    <div class="row" id="notes">Creation Date: @Model.quests[i].CreationDate.ToString()</div>
 
-                    <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
-                    <a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Delete</a>
+                    <a asp-controller="Quests" asp-action="Details" asp-route-id="@Model.quests[i].Id" class="btn btn-primary m-1">Details</a>
+                    <a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.quests[i].Id" class="btn btn-primary m-1">Delete</a>
+                    <a class="btn btn-outline-primary m-1" onclick="downloadFile()">Download this quest!</a>
+                    <script>
+                        function downloadFile() {
+                            const link = document.createElement("a");
+                            const content = "@Html.Raw(@Model.quests[i].Completion)";
+                            const file = new Blob([content], { type: "text/plain" });
+                            link.href = URL.createObjectURL(file);
+                            link.download = "charactersheet.txt";
+                            link.click();
+                            URL.revokeObjectURL(link.href);
+                        };
+                    </script>
                 }
             </div>
         }

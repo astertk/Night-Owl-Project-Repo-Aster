@@ -19,24 +19,26 @@ public class EncounterController : Controller
     private readonly IMaterialRepository _materialRepository;
     private IWorldRepository worldRepo;
     private readonly IConfiguration _config;
+    private readonly IEncounterRepository encounterRepository;
     private readonly string materialType="Encounter";
 
-    public EncounterController(UserManager<IdentityUser> um, IMaterialRepository materialRepository,IWorldRepository wRepo, IConfiguration config)
+    public EncounterController(UserManager<IdentityUser> um, IMaterialRepository materialRepository,IWorldRepository wRepo, IConfiguration config,IEncounterRepository encounterrepo)
     {
         _userManager = um;
         _materialRepository = materialRepository;
         worldRepo=wRepo;
         _config=config;
+        encounterRepository=encounterrepo;
     }
     [Authorize]
     public IActionResult Index()
     {
         var vm = new MaterialVM();
         string id = _userManager.GetUserId(User);
-        var result = new List<Material>();
-        result = _materialRepository.GetAllEncountersById(id);
+        var result = new List<Encounter>();
+        result = encounterRepository.GetAllEncountersById(id);
 
-        vm.materials = result;
+        vm.encounters = result;
         return View(vm);
     }
 
@@ -58,23 +60,24 @@ public class EncounterController : Controller
     {
         String userId = _userManager.GetUserId(User);
         World userWorld=getUserWorld(userId);
-        Material m= new Material();
-        m.Type=materialType;
-        m.UserId=userId;
-        m.WorldId=userWorld.Id;
-        m.Name=evm.Description();
-        m.CreationDate=DateTime.Now;
-        m.Prompt=evm.Prompt();
-        m.Completion=evm.Description()+evm.Result;
+        Encounter e= new Encounter();
+        e.Type=evm.Type;
+        e.Biome=evm.Biome;
+        e.UserId=userId;
+        e.WorldId=userWorld.Id;
+        //e.Name=evm.Description();
+        e.CreationDate=DateTime.Now;
+        e.Prompt=evm.Prompt();
+        e.Completion=evm.Description()+evm.Result;
         if(userId!=null)
         {
             try
             {
-                _materialRepository.AddOrUpdate(m);
+                encounterRepository.AddOrUpdate(e);
                 ViewBag.Message="Encounter saved";
                 return RedirectToAction("Index");
             }
-            catch(DbUpdateConcurrencyException e)
+            catch(DbUpdateConcurrencyException ex)
             {
                 ViewBag.Message = "An unknown database error occurred while trying to create the item.  Please try again.";
                 return RedirectToAction("Index");
