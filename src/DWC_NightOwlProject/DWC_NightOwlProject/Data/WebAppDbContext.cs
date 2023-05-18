@@ -19,8 +19,6 @@ public partial class WebAppDbContext : DbContext
 
     public virtual DbSet<Character> Characters { get; set; }
 
-    public virtual DbSet<Encounter> Encounters { get; set; }
-
     public virtual DbSet<Map> Maps { get; set; }
 
     public virtual DbSet<Material> Materials { get; set; }
@@ -36,37 +34,32 @@ public partial class WebAppDbContext : DbContext
     {
         modelBuilder.Entity<Backstory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Backstor__3214EC27E4A67F7F");
+            entity.HasKey(e => e.Id).HasName("PK__Backstor__3214EC2797ED157B");
         });
 
         modelBuilder.Entity<Character>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Characte__3214EC27ACE01027");
-        });
-
-        modelBuilder.Entity<Encounter>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Encounte__3214EC27C9278F05");
+            entity.HasKey(e => e.Id).HasName("PK__Characte__3214EC2710F1680A");
         });
 
         modelBuilder.Entity<Map>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Maps__3214EC27A6C70525");
+            entity.HasKey(e => e.Id).HasName("PK__Maps__3214EC274BC42DA4");
         });
 
         modelBuilder.Entity<Material>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC27C951B47E");
+            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC270CB69DE9");
         });
 
         modelBuilder.Entity<Quest>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC2709771142");
+            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC273FEC6515");
         });
 
         modelBuilder.Entity<World>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__World__3214EC279C0BABEE");
+            entity.HasKey(e => e.Id).HasName("PK__World__3214EC27F6243E39");
         });
 
         OnModelCreatingPartial(modelBuilder);
