@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DWC_NightOwlProject.Data;
 
-public partial class Character
+public partial class Song
 {
     [Key]
     [Column("ID")]
