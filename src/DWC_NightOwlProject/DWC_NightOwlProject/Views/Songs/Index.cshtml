@@ -1,0 +1,45 @@
+﻿@model DWC_NightOwlProject.Data.MaterialVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+
+<script src="~/js/MapAnimation.js"></script>
+<script src="/js/toneLib.js"></script>
+
+
+
+<header>
+    <br />
+    <br />
+    <h1>
+        Song
+    </h1>
+
+    <h4>
+        A good set of songs is the heart of any good campaign.
+        <br />
+        <br />
+        
+    </h4>
+
+</header>
+
+
+<div class="text-center" id="title">
+    <h1>Song Creation</h1>
+</div>
+
+ <div class="col-sm">
+            <input type="button" class="btn btn-dark m-1" value ="Tone"onclick="music()" />
+            </div>
+
+<div class="text-center" id="adviceBox">
+
+
+</div>
+
+

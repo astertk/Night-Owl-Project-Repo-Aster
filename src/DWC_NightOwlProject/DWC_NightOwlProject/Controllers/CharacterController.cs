@@ -14,18 +14,22 @@ using DWC_NightOwlProject.ViewModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.AspNetCore.Routing.Constraints;
+using DWC_NightOwlProject.DAL.Concrete;
+using System.Net;
 
 namespace DWC_NightOwlProject.Controllers;
 
 public class CharacterController : Controller
 {
     private IMaterialRepository _materialRepository;
+    private ICharacterRepository _characterRepository;
     private readonly IConfiguration _config;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IWebHostEnvironment _he;
-    public CharacterController(IMaterialRepository materialRepository, IConfiguration config,
+    public CharacterController(IMaterialRepository materialRepository, ICharacterRepository characterRepository, IConfiguration config,
                                    UserManager<IdentityUser> userManager, IWebHostEnvironment he)
     {
+        _characterRepository= characterRepository;
         _materialRepository = materialRepository;
         _config = config;
         _userManager = userManager;
@@ -38,52 +42,116 @@ public class CharacterController : Controller
     {
         var vm = new MaterialVM();
         string id = _userManager.GetUserId(User);
-        var result = new List<Material>();
-        result = _materialRepository.GetAllCharactersById(id);
+        var result = new List<Character>();
+        result = _characterRepository.GetAllCharactersById(id);
 
-        vm.materials = result;
+        vm.characters = result;
         return View(vm);
     }
 
     [Authorize]
-    public ActionResult Scratch(string fromScratch)
+    public async Task<ActionResult> Scratch(IFormCollection collection)
     {
-        ViewBag.FromScratch = fromScratch;
-        ViewBag.Prompt = " Create a Character for my Dungeons and Dragons Campaign:  " + ViewBag.FromScratch;
-        TempData["HoldPrompt"] = ViewBag.Prompt;
+        var userId = _userManager.GetUserId(User);
 
-        return View();
+        try
+        {
+            if (_characterRepository.GetAllCharactersById(userId).Count() < 4)
+            {
+                ViewBag.Error = "";
+
+
+                var character = new Character();
+                character.Prompt = "Create a Character for my Dungeons and Dragons Campaign. " +
+                                    collection["r0"];
+
+
+                character.UserId = userId;
+                character.Id = 0;
+                character.Name = "New Character";
+                character.CreationDate = DateTime.Now;
+                character.Prompt += "...";
+
+                var APIKey = _config["APIKey"];
+                var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
+                var characterList = await api.ImagesEndPoint.GenerateImageAsync(character.Prompt, 1, ImageSize.Large);
+                var newCharacter = characterList.FirstOrDefault();
+                var url = newCharacter.ToString();
+                character.Completion = url;
+                //string tempPath = Path.GetTempPath();
+
+                // Scrape web page
+                WebClient webClient = new WebClient();
+                character.PictureData = webClient.DownloadData(url);
+                _characterRepository.AddOrUpdate(character);
+            }
+
+            else
+            {
+                ViewBag.Error = "Too many Map Materials. Please delete 1 or more to create a new character!";
+            }
+        }
+
+        catch
+        {
+            throw new Exception("Too many Character materials in Database");
+        }
+
+        return RedirectToAction("Index", "Character");
     }
 
     [Authorize]
-    public async Task<ActionResult> Template(string cClass, string race, int age, string tone, double height, int weight)
+    public async Task<ActionResult> Template(IFormCollection collection)
     {
-
-        /* class, race, age, tone, height, weight*/
-
+        var userId = _userManager.GetUserId(User);
 
 
-        ViewBag.Class = cClass;
-        ViewBag.Race = race;
-        ViewBag.Age = age;
-        ViewBag.Tone = tone;
-        ViewBag.Height = height;
-        ViewBag.Weight = weight;
-
-        string prompt = " Character for my Dungeons and Dragons Campaign.  "
-                        + "They are a: " + cClass
-                        + ". Their race is: " + race
-                        + ". Their age is: " + age.ToString()
-                        + ". Their skin tone is: " + tone
-                        + ". Their height in inches is: " + height.ToString()
-                        + ". Their weight is: " + weight.ToString()
-                        + " Only include the character. Do not include text or columns. Show the full body and face.";
+        if (_characterRepository.GetAllCharactersById(userId).Count() < 4)
+        {
+            ViewBag.Error = "";
 
 
-        //ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
-        TempData["HoldPrompt"] = prompt;
+            var character = new Character();
+            character.Prompt = "Create a Character for my Dungeons and Dragons Campaign. "
+                            + "Their class is  : " + collection["r0"]
+                            + ". Their race is " + collection["r1"]
+                            + ". Their age is " + collection["r2"]
+                            + ". Their skin tone is " + collection["r3"]
+                            + ". Their height is " + collection["r4"]
+                            + ". Their weight is " + collection["r5"]
+                            + "Only include the character. Do not include text or columns. Show the full body and face.";
 
-        return View();
+
+            character.UserId = userId;
+            character.Id = 0;
+            character.Name = "New Character";
+            character.CreationDate = DateTime.Now;
+            character.Prompt += "...";
+
+            var APIKey = _config["APIKey"];
+            var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
+            var characterList = await api.ImagesEndPoint.GenerateImageAsync(character.Prompt, 1, ImageSize.Large);
+            var newCharacter = characterList.FirstOrDefault();
+            var url = newCharacter.ToString();
+            character.Completion = url;
+            //string tempPath = Path.GetTempPath();
+
+            // Scrape web page
+            WebClient webClient = new WebClient();
+            character.PictureData = webClient.DownloadData(url);
+            _characterRepository.AddOrUpdate(character);
+        }
+
+        else
+        {
+            ViewBag.Error = "Too many Character Materials. Please delete 1 or more to create a new character!";
+        }
+
+
+
+
+        return RedirectToAction("Index", "Character");
+
     }
     [Authorize]
     public async Task<ActionResult> Random()
@@ -99,36 +167,12 @@ public class CharacterController : Controller
     }
 
     [Authorize]
-    public async Task<ActionResult> Completion()
+    public async Task<ActionResult> Completion(Character character)
     {
-        var userId = _userManager.GetUserId(User);
-
-
-        var material = new Material();
-        
-        material.UserId = userId;
-        material.Id = 0;
-        material.Type = "Character";
-        material.Name = "";
-        material.CreationDate = DateTime.Now;
-        material.Prompt = TempData.Peek("HoldPrompt").ToString();
-        material.Prompt += "...";
-
-        var APIKey = _config["APIKey"];
-        var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
-        var characterList =  await api.ImagesEndPoint.GenerateImageAsync(material.Prompt, 1, ImageSize.Small);
-        var character = characterList.FirstOrDefault();
-        var result = character.ToString();
-
-        material.Completion = result;
-        ViewBag.Completion = result;
-        TempData["HoldCompletion"] = material.Completion;
-
-
-
-        return View(material);
-
+        return View(character);
     }
+
+   
 
     [Authorize]
     public ActionResult Upload()
@@ -174,41 +218,29 @@ public class CharacterController : Controller
         return View(material);
     }
 
-    public ActionResult Save()
+    public ActionResult Save(Character character)
     {
-        var userId = _userManager.GetUserId(User);
-
-        var material = new Material();
-        material.UserId = userId;
-        material.Id = 0;
-        material.Type = "Character";
-        material.Name = "";
-        material.CreationDate = DateTime.Now;
-        material.Prompt = TempData.Peek("HoldPrompt").ToString();
-        material.Prompt += "...";
-        material.Completion = TempData.Peek("HoldCompletion").ToString();
-
-        _materialRepository.AddOrUpdate(material);
-        return RedirectToAction("Index", material);
+        _characterRepository.AddOrUpdate(character);
+        return RedirectToAction("Index" , "Character");
     }
 
     // GET: HomeController1/Details/5
     public ActionResult Details(int id)
     {
         var userId = _userManager.GetUserId(User);
-        var material = new Material();
-        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+        var character = new Character();
+        character = _characterRepository.GetCharacterByIdandMaterialId(userId, id);
         
-        return View(material);
+        return View(character);
     }
 
     // GET: HomeController1/Edit/5
     public ActionResult Edit(int id)
     {
         var userId = _userManager.GetUserId(User);
-        var material = new Material();
-        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
-        return View(material);
+        var character = new Character();
+        character = _characterRepository.GetCharacterByIdandMaterialId(userId, id);
+        return View(character);
     }
 
     // POST: HomeController1/Edit/5
@@ -219,10 +251,10 @@ public class CharacterController : Controller
         try
         {
             var userId = _userManager.GetUserId(User);
-            var material = new Material();
-            material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
-            material.Name = Request.Form["Name"].ToString();
-            _materialRepository.AddOrUpdate(material);
+            var character = new Character();
+            character = _characterRepository.GetCharacterByIdandMaterialId(userId, id);
+            character.Name = Request.Form["Name"].ToString();
+            _characterRepository.AddOrUpdate(character);
             return RedirectToAction(nameof(Index));
         }
         catch
@@ -235,9 +267,9 @@ public class CharacterController : Controller
     public ActionResult Delete(int id)
     {
         var userId = _userManager.GetUserId(User);
-        var material = new Material();
-        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
-        return View(material);
+        var character = new Character();
+        character = _characterRepository.GetCharacterByIdandMaterialId(userId, id);
+        return View(character);
     }
 
     // POST: HomeController1/Delete/5
@@ -248,9 +280,9 @@ public class CharacterController : Controller
         try
         {
             var userId = _userManager.GetUserId(User);
-            var material = new Material();
-            material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
-            _materialRepository.Delete(material);
+            var character = new Character();
+            character = _characterRepository.GetCharacterByIdandMaterialId(userId, id);
+            _characterRepository.Delete(character);
 
 
             return RedirectToAction(nameof(Index));

@@ -27,11 +27,15 @@ function reveal(id, id2) {
 
     hide.style.display = 'none';
 
+  
+
 }
 
 
 function uploading() {
 }
+
+
 
 
 
