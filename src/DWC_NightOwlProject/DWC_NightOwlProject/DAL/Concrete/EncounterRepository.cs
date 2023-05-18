@@ -18,7 +18,7 @@ namespace DWC_NightOwlProject.DAL.Concrete
         public EncounterRepository(WebAppDbContext ctx, UserManager<IdentityUser> userManager) : base(ctx)
         {
             _userManager = userManager;
-            encounters = ctx.XEncounters;
+            encounters = ctx.Encounters;
         }
 
 

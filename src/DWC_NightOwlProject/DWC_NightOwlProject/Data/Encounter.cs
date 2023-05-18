@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DWC_NightOwlProject.Data;
 
+[Table("Encounter")]
 public partial class Encounter
 {
     [Key]
@@ -31,6 +32,5 @@ public partial class Encounter
     [StringLength(1000)]
     public string Prompt { get; set; } = null!;
 
-    [StringLength(4000)]
     public string Completion { get; set; } = null!;
 }
