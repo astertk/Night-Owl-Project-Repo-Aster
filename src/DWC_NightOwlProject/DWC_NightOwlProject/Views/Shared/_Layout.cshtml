@@ -15,7 +15,7 @@
 </head>
 @*<img src="~/css/motto 1.png" alt="The night is ours, but the future is yours!" style="position: relative; float:left;" />
 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img  src="~/css/dragon_Logo.png" alt="dragon logo for Campaign Creator" style="width: 120px; height: 120px"/></a>*@
-<body>
+<body class="darkMode">
     <header>
         @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -302,6 +302,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/sheetabilities.js" asp-append-version="true"></script>
     <script src="~/lib/qrcode.js"></script>
+    <script src="~/js/modes.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
