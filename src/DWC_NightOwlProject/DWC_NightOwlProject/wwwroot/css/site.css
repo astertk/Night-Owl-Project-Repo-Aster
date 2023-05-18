@@ -55,30 +55,61 @@ body {
     /*background-color: #F2D7C5;*/
     background-color: var(--main-bg);
 }
-
-img {
+/*img {
     float: none;
     margin-left: auto;
     margin-right: auto;
     display: inline;
 
-}
+}*/
 
 footer {
-    position: center;
+    position: relative; /* Use relative positioning for the footer */
     bottom: 0px;
     width: 100%;
     height: 200px;
     background-color: black;
     clear: both;
-    color:white;
-    overflow:hidden;
-    text-align:center;
-
+    color: white;
+    overflow: hidden;
+    text-align: center;
 }
 
 #footerContainer {
+    display: flex; /* Use flexbox to align items */
+    flex-direction: row; /* Set flex direction to row */
+    justify-content: space-between; /* Space items evenly along the row */
+    align-items: center; /* Vertically center items */
+    height: 100%;
+}
 
+#imginthefooter {
+    flex: 1; /* Use flex to allow image to grow and shrink */
+    text-align: left; /* Align image to the left */
+}
+
+#Company_Name {
+    flex: 1; /* Use flex to allow text to grow and shrink */
+    text-align: right; /* Align text to the right */
+    margin-left: 20px;
+}
+#socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#socials a {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+#socials a img {
+    margin-right: 10px;
 }
 
 canvas {
@@ -100,7 +131,8 @@ canvas {
 .main{
     display:flex;
     margin-top:115px;
-    padding-left: 18%;
+    padding-left:20%;
+    padding-right:20%;
 }
 
 ​​​​​​​​​

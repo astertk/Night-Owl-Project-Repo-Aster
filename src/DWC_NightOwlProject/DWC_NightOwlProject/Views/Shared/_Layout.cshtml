@@ -269,8 +269,23 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="footer">
+        <div id="footerContainer">
+            <div id="imginthefooter">
+                <img src="~/css/Group_Logo_Head.png" width="300" height="150" id="Logo" alt="LogoPic">
+            </div>
+            <div id="socials">
+                <a href="https://twitter.com/NightOwl_WOU" target="_blank"><img src="~/css/twitter.png" alt="Twitter" width="30" height="30"> Twitter</a>
+                <a href="mailto:nightowlstudiosofficial@gmail.com" target="_blank"><img src="~/css/gmail.png" alt="Gmail" width="30" height="30"> Email Us</a>
+                <a href="https://github.com/OneilMagno/Night-Owl-Project-Repo" target="_blank"><img src="~/css/github.png" alt="Github" width="30" height="30"> Github</a>
+                <a href="@Url.Action("About", "Home")"><img src="~/css/about.png" alt="About" width="30" height="30">About Us</a>
+            </div>
+            <div id="Company_Name" style="color: white;">
+                &copy; 2023 - Night Owl Studios
+            </div>
+        </div>
+    </footer>
+    @*<footer class="footer">
         <div id="Company_Name">
         &copy; 2023 - Night Owl Studios
         </div>
@@ -279,8 +294,9 @@
                 <img src="~/css/Group_Logo_Head.png" width="400" height="auto" id = "Logo" alt="LogoPic">    
             </div>
         </div>
+    </footer>*@
 
-    </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
