@@ -77,7 +77,7 @@
                             const content = "@Html.Raw(@Model.quests[i].Completion)";
                             const file = new Blob([content], { type: "text/plain" });
                             link.href = URL.createObjectURL(file);
-                            link.download = "charactersheet.txt";
+                            link.download = "quest.txt";
                             link.click();
                             URL.revokeObjectURL(link.href);
                         };
@@ -90,6 +90,6 @@
 <script>
     var completion = document.querySelectorAll(".row:first-child");
     completion.forEach(function (element) {
-        element.innerHTML = element.innerHTML.replaceAll(/(Act \d+|Epilogue):/g, "<br><br>$1<br><br>");
+        element.textContent = element.textContent.replaceAll(/(Act \d+|Epilogue):/g, "<br><br>$1<br><br>");
     });
 </script>
