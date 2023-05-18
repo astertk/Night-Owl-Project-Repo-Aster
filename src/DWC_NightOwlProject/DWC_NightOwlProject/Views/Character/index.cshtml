@@ -150,7 +150,23 @@
 
         </div>
 
+        <div class="col-sm">
+            <h2> Create a Random Character</h2>
+            <h4>Let fate and destiny take over your choices!</h4> <br /> <br />
 
+            <input id="random-character" type="button" class="btn btn-dark" value="Create a Random Character" onclick="window.location= '@Url.Action( "Random", "Character")'" />
+
+
+        </div>
+
+        <div class="col-sm">
+            <h2> Create a Character Sheet</h2>
+            <h4>Create a character sheet that randomizes your whole character and its stats</h4> <br /> <br />
+
+            <a asp-controller="Character" asp-action="CreateSheet" class="btn btn-dark">Create a randomized character sheet</a>
+
+
+        </div>
 
     </div>
 </div>
