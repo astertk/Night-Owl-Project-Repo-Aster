@@ -3,7 +3,14 @@
     ViewData["Title"] = "Index";
 }
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+
+<script src="~/js/MapAnimation.js"></script>
+<script src="/js/toneLib.js"></script>
+
+
 
 <header>
     <br />
@@ -13,51 +20,154 @@
     </h1>
 
     <h4>
-        A Character material is your customized avatar that you use in game. 
+        A Character is a player or Game Master's direct link to the campaign, your avatar of sorts.
         <br />
-
         <br />
-        Craft your Character model in one of three ways, then add on to it with a character sheet.
-        <br />
+        Craft your Character in one of two ways. You can have up to 4 character materials at once before you have to start deleting them!
     </h4>
-    
+
 </header>
 
 
 <div class="text-center" id="title">
-    <br />
     <h1>Character Creation</h1>
 </div>
 
 <div class="text-center" id="adviceBox">
-    <h4>Who will be joining you on your journey?</h4>
-    <h4>Fill your prophecy with a template, or create your own</h4>
 </div>
+
+
 
 
 
 <div class="container">
     <div class="row">
+
+
+
         <div class="col-sm">
-            <h2> Create your Character with a template?</h2>
-            <p>Easier, Step-by-Step</p> <br /> <br />
-            <input type="button" class="btn btn-dark" value="Create a Character" onclick="window.location= '@Url.Action( "Template", "Character")'" />
+            <h2> Create your Character with a template</h2>
+            <h4>Easier, Step-by-Step</h4> <br /> <br />
+
+            <button class="btn btn-dark m-1" id="template" onclick="reveal('t','s')">Template</button>
+
+
+
+            <t id="t">
+                <form asp-action="Template" id="create_template_form" method="post">
+                    <div class="container">
+                        <div class="row-cols-lg-1">
+                            <div class="col">
+
+                                <label asp-for="r0" class="control-label">Class</label>
+                                <input asp-for="r0" class="form-control" required />
+                                <span asp-validation-for="r0" class="text-danger"></span>
+
+                                <label asp-for="r1" class="control-label">Race</label>
+                                <input asp-for="r1" class="form-control" required />
+                                <span asp-validation-for="r1" class="text-danger"></span>
+
+                                <label asp-for="r2" class="control-label">Age</label>
+                                <input asp-for="r2" class="form-control" required />
+                                <span asp-validation-for="r2" class="text-danger"></span>
+
+                                <label asp-for="r3" class="control-label">Skin Tone</label>
+                                <input asp-for="r3" class="form-control" required />
+                                <span asp-validation-for="r3" class="text-danger"></span>
+
+                                <label asp-for="r4" class="control-label">Height</label>
+                                <input asp-for="r4" class="form-control" required />
+                                <span asp-validation-for="r4" class="text-danger"></span>
+
+                                <label asp-for="r5" class="control-label">Weight</label>
+                                <input asp-for="r5" class="form-control" required />
+                                <span asp-validation-for="r5" class="text-danger"></span>
+
+
+
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group mt-3 text-center">
+
+                        <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Character" onclick="toggle()" />
+
+                    </div>
+                </form>
+
+            </t>
+
         </div>
         <div class="col-sm">
-            <h2> Create your Character all from Scratch?</h2>
-            <p>More advanced, but potentially more creative!</p> <br />
-            <input type="button" class="btn btn-dark" value="Create a Character" onclick="window.location= '@Url.Action( "Scratch", "Character")'" />
+            <h2> Create your Character From Scratch</h2>
+            <h4>More difficult, but potentially more creative</h4> <br /> <br />
+
+            <button class="btn btn-dark m-1" id="scratch" onclick="reveal('s','t')">From Scratch</button>
+
+
+
+            <s id="s">
+                <form asp-action="Scratch" id="create_scratch_form">
+                    <div class="container">
+                        <div class="row-cols-lg-1">
+                            <div class="col">
+
+                                <label asp-for="r0" class="control-label">Describe Your Character:</label>
+                                <input asp-for="r0" class="form-control-lg" required />
+                                <span asp-validation-for="r0" class="text-danger"></span>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group mt-3 text-center">
+
+
+                        <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Character" onclick="toggle()" />
+
+                    </div>
+                </form>
+            </s>
+
+
+
+
+
+
         </div>
+
         <div class="col-sm">
-            <h2> Create a Random Character!</h2>
-            <p>Let fate and destiny take over your choices!</p> <br />
+            <h2> Create a Random Character</h2>
+            <h4>Let fate and destiny take over your choices!</h4> <br /> <br />
+
             <input id="random-character" type="button" class="btn btn-dark" value="Create a Random Character" onclick="window.location= '@Url.Action( "Random", "Character")'" />
+
+
         </div>
+
         <div class="col-sm">
-            <h2>Create a Character Sheet</h2>
-            <p>Create a character sheet that randomizes your whole character and its stats</p> <br />
+            <h2> Create a Character Sheet</h2>
+            <h4>Create a character sheet that randomizes your whole character and its stats</h4> <br /> <br />
+
             <a asp-controller="Character" asp-action="CreateSheet" class="btn btn-dark">Create a randomized character sheet</a>
+
+
         </div>
+
     </div>
 </div>
 
@@ -65,38 +175,43 @@
 @if (Model != null)
 {
     <div class="row">
-        @for (var i = 0; i < Model.materials.Count; ++i)
+        @for (var i = 0; i < Model.characters.Count; ++i)
         {
 
             <div class="col">
-                @if (Model.materials[i] != null)
+                @if (Model.characters[i] != null)
                 {
-                    <div class="row" id="notes">@Model.materials[i].Name</div>
-                    <div class="row"><iframe style="width:256px; height: 256px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].Completion></iframe></div>
-                    <div class="row" id="notes">Creation Date: @Model.materials[i].CreationDate.ToString()</div>
+                    <div class="row" id="notes">@Model.characters[i].Name</div>
 
-                    <a asp-controller="Character" asp-action="details" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Details</a>
-                    <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.materials[i].Id" class="btn btn-secondary m-1">Edit</a>
-                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.materials[i].Id" class="btn btn-danger m-1">Delete</a>  
-                    <a asp-controller="Character" asp-action="CreateSheetWithCharacter" asp-route-id="@Model.materials[i].Id" class="btn btn-primary m-1">Generate character sheet</a>
-                    /*<a class="btn btn-outline-primary m-1" onclick="downloadFile()" id="downloadButton">Download</a>
+                    <br />
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.characters[i].PictureData)" width="256" height="256" />
+                    @*<div class="row"><iframe style="width:250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src=@Model.materials[i].PictureData></iframe></div>*@
+                    @*<div class="row">Creation Date: @Model.materials[i].CreationDate.ToOADate().ToString();</div>*@
+                    <br />
 
-                   <script>
-                        function downloadFile() {
-                            const aElement = document.createElement('a');
-                            const content = "@Html.Raw(Model.materials[i].Completion)"
-                            const href = URL.createObjectURL(content);
-                            href.search = '';
-                            const url = href.toString();
-                            aElement.href = url;
-                            const file = new Blob([url], {type: 'image/*' });
-                            aElement.download = 'character.png';
-                            aElement.click();
-                            URL.revokeObjectURL(url);
-                        };
-                    </script>*/
+                    <a asp-controller="Character" asp-action="details" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Details</a>
+                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.characters[i].Id" class="btn btn-danger m-1">Delete</a>
                 }
             </div>
         }
     </div>
 }
+@*<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+                const btnEl = document.querySelector('.btn');
+
+                btnEl.addEventListener('click', saveImage);
+
+                function saveImage() {
+
+
+
+
+                }
+
+            </script>*@
+
+<script>
+
+</script>
+

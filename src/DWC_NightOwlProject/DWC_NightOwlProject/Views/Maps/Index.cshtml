@@ -5,9 +5,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
 
 <script src="~/js/MapAnimation.js"></script>
-<script async src="~/js/site.js"></script>
+<script src="/js/toneLib.js"></script>
+
 
 
 <header>
@@ -43,63 +45,7 @@
 <div class="container">
     <div class="row">
 
-       @* <div class="col-sm">
-            <h1> Upload your own Map that you would like to edit.</h1>
-
-            
-            
-
-            <button class="btn" id="upload" onclick="reveal('u','s')">Upload</button>
-
-        <u id="u">
-
-
-                <a class="text-danger">Please upload a PNG image with transparency (alpha) in the parts you want edited, for example an image of a mountain map with the peak erased.</a>
-                <br />
-                <br />
-                <a class="text-danger">The PNG must also have the same width and height, so 256x256, 512x512, etc. </a>
-                <br />
-                <br />
-
-                <form enctype="multipart/form-data" asp-action="ImageEdit" id="edit_image_form" method="post">
-                            <div class="container">
-                                <div class="row-cols-lg-1">
-                                    <div class="col">
-
-                                        <label asp-for="r0" class="control-label">How would you like your image edited?</label>
-                                        <input asp-for="r0" class="form-control" />
-                                        <span asp-validation-for="r0" class="text-danger"></span>
-
-                                        @*<div class="file-upload-wrapper">
-                                        <input type="image" id="fileInput" class="file-upload" accept=".png" />/>*@
-
-                                    @*<div class="file-upload-wrapper">
-                                    <input asp-for="upload" type="file" id="input-file-now" class="file-upload" accept=".png" />
-                                    </div>
-
-                                <input class="btn" type="submit" value="Upload" onclick="toggle()"/>
-
-                                  
-
-                                </div>
-                            </div>
-
-
-
-
-
-                            <div class="form-group mt-3 text-center">
-
-                            @*<input type = "submit" class="btn" id="Create" value="Create Map" onclick="toggle()" />*@
-
-                           @* </div>
-                           </div>
-                 </form>
-        </u>
-
-           
-
-        </div>*@
+      
 
         <div class="col-sm">
             <h2> Create your Map with a template</h2>
@@ -194,6 +140,8 @@
 
 
         </div>
+
+       
 
     </div>
 </div>

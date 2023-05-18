@@ -27,6 +27,8 @@ public partial class WebAppDbContext : DbContext
 
     public virtual DbSet<Quest> Quests { get; set; }
 
+    public virtual DbSet<Song> Songs { get; set; }
+
     public virtual DbSet<World> Worlds { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -62,6 +64,12 @@ public partial class WebAppDbContext : DbContext
         modelBuilder.Entity<Quest>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC2705807337");
+            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC27C9724F1A");
+        });
+
+        modelBuilder.Entity<Song>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Songs__3214EC2711E89ACD");
         });
 
         modelBuilder.Entity<World>(entity =>
