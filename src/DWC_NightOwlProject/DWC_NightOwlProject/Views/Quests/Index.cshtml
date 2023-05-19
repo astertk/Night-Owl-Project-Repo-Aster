@@ -74,10 +74,10 @@
                     <script>
                         function downloadFile() {
                             const link = document.createElement("a");
-                            const content = "@Html.Raw(@Model.quests[i].Completion)";
+                            const content = "@Html.Raw(Model.quests[i].Completion).ToString()";
                             const file = new Blob([content], { type: "text/plain" });
                             link.href = URL.createObjectURL(file);
-                            link.download = "charactersheet.txt";
+                            link.download = "quest.txt";
                             link.click();
                             URL.revokeObjectURL(link.href);
                         };

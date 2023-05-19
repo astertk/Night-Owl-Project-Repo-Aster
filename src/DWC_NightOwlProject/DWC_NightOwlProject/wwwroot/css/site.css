@@ -55,6 +55,22 @@ body {
     /*background-color: #F2D7C5;*/
     background-color: var(--main-bg);
 }
+
+.bg-img-wrapper {
+    content: ' ';
+    display: block;
+    left: 0;
+    top: 0;
+    opacity: 0.9;
+    width: 100%;
+    height: 100%;
+    background-image: url("../Image/botw.0.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0;
+}
+
+
 /*img {
     float: none;
     margin-left: auto;
