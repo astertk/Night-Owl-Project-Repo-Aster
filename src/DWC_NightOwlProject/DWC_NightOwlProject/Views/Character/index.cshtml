@@ -191,6 +191,7 @@
 
                     <a asp-controller="Character" asp-action="details" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Details</a>
                     <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.characters[i].Id" class="btn btn-danger m-1">Delete</a>
+                    <a asp-controller="Character" asp-action="CreateSheetWithCharacter" asp-route-id="@Model.characters[i].Id" class="btn btn-danger m-1">Create character sheet</a>
                 }
             </div>
         }

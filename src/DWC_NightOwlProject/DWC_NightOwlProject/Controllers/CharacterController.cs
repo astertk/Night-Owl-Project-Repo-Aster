@@ -307,10 +307,10 @@ public class CharacterController : Controller
     public ActionResult CreateSheetWithCharacter(int id)
     {
         var userId = _userManager.GetUserId(User);
-        var material = new Material();
-        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+        var character = new Character();
+        character = _characterRepository.GetCharacterByIdandMaterialId(userId, id);
         SheetRandomizer sr=new SheetRandomizer();
-        sr.Character=material;
+        sr.Character=character;
         return View("CreateSheet",sr);
     }
 }

@@ -13,7 +13,7 @@ public class SheetRandomizer
     public string Armor{get;set;}
     public bool Shield{get;set;}
     public int Proficiency=2;
-    public Material Character;
+    public Character Character;
 
     
 
