@@ -74,7 +74,7 @@
                     <script>
                         function downloadFile() {
                             const link = document.createElement("a");
-                            const content = "@Html.Raw(@Model.quests[i].Completion)";
+                            const content = "@Html.Raw(Model.quests[i].Completion).ToString()";
                             const file = new Blob([content], { type: "text/plain" });
                             link.href = URL.createObjectURL(file);
                             link.download = "quest.txt";
@@ -90,6 +90,6 @@
 <script>
     var completion = document.querySelectorAll(".row:first-child");
     completion.forEach(function (element) {
-        element.textContent = element.textContent.replaceAll(/(Act \d+|Epilogue):/g, "<br><br>$1<br><br>");
+        element.innerHTML = element.innerHTML.replaceAll(/(Act \d+|Epilogue):/g, "<br><br>$1<br><br>");
     });
 </script>
