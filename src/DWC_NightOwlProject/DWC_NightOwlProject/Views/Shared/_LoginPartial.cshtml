@@ -13,7 +13,7 @@
                         <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
                     </svg>
                 </div>*@
-                <audio src="~/please-calm-my-mind-125566.mp3" autoplay loop></audio>
+                <audio src="~/please-calm-my-mind-125566.mp3" loop></audio>
                 <div class="controls">
                     <button class="player-button">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#b8a3a5">
@@ -30,6 +30,16 @@
             </div>
             <br>
     </li>
+        <li class="nav-item">
+            <div class="toggler">
+                <input type="checkbox" id="theme" class="toggler_input" checked>
+                <label for="theme" class="toggler_label">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="toggler_icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path>
+                    </svg>
+                </label>
+            </div>
+        </li>
     <li class="nav-item">
             <br />
             <br />
@@ -37,7 +47,7 @@
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-light">Logout</button>
+                <button type="submit" class="nav-link text-light text-decoration-underline">Logout</button>
         </form>
     </li>
 }
@@ -51,7 +61,7 @@ else
                         <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
                     </svg>
                 </div>*@
-                <audio src="~/please-calm-my-mind-125566.mp3" autoplay loop></audio>
+                <audio src="~/please-calm-my-mind-125566.mp3" loop></audio>
                 <div class="controls">
                     <button class="player-button">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#b8a3a5">
@@ -66,8 +76,21 @@ else
                     </button>
                 </div>
             </div>
+            <br />
     </li>
+        <li class="nav-item">
+            <div class="toggler">
+                <input type="checkbox" id="theme" class="toggler_input" checked>
+                <label for="theme" class="toggler_label">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="toggler_icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path>
+                    </svg>
+                </label>
+            </div>
+        </li>
     <li class="nav-item">
+        <br />
+        <br />
         <a class="nav-link text-light text-decoration-underline" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">

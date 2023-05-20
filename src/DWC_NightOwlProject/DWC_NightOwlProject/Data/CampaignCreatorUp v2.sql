@@ -36,7 +36,6 @@ CREATE TABLE [Characters]
 (
     [ID]            INT             PRIMARY KEY     IDENTITY(1, 1),
     [UserID]        NVARCHAR(450)         NOT NULL,
-    [Type]          NVARCHAR(40)    NOT NULL, 
     [Name]          NVARCHAR(450)  NOT NULL,
     [CreationDate]  DATE            NOT NULL,
     [WorldID]       INT             NOT NULL,
@@ -56,6 +55,32 @@ CREATE TABLE [Maps]
     [Completion]    NVARCHAR(4000)   NOT NULL,
     [PictureData]   VARBINARY(max)
 );
+
+
+CREATE TABLE [Songs]
+(
+    [ID]            INT             PRIMARY KEY     IDENTITY(1, 1),
+    [UserID]        NVARCHAR(450)         NOT NULL,
+    [Name]          NVARCHAR(450)  NOT NULL,
+    [CreationDate]  DATE            NOT NULL,
+    [WorldID]       INT             NOT NULL,
+    [Prompt]        NVARCHAR(1000)   NOT NULL,
+    [Completion]    NVARCHAR(4000)   NOT NULL,
+    [PictureData]   VARBINARY(max)
+);
+
+CREATE TABLE [Encounter]
+(
+    [ID]            INT             PRIMARY KEY     IDENTITY(1, 1),
+    [UserID]        NVARCHAR(450)   NOT NULL,
+    [Biome]         NVARCHAR(450)   NOT NULL,
+    [Type]          NVARCHAR(450)   NOT NULL,
+    [CreationDate]  DATE            NOT NULL,
+    [WorldID]       INT             NOT NULL,
+    [Prompt]        NVARCHAR(1000)   NOT NULL,
+    [Completion]    NVARCHAR(max)   NOT NULL,
+
+)
 
 CREATE TABLE [Material]
 (

@@ -19,16 +19,28 @@
 {
     <div class="row">
         <div class="col-sm">
-        @for (var i = 0; i < Model.materials.Count; ++i)
+        @for (var i = 0; i < Model.encounters.Count; ++i)
         {
             <div class="col">
-                @if (Model.materials[i] != null)
+                @if (Model.encounters[i] != null)
                 {
-                    <a class="btn btn-outline-primary m-1" id="linklabel" onclick="showContent()">@Model.materials[i].Name</a>
+                    <a class="btn btn-outline-primary m-1" id="linklabel" onclick="showContent()">@Model.encounters[i].Type " encounter in a "@Model.encounters[i].Biome</a>
+                    <a class="btn btn-outline-primary m-1" onclick="downloadFile()">Download this encounter!</a>
+                    <script>
+                        function downloadFile() {
+                            const link = document.createElement("a");
+                            const content = "@Html.Raw(@Model.encounters[i].Completion)";
+                            const file = new Blob([content], { type: "text/plain" });
+                            link.href = URL.createObjectURL(file);
+                            link.download = "charactersheet.txt";
+                            link.click();
+                            URL.revokeObjectURL(link.href);
+                        };
+                    </script>
 
                     <script>
                         function showContent() {
-                            document.getElementById("EncounterContent").innerHTML="@Model.materials[i].Completion";
+                            document.getElementById("EncounterContent").innerHTML="@Model.encounters[i].Completion";
                         };
                     </script>
                 }

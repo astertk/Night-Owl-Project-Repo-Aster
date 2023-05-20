@@ -16,9 +16,6 @@ public partial class Character
     [StringLength(450)]
     public string UserId { get; set; } = null!;
 
-    [StringLength(40)]
-    public string Type { get; set; } = null!;
-
     [StringLength(450)]
     public string Name { get; set; } = null!;
 

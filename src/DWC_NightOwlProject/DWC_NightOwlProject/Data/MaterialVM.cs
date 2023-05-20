@@ -22,12 +22,18 @@ namespace DWC_NightOwlProject.Data
         public List<Quest> quests { get; set; }
 
         public List<Map> maps { get; set; }
+        public List<Backstory> backstories{get;set;}
+        public List<Encounter> encounters {get;set;}
+        public Backstory backstory{get;set;}
+
+        public List<Song> songs { get; set; }
 
         public string r0 { get; set; }
         public string r1 { get; set; }
         public string r2 { get; set; }
         public string r3 { get; set; }
         public string r4 { get; set; }
+        public string r5 { get; set; }
 
         public IFormFile upload { get; set; }
 
