@@ -38,7 +38,7 @@
 <h4>
     <br />
     <br />
-    Craft your Song in one of two ways. You can have up to 4 Song materials at once before you have to start deleting them!
+    Craft your Song in one of two ways. You can have up to 6 Song materials at once before you have to start deleting them!
 </h4>
 
 
@@ -51,25 +51,18 @@
 
 
 <div class="container">
-    <div class="row">
+   
 
 
 
-        <div class="col-sm">
-            <h2> Create your Song with a template</h2>
-            <h4>Easier, Step-by-Step</h4> <br /> <br />
 
-            <button class="btn btn-dark m-1" id="template" onclick="reveal('t','s')">Template</button>
+        <form asp-action="Template" id="create_template_form" method="post">
+        <div class="row">
+                      
+                            <div class="col-sm">
 
+                <label asp-for="r0" class="control-label">What is the tone of the song? E.g. Happy, Intense, Mysterious</label>
 
-
-            <t id="t">
-                <form asp-action="Template" id="create_template_form" method="post">
-                    <div class="container">
-                        <div class="row-cols-lg-1">
-                            <div class="col">
-
-                                <label asp-for="r0" class="control-label">What is the tone of the song?</label>
                                 <select asp-for="r0" class="form-control" required>
                                     <option value = "Joyful">Joyful</option>
                                     <option value = "Mysterious">Mysterious</option>
@@ -79,12 +72,18 @@
                                     <option value=  "Sad">Sad</option>
                                 </select>
                                 <span asp-validation-for="r0" class="text-danger"></span>
+                                </div>
 
-                                <label asp-for="r1" class="control-label">What will the song be used for, eg. Combat, or Puzzle music?</label>
+                            <div class="col-sm">
+
+                                <label asp-for="r1" class="control-label">What will the song be used for? E.g. Combat, or Puzzle music</label>
                                 <input asp-for="r1" class="form-control" required />
                                 <span asp-validation-for="r1" class="text-danger"></span>
+                                </div>
 
-                                <label asp-for="r2" class="control-label">What is the speed of the song?</label>
+                <div class="col-sm">
+
+                                <label asp-for="r2" class="control-label">What is the speed of the song? E.g. Fast!</label>
                                 <select asp-for="r2" class="form-control" required>
                                     <option value = "0">Slow</option>
                                     <option value = "1">Medium</option>
@@ -92,7 +91,11 @@
                                 </select>
                                 <span asp-validation-for="r2" class="text-danger"></span>
 
-                                <label asp-for="r3" class="control-label">What is the instrument the song will be played with?</label>
+                                </div>
+
+                <div class="col-sm">
+
+                <label asp-for="r3" class="control-label">What is the instrument the song will be played with?</label>
                                 <select asp-for="r3" class="form-control" required>
                                     <option value="0">AMSynth</option>
                                     <option value = "1">DuoSynth</option>
@@ -106,71 +109,26 @@
                                 </select>
                                 <span asp-validation-for="r3" class="text-danger"></span>
 
-                            </div>
+                                </div>
 
-                        </div>
-                    </div>
+                     
 
+                      
 
+                <div class="form-group mt-3 text-center">
 
+                    <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Song" onclick="toggle()" />
 
-
-                    <div class="form-group mt-3 text-center">
-
-                        <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Song" onclick="toggle()" />
-
-                    </div>
-                </form>
-
-            </t>
-
-        </div>
-        <div class="col-sm">
-            <h2> Create your Song From Scratch</h2>
-            <h4>More difficult, but potentially more creative</h4> <br /> <br />
-
-            <button class="btn btn-dark m-1" id="scratch" onclick="reveal('s','t')">From Scratch</button>
-
-
-
-            <s id="s">
-                <form asp-action="Scratch" id="create_scratch_form">
-                    <div class="container">
-                        <div class="row-cols-lg-1">
-                            <div class="col">
-
-                                <label asp-for="r0" class="control-label">Description of Your Song:</label>
-                                <input asp-for="r0" class="form-control-lg" required />
-                                <span asp-validation-for="r0" class="text-danger"></span>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-
-
-
-
-                    <div class="form-group mt-3 text-center">
-
-
-                        <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Song" onclick="toggle()" />
-
-                    </div>
-                </form>
-            </s>
-
-
-
-
-
-
-        </div>
-
-
-    </div>
+                </div>
+            </form>
 </div>
+                  
+
+
+
+
+
+  
 
 <h2>Completions:</h2>
 @if (Model != null)
@@ -182,10 +140,15 @@
             <div class="col">
                 @if (Model.songs[i] != null)
                 {
-                    <div class="row" id="notes">@Model.songs[i].Name</div>
+                    <div class="card" style="width: 18rem;">
 
-                    <br />
-                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.songs[i].PictureData)" width="256" height="256" />
+                    <div class="card-title" style="color:black" id="notes">@Model.songs[i].Name</div>
+
+
+                    <img class ="card-img-bottom" src="data:image;base64,@System.Convert.ToBase64String(Model.songs[i].PictureData)" width="256" height="256" />
+                    
+
+                    </div>
                     <br />
 
                     <a asp-controller="Songs" asp-action="details" asp-route-id="@Model.songs[i].Id" class="btn btn-primary m-1">Details</a>
@@ -194,11 +157,12 @@
                     <div class="col-sm">
                         <input type="button" class="btn btn-dark m-1" value="Play" onclick="music(@Model.songs[i].Completion,@Model.songs[i].InstrumentId,@Model.songs[i].RateId)" />
 
-
+                        <input type="button" class="btn btn-dark m-1" value="Stop" onclick="stop()" />
 
                         <input type="button" class="btn btn-dark m-1" value="Download" onclick="record(@Model.songs[i].Completion,@Model.songs[i].InstrumentId,@Model.songs[i].RateId)" />
                     </div>
                 }
+                   
             </div>
         }
     </div>

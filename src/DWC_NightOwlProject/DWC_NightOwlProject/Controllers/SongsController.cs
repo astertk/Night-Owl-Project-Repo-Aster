@@ -49,7 +49,7 @@ public class SongsController : Controller
         var userId = _userManager.GetUserId(User);
 
 
-        if (_songRepository.GetAllSongsById(userId).Count() < 4)
+        if (_songRepository.GetAllSongsById(userId).Count() < 6)
         {
             //Getting the notes from OpenAI
             var APIKey = _config["APIKey"];
@@ -63,18 +63,23 @@ public class SongsController : Controller
                          + ". Make it one string of notes in this format, with no " +
                          "commas or periods. Make it 32 notes or longer, but not longer than 100 notes. " +
                          "Give the song a clear progression of chorus, verse 1, chorus. Don't include the words chorus or verse 1, just the notes with" +
-                         "Don't let the notes go higher than G6, but give the notes plenty of variety. Let it be just notes separated by " +
+                         "Don't let the notes go higher than G6, but give the notes plenty of variety. Don't include sharp notes, like D4#. Let it be just notes separated by " +
                          "spaces in quotes (don't forget the ending double quote), e.g: \"C4 F5 Ab4 F5\"";
            song.UserId = userId;
             song.Id = 0;
             song.InstrumentId = Convert.ToInt32(collection["r3"]);
             song.RateId = Convert.ToInt32(collection["r2"]);
-            song.Name = "New Song";
+
+            var namePrompt = "Come up with a song name. The tone of the song is" + collection["r0"] + ". Make it Dungeons and Dragons inspired. Make it 1 to 3 words.";
+            var gptName = await api.CompletionsEndpoint.CreateCompletionAsync(namePrompt, max_tokens: 5, temperature: 2, presencePenalty: 0, frequencyPenalty: 0, model: OpenAI.Models.Model.Davinci);
+            song.Name = gptName.ToString();
+
+
             song.CreationDate = DateTime.Now;
             var notes = await api.CompletionsEndpoint.CreateCompletionAsync(song.Prompt, max_tokens: 2000, temperature: 1, presencePenalty: 0, frequencyPenalty: 0, model: OpenAI.Models.Model.Davinci);
             song.Completion = notes.ToString();
 
-            var dallePrompt = song.Prompt + "Make a cover art image of this song prompt. Make it crazy looking with a lot of imagery. Don't put any words or letters in the cover art.";
+            var dallePrompt = "Make a cover art image of this song prompt. Make it crazy looking with a lot of imagery. Don't put any words or letters in the cover art. The tone of the coverart is " + collection["r0"];
             var dalleList = await api.ImagesEndPoint.GenerateImageAsync(dallePrompt, 1, ImageSize.Large);
             var dalleImage = dalleList.FirstOrDefault();
             var url = dalleImage.ToString();
