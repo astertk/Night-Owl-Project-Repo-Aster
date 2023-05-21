@@ -48,21 +48,14 @@ namespace DWC_NightOwlProject.Controllers
             }*/
             /*ViewBag.Backstory = _materialRepository.GetBackstoryById(id);*/
 
-            var result = new Backstory();
+            var result = new List<Backstory>();
             var list = backstoryRepository.GetAllBackstoriesById(id);
-            if(list!=null)
-            {
-                result=list.First();
-            }
-            else
-            {
-                result=null;
-            }
+            
 
             //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
 
             /*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
-            vm.backstory = result;
+            vm.backstories = result;
             return View(vm);
         }
         [Authorize]

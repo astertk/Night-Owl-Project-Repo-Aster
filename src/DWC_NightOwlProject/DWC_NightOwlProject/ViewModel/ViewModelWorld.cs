@@ -10,10 +10,10 @@ namespace DWC_NightOwlProject.ViewModel
 
         public World ThisWorld{get;set;}
 
-        public Material Backstory { get;set;}
-        public List<Material> quests { get;set;}
+        public List<Backstory> Backstory { get;set;}
+        public List<Quest> quests { get;set;}
 
-        public List<Material> characters { get;set;}
+        public List<Character> characters { get;set;}
 
         public List<Map> maps { get;set;}
     }

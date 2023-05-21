@@ -19,15 +19,22 @@ public class WorldController : Controller
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IMaterialRepository _materialRepository;
     private readonly IMapRepository _mapRepository;
+    private readonly ICharacterRepository _characterRepository;
+    private readonly IQuestRepository _questRepository;
+    private readonly IBackstoryRepository _backstoryRepository;
 
 
-    public WorldController(ILogger<WorldController> logger, IWorldRepository repo, UserManager<IdentityUser> um, IMaterialRepository materialRepository, IMapRepository mapRepository)
+    public WorldController(ILogger<WorldController> logger, IWorldRepository repo, UserManager<IdentityUser> um, IMaterialRepository materialRepository, IMapRepository mapRepository,
+                            IBackstoryRepository backstoryRepo, ICharacterRepository characterRepo, IQuestRepository questRepo)
     {
         _userManager = um;
         _logger = logger;
         worldRepo = repo;
         _materialRepository = materialRepository;
         _mapRepository = mapRepository;
+        _questRepository = questRepo;
+        _backstoryRepository = backstoryRepo;
+        _characterRepository = characterRepo;
     }
 
     [Authorize]
@@ -37,13 +44,13 @@ public class WorldController : Controller
         ViewModelWorld vmw = new ViewModelWorld();
         World userWorld = getUserWorld(userId);
 
-        var backstory = new Material();
-        var quests = new List<Material>();
-        var characters = new List<Material>();
+        var backstory = new List<Backstory>();
+        var quests = new List<Quest>();
+        var characters = new List<Character>();
         var maps = new List<Map>();
-        backstory = _materialRepository.GetBackstoryById(userId);
-        quests = _materialRepository.GetAllQuestsById(userId);
-        characters = _materialRepository.GetAllCharactersById(userId);
+        backstory = _backstoryRepository.GetAllBackstoriesById(userId);
+        quests = _questRepository.GetAllQuestsById(userId);
+        characters = _characterRepository.GetAllCharactersById(userId);
         maps = _mapRepository.GetAllMapsById(userId);
 
         if (userWorld != null)
