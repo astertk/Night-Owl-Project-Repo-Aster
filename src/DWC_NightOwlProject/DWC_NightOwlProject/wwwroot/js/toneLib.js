@@ -1,18 +1,23 @@
 ﻿
-function music() {
+function music(noteString) {
 	const synth = new Tone.AMSynth().toDestination();
 
 	const now = Tone.now();
 	// start recording
 	// generate a few notes
 	var beat = 0.5;
-	var beatValue = .2;
+	var beatValue = 0.5;
 	var beatCount = 0;
 	var songTime;
-	var noteArray = ["G3", "Bb3", "Eb4", "G4", "Bb4", "Eb5", "F4", "G4", "Bb4", "Db5", "Eb5", "F5", "G4", "Bb4", "Eb4", "G3"];
+
+	var noteArray = noteString.split(" ");
+
+	//noteArray = ["C4","Eb4","G4","Bb4"];
+
+	//var noteArray = ["G3", "Bb3", "Eb4", "G4", "Bb4", "Eb5", "F4", "G4", "Bb4", "Db5", "Eb5", "F5", "G4", "Bb4", "Eb4", "G3"];
 
 	for (var i = 0; i < noteArray.length; i++) {
-
+		
 		synth.triggerAttackRelease(noteArray[i], "8n", now + beat);
 		beat += beatValue;
 		beatCount++;
@@ -21,7 +26,7 @@ function music() {
 }
 
 
-function record() {
+function record(noteString) {
 	const recorder = new Tone.Recorder();
 	const synth = new Tone.AMSynth().connect(recorder);
 	recorder.start();
@@ -33,7 +38,7 @@ function record() {
 	var beatValue = .2;
 	var beatCount = 0;
 	var songTime;
-	var noteArray = ["G3", "Bb3", "Eb4", "G4", "Bb4", "Eb5", "F4", "G4", "Bb4", "Db5", "Eb5", "F5", "G4", "Bb4", "Eb4", "G3"];
+	//var noteArray = ["G3", "Bb3", "Eb4", "G4", "Bb4", "Eb5", "F4", "G4", "Bb4", "Db5", "Eb5", "F5", "G4", "Bb4", "Eb4", "G3"];
 
 	for (var i = 0; i < noteArray.length; i++) {
 
