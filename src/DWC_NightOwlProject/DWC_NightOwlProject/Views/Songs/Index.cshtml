@@ -85,11 +85,25 @@
                                 <span asp-validation-for="r1" class="text-danger"></span>
 
                                 <label asp-for="r2" class="control-label">What is the speed of the song?</label>
-                                <input asp-for="r2" class="form-control" required />
+                                <select asp-for="r2" class="form-control" required>
+                                    <option value = "0">Slow</option>
+                                    <option value = "1">Medium</option>
+                                    <option value = "2">Fast</option>
+                                </select>
                                 <span asp-validation-for="r2" class="text-danger"></span>
 
                                 <label asp-for="r3" class="control-label">What is the instrument the song will be played with?</label>
-                                <input asp-for="r3" class="form-control" required />
+                                <select asp-for="r3" class="form-control" required>
+                                    <option value="0">AMSynth</option>
+                                    <option value = "1">DuoSynth</option>
+                                    <option value="2">FMSynth</option>
+                                    <option value="3">MembraneSynth</option>
+                                    <option value="4">MetalSynth</option>
+                                    <option value="5">MonoSynth</option>
+                                    <option value="6">NoiseSynth</option>
+                                    <option value="7">PluckSynth</option>
+
+                                </select>
                                 <span asp-validation-for="r3" class="text-danger"></span>
 
                             </div>
@@ -178,11 +192,11 @@
                     <a asp-controller="Songs" asp-action="delete" asp-route-id="@Model.songs[i].Id" class="btn btn-danger m-1">Delete</a>
 
                     <div class="col-sm">
-                        <input type="button" class="btn btn-dark m-1" value="Play" onclick="music(@Model.songs[i].Completion)" />
+                        <input type="button" class="btn btn-dark m-1" value="Play" onclick="music(@Model.songs[i].Completion,@Model.songs[i].InstrumentId,@Model.songs[i].RateId)" />
 
 
 
-                        <input type="button" class="btn btn-dark m-1" value="Download" onclick="record(@Model.songs[i].Completion)" />
+                        <input type="button" class="btn btn-dark m-1" value="Download" onclick="record(@Model.songs[i].Completion,@Model.songs[i].InstrumentId,@Model.songs[i].RateId)" />
                     </div>
                 }
             </div>

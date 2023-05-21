@@ -60,13 +60,18 @@ public class SongsController : Controller
                          + "The tone of the song is: " + collection["r0"]
                          + ". The song will be used for " + collection["r1"]
                          + ". The speed of the song will be " + collection["r2"]
-                         + ". The instrument will be " + collection["r3"]
-                         + ". Make it one string of notes in this format, with no commas or periods, just notes separated by spaces in quotes, e.g: \"C4 F5 Ab4 F5\". Make it 32 notes or longer.";
+                         + ". Make it one string of notes in this format, with no " +
+                         "commas or periods. Make it 32 notes or longer, but not longer than 100 notes. " +
+                         "Give the song a clear progression of chorus, verse 1, chorus. Don't include the words chorus or verse 1, just the notes with" +
+                         "Don't let the notes go higher than G6, but give the notes plenty of variety. Let it be just notes separated by " +
+                         "spaces in quotes (don't forget the ending double quote), e.g: \"C4 F5 Ab4 F5\"";
            song.UserId = userId;
             song.Id = 0;
+            song.InstrumentId = Convert.ToInt32(collection["r3"]);
+            song.RateId = Convert.ToInt32(collection["r2"]);
             song.Name = "New Song";
             song.CreationDate = DateTime.Now;
-            var notes = await api.CompletionsEndpoint.CreateCompletionAsync(song.Prompt, max_tokens: 1000, temperature: 0, presencePenalty: 0, frequencyPenalty: 0, model: OpenAI.Models.Model.Davinci);
+            var notes = await api.CompletionsEndpoint.CreateCompletionAsync(song.Prompt, max_tokens: 2000, temperature: 1, presencePenalty: 0, frequencyPenalty: 0, model: OpenAI.Models.Model.Davinci);
             song.Completion = notes.ToString();
 
             var dallePrompt = song.Prompt + "Make a cover art image of this song prompt. Make it crazy looking with a lot of imagery. Don't put any words or letters in the cover art.";

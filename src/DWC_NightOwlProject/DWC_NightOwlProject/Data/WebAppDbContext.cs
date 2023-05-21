@@ -38,44 +38,42 @@ public partial class WebAppDbContext : DbContext
     {
         modelBuilder.Entity<Backstory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Backstor__3214EC2746A7337D");
+            entity.HasKey(e => e.Id).HasName("PK__Backstor__3214EC2796325DA6");
         });
 
         modelBuilder.Entity<Character>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Characte__3214EC27CBE8BE20");
+            entity.HasKey(e => e.Id).HasName("PK__Characte__3214EC2712610A19");
         });
 
         modelBuilder.Entity<Encounter>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Encounte__3214EC27624B2244");
+            entity.HasKey(e => e.Id).HasName("PK__Encounte__3214EC270E7A9ED4");
         });
 
         modelBuilder.Entity<Map>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Maps__3214EC279AD246EF");
+            entity.HasKey(e => e.Id).HasName("PK__Maps__3214EC2784F98FE2");
         });
 
         modelBuilder.Entity<Material>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC2750B3F0D1");
+            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC276869C85B");
         });
 
         modelBuilder.Entity<Quest>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC27EC70E163");
-            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC2705807337");
-            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC27C9724F1A");
+            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC271F558783");
         });
 
         modelBuilder.Entity<Song>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Songs__3214EC2711E89ACD");
+            entity.HasKey(e => e.Id).HasName("PK__Songs__3214EC27D1E8B2B7");
         });
 
         modelBuilder.Entity<World>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__World__3214EC27965AB62E");
+            entity.HasKey(e => e.Id).HasName("PK__World__3214EC27E6B506D5");
         });
 
         OnModelCreatingPartial(modelBuilder);
