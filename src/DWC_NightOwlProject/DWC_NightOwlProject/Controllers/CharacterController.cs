@@ -174,7 +174,7 @@ public class CharacterController : Controller
                 ViewBag.Error = "";
 
                 var character = new Character();
-                character.Prompt = "Create a Character for my Dungeons and Dragons Campaign.";
+                character.Prompt = "Create a Character for my Dungeons and Dragons Campaign. Show the full body and face.";
 
                 character.UserId = userId;
                 character.Id = 0;
