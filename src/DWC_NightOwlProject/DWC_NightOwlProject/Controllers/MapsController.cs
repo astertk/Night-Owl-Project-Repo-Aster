@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using OpenAI;
 using OpenAI.Images;
 using System.Net;
-
+using DWC_NightOwlProject.ViewModel;
 
 namespace DWC_NightOwlProject.Controllers;
 
@@ -16,18 +16,24 @@ public class MapsController : Controller
 {
     private IMaterialRepository _materialRepository;
     private IMapRepository _mapRepository;
+    private IBackstoryRepository backstoryRepo;
+    private IQuestRepository questRepo;
+    private IEncounterRepository encounterRepo; 
     private readonly IConfiguration _config;
     private readonly UserManager<IdentityUser> _userManager;
     private IWebHostEnvironment _environment;
     public MapsController(IMaterialRepository materialRepository, IConfiguration config,
                                    UserManager<IdentityUser> userManager, IWebHostEnvironment environment,
-                                   IMapRepository mapRepository)
+                                   IMapRepository mapRepository, IBackstoryRepository back, IQuestRepository quest,IEncounterRepository encounter)
     {
         _materialRepository = materialRepository;
         _mapRepository = mapRepository;
         _config = config;
         _userManager = userManager;
         _environment = environment;
+        backstoryRepo=back;
+        questRepo=quest;
+        encounterRepo=encounter;
     }
     [Authorize]
     public IActionResult Index()
@@ -115,6 +121,68 @@ public class MapsController : Controller
                 var map = new Map();
                 map.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
                                     "The map should have a square grid overlaying it. " + collection["r0"];
+
+
+                map.UserId = userId;
+                map.Id = 0;
+                map.Name = "New Map";
+                map.CreationDate = DateTime.Now;
+                map.Prompt += "...";
+
+                var APIKey = _config["APIKey"];
+                var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
+                var mapList = await api.ImagesEndPoint.GenerateImageAsync(map.Prompt, 1, ImageSize.Large);
+                var newMap = mapList.FirstOrDefault();
+                var url = newMap.ToString();
+                map.Completion = url;
+                //string tempPath = Path.GetTempPath();
+
+                // Scrape web page
+                WebClient webClient = new WebClient();
+                map.PictureData = webClient.DownloadData(url);
+                _mapRepository.AddOrUpdate(map);
+            }
+
+            else
+            {
+                ViewBag.Error = "Too many Map Materials. Please delete 1 or more to create a new map!";
+            }
+        }
+
+        catch
+        {
+            throw new Exception("Too many map materials in Database");
+        }
+
+        return RedirectToAction("Index", "Maps");
+
+    }
+    [Authorize]
+    public IActionResult CreateWithReference()
+    {
+        string id = _userManager.GetUserId(User);
+        ReferenceSelector rs=new ReferenceSelector();
+        rs.Backstories=backstoryRepo.GetAllBackstoriesById(id);
+        rs.Quests=questRepo.GetAllQuestsById(id);
+        rs.Encounters=encounterRepo.GetAllEncountersById(id);
+        return View(rs);
+    }
+    [Authorize]
+    public async Task<ActionResult> ReferenceCompletion(ReferenceSelector rs)
+    {
+
+        var userId = _userManager.GetUserId(User);
+
+        try
+        {
+            if (_mapRepository.GetAllMapsById(userId).Count() < 4)
+            {
+                ViewBag.Error = "";
+
+
+                var map = new Map();
+                map.Prompt = "Create a Map for my Dungeons and Dragons Campaign. " +
+                                    "The map should have a square grid overlaying it. "+rs.promptMap;
 
 
                 map.UserId = userId;

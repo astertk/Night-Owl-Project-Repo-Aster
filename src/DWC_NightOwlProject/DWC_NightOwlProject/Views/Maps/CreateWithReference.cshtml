@@ -1,0 +1,36 @@
+@model DWC_NightOwlProject.ViewModel.ReferenceSelector
+@{
+    ViewData["Title"] = "Encounter";
+}
+<div><div class="container"><div class="row"><div class="col">
+        <form asp-action="ReferenceCompletion" method="post">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <h3>Create a map</h3>
+        <div class="form-group">
+            <label asp-for="SelectedBackstory" class="control-label">Select backstory</label>
+            <select id="BackstoryListSelect" asp-for="SelectedBackstory" asp-items="@Model.BackstoryList()" onclick="showselectbackstory()"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="SelectedQuest" class="control-label">Select quest</label>
+            <select id="QuestListSelect" asp-for="SelectedQuest" asp-items="@Model.QuestList()" onclick="showselectquest()"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="SelectedEncounter" class="control-label">Select quest</label>
+            <select id="EncounterListSelect" asp-for="SelectedEncounter" asp-items="@Model.EncounterList()" onclick="showselectencounter()"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Prompt" class="control-label">Describe your map</label>
+            <input asp-for="Prompt" class="form-control">
+            <span asp-validation-for="Prompt" class="text-danger"></span>
+        </div>
+        <div id="Backstory"></div>
+        <div id="Quest"></div>
+        <div id="Encounter"></div>
+        <input type="submit" value="Create Map">
+        </form>
+</div></div></div></div>
