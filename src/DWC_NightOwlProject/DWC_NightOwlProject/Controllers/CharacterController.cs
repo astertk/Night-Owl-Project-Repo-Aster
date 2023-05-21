@@ -160,11 +160,50 @@ public class CharacterController : Controller
         // Generate a random DND character name using the Faker library
         //var characterName = Faker.Name.First();named {characterName}
 
-        var prompt = $"Create a DND character with a random race, age, skin tone, height, and weight. Only include the character. Do not include text or columns. Show the full body and face.";
+        /*var prompt = $"Create a DND character with a random race, age, skin tone, height, and weight. Only include the character. Do not include text or columns. Show the full body and face.";
 
         TempData["HoldPrompt"] = prompt;
 
-        return View();
+        return View();*/
+        var userId = _userManager.GetUserId(User);
+
+        try
+        {
+            if (_characterRepository.GetAllCharactersById(userId).Count() < 4)
+            {
+                ViewBag.Error = "";
+
+                var character = new Character();
+                character.Prompt = "Create a Character for my Dungeons and Dragons Campaign. Show the full body and face.";
+
+                character.UserId = userId;
+                character.Id = 0;
+                character.Name = "New Character";
+                character.CreationDate = DateTime.Now;
+                character.Prompt += "...";
+
+                var APIKey = _config["APIKey"];
+                var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
+                var characterList = await api.ImagesEndPoint.GenerateImageAsync(character.Prompt, 1, ImageSize.Large);
+                var newCharacter = characterList.FirstOrDefault();
+                var url = newCharacter.ToString();
+                character.Completion = url;
+
+                WebClient webClient = new WebClient();
+                character.PictureData = webClient.DownloadData(url);
+                _characterRepository.AddOrUpdate(character);
+            }
+            else
+            {
+                ViewBag.Error = "Too many Map Materials. Please delete 1 or more to create a new character!";
+            }
+        }
+        catch
+        {
+            throw new Exception("Too many Character materials in Database");
+        }
+
+        return RedirectToAction("Index", "Character");
     }
 
     [Authorize]
@@ -270,6 +309,10 @@ public class CharacterController : Controller
         var userId = _userManager.GetUserId(User);
         var character = new Character();
         character = _characterRepository.GetCharacterByIdandMaterialId(userId, id);
+        if (character == null)
+        {
+            return RedirectToAction("Index");
+        }
         return View(character);
     }
 
@@ -307,10 +350,10 @@ public class CharacterController : Controller
     public ActionResult CreateSheetWithCharacter(int id)
     {
         var userId = _userManager.GetUserId(User);
-        var material = new Material();
-        material = _materialRepository.GetCharacterByIdandMaterialId(userId, id);
+        var character = new Character();
+        character = _characterRepository.GetCharacterByIdandMaterialId(userId, id);
         SheetRandomizer sr=new SheetRandomizer();
-        sr.Character=material;
+        sr.Character=character;
         return View("CreateSheet",sr);
     }
 }

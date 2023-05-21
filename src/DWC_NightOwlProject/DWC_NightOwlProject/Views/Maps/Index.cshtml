@@ -169,8 +169,11 @@
                         @*<div class="row">Creation Date: @Model.materials[i].CreationDate.ToOADate().ToString();</div>*@
                         <br />
 
-                        <a asp-controller="Maps" asp-action="details" asp-route-id="@Model.maps[i].Id" class="btn btn-primary m-1">Details</a>
-                        <a asp-controller="Maps" asp-action="delete" asp-route-id="@Model.maps[i].Id" class="btn btn-danger m-1">Delete</a>
+                        <a asp-controller="Maps" asp-action="details" asp-route-id="@Model.maps[i].Id" class="btn btn-primary m-3">Details</a>
+                        <a asp-controller="Maps" asp-action="delete" asp-route-id="@Model.maps[i].Id" class="btn btn-danger">Delete</a>
+                        <div class="col" style="padding-right: 6%; padding-left: 6%;">
+                            <a class="btn btn-secondary text-center" href="data:image;base64,@System.Convert.ToBase64String(Model.maps[i].PictureData)" download="map.png">Download</a>
+                        </div>
                     }
                 </div>
             }

@@ -154,7 +154,7 @@
             <h2> Create a Random Character</h2>
             <h4>Let fate and destiny take over your choices!</h4> <br /> <br />
 
-            <input id="random-character" type="button" class="btn btn-dark" value="Create a Random Character" onclick="window.location= '@Url.Action( "Random", "Character")'" />
+            <a href="@Url.Action("Random", "Character")" class="btn btn-dark">Create a Random Character</a>
 
 
         </div>
@@ -189,8 +189,14 @@
                     @*<div class="row">Creation Date: @Model.materials[i].CreationDate.ToOADate().ToString();</div>*@
                     <br />
 
-                    <a asp-controller="Character" asp-action="details" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Details</a>
-                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.characters[i].Id" class="btn btn-danger m-1">Delete</a>
+                    <a asp-controller="Character" asp-action="details" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-3">Details</a>
+                    <a asp-controller="Character" asp-action="delete" asp-route-id="@Model.characters[i].Id" class="btn btn-danger">Delete</a>
+                    <div class="col" style="padding-right: 70%;">
+                        <a asp-controller="Character" asp-action="CreateSheetWithCharacter" asp-route-id="@Model.characters[i].Id" class="btn btn-secondary m-1">Create character sheet</a>
+                        <div class="col" style="padding-left: 19%;">
+                            <a class="btn btn-primary m-1" href="data:image;base64,@System.Convert.ToBase64String(Model.characters[i].PictureData)" download="character.png">Download</a>
+                        </div>
+                    </div>
                 }
             </div>
         }
