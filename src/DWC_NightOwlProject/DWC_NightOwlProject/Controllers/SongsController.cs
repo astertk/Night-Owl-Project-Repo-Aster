@@ -113,6 +113,10 @@ public class SongsController : Controller
         var userId = _userManager.GetUserId(User);
         var song = new Song();
         song = _songRepository.GetSongByIdandMaterialId(userId, id);
+        if (song == null)
+        {
+            return RedirectToAction("Index");
+        }
         return View(song);
     }
 

@@ -1,0 +1,119 @@
+﻿@model DWC_NightOwlProject.Data.MaterialVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+
+<script src="~/js/MapAnimation.js"></script>
+<script src="/js/toneLib.js"></script>
+
+
+<header>
+    <br />
+    <br />
+    <h1>
+        Items
+    </h1>
+
+    <h4>
+        Items in Dungeons and Dragons (DND) are objects, equipment, artifacts, or magical items that players can acquire and use within the game to 
+        enhance their abilities, affect the story, or provide various advantages during their adventures.
+        <br />
+        <br />
+    </h4>
+
+</header>
+
+<div class="text-center" id="title">
+    <h1>Item Creation</h1>
+</div>
+
+<h4>
+    <br />
+    <br />
+    Craft your Items for your campaign. You can have up to 4 Item materials at once before you have to start deleting them!
+</h4>
+
+<div class="container">
+
+    <form asp-action="Template" id="create_template_form" method="post">
+        <div class="row">
+            <div class="col-sm">
+                <label asp-for="r0" class="control-label">What is the Rarity of the Item? Please select a rarity below.</label>
+                <select asp-for="r0" class="form-control" required>
+                    <option value="Common">Common</option>
+                    <option value="Uncommon">Uncommon</option>
+                    <option value="Rare">Rare</option>
+                    <option value="Very Rare">Very Rare</option>
+                    <option value="Legendary">Legendary</option>
+                </select>
+                <span asp-validation-for="r0" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm">
+                <label asp-for="r1" class="control-label">What is the Type of the Item? Please select a type below.</label>
+                <select asp-for="r1" class="form-control" required>
+                    <option value="Weapon">Weapon</option>
+                    <option value="Armor">Armor</option>
+                    <option value="Consumable">Consumable</option>
+                    <option value="Magical Artifact">Magical Artifact</option>
+                    <option value="Potion">Potion</option>
+                    <option value="Scroll">Scroll</option>
+                    <option value="Ring">Ring</option>
+                    <option value="Amulet">Amulet</option>
+                    <option value="Wand">Wand</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+                <span asp-validation-for="r1" class="text-danger"></span>
+
+                <div class="col-sm">
+
+                    <label asp-for="r2" class="control-label">Put some of your creativity in! Add a Key Trait/Word about the Item.</label>
+                    <input asp-for="r2" class="form-control" required />
+                    <span asp-validation-for="r2" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group mt-3 text-center">
+
+                <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Item" onclick="toggle()" />
+
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+<h2>Completions:</h2>
+@if (Model != null)
+{
+    <div class="row">
+        @for (var i = 0; i < Model.items.Count; ++i)
+        {
+
+            <div class="col">
+                @if (Model.items[i] != null)
+                {
+                    <div class="card" style="width: 18rem;">
+
+                        <div class="card-title" style="color:black" id="notes">@Model.items[i].Name</div>
+
+
+                        <img class="card-img-bottom" src="data:image;base64,@System.Convert.ToBase64String(Model.items[i].PictureData)" width="256" height="256" />
+
+
+                    </div>
+                    <br />
+
+                    <a asp-controller="Items" asp-action="details" asp-route-id="@Model.items[i].Id" class="btn btn-primary m-1">Details</a>
+                    <a asp-controller="Items" asp-action="delete" asp-route-id="@Model.items[i].Id" class="btn btn-danger m-1">Delete</a>
+
+               
+                }
+
+            </div>
+        }
+    </div>
+}

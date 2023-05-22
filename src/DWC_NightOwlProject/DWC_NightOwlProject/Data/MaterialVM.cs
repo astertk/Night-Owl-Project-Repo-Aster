@@ -25,6 +25,7 @@ namespace DWC_NightOwlProject.Data
         public List<Backstory> backstories{get;set;}
         public List<Encounter> encounters {get;set;}
         public Backstory backstory{get;set;}
+        public List<Item> items { get; set; }
 
         public List<Song> songs { get; set; }
 
