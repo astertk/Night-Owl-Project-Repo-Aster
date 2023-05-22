@@ -1,6 +1,15 @@
 ﻿var rToggle = 0;
 var png;
 
+function showselectbackstory(){
+    document.getElementById("Backstory").innerHTML=document.getElementById("BackstoryListSelect").value;
+}
+function showselectquest(){
+    document.getElementById("Quest").innerHTML=document.getElementById("QuestListSelect").value;
+}
+function showselectencounter(){
+    document.getElementById("Encounter").innerHTML=document.getElementById("EncounterListSelect").value;
+}
 
 
 
