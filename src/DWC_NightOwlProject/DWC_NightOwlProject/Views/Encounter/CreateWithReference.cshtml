@@ -1,0 +1,37 @@
+@model DWC_NightOwlProject.ViewModel.ReferenceSelector
+@{
+    ViewData["Title"] = "Encounter";
+}
+<div><div class="container"><div class="row"><div class="col">
+        <form asp-action="ReferenceCompletion" method="post">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <h3>Create an Encounter</h3>
+        <br />
+            <div class="form-group">
+                <label asp-for="evm.Biome" class="control-label">Select encounter environment</label>
+                <select asp-for="evm.Biome" asp-items="@DWC_NightOwlProject.Models.EncounterOptions.BiomeList()"></select>
+            </div>
+        <br />
+            <div class="form-group">
+                <label asp-for="evm.Type" class="control-label">Select encounter type</label>
+                <select asp-for="evm.Type" asp-items="@DWC_NightOwlProject.Models.EncounterOptions.TypeList()"></select>
+            </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="SelectedBackstory" class="control-label">Select backstory</label>
+            <select id="BackstoryListSelect" asp-for="SelectedBackstory" asp-items="@Model.BackstoryList()" onclick="showselectbackstory()"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="SelectedQuest" class="control-label">Select quest</label>
+            <select id="QuestListSelect" asp-for="SelectedQuest" asp-items="@Model.QuestList()" onclick="showselectquest()"></select>
+        </div>
+        <div id="Backstory"></div>
+        <div id="Quest"></div>
+        <input type="submit" value="Create encounter">
+        </form>
+</div></div></div></div>

@@ -1,4 +1,4 @@
-﻿@model DWC_NightOwlProject.Data.Material
+﻿@model DWC_NightOwlProject.Data.Backstory
 
 
 <div class="text-center" id="title">
@@ -20,7 +20,10 @@
 </h4>
 
 <p class="results">
-@Model.Completion
+    @if(Model!=null)
+    {
+        @Model.Completion
+    }
 </p>
 
 <br />

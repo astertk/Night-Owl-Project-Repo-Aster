@@ -160,11 +160,50 @@ public class CharacterController : Controller
         // Generate a random DND character name using the Faker library
         //var characterName = Faker.Name.First();named {characterName}
 
-        var prompt = $"Create a DND character with a random race, age, skin tone, height, and weight. Only include the character. Do not include text or columns. Show the full body and face.";
+        /*var prompt = $"Create a DND character with a random race, age, skin tone, height, and weight. Only include the character. Do not include text or columns. Show the full body and face.";
 
         TempData["HoldPrompt"] = prompt;
 
-        return View();
+        return View();*/
+        var userId = _userManager.GetUserId(User);
+
+        try
+        {
+            if (_characterRepository.GetAllCharactersById(userId).Count() < 4)
+            {
+                ViewBag.Error = "";
+
+                var character = new Character();
+                character.Prompt = "Create a Character for my Dungeons and Dragons Campaign. Show the full body and face.";
+
+                character.UserId = userId;
+                character.Id = 0;
+                character.Name = "New Character";
+                character.CreationDate = DateTime.Now;
+                character.Prompt += "...";
+
+                var APIKey = _config["APIKey"];
+                var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
+                var characterList = await api.ImagesEndPoint.GenerateImageAsync(character.Prompt, 1, ImageSize.Large);
+                var newCharacter = characterList.FirstOrDefault();
+                var url = newCharacter.ToString();
+                character.Completion = url;
+
+                WebClient webClient = new WebClient();
+                character.PictureData = webClient.DownloadData(url);
+                _characterRepository.AddOrUpdate(character);
+            }
+            else
+            {
+                ViewBag.Error = "Too many Map Materials. Please delete 1 or more to create a new character!";
+            }
+        }
+        catch
+        {
+            throw new Exception("Too many Character materials in Database");
+        }
+
+        return RedirectToAction("Index", "Character");
     }
 
     [Authorize]
@@ -181,6 +220,7 @@ public class CharacterController : Controller
         return View();
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult> UploadCompletion(IFormFile img)
     {
@@ -219,11 +259,14 @@ public class CharacterController : Controller
         return View(material);
     }
 
+    [Authorize]
     public ActionResult Save(Character character)
     {
         _characterRepository.AddOrUpdate(character);
         return RedirectToAction("Index" , "Character");
     }
+
+    [Authorize]
 
     // GET: HomeController1/Details/5
     public ActionResult Details(int id)
@@ -244,6 +287,7 @@ public class CharacterController : Controller
         return View(character);
     }
 
+    [Authorize]
     // POST: HomeController1/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -264,15 +308,21 @@ public class CharacterController : Controller
         }
     }
 
+    [Authorize]
     // GET: HomeController1/Delete/5
     public ActionResult Delete(int id)
     {
         var userId = _userManager.GetUserId(User);
         var character = new Character();
         character = _characterRepository.GetCharacterByIdandMaterialId(userId, id);
+        if (character == null)
+        {
+            return RedirectToAction("Index");
+        }
         return View(character);
     }
 
+    [Authorize]
     // POST: HomeController1/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -294,16 +344,20 @@ public class CharacterController : Controller
         }
     }
 
+    [Authorize]
     public IActionResult CharacterSheet(SheetRandomizer sr)
     {
         sr.Generate(sr.Race,sr.Class);
         return View(sr);
     }
 
+    [Authorize]
     public IActionResult CreateSheet()
     {
         return View();
     }
+
+    [Authorize]
     public ActionResult CreateSheetWithCharacter(int id)
     {
         var userId = _userManager.GetUserId(User);

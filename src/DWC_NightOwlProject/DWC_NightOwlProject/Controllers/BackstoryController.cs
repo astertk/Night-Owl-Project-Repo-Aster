@@ -50,7 +50,14 @@ namespace DWC_NightOwlProject.Controllers
 
             var result = new List<Backstory>();
             var list = backstoryRepository.GetAllBackstoriesById(id);
-            
+            if(list.Any())
+            {
+                result=list.First();
+            }
+            else
+            {
+                result=null;
+            }
 
             //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
 

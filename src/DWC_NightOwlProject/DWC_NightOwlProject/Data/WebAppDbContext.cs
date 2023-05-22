@@ -38,42 +38,42 @@ public partial class WebAppDbContext : DbContext
     {
         modelBuilder.Entity<Backstory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Backstor__3214EC279ABA2780");
+            entity.HasKey(e => e.Id).HasName("PK__Backstor__3214EC2796325DA6");
         });
 
         modelBuilder.Entity<Character>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Characte__3214EC27448A9129");
+            entity.HasKey(e => e.Id).HasName("PK__Characte__3214EC2712610A19");
         });
 
         modelBuilder.Entity<Encounter>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Encounte__3214EC2768D18D5B");
+            entity.HasKey(e => e.Id).HasName("PK__Encounte__3214EC270E7A9ED4");
         });
 
         modelBuilder.Entity<Map>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Maps__3214EC2777A7BFD7");
+            entity.HasKey(e => e.Id).HasName("PK__Maps__3214EC2784F98FE2");
         });
 
         modelBuilder.Entity<Material>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC272D28071F");
+            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC276869C85B");
         });
 
         modelBuilder.Entity<Quest>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC27E3C6272D");
+            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC271F558783");
         });
 
         modelBuilder.Entity<Song>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Songs__3214EC276817A99E");
+            entity.HasKey(e => e.Id).HasName("PK__Songs__3214EC27D1E8B2B7");
         });
 
         modelBuilder.Entity<World>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__World__3214EC277168821E");
+            entity.HasKey(e => e.Id).HasName("PK__World__3214EC27E6B506D5");
         });
 
         OnModelCreatingPartial(modelBuilder);
