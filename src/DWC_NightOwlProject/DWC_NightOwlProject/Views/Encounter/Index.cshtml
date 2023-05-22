@@ -14,6 +14,11 @@
             <input type="button" class="btn btn-dark m-1" value="Encounter Form" onclick="window.location= '@Url.Action( "EncounterForm", "Encounter")'" />
         </div>
         <div class="col-sm">
+            <h2>Create an encounter based on other existing materials</h2>
+            <h4>Make an encounter that references other content</h4>
+            <a asp-controller="Encounter" asp-action="CreateWithReference" class="btn btn-primary m-1">Create encounter</a>
+        </div>
+        <div class="col-sm">
             <br />
             <h2>Enter your own encounter</h2>
             <p>Enter details of an encounter without AI generation</p><br />

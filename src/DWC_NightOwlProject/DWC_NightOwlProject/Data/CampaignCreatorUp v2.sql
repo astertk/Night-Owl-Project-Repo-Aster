@@ -61,6 +61,8 @@ CREATE TABLE [Songs]
 (
     [ID]            INT             PRIMARY KEY     IDENTITY(1, 1),
     [UserID]        NVARCHAR(450)         NOT NULL,
+    [InstrumentID]  INT,
+    [RateID]        INT,
     [Name]          NVARCHAR(450)  NOT NULL,
     [CreationDate]  DATE            NOT NULL,
     [WorldID]       INT             NOT NULL,

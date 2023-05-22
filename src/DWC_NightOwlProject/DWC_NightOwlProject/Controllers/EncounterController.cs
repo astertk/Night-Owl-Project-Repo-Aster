@@ -20,15 +20,19 @@ public class EncounterController : Controller
     private IWorldRepository worldRepo;
     private readonly IConfiguration _config;
     private readonly IEncounterRepository encounterRepository;
+    private IBackstoryRepository backstoryRepo;
+    private IQuestRepository questRepo;
     private readonly string materialType="Encounter";
 
-    public EncounterController(UserManager<IdentityUser> um, IMaterialRepository materialRepository,IWorldRepository wRepo, IConfiguration config,IEncounterRepository encounterrepo)
+    public EncounterController(UserManager<IdentityUser> um, IMaterialRepository materialRepository,IWorldRepository wRepo, IConfiguration config,IEncounterRepository encounterrepo,IBackstoryRepository back,IQuestRepository quest)
     {
         _userManager = um;
         _materialRepository = materialRepository;
         worldRepo=wRepo;
         _config=config;
         encounterRepository=encounterrepo;
+        questRepo=quest;
+        backstoryRepo=back;
     }
     [Authorize]
     public IActionResult Index()
@@ -42,6 +46,7 @@ public class EncounterController : Controller
         return View(vm);
     }
 
+    [Authorize]
     public IActionResult EncounterForm()
     {
         return View();
@@ -55,16 +60,34 @@ public class EncounterController : Controller
         encounter.Result=result.ToString();
         return View(encounter);
     }
+    [Authorize]
+    public IActionResult CreateWithReference()
+    {
+        string id = _userManager.GetUserId(User);
+        ReferenceSelector rs=new ReferenceSelector();
+        rs.Backstories=backstoryRepo.GetAllBackstoriesById(id);
+        rs.Quests=questRepo.GetAllQuestsById(id);
+        return View(rs);
+    }
+
+    public async Task<IActionResult> ReferenceCompletion(ReferenceSelector rs)
+    {
+        var key=_config["APIKey"];
+        var api=new OpenAIClient(new OpenAIAuthentication(key));
+        var result = await api.CompletionsEndpoint.CreateCompletionAsync(rs.promptEncounter(), max_tokens: 1000, temperature: .5, presencePenalty: .5, frequencyPenalty: .5, model: OpenAI.Models.Model.Davinci);
+        rs.evm.Result=result.ToString();
+        return View("Completion",rs.evm);
+    }
 
     public IActionResult Save(EncounterViewModel evm)
     {
         String userId = _userManager.GetUserId(User);
-        World userWorld=getUserWorld(userId);
+        //World userWorld=getUserWorld(userId);
         Encounter e= new Encounter();
         e.Type=evm.Type;
         e.Biome=evm.Biome;
         e.UserId=userId;
-        e.WorldId=userWorld.Id;
+        //e.WorldId=userWorld.Id;
         //e.Name=evm.Description();
         e.CreationDate=DateTime.Now;
         e.Prompt=evm.Prompt();

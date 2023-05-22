@@ -51,7 +51,7 @@ namespace DWC_NightOwlProject.Controllers
 
             var result = new Backstory();
             var list = backstoryRepository.GetAllBackstoriesById(id);
-            if(list!=null)
+            if(list.Any())
             {
                 result=list.First();
             }

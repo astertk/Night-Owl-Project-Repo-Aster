@@ -54,6 +54,11 @@
             <button type="button" class="btn btn-dark" value="Create a Quest" onclick="window.location='@Url.Action("GuidedQuestTemplate", "Quests")'">Create your Quests</button>
         </div>
         <div class="col-sm">
+            <h2>Create a quest based on other existing materials</h2>
+            <h4>Make a quest that references other content</h4>
+            <a asp-controller="Quests" asp-action="CreateWithReference" class="btn btn-primary m-1">Create quest</a>
+        </div>
+        <div class="col-sm">
             <br />
             <h2>Enter your own quest</h2>
             <p>Enter details of a quest without AI generation</p><br />

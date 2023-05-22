@@ -220,6 +220,7 @@ public class CharacterController : Controller
         return View();
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult> UploadCompletion(IFormFile img)
     {
@@ -258,11 +259,14 @@ public class CharacterController : Controller
         return View(material);
     }
 
+    [Authorize]
     public ActionResult Save(Character character)
     {
         _characterRepository.AddOrUpdate(character);
         return RedirectToAction("Index" , "Character");
     }
+
+    [Authorize]
 
     // GET: HomeController1/Details/5
     public ActionResult Details(int id)
@@ -283,6 +287,7 @@ public class CharacterController : Controller
         return View(character);
     }
 
+    [Authorize]
     // POST: HomeController1/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -303,6 +308,7 @@ public class CharacterController : Controller
         }
     }
 
+    [Authorize]
     // GET: HomeController1/Delete/5
     public ActionResult Delete(int id)
     {
@@ -316,6 +322,7 @@ public class CharacterController : Controller
         return View(character);
     }
 
+    [Authorize]
     // POST: HomeController1/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -337,16 +344,20 @@ public class CharacterController : Controller
         }
     }
 
+    [Authorize]
     public IActionResult CharacterSheet(SheetRandomizer sr)
     {
         sr.Generate(sr.Race,sr.Class);
         return View(sr);
     }
 
+    [Authorize]
     public IActionResult CreateSheet()
     {
         return View();
     }
+
+    [Authorize]
     public ActionResult CreateSheetWithCharacter(int id)
     {
         var userId = _userManager.GetUserId(User);
