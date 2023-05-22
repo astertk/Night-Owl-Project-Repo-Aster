@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using NuGet.ProjectModel;
 using DWC_NightOwlProject.DAL.Concrete;
 using NuGet.Protocol;
+using DWC_NightOwlProject.ViewModel;
 
 namespace DWC_NightOwlProject.Controllers
 {
@@ -217,13 +218,26 @@ namespace DWC_NightOwlProject.Controllers
                 return View();
             }
         }
-
-        // GET: HomeController1/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult EnterNew()
         {
             return View();
         }
-
+        public IActionResult SubmitNew(UserInputViewModel uvm)
+        {
+            if(uvm.IsValid())
+            {
+                var userId = _userManager.GetUserId(User);
+                var b = new Backstory();
+                b.UserId = userId;
+                b.Id = 0;
+                b.Name = "";
+                b.CreationDate = DateTime.Now;
+                b.Prompt = "";
+                b.Completion = uvm.Sanitize(uvm.UserInput);
+                backstoryRepository.AddOrUpdate(b);
+            }
+            return View("Index");
+        }
         // POST: HomeController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -237,6 +251,29 @@ namespace DWC_NightOwlProject.Controllers
             {
                 return View();
             }
+        }
+        public ActionResult Edit(int id)
+        {
+            var userId = _userManager.GetUserId(User);
+            var backstory = new Backstory();
+            backstory= backstoryRepository.GetBackstoryByIdandMaterialId(userId, id);
+            if(backstory!=null)
+            {
+                return View(backstory);
+            }
+            return View("Index");
+        }
+        public IActionResult SubmitEdit(Backstory b)
+        {
+            try
+            {
+                backstoryRepository.AddOrUpdate(b);
+            }
+            catch
+            {
+                return View("Index");
+            }
+            return View("Index");
         }
 
         // GET: HomeController1/Delete/5

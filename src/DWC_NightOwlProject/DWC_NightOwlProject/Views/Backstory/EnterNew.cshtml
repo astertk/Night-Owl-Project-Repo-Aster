@@ -1,16 +1,16 @@
 @model DWC_NightOwlProject.ViewModel.UserInputViewModel
 @{
-    ViewData["Title"] = "Create encounter";
+    ViewData["Title"] = "Create backstory";
 }
 <div>
     <h2>Guided quest</h2>
         <form asp-action="SubmitNew" method="post">
             <div class="form-group">
-                <label asp-for="UserInput" class="control-label">Enter the details of your encounter</label>
+                <label asp-for="UserInput" class="control-label">Enter the details of your backstory</label>
                 <input asp-for="UserInput" class="form-control">
                 <span asp-validation-for="UserInput" class="text-danger"></span>
             </div>
-            <input type="submit" value="Create encounter">
+            <input type="submit" value="Create backstory">
         </form>
     @*}*@
 </div>

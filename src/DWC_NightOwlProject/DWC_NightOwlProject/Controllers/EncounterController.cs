@@ -85,6 +85,50 @@ public class EncounterController : Controller
         }
         return RedirectToAction("Index");
     }
+    public ActionResult Edit(int id)
+    {
+        var userId = _userManager.GetUserId(User);
+        var encounter = new Encounter();
+        encounter= encounterRepository.GetEncounterByIdandMaterialId(userId, id);
+        if(encounter!=null)
+        {
+            return View(encounter);
+        }
+        return View("Index");
+    }
+    public IActionResult SubmitEdit(Encounter e)
+    {
+        try
+        {
+            encounterRepository.AddOrUpdate(e);
+        }
+        catch
+        {
+            return View("Index");
+        }
+        return View("Index");
+    }
+        public IActionResult EnterNew()
+        {
+            return View();
+        }
+        public IActionResult SubmitNew(UserInputViewModel uvm)
+        {
+            if(uvm.IsValid())
+            {
+                var userId = _userManager.GetUserId(User);
+                var e = new Encounter();
+                e.Biome="Undetermined";
+                e.Type="Undetermined";
+                e.UserId = userId;
+                e.Id = 0;
+                e.CreationDate = DateTime.Now;
+                e.Prompt = "";
+                e.Completion = uvm.Sanitize(uvm.UserInput);
+                encounterRepository.AddOrUpdate(e);
+            }
+            return View("Index");
+        }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

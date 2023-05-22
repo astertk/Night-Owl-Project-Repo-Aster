@@ -235,6 +235,27 @@ namespace DWC_NightOwlProject.Controllers
 
         }
 
+        public IActionResult EnterNew()
+        {
+            return View();
+        }
+        public IActionResult SubmitNew(UserInputViewModel uvm)
+        {
+            if(uvm.IsValid())
+            {
+                var userId = _userManager.GetUserId(User);
+                var q = new Quest();
+                q.UserId = userId;
+                q.Id = 0;
+                q.Name = "";
+                q.CreationDate = DateTime.Now;
+                q.Prompt = "";
+                q.Completion = uvm.Sanitize(uvm.UserInput);
+                questRepository.AddOrUpdate(q);
+            }
+            return View("Index");
+        }
+
         public ActionResult Save()
         {
             var userId = _userManager.GetUserId(User);
@@ -271,7 +292,26 @@ namespace DWC_NightOwlProject.Controllers
         // GET: QuestController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var userId = _userManager.GetUserId(User);
+            var quest = new Quest();
+            quest= questRepository.GetQuestByIdandMaterialId(userId, id);
+            if(quest!=null)
+            {
+                return View(quest);
+            }
+            return View("Index");
+        }
+        public IActionResult SubmitEdit(Quest q)
+        {
+            try
+            {
+                questRepository.AddOrUpdate(q);
+            }
+            catch
+            {
+                return View("Index");
+            }
+            return View("Index");
         }
 
         // POST: QuestController/Edit/5

@@ -13,6 +13,12 @@
             <h3>Not sure what will happen to your players on the way? Let us figure it out!</h3>
             <input type="button" class="btn btn-dark m-1" value="Encounter Form" onclick="window.location= '@Url.Action( "EncounterForm", "Encounter")'" />
         </div>
+        <div class="col-sm">
+            <br />
+            <h2>Enter your own encounter</h2>
+            <p>Enter details of an encounter without AI generation</p><br />
+            <button type="button" class="btn btn-dark" value="Create an encounter" onclick="window.location='@Url.Action("EnterNew", "Encounter")'">Create your encounter</button>
+        </div>
     </div>
 </div>
 @if(Model!=null)
@@ -29,10 +35,10 @@
                     <script>
                         function downloadFile() {
                             const link = document.createElement("a");
-                            const content = "@Html.Raw(@Model.encounters[i].Completion)";
+                            const content = "@Html.Raw(Model.encounters[i].Completion).ToString()";
                             const file = new Blob([content], { type: "text/plain" });
                             link.href = URL.createObjectURL(file);
-                            link.download = "charactersheet.txt";
+                            link.download = "encounter.txt";
                             link.click();
                             URL.revokeObjectURL(link.href);
                         };

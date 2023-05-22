@@ -44,6 +44,12 @@
     <h4>More advanced, but potentially more creative!</h4> <br />
     <input type="button" class="btn btn-dark" value="Create Your Backstory" id="scratchButton" onclick="window.location= '@Url.Action( "Scratch", "Backstory")'" />
         </div>
+        <div class="col-sm">
+            <br />
+            <h2>Enter your own backstory</h2>
+            <p>Enter details of a backstory without AI generation</p><br />
+            <button type="button" class="btn btn-dark" value="Create a backstory" onclick="window.location='@Url.Action("EnterNew", "Backstory")'">Create your backstory</button>
+        </div>
         
     </div>
 </div>
@@ -63,10 +69,10 @@
                     <script>
                         function downloadFile() {
                             const link = document.createElement("a");
-                            const content = "@Html.Raw(@Model.backstory.Completion)";
+                            const content = "@Html.Raw(Model.backstory.Completion).ToString()";
                             const file = new Blob([content], { type: "text/plain" });
                             link.href = URL.createObjectURL(file);
-                            link.download = "charactersheet.txt";
+                            link.download = "backstory.txt";
                             link.click();
                             URL.revokeObjectURL(link.href);
                         };

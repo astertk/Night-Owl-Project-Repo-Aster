@@ -1,4 +1,5 @@
-namespace DWC_NightOwlProject.ViewModel;
+namespace DWC_NightOwlProject.ViewModel
+{
 public class EncounterViewModel
 {
     public string Biome {get;set;}
@@ -17,4 +18,5 @@ public class EncounterViewModel
     {
         return "A "+Type+" encounter in a "+Biome+" Environment";
     }
+}
 }
