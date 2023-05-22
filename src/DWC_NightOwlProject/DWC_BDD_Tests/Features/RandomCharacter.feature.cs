@@ -77,20 +77,20 @@ namespace DWC_BDD_Tests.Features
         {
 #line 4
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "UserName",
                         "Email",
                         "FirstName",
                         "LastName",
                         "Password"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "oneilmagno@gmail.com",
                         "oneilmagno@gmail.com",
                         "Oneil",
                         "Magno",
                         "Leafyear29!"});
 #line 5
- testRunner.Given("the following users exist", ((string)(null)), table3, "Given ");
+ testRunner.Given("the following users exist", ((string)(null)), table5, "Given ");
 #line hidden
 #line 8
  testRunner.And("I am a user with the User name \'oneilmagno@gmail.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
