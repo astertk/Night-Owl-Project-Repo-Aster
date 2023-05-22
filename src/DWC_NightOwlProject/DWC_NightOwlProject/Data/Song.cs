@@ -16,6 +16,12 @@ public partial class Song
     [StringLength(450)]
     public string UserId { get; set; } = null!;
 
+    [Column("InstrumentID")]
+    public int? InstrumentId { get; set; }
+
+    [Column("RateID")]
+    public int? RateId { get; set; }
+
     [StringLength(450)]
     public string Name { get; set; } = null!;
 
