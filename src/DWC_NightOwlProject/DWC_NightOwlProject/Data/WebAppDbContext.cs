@@ -40,47 +40,47 @@ public partial class WebAppDbContext : DbContext
     {
         modelBuilder.Entity<Backstory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Backstor__3214EC2780871493");
+            entity.HasKey(e => e.Id).HasName("PK__Backstor__3214EC27ED3E1715");
         });
 
         modelBuilder.Entity<Character>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Characte__3214EC271898FACD");
+            entity.HasKey(e => e.Id).HasName("PK__Characte__3214EC27967F5D78");
         });
 
         modelBuilder.Entity<Encounter>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Encounte__3214EC27E0C5FC6D");
+            entity.HasKey(e => e.Id).HasName("PK__Encounte__3214EC27BB146F92");
         });
 
         modelBuilder.Entity<Item>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Items__3214EC27D1EF8547");
+            entity.HasKey(e => e.Id).HasName("PK__Items__3214EC27EFE00D5F");
         });
 
         modelBuilder.Entity<Map>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Maps__3214EC27F0A37D13");
+            entity.HasKey(e => e.Id).HasName("PK__Maps__3214EC271126AE15");
         });
 
         modelBuilder.Entity<Material>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC27E8F5D9A6");
+            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC27FAFBA4A9");
         });
 
         modelBuilder.Entity<Quest>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC27868B5930");
+            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC27F4BD68A0");
         });
 
         modelBuilder.Entity<Song>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Songs__3214EC27404750AA");
+            entity.HasKey(e => e.Id).HasName("PK__Songs__3214EC27382DBEB2");
         });
 
         modelBuilder.Entity<World>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__World__3214EC2776A6CC87");
+            entity.HasKey(e => e.Id).HasName("PK__World__3214EC27661A529C");
         });
 
         OnModelCreatingPartial(modelBuilder);

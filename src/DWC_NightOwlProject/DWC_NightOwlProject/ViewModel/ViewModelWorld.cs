@@ -17,6 +17,8 @@ namespace DWC_NightOwlProject.ViewModel
 
         public List<Map> maps { get;set;}
 
-        public List<Song> songs { get;set;}
+        public List<Song> Songs { get;set;}
+
+        public List<Item> items { get;set;}
     }
 }

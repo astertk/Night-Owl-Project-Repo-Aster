@@ -114,44 +114,78 @@
             }
         </div>
 
-        <div class="row">
+        <div class="text-center">
         <a id="linklabel" asp-controller="Songs" asp-action="Index"><h2>Songs:</h2></a>
         </div>
 
         <div class="row">
-        @for (var i = 0; i < Model; ++i)
+        @for (var i = 0; i < Model.Songs.Count; ++i)
         {
 
             <div class="col">
-                @if (Model.songs[i] != null)
+                @if (Model.Songs[i] != null)
                 {
                     <div class="card" style="width: 18rem;">
 
-                    <div class="card-title" style="color:black" id="notes">@Model.songs[i].Name</div>
+                    <div class="card-title" style="color:black" id="notes">@Model.Songs[i].Name</div>
 
 
-                    <img class ="card-img-bottom" src="data:image;base64,@System.Convert.ToBase64String(Model.songs[i].PictureData)" width="256" height="256" />
+                    <img class ="card-img-bottom" src="data:image;base64,@System.Convert.ToBase64String(Model.Songs[i].PictureData)" width="256" height="256" />
                     
 
                     </div>
                     <br />
 
-                    <a asp-controller="Songs" asp-action="details" asp-route-id="@Model.songs[i].Id" class="btn btn-primary m-1">Details</a>
-                    <a asp-controller="Songs" asp-action="delete" asp-route-id="@Model.songs[i].Id" class="btn btn-danger m-1">Delete</a>
+                    <a asp-controller="Songs" asp-action="details" asp-route-id="@Model.Songs[i].Id" class="btn btn-primary m-1">Details</a>
+                    <a asp-controller="Songs" asp-action="delete" asp-route-id="@Model.Songs[i].Id" class="btn btn-danger m-1">Delete</a>
 
                     <div class="col-sm">
-                        <input type="button" class="btn btn-dark m-1" value="Play" onclick="music(@Model.songs[i].Completion,@Model.songs[i].InstrumentId,@Model.songs[i].RateId)" />
+                        <input type="button" class="btn btn-dark m-1" value="Play" onclick="music(@Model.Songs[i].Completion,@Model.Songs[i].InstrumentId,@Model.Songs[i].RateId)" />
 
                         <input type="button" class="btn btn-dark m-1" value="Stop" onclick="stop()" />
 
-                        <input type="button" class="btn btn-dark m-1" value="Download" onclick="record(@Model.songs[i].Completion,@Model.songs[i].InstrumentId,@Model.songs[i].RateId)" />
+                        <input type="button" class="btn btn-dark m-1" value="Download" onclick="record(@Model.Songs[i].Completion,@Model.Songs[i].InstrumentId,@Model.Songs[i].RateId)" />
                     </div>
                 }
-                   
-            </div>
+                else
+                {
+                    <h4>@ViewBag.Songs</h4>
+                }
+
+        </div>
         }
     </div>
-}
+        <div class="text-center">
+            <a id="linklabel" asp-controller="Items" asp-action="Index"><h2>Items:</h2></a>
+        </div>    
+
+        <div class="row">
+            @for (var i = 0; i < Model.items.Count; ++i)
+            {
+
+                <div class="col">
+                    @if (Model.items[i] != null)
+                    {
+                        <div class="card" style="width: 18rem;">
+
+                            <div class="card-title" style="color:black" id="notes">@Model.items[i].Name</div>
+
+
+                            <img class="card-img-bottom" src="data:image;base64,@System.Convert.ToBase64String(Model.items[i].PictureData)" width="256" height="256" />
+
+
+                        </div>
+                        <br />
+
+                        <a asp-controller="Items" asp-action="details" asp-route-id="@Model.items[i].Id" class="btn btn-primary m-1">Details</a>
+                        <a asp-controller="Items" asp-action="delete" asp-route-id="@Model.items[i].Id" class="btn btn-danger m-1">Delete</a>
+
+
+                    }
+
+                </div>
+            }
+        </div>
     }
     else
     {
