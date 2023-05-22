@@ -48,7 +48,7 @@ namespace DWC_NightOwlProject.Controllers
             }*/
             /*ViewBag.Backstory = _materialRepository.GetBackstoryById(id);*/
 
-            var result = new List<Backstory>();
+            var result = new Backstory();
             var list = backstoryRepository.GetAllBackstoriesById(id);
             if(list.Any())
             {
@@ -62,7 +62,7 @@ namespace DWC_NightOwlProject.Controllers
             //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
 
             /*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
-            vm.backstories = result;
+            vm.backstory = result;
             return View(vm);
         }
         [Authorize]
