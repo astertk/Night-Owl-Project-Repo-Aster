@@ -10,5 +10,7 @@ namespace DWC_NightOwlProject.DAL.Abstract
         public Song GetSongByIdandMaterialId(string userId, int id);
 
         public List<Song> GetAllSongsById(string userId);
+
+        public void Save(Song song, string userId);
     }
 }

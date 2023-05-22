@@ -119,6 +119,10 @@
 
                     <input type="submit" class="btn btn-primary m-1" id="Create" value="Create Song" onclick="toggle()" />
 
+                <f>
+                    <input type="button" class="btn btn-dark m-1" id="stop" value="Stop Music" onclick="pause()" />
+                </f>
+
                 </div>
             </form>
 </div>
@@ -157,8 +161,8 @@
                     <div class="col-sm">
                         <input type="button" class="btn btn-dark m-1" value="Play" onclick="music(@Model.songs[i].Completion,@Model.songs[i].InstrumentId,@Model.songs[i].RateId)" />
 
-                        <input type="button" class="btn btn-dark m-1" value="Stop" onclick="stop()" />
-
+                        <input type="button" class="btn btn-dark m-1" value="Stop" onclick="pause()" />
+                        
                         <input type="button" class="btn btn-dark m-1" value="Download" onclick="record(@Model.songs[i].Completion,@Model.songs[i].InstrumentId,@Model.songs[i].RateId)" />
                     </div>
                 }

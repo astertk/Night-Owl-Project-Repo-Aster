@@ -20,22 +20,22 @@ namespace DWC_BDD_Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RandomCharacter")]
-    public partial class RandomCharacterFeature
+    [NUnit.Framework.DescriptionAttribute("Songs")]
+    public partial class SongsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "RandomCharacter.feature"
+#line 1 "Songs.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "RandomCharacter", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Songs", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,47 +75,56 @@ namespace DWC_BDD_Tests.Features
         
         public virtual void FeatureBackground()
         {
-#line 4
+#line 5
 #line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "UserName",
                         "Email",
                         "FirstName",
                         "LastName",
                         "Password"});
-            table5.AddRow(new string[] {
-                        "oneilmagno@gmail.com",
-                        "oneilmagno@gmail.com",
-                        "Oneil",
-                        "Magno",
-                        "Leafyear29!"});
-#line 5
- testRunner.Given("the following users exist", ((string)(null)), table5, "Given ");
+            table6.AddRow(new string[] {
+                        "jleemcmichael18@mail.wou.edu",
+                        "jleemcmichael18@mail.wou.edu",
+                        "Jade",
+                        "Mcmichael",
+                        "Beans12!"});
+#line 6
+ testRunner.Given("the following users exist", ((string)(null)), table6, "Given ");
 #line hidden
-#line 8
- testRunner.And("I am a user with the User name \'oneilmagno@gmail.com\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 9
- testRunner.And("I login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "UserName",
+                        "Email",
+                        "FirstName",
+                        "LastName",
+                        "Password"});
+            table7.AddRow(new string[] {
+                        "AndreC",
+                        "colea@example.com",
+                        "Andre",
+                        "Cole",
+                        "0a9dfi3.a"});
+            table7.AddRow(new string[] {
+                        "JoannaV",
+                        "valdezJ@example.com",
+                        "Joanna",
+                        "Valdez",
+                        "d9u(*dsF4"});
 #line 10
- testRunner.And("I select the \"Characters\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
- testRunner.And("I select the \"Random\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the following users do not exist", ((string)(null)), table7, "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Clicking on Character page link")]
-        [NUnit.Framework.CategoryAttribute("Oneil")]
-        public virtual void ClickingOnCharacterPageLink()
+        [NUnit.Framework.DescriptionAttribute("Logged in user can navigate to songs index")]
+        [NUnit.Framework.CategoryAttribute("Jade")]
+        public virtual void LoggedInUserCanNavigateToSongsIndex()
         {
             string[] tagsOfScenario = new string[] {
-                    "Oneil"};
+                    "Jade"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clicking on Character page link", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logged in user can navigate to songs index", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -135,31 +144,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 5
 this.FeatureBackground();
 #line hidden
-#line 14
- testRunner.Given("I am logged in as a registered user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 18
+ testRunner.Given("I am a user with first name \'[string]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 15
- testRunner.When("I select the \"Characters\" link on the homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 19
+ testRunner.When("I navigate to the songs index page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 16
- testRunner.Then("I am redirected to the Characters page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 20
+ testRunner.Then("I should be redirected to \"https://localhost:7282/Songs\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Clicking on Random button redirects to Random page")]
-        public virtual void ClickingOnRandomButtonRedirectsToRandomPage()
+        [NUnit.Framework.DescriptionAttribute("Logged in user clicks stop on a song, the page should refresh")]
+        public virtual void LoggedInUserClicksStopOnASongThePageShouldRefresh()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clicking on Random button redirects to Random page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 18
- this.ScenarioInitialize(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logged in user clicks stop on a song, the page should refresh", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 22
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -178,17 +187,20 @@ this.FeatureBackground();
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 5
 this.FeatureBackground();
 #line hidden
-#line 19
-    testRunner.Given("I am on the Characters page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 24
+ testRunner.Given("I am a user with first name \'[string]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 20
-    testRunner.When("I click the Random button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 25
+ testRunner.When("I navigate to the songs index page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
-    testRunner.Then("I am redirected to the Random page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+ testRunner.And("I click the stop button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 27
+ testRunner.Then("the page should refresh", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

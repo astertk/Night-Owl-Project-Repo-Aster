@@ -1,41 +1,63 @@
-﻿@model DWC_NightOwlProject.Data.Song 
+﻿@model DWC_NightOwlProject.Data.Song
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
 
-<h1>Delete</h1>
+<script src="~/js/MapAnimation.js"></script>
+<script src="/js/toneLib.js"></script>
 
-<h3>Are you sure you want to delete your Song?</h3>
+<h1>Song Details</h1>
+
 <div>
-    <h4>Character</h4>
     <hr />
-    <dl class="row">
+   
 
-        <dt class="col-sm-2" id="notes">
-            @Html.DisplayNameFor(model => model.Completion)
-        </dt>
-        <dd class="col-sm-10" id="notes">
-            @Html.DisplayFor(model => model.Completion)
-        </dd>
 
-         <dt class="col-sm-2" id="notes">
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
-        <dd class="col-sm-10" id="notes">
-            @Html.DisplayFor(model => model.CreationDate)
-        </dd>
+     
+    <div class="row">
+        <div class="col">
+        <div class="card">
+            
+                
+                    <div class="card-title" style="color:black;font-family:Magneto" id="notes">Name: @Model.Name</div>
 
-        <dd class="col-sm-10" id="notes">
-            <img src="data:image;base64,@System.Convert.ToBase64String(Model.PictureData)" width="1064" height="1064" />
-        </dd>
+                    <div class="card-body" style="font-style:italic">Notes: @Model.Completion</div>
 
-    </dl>
 
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+                    <img class ="card-img-bottom" src="data:image;base64,@System.Convert.ToBase64String(Model.PictureData)" width="512" height="512" />
+
+            </div>
+
+                    </div>
+                    <br />
+
+                    <div class="col-sm">
+                        <div class="row-sm">
+                        <input type="button" class="btn btn-dark m-1" value="Play" onclick="music(@Model.Completion,@Model.InstrumentId,@Model.RateId)" />
+                        </div>
+
+                     <div class="row-sm">
+                     <input type="button" class="btn btn-dark m-1" value="Stop" onclick="stop()" />
+                      </div>
+
+                      <div class="row-sm">    
+                     <input type="button" class="btn btn-dark m-1" value="Download" onclick="record(@Model.Completion,@Model.InstrumentId,@Model.RateId)" />
+                     </div>
+                      </div>
+
+
+                     </div>
+
+       
+        <div>
+@*            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |*@
+            <a asp-action="Delete" class="btn btn-danger m-1" style="color:white;background-color:red">Delete</a>
+            <a asp-action="Index" class="btn btn-dark m-1" style="color:black;background-color:white">Back to Songs</a>
+        </div>
+
+   
 </div>
+
