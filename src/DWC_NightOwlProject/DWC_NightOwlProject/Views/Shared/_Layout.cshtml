@@ -108,7 +108,7 @@
                 @*<a class="navbar-brand" href="@Url.Action("Index", "Home")">DND World Creator</a>*@
                 <img src="~/css/motto 1.png" alt="The night is ours, but the future is yours!" style="width: 450px; height: 80px" />
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/css/dragon_Logo.png" alt="dragon logo for Campaign Creator" style="width: 80px; height: 80px" /></a>
-                <button class="navbar-toggler order-first" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <button class="navbar-toggler order-first" name="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <span class="navbar-light navbar-toggler-icon"></span>
                 </button>
                 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -182,7 +182,7 @@
                                 </a>
                             </li>
                              <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Index", "Songs")" >
+                                <a class="nav-link" name="songs" href="@Url.Action("Index", "Songs")" >
                                 <div class="image">
                                     <img src="~/css/lute.png" width="50" height="auto" alt="nav-pic" />
                                 </div>

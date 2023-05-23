@@ -41,6 +41,16 @@ namespace DWC_NightOwlProject.DAL.Concrete
 
         }
 
+        public void Save(Song song, string userId)
+        {
+            var list = GetAllSongsById(userId);
+            if (list.Count < 6)
+            {
+                _songs.Add(song);
+            }
+           
+        }
+
 
     }
 

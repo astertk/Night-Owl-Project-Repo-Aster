@@ -14,6 +14,9 @@ using DWC_NightOwlProject.Data;
 using static OpenAI.GPT3.ObjectModels.SharedModels.IOpenAiModels;
 using Microsoft.AspNetCore.Identity.Test;
 using Microsoft.AspNetCore.Identity;
+using System.Net;
+using System.Security.Policy;
+using OpenAI;
 
 namespace DWC_NightOwlTests
 {
@@ -23,6 +26,8 @@ namespace DWC_NightOwlTests
         private Mock<DbSet<Song>> _mockSongsDbSet;
         private List<Song> _songs;
         private readonly UserManager<IdentityUser> _mockUserManager;
+        WebClient webClient = new WebClient();
+        
 
         [SetUp]
         public void Setup()
@@ -32,21 +37,122 @@ namespace DWC_NightOwlTests
                 new Song {
                     Id = 1,
                     UserId = "683910938473829",
-                    Name= "",
+                    InstrumentId = 0,
+                    RateId = 0,
+                    Name= "Mystery Paladin",
+                    CreationDate = DateTime.Now,
                     WorldId= 0,
-                    Prompt = "Write a song that will work with tone.js, meaning only instrumental and only notes. Make the song slow, and romantic sounding. Fantasy like.",
-                    Completion = "Verse 1:\r\n\r\nC4 - F5 - Ab4 - F5 - Bb4 - Eb5 - Bb4 - F5\r\n\r\nC4 - F5 - Ab4 - F5 - Bb4 - Eb5 - Bb4 - C5\r\n\r\nChorus:\r\n\r\nBb4 - Eb5 - Ab4 - F5 - Bb4 - Eb5 - Ab4 - F5 \r\n\r\nBb4 - Eb5 - Ab4 - F5 - Eb4 - Db5 - C5 - Bb4\r\n\r\nVerse 2:\r\n\r\nC4 - F5 - Ab4 - F5 - Bb4 - Eb5 - Bb4 - F5\r\n\r\nC4 - F5 - Ab4 - F5 - Bb4 - Eb5 - Bb4 - C5\r\n\r\nChorus:\r\n\r\nBb4 - Eb5 - Ab4 - F5 - Bb4 - Eb5 - Ab4 - F5 \r\n\r\nBb4 - Eb5 - Ab4 - F5 - Eb4 - Db5 - C5 - Bb4\r\n\r\nBridge:\r\n\r\nEb4 - Bb4 - F5 - C5 - Eb4 - Bb4 - F5 - C5\r\n\r\nEb4 - Bb4 - F5 - C5 - Eb4 - Bb4 - F5 - C5\r\n\r\nOutro:\r\n\r\nC4 - F5 - Ab4 - F5 - Bb4 - Eb5 - Bb4 - F5\r\n\r\nC4 - F5 - Ab4 - F5 - Bb4 - Eb5 - Bb4 - C5"
-                    
+                    Prompt = "Write a song that will work with tone.js, meaning only instrumental and only notes."
+                         + "The tone of the song is: sad"
+                         + ". The song will be used for background"
+                         + ". The speed of the song will be fast"
+                         + ". Make it one string of notes in this format, with no " +
+                         "commas or periods. Make it 32 notes or longer, but not longer than 100 notes. " +
+                         "Give the song a clear progression of chorus, verse 1, chorus. Don't include the words chorus or verse 1, just the notes with" +
+                         "Don't let the notes go higher than G6, but give the notes plenty of variety. Don't include sharp notes, like D4#. Let it be just notes separated by " +
+                         "spaces in quotes (don't forget the ending double quote), e.g: \"C4 F5 Ab4 F5\"",
+
+                    Completion = "  \"C4 Eb4 F4 Ab4 Bb4 B4 F5 G5 F5 Eb5 C5 Ab4 G4 Eb4 D4 C4 Bb3 Ab3 G3 F3 B3 C4 F4 Ab4 Eb4 Bb4 B4 F5 G5 C5 F5 Ab4 G4 Eb4 D4 C4 B3 Ab3 G3 F3 Eb3 D3\"",
+                    PictureData = null
                 },
 
                 new Song {
                     Id = 2,
                     UserId = "1928283764738198",
-                    Name= "",
+                    InstrumentId = 3,
+                    RateId = 2,
+                    Name= "ock Phaah",
+                    CreationDate = DateTime.Now,
                     WorldId= 0,
                     Prompt = "Write a song that will work with tone.js, meaning only instrumental and only notes. Make the song fast and exciting! This is music during combat and fighting in DnD!",
-                    Completion = "Verse 1:\r\n\r\nA Gb A B Bb A\r\nA Gb A B Bb A\r\nE Eb D Db C B\r\nE Eb D Db C B\r\n\r\nChorus 1:\r\nA Gb F D Db A\r\nA Gb F D Db A\r\nE Eb Db B A Gb\r\nE Eb Db B A Gb\r\n\r\nVerse 2:\r\nA Gb A B Bb A\r\nA Gb A B Bb A\r\nE Eb D Db C B\r\nE Eb D Db C B\r\n\r\nChorus 2:\r\nA Gb F D Db A\r\nA Gb F D Db A\r\nE Eb Db B A Gb\r\nE Eb Db B A Gb\r\n\r\nBridge:\r\nF Eb D Bb A Gb\r\nF Eb D Bb A Gb\r\nA Gb F D Db A\r\nA Gb F D Db A\r\n\r\nOutro:\r\nA Gb A B Bb A\r\nA Gb A B Bb A\r\nE Eb D Db C B\r\nE Eb D Db C B"
-                }
+                    Completion = "  \"G5 Bb5 Ab5 Eb5 Bb5 C5 Eb5 E5 G5 Bb5 Eb5 D5 G5 Ab5 Bb5 Ab5 C5 D5 Eb5 G5 Bb5 D5 Eb5 F5 G5 C6 Eb5 C5 Bb5 Ab5 G5 C5 Eb5 D5 Eb5 F5 G5 C5 F5 Eb5 D5 C5 Bb5 G5 Ab5 Bb5 Eb5 D5 D5 Eb5 F5 G5 C5 Eb5 F5 Bb5 Eb5 G5 Eb5 C5 D5 Ab5 Bb5 Eb5\"",
+                    PictureData = webClient.DownloadData("https://siivagunner.fandom.com/wiki/Deez_Nuts")
+                          },
+
+                 new Song {
+                    Id = 3,
+                    UserId = "1928283764738198",
+                    InstrumentId = 3,
+                    RateId = 2,
+                    Name= "Cloroah",
+                    CreationDate = DateTime.Now,
+                    WorldId= 0,
+                    Prompt = "Write a song that will work with tone.js, meaning only instrumental and only notes. Make the song fast and exciting! This is music during combat and fighting in DnD!",
+                    Completion = "  \"G5 Bb5 Ab5 Eb5 Bb5 C5 Eb5 E5 G5 Bb5 Eb5 D5 G5 Ab5 Bb5 Ab5 C5 D5 Eb5 G5 Bb5 D5 Eb5 F5 G5 C6 Eb5 C5 Bb5 Ab5 G5 C5 Eb5 D5 Eb5 F5 G5 C5 F5 Eb5 D5 C5 Bb5 G5 Ab5 Bb5 Eb5 D5 D5 Eb5 F5 G5 C5 Eb5 F5 Bb5 Eb5 G5 Eb5 C5 D5 Ab5 Bb5 Eb5\"",
+                    PictureData = webClient.DownloadData("https://siivagunner.fandom.com/wiki/Deez_Nuts")
+                          },
+                  new Song {
+                    Id = 4,
+                    UserId = "1928283764738198",
+                    InstrumentId = 3,
+                    RateId = 2,
+                    Name= "Clck Phaah",
+                    CreationDate = DateTime.Now,
+                    WorldId= 0,
+                    Prompt = "Write a song that will work with tone.js, meaning only instrumental and only notes. Make the song fast and exciting! This is music during combat and fighting in DnD!",
+                    Completion = "  \"G5 Bb5 Ab5 Eb5 Bb5 C5 Eb5 E5 G5 Bb5 Eb5 D5 G5 Ab5 Bb5 Ab5 C5 D5 Eb5 G5 Bb5 D5 Eb5 F5 G5 C6 Eb5 C5 Bb5 Ab5 G5 C5 Eb5 D5 Eb5 F5 G5 C5 F5 Eb5 D5 C5 Bb5 G5 Ab5 Bb5 Eb5 D5 D5 Eb5 F5 G5 C5 Eb5 F5 Bb5 Eb5 G5 Eb5 C5 D5 Ab5 Bb5 Eb5\"",
+                    PictureData = webClient.DownloadData("https://siivagunner.fandom.com/wiki/Deez_Nuts")
+                          },
+                   new Song {
+                    Id = 5,
+                    UserId = "1928283764738198",
+                    InstrumentId = 3,
+                    RateId = 2,
+                    Name= "lock Phaoah",
+                    CreationDate = DateTime.Now,
+                    WorldId= 0,
+                    Prompt = "Write a song that will work with tone.js, meaning only instrumental and only notes. Make the song fast and exciting! This is music during combat and fighting in DnD!",
+                    Completion = "  \"G5 Bb5 Ab5 Eb5 Bb5 C5 Eb5 E5 G5 Bb5 Eb5 D5 G5 Ab5 Bb5 Ab5 C5 D5 Eb5 G5 Bb5 D5 Eb5 F5 G5 C6 Eb5 C5 Bb5 Ab5 G5 C5 Eb5 D5 Eb5 F5 G5 C5 F5 Eb5 D5 C5 Bb5 G5 Ab5 Bb5 Eb5 D5 D5 Eb5 F5 G5 C5 Eb5 F5 Bb5 Eb5 G5 Eb5 C5 D5 Ab5 Bb5 Eb5\"",
+                    PictureData = webClient.DownloadData("https://siivagunner.fandom.com/wiki/Deez_Nuts")
+                          },
+                    new Song {
+                    Id = 6,
+                    UserId = "1928283764738198",
+                    InstrumentId = 3,
+                    RateId = 2,
+                    Name= "Cloc Ph",
+                    CreationDate = DateTime.Now,
+                    WorldId= 0,
+                    Prompt = "Write a song that will work with tone.js, meaning only instrumental and only notes. Make the song fast and exciting! This is music during combat and fighting in DnD!",
+                    Completion = "  \"G5 Bb5 Ab5 Eb5 Bb5 C5 Eb5 E5 G5 Bb5 Eb5 D5 G5 Ab5 Bb5 Ab5 C5 D5 Eb5 G5 Bb5 D5 Eb5 F5 G5 C6 Eb5 C5 Bb5 Ab5 G5 C5 Eb5 D5 Eb5 F5 G5 C5 F5 Eb5 D5 C5 Bb5 G5 Ab5 Bb5 Eb5 D5 D5 Eb5 F5 G5 C5 Eb5 F5 Bb5 Eb5 G5 Eb5 C5 D5 Ab5 Bb5 Eb5\"",
+                    PictureData = webClient.DownloadData("https://siivagunner.fandom.com/wiki/Deez_Nuts")
+                          },
+                     new Song {
+                    Id = 7,
+                    UserId = "1928283764738198",
+                    InstrumentId = 3,
+                    RateId = 2,
+                    Name= "Clk Pharoa",
+                    CreationDate = DateTime.Now,
+                    WorldId= 0,
+                    Prompt = "Write a song that will work with tone.js, meaning only instrumental and only notes. Make the song fast and exciting! This is music during combat and fighting in DnD!",
+                    Completion = "  \"G5 Bb5 Ab5 Eb5 Bb5 C5 Eb5 E5 G5 Bb5 Eb5 D5 G5 Ab5 Bb5 Ab5 C5 D5 Eb5 G5 Bb5 D5 Eb5 F5 G5 C6 Eb5 C5 Bb5 Ab5 G5 C5 Eb5 D5 Eb5 F5 G5 C5 F5 Eb5 D5 C5 Bb5 G5 Ab5 Bb5 Eb5 D5 D5 Eb5 F5 G5 C5 Eb5 F5 Bb5 Eb5 G5 Eb5 C5 D5 Ab5 Bb5 Eb5\"",
+                    PictureData = webClient.DownloadData("https://siivagunner.fandom.com/wiki/Deez_Nuts")
+                          },
+                      new Song {
+                    Id = 8,
+                    UserId = "1928283764738198",
+                    InstrumentId = 3,
+                    RateId = 2,
+                    Name= "Croah",
+                    CreationDate = DateTime.Now,
+                    WorldId= 0,
+                    Prompt = "Write a song that will work with tone.js, meaning only instrumental and only notes. Make the song fast and exciting! This is music during combat and fighting in DnD!",
+                    Completion = "  \"G5 Bb5 Ab5 Eb5 Bb5 C5 Eb5 E5 G5 Bb5 Eb5 D5 G5 Ab5 Bb5 Ab5 C5 D5 Eb5 G5 Bb5 D5 Eb5 F5 G5 C6 Eb5 C5 Bb5 Ab5 G5 C5 Eb5 D5 Eb5 F5 G5 C5 F5 Eb5 D5 C5 Bb5 G5 Ab5 Bb5 Eb5 D5 D5 Eb5 F5 G5 C5 Eb5 F5 Bb5 Eb5 G5 Eb5 C5 D5 Ab5 Bb5 Eb5\"",
+                    PictureData = webClient.DownloadData("https://siivagunner.fandom.com/wiki/Deez_Nuts")
+                          },
+                       new Song {
+                    Id = 9,
+                    UserId = "1928283764738198",
+                    InstrumentId = 3,
+                    RateId = 2,
+                    Name= "haroah",
+                    CreationDate = DateTime.Now,
+                    WorldId= 0,
+                    Prompt = "Write a song that will work with tone.js, meaning only instrumental and only notes. Make the song fast and exciting! This is music during combat and fighting in DnD!",
+                    Completion = "  \"G5 Bb5 Ab5 Eb5 Bb5 C5 Eb5 E5 G5 Bb5 Eb5 D5 G5 Ab5 Bb5 Ab5 C5 D5 Eb5 G5 Bb5 D5 Eb5 F5 G5 C6 Eb5 C5 Bb5 Ab5 G5 C5 Eb5 D5 Eb5 F5 G5 C5 F5 Eb5 D5 C5 Bb5 G5 Ab5 Bb5 Eb5 D5 D5 Eb5 F5 G5 C5 Eb5 F5 Bb5 Eb5 G5 Eb5 C5 D5 Ab5 Bb5 Eb5\"",
+                    PictureData = webClient.DownloadData("https://siivagunner.fandom.com/wiki/Deez_Nuts")
+                          }
             };
 
             _mockContext = new Mock<WebAppDbContext>();
@@ -105,6 +211,41 @@ namespace DWC_NightOwlTests
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-     
+        [Test]
+        public void SongPictureDataReturnsNotEmpty()
+        {
+            //Arrange
+            var mockUserManager = _mockUserManager;
+            ISongRepository songRepo = new SongRepository(_mockContext.Object, mockUserManager);
+
+            //Act
+            var mockSong = songRepo.GetAllSongsById("1928283764738198").First();
+            var actual = mockSong.PictureData;
+
+            //Assert
+            Assert.IsNotNull(actual);
+        }
+
+        [Test]
+        public void SaveSongDoesNotSaveIfSongCountIsAbove6 ()
+        {
+            //Arrange
+            var mockUserManager = _mockUserManager;
+            ISongRepository songRepo = new SongRepository(_mockContext.Object, mockUserManager);
+
+            //Act
+            var mockSong = new Song();
+            
+            songRepo.Save(mockSong, "1928283764738198");
+            //var mockSong = songRepo.GetAllSongsById("1928283764738198").First();
+
+            var expected = 8;
+            var actual = songRepo.GetAllSongsById("1928283764738198").Count();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
     }
 }
