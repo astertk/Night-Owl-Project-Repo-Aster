@@ -10,11 +10,13 @@ namespace DWC_BDD_Tests.StepDefinitions
     {
         private readonly HomePageObject _homePage;
         private readonly SongPageObject _songPage;
+        private readonly LoginPageObject _loginPage;
 
         public SongsStepDefinitions(BrowserDriver browserDriver)
         {
             _homePage = new HomePageObject(browserDriver.Current);
             _songPage = new SongPageObject(browserDriver.Current);
+            _loginPage = new LoginPageObject(browserDriver.Current);
         }
 
         [Given(@"I am a user with the first name '([^']*)'")]
@@ -47,6 +49,44 @@ namespace DWC_BDD_Tests.StepDefinitions
         {
             _songPage.PageRefresh();
         }
+
+        [When(@"I click the Create Song button")]
+        public void WhenIClickTheCreateSongButton()
+        {
+           _songPage.ClickCreateSongButton();
+        }
+
+        [Then(@"the page should do nothing")]
+        public void ThenThePageShouldDoNothing()
+        {
+            //nothing here!
+        }
+
+        [When(@"I enter text into the song purpose box")]
+        public void WhenIEnterTextIntoTheSongPurposeBox()
+        {
+            _songPage.enterSongPurpose();
+        }
+
+        [Then(@"I should see a new song appear")]
+        public void ThenIShouldSeeANewSongAppear()
+        {
+                _songPage.songDetails();
+          
+        }
+
+        [When(@"I enter text into the login box")]
+        public void WhenIEnterTextIntoTheLoginBox()
+        {
+            _songPage.enterCredentials();
+        }
+
+        [When(@"I click submit")]
+        public void WhenIClickSubmit()
+        {
+            _songPage.submitLogin();
+        }
+
 
     }
 }

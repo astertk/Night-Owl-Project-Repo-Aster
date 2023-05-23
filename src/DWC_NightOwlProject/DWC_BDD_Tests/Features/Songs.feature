@@ -25,3 +25,20 @@ Scenario: Logged in user clicks stop on a song, the page should refresh
 	When I navigate to the songs index page
 	And I click the stop button
 	Then the page should refresh
+
+Scenario: Logged in user clicks Create Song with no form data
+
+	Given I am a user with first name '[string]'
+	When I navigate to the songs index page
+	And I click the Create Song button
+	Then the page should do nothing
+
+Scenario: Logged in user clicks Create Song with form data
+
+	Given I am a user with first name '[string]'
+	When I navigate to the songs index page
+	And I enter text into the song purpose box
+	And I click the Create Song button
+	And I enter text into the login box
+	And I click submit
+	Then I should see a new song appear
