@@ -1,6 +1,6 @@
 @model DWC_NightOwlProject.ViewModel.EncounterViewModel
 @{
-    ViewData["Title"] = "Guided quest creation";
+    ViewData["Title"] = "Encounter Creation";
 }
 <div>
         <form asp-action="Completion" method="post">
@@ -13,12 +13,12 @@
         <h3>Create an Encounter</h3>
         <br />
             <div class="form-group">
-                <label asp-for="Biome" class="control-label">Select encounter environment</label>
-                <select asp-for="Biome" asp-items="@DWC_NightOwlProject.Models.EncounterOptions.BiomeList()"></select>
+                <label asp-for="Biome" id="biomeLabel" class="control-label">Select encounter environment</label>
+                <select asp-for="Biome" id="bgImgBiome" onclick="changeBiomePic()" asp-items="@DWC_NightOwlProject.Models.EncounterOptions.BiomeList()"></select>
             </div>
         <br />
             <div class="form-group">
-                <label asp-for="Type" class="control-label">Select encounter type</label>
+                <label asp-for="Type" id="typeLabel" class="control-label">Select encounter type</label>
                 <select asp-for="Type" asp-items="@DWC_NightOwlProject.Models.EncounterOptions.TypeList()"></select>
             </div>
         <br />

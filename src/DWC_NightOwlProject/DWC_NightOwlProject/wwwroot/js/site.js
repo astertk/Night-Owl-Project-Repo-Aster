@@ -131,3 +131,95 @@ function toggleSound() {
 
 soundButton.addEventListener('click', toggleSound);
 
+function changeBiomePic() {
+    var biomePic = document.getElementById("bgImgBiome").value;
+    console.log(biomePic);
+    if (biomePic === "Arctic") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/Ice_landscape.png')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+    else if (biomePic === "Coastal") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/sbc-0005.jpg')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+    else if (biomePic === "Desert") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/Otherworldly-Incantations-Desert-Worldbuidling-Compound-Dune.jpg')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+    else if (biomePic === "Grassland") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/Plains.webp')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+    else if (biomePic === "Forest") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/A-temperate-forest-in-the-Northern-Hemisphere.jpg')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+    else if (biomePic === "Hill") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/claudio-testa--SO3JtE3gZo-unsplash.jpg')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+    else if (biomePic === "Mountain") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/13-1920x1080-f76ef21af8de8ac97ad89c7f62925321.png')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+    else if (biomePic === "Swamp") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/Marsh.webp')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+    else if (biomePic === "Underground") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/underground_dragon_city_jpg_photo_large_by_peigong-d7at23k.jpg')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+    else if (biomePic === "Underwater") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/underwater_kingdom_by_silberius_d6vdtk0-fullview.png')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+    else if (biomePic === "Urban") {
+        document.body.style.position = "absolute";
+        document.body.style.zIndex = "1";
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../biome photos/Urban.png')";
+        document.getElementById("biomeLabel").style.color = "#b1b1b1";
+        document.getElementById("typeLabel").style.color = "#b1b1b1";
+        console.log(biomePic);
+    }
+}

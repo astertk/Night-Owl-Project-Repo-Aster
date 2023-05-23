@@ -21,6 +21,8 @@ public partial class WebAppDbContext : DbContext
 
     public virtual DbSet<Encounter> Encounters { get; set; }
 
+    public virtual DbSet<Item> Items { get; set; }
+
     public virtual DbSet<Map> Maps { get; set; }
 
     public virtual DbSet<Material> Materials { get; set; }
@@ -38,42 +40,47 @@ public partial class WebAppDbContext : DbContext
     {
         modelBuilder.Entity<Backstory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Backstor__3214EC2796325DA6");
+            entity.HasKey(e => e.Id).HasName("PK__Backstor__3214EC27ED3E1715");
         });
 
         modelBuilder.Entity<Character>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Characte__3214EC2712610A19");
+            entity.HasKey(e => e.Id).HasName("PK__Characte__3214EC27967F5D78");
         });
 
         modelBuilder.Entity<Encounter>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Encounte__3214EC270E7A9ED4");
+            entity.HasKey(e => e.Id).HasName("PK__Encounte__3214EC27BB146F92");
+        });
+
+        modelBuilder.Entity<Item>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Items__3214EC27EFE00D5F");
         });
 
         modelBuilder.Entity<Map>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Maps__3214EC2784F98FE2");
+            entity.HasKey(e => e.Id).HasName("PK__Maps__3214EC271126AE15");
         });
 
         modelBuilder.Entity<Material>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC276869C85B");
+            entity.HasKey(e => e.Id).HasName("PK__Material__3214EC27FAFBA4A9");
         });
 
         modelBuilder.Entity<Quest>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC271F558783");
+            entity.HasKey(e => e.Id).HasName("PK__Quests__3214EC27F4BD68A0");
         });
 
         modelBuilder.Entity<Song>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Songs__3214EC27D1E8B2B7");
+            entity.HasKey(e => e.Id).HasName("PK__Songs__3214EC27382DBEB2");
         });
 
         modelBuilder.Entity<World>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__World__3214EC27E6B506D5");
+            entity.HasKey(e => e.Id).HasName("PK__World__3214EC27661A529C");
         });
 
         OnModelCreatingPartial(modelBuilder);

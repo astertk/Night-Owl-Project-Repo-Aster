@@ -46,8 +46,8 @@
             <a class="nav-link text-light text-decoration-underline" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>
     <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link text-light text-decoration-underline">Logout</button>
+        <form  class="form-check-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <input type="submit" class="nav-link text-light text-decoration-underline" value="Logout" />
         </form>
     </li>
 }

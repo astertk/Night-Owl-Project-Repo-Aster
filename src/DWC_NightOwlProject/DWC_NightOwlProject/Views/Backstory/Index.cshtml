@@ -1,9 +1,11 @@
 ﻿@model DWC_NightOwlProject.Data.MaterialVM
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Backstory";
 }
 
 <header>
+    <br />
+    <br />
     <h1>
         Backstory
     </h1>
@@ -54,19 +56,19 @@
         <div class="column"> 
         @if (Model != null)
         {
-                @if (Model.material != null)
+                @if (Model.backstory != null)
                 {
                     <p class="resultsBackstory">@Model.backstory.Completion</p> <br />
                     <a id="notes">@Model.backstory.CreationDate.ToString()</a>
                     <a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.backstory.Id" class="text-center btn btn-danger m-md-2">Delete</a>
-                    <a class="btn btn-outline-primary m-1" onclick="downloadFile()">Download this backstory!</a>
+                    <a class="btn btn-secondary m-1" onclick="downloadFile()">Download this backstory!</a>
                     <script>
                         function downloadFile() {
                             const link = document.createElement("a");
-                            const content = "@Html.Raw(@Model.backstory.Completion)";
+                            const content = "@Html.Raw(Model.backstory.Completion.Substring(2))";
                             const file = new Blob([content], { type: "text/plain" });
                             link.href = URL.createObjectURL(file);
-                            link.download = "charactersheet.txt";
+                            link.download = "backstory.txt";
                             link.click();
                             URL.revokeObjectURL(link.href);
                         };

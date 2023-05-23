@@ -15,10 +15,22 @@
         {
                 <table class="table">
                     <tbody>
-                        <tr>
-                            <td><h4>@Model.Backstory.Completion</h4></td>
-                            <td><a asp-controller="Backstory" asp-action="Delete" asp-route-id="@Model.Backstory.Id" class="text-center btn btn-danger m-md-2">Delete</a></td>
-                        </tr>
+                        @for (int i = 0; i < Model.Backstory.Count; ++i)
+                        {
+
+                            @if (Model.Backstory[i] != null)
+                            {
+                                <tr>
+                                    <td><h4>@Model.Backstory[i].Completion</h4></td>
+
+                                    <td><a asp-controller="Quests" asp-action="Delete" asp-route-id="@Model.Backstory[i].Id" class="text-center btn btn-danger m-md-2">Delete</a></td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr><td><h4>@ViewBag.Backstory</h4></td></tr>
+                            }
+                        }
                     </tbody>
                 </table>
         }
@@ -66,16 +78,12 @@
             @if(Model.characters[i] != null)
             {
                 <div class="row" id="notes">@Model.characters[i].Name</div>
-                <div class="row"><iframe style="width:250px; height:250px; overflow: hidden;" scrolling="no" frameborder="0" src="@Model.characters[i].Completion"> </iframe> </div>
+                <img src="data:image;base64,@System.Convert.ToBase64String(@Model.characters[i].PictureData)" width="256" height="256" />
                 <div class="row" id="notes">Creation Date: @Model.characters[i].CreationDate.ToString()</div>
 
                 <a asp-controller="Character" asp-action="Details" asp-route-id="@Model.characters[i].Id" class="btn btn-primary m-1">Details</a>
                 <a asp-controller="Character" asp-action="edit" asp-route-id="@Model.characters[i].Id" class="btn btn-secondary m-1">Edit</a>
                 <a asp-controller="Character" asp-action="Delete" asp-route-id="@Model.characters[i].Id" class="btn btn-danger m-1">Delete</a>
-            }
-            else
-            {
-                <h4>@ViewBag.Characters</h4>
             }
             </div>
         }
@@ -91,7 +99,7 @@
                 <div class="col">
                 @if (Model.maps[i] != null)
                 {
-                    <div class="row"><iframe style="width: 250px; height: 250px; overflow: hidden;" scrolling="no" frameborder="0" src="@Model.maps[i].Completion"> </iframe></div>
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.maps[i].PictureData)" width="256" height="256" />
                     <div class="row" id="notes">Creation Date: @Model.maps[i].CreationDate.ToString()</div>
 
                     <a asp-controller="Maps" asp-action="Details" asp-route-id="@Model.maps[i].Id" class="btn btn-primary m-1">Details</a>
@@ -102,6 +110,79 @@
                 {
                     <h4>@ViewBag.Maps</h4>
                 }
+                </div>
+            }
+        </div>
+
+        <div class="text-center">
+        <a id="linklabel" asp-controller="Songs" asp-action="Index"><h2>Songs:</h2></a>
+        </div>
+
+        <div class="row">
+        @for (var i = 0; i < Model.Songs.Count; ++i)
+        {
+
+            <div class="col">
+                @if (Model.Songs[i] != null)
+                {
+                    <div class="card" style="width: 18rem;">
+
+                    <div class="card-title" style="color:black" id="notes">@Model.Songs[i].Name</div>
+
+
+                    <img class ="card-img-bottom" src="data:image;base64,@System.Convert.ToBase64String(Model.Songs[i].PictureData)" width="256" height="256" />
+                    
+
+                    </div>
+                    <br />
+
+                    <a asp-controller="Songs" asp-action="details" asp-route-id="@Model.Songs[i].Id" class="btn btn-primary m-1">Details</a>
+                    <a asp-controller="Songs" asp-action="delete" asp-route-id="@Model.Songs[i].Id" class="btn btn-danger m-1">Delete</a>
+
+                    <div class="col-sm">
+                        <input type="button" class="btn btn-dark m-1" value="Play" onclick="music(@Model.Songs[i].Completion,@Model.Songs[i].InstrumentId,@Model.Songs[i].RateId)" />
+
+                        <input type="button" class="btn btn-dark m-1" value="Stop" onclick="stop()" />
+
+                        <input type="button" class="btn btn-dark m-1" value="Download" onclick="record(@Model.Songs[i].Completion,@Model.Songs[i].InstrumentId,@Model.Songs[i].RateId)" />
+                    </div>
+                }
+                else
+                {
+                    <h4>@ViewBag.Songs</h4>
+                }
+
+        </div>
+        }
+    </div>
+        <div class="text-center">
+            <a id="linklabel" asp-controller="Items" asp-action="Index"><h2>Items:</h2></a>
+        </div>    
+
+        <div class="row">
+            @for (var i = 0; i < Model.items.Count; ++i)
+            {
+
+                <div class="col">
+                    @if (Model.items[i] != null)
+                    {
+                        <div class="card" style="width: 18rem;">
+
+                            <div class="card-title" style="color:black" id="notes">@Model.items[i].Name</div>
+
+
+                            <img class="card-img-bottom" src="data:image;base64,@System.Convert.ToBase64String(Model.items[i].PictureData)" width="256" height="256" />
+
+
+                        </div>
+                        <br />
+
+                        <a asp-controller="Items" asp-action="details" asp-route-id="@Model.items[i].Id" class="btn btn-primary m-1">Details</a>
+                        <a asp-controller="Items" asp-action="delete" asp-route-id="@Model.items[i].Id" class="btn btn-danger m-1">Delete</a>
+
+
+                    }
+
                 </div>
             }
         </div>

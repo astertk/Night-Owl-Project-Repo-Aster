@@ -56,6 +56,17 @@ CREATE TABLE [Maps]
     [PictureData]   VARBINARY(max)
 );
 
+CREATE TABLE [Items]
+(
+    [ID]            INT             PRIMARY KEY     IDENTITY(1, 1),
+    [UserID]        NVARCHAR(450)         NOT NULL,
+    [Name]          NVARCHAR(450)  NOT NULL,
+    [CreationDate]  DATE            NOT NULL,
+    [WorldID]       INT             NOT NULL,
+    [Prompt]        NVARCHAR(1000)   NOT NULL,
+    [Completion]    NVARCHAR(4000)   NOT NULL,
+    [PictureData]   VARBINARY(max)
+)
 
 CREATE TABLE [Songs]
 (
