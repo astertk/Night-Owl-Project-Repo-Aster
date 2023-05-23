@@ -12,7 +12,7 @@ function mToggle() {
 
 }
 
-function stop() {
+function pause() {
 	location.reload();
 }
 

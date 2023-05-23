@@ -69,5 +69,12 @@ namespace DWC_BDD_Tests.StepDefinitions
             _homePage.GetHeader().ToString().Contains(p0);
         }
 
+        [When(@"I click the navbar-toggler button")]
+        public void WhenIClickTheNavbar_TogglerButton()
+        {
+            _homePage.ClickNavbarTogglerButton();
+        }
+
+
     }
 }

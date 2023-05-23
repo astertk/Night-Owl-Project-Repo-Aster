@@ -28,7 +28,8 @@ public class SongsController : Controller
         _userManager = userManager;
         _environment = environment;
     }
-    [Authorize]
+
+    
     public IActionResult Index()
     {
         var vm = new MaterialVM();
