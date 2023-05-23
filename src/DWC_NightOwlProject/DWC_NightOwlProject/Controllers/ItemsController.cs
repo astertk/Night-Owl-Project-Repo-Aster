@@ -60,7 +60,7 @@ namespace DWC_NightOwlProject.Controllers
 
                 var namePrompt = "Create a name for this DND Item. It is a(n) " + collection["r0"]
                     + " " + collection["r1"]
-                    + ". In it's description include the keywords: " + collection["r2"] + ".";
+                    + ". In it's description include the keywords: " + collection["r2"] + ". Make the name range from 4 to 7 words.";
                 var gptName = await api.CompletionsEndpoint.CreateCompletionAsync(namePrompt, max_tokens: 20, temperature: 1, presencePenalty: 0, frequencyPenalty: 0, model: OpenAI.Models.Model.Davinci);
                 item.Name = gptName.ToString();
                 item.CreationDate = DateTime.Now;

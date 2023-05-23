@@ -56,6 +56,11 @@ namespace DWC_BDD_Tests.PageObjects
             SubmitButton.Click();
         }
 
+        public void NavigateToLoginPage(string loginUrl)
+        {
+            _webDriver.Navigate().GoToUrl(loginUrl);
+            // Optionally, you can add logic to wait for the login page to load
+        }
         public bool HasLoginErrors()
         {
             ReadOnlyCollection<IWebElement> elements = _webDriver.FindElements(By.CssSelector(".validation-summary-errors"));

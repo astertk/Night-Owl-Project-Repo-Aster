@@ -29,6 +29,12 @@ namespace DWC_BDD_Tests.PageObjects
         {
             _webDriver.Navigate().GoToUrl("https://localhost:7282/");
         }
+        public void NavigateToItems(string pageName)
+        {
+            string url = "https://localhost:7282/Items"; // Set the URL based on the pageName
+            _webDriver.Navigate().GoToUrl(url);
+            
+        }
         public string GetPageName()
         {
             return _pageName;
