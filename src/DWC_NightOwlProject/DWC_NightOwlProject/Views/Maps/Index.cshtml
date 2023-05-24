@@ -5,10 +5,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
-<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
 
 <script src="~/js/MapAnimation.js"></script>
-<script src="/js/toneLib.js"></script>
 
 
 
@@ -69,7 +67,7 @@
                                 <input asp-for="r1" class="form-control" required />
                                 <span asp-validation-for="r1" class="text-danger"></span>
 
-                                <label asp-for="r2" class="control-label">How many squares should the map contain, roughly?</label>
+                                <label asp-for="r2" class="control-label">What structures exist on the map? E.g. Buildings, trees, etc.</label>
                                 <input asp-for="r2" class="form-control" required />
                                 <span asp-validation-for="r2" class="text-danger"></span>
 
@@ -133,10 +131,8 @@
             </s>
 
 
-            @*<input type="button" class="" value="Template" onclick="window.location= '@Url.Action( "Template", "Character")'" />
-            </div>*@
-
-
+            
+            
 
 
         </div>
@@ -179,22 +175,6 @@
             }
         </div>
     }
-@*<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script>
-                const btnEl = document.querySelector('.btn');
 
-                btnEl.addEventListener('click', saveImage);
-
-                function saveImage() {
-
-          
-
-          
-                }
-
-            </script>*@
-
-<script>
-   
-</script>
+<div class = "sketch" id="sketch"></div>
 

@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Identity;
 using NuGet.ProjectModel;
 using DWC_NightOwlProject.DAL.Concrete;
 using NuGet.Protocol;
+using OpenAI.Images;
+using System.Net;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace DWC_NightOwlProject.Controllers
 {
@@ -21,7 +24,7 @@ namespace DWC_NightOwlProject.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IRepository<Template> _templateRepository;
         private readonly IRepository<World> _worldRepository;
-        private readonly IBackstoryRepository backstoryRepository;
+        private readonly IBackstoryRepository _backstoryRepository;
 
         public BackstoryController(IMaterialRepository materialRepository, IConfiguration config, 
                                    UserManager<IdentityUser> userManager, IRepository<Template> templateRepository, 
@@ -32,60 +35,75 @@ namespace DWC_NightOwlProject.Controllers
             _userManager = userManager;
             _templateRepository = templateRepository;
             _worldRepository = worldRepository;
-            backstoryRepository=backstoryRepo;
+            _backstoryRepository=backstoryRepo;
         }
 
         // GET: HomeController1
         [Authorize]
-        public ActionResult Index()
+        public IActionResult Index()
         {
             var vm = new MaterialVM();
+
+
             string id = _userManager.GetUserId(User);
+            var result = new List<Backstory>();
+            result = _backstoryRepository.GetAllBackstoriesById(id);
 
-            /*if (_materialRepository.GetBackstoryById(id) == null)
-            {
-                return View();
-            }*/
-            /*ViewBag.Backstory = _materialRepository.GetBackstoryById(id);*/
-
-            var result = new Backstory();
-            var list = backstoryRepository.GetAllBackstoriesById(id);
-            if(list.Any())
-            {
-                result=list.First();
-            }
-            else
-            {
-                result=null;
-            }
-
-            //ViewBag.Backstory = material?.Completion ?? "No Backstory Created Yet...";
-
-            /*            var result = material?.Completion ?? "No Backstory Created Yet...";*/
-            vm.backstory = result;
+            vm.backstories = result;
             return View(vm);
         }
         [Authorize]
-        public ActionResult Scratch(string fromScratch, int maxLength, double temp, double presence, double frequency)
+        public async Task<ActionResult> Scratch(IFormCollection collection)
         {
-            ViewBag.FromScratch = fromScratch;
-            ViewBag.MaxLength = maxLength.ToString();
-            ViewBag.Temp = temp;
-            ViewBag.Presence = presence;
-            ViewBag.Frequency = frequency;
-            ViewBag.Prompt = " Create a Dungeons and Dragons Backstory.  " + ViewBag.FromScratch + " Make the length of the backstory roughly " + ViewBag.MaxLength + " characters.";
-            TempData["HoldPrompt"] = ViewBag.Prompt;
-            TempData["HoldTemp"] = temp.ToString();
-            TempData["HoldPresence"] = presence.ToString();
-            TempData["HoldFrequency"] = frequency.ToString();
 
-            return View();
+            var userId = _userManager.GetUserId(User);
+
+            try
+            {
+                if (_backstoryRepository.GetAllBackstoriesById(userId).Count() < 4)
+                {
+                    ViewBag.Error = "";
+
+
+                    var backstory = new Backstory();
+                    backstory.Prompt = "Create a Backstory for my Dungeons and Dragons Campaign. " + collection["r0"] +
+                                        ". Make the length of the backstory roughly" + collection["r1"] + "characters";
+
+
+                    backstory.UserId = userId;
+                    backstory.Id = 0;
+                    backstory.Name = "New Backstory";
+                    backstory.CreationDate = DateTime.Now;
+                    backstory.Prompt += "...";
+
+                    var APIKey = _config["APIKey"];
+                    var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
+                    var newBackstory = await api.CompletionsEndpoint.CreateCompletionAsync(backstory.Prompt, max_tokens: 1000, temperature: 2, presencePenalty: 0, frequencyPenalty: 0, model: OpenAI.Models.Model.Davinci);
+                    backstory.Completion = newBackstory.ToString();
+                    _backstoryRepository.AddOrUpdate(backstory);
+
+                }
+
+               
+            }
+
+            catch
+            {
+                throw new Exception("Too many materials in Database");
+            }
+
+            return RedirectToAction("Index", "Backstory");
+
         }
 
         // GET: HomeController1/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var userId = _userManager.GetUserId(User);
+            var map = new Backstory();
+            map = _backstoryRepository.GetBackstoryByIdandMaterialId(userId, id);
+
+            return View(map);
         }
 
         // GET: HomeController1/Create
@@ -95,36 +113,49 @@ namespace DWC_NightOwlProject.Controllers
         }
 
         [Authorize]
-        public async Task<ActionResult> Template(string answerOne, string answerTwo, string answerThree, string answerFour, int maxLength, double temp, double presence, double frequency)
+        public async Task<ActionResult> Template(IFormCollection collection)
         {
-            /*            var template = new TemplateViewModel();*/
-            if (User.Identity.IsAuthenticated)
+            var userId = _userManager.GetUserId(User);
+
+
+            if (_backstoryRepository.GetAllBackstoriesById(userId).Count() < 6)
             {
+                ViewBag.Error = "";
+
+
+                var backstory = new Backstory();
+                backstory.Prompt = "Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly "
+                                  + collection["r4"]
+                                  + ". Make the tone of the story" + collection["r0"]
+                                  + ". Make the villains of the story" + collection["r1"]
+                                  + ". Make the heroes of the story" + collection["r2"]
+                                  + ". Overall, the world is: " + collection["r3"]+
+                                  ". Make sure to use proper punctuation and grammar.";
 
 
 
-                ViewBag.AnswerOne = answerOne;
-                ViewBag.AnswerTwo = answerTwo;
-                ViewBag.AnswerThree = answerThree;
-                ViewBag.AnswerFour = answerFour;
-                ViewBag.MaxLength = maxLength.ToString();
-                ViewBag.Temp = temp;
-                ViewBag.Presence = presence;
-                ViewBag.Frequency = frequency;
-                ViewBag.SuggestionOne = " The overall tone is: ";
-                ViewBag.SuggestionTwo = " The villains are: ";
-                ViewBag.SuggestionThree = " The heros are: ";
-                ViewBag.SuggestionFour = " The world is: ";
-                ViewBag.Prompt = " Create a Dungeons and Dragons Backstory. Make the length of the backstory roughly " + ViewBag.MaxLength + " characters." + ViewBag.SuggestionOne + answerOne + ViewBag.SuggestionTwo + answerTwo + ViewBag.SuggestionThree + answerThree + ViewBag.SuggestionFour + answerFour;
-                TempData["HoldPrompt"] = ViewBag.Prompt;
-                TempData["HoldTemp"] = temp.ToString();
-                TempData["HoldPresence"] = presence.ToString();
-                TempData["HoldFrequency"] = frequency.ToString();
+
+                backstory.UserId = userId;
+                backstory.Id = 0;
+                backstory.Name = "New Backstory";
+                backstory.CreationDate = DateTime.Now;
+                backstory.Prompt += "...";
+
+                var APIKey = _config["APIKey"];
+                var api = new OpenAIClient(new OpenAIAuthentication(APIKey));
+                var backstoryList = await api.ImagesEndPoint.GenerateImageAsync(backstory.Prompt, 1, ImageSize.Large);
+                var newBackstory = await api.CompletionsEndpoint.CreateCompletionAsync(backstory.Prompt, max_tokens: 1000, temperature: 2, presencePenalty: 1, frequencyPenalty: 1, model: OpenAI.Models.Model.Davinci);
+                backstory.Completion = newBackstory.ToString();
+                _backstoryRepository.AddOrUpdate(backstory);
+
             }
 
 
 
-            return View();
+
+
+            return RedirectToAction("Index", "Backstory");
+
         }
 
         [Authorize]
@@ -197,7 +228,7 @@ namespace DWC_NightOwlProject.Controllers
             material.Prompt += "...";
             material.Completion = TempData.Peek("HoldCompletion").ToString();
 
-            backstoryRepository.AddOrUpdate(material);
+            _backstoryRepository.AddOrUpdate(material);
             return RedirectToAction("Index", material);
         }
 
@@ -243,9 +274,9 @@ namespace DWC_NightOwlProject.Controllers
         public ActionResult Delete(int id)
         {
             var userId = _userManager.GetUserId(User);
-            var material = new Backstory();
-            material = backstoryRepository.GetAllBackstoriesById(userId).First();
-            return View(material);
+            var backstory = new Backstory();
+            backstory = _backstoryRepository.GetBackstoryByIdandMaterialId(userId, id);
+            return View(backstory);
         }
 
         // POST: HomeController1/Delete/5
@@ -256,9 +287,10 @@ namespace DWC_NightOwlProject.Controllers
             try
             {
                 var userId = _userManager.GetUserId(User);
-                var material = new Material();
-                material = _materialRepository.GetBackstoryById(userId);
-                _materialRepository.Delete(material);
+                var backstory = new Backstory();
+                backstory = _backstoryRepository.GetBackstoryByIdandMaterialId(userId, id);
+                _backstoryRepository.Delete(backstory);
+
 
                 return RedirectToAction(nameof(Index));
             }

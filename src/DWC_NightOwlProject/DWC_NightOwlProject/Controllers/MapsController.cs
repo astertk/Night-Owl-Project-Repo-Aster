@@ -47,7 +47,6 @@ public class MapsController : Controller
 
         vm.maps = result;
         return View(vm);
-        return View();
     }
 
 
@@ -69,8 +68,7 @@ public class MapsController : Controller
                             "The map should have a square grid overlaying it. "
                                 + "It is: " + collection["r0"]
                                 + ". The biome type is: " + collection["r1"]
-                                + ". The map should have: " + collection["r2"]
-                                + " squares.";
+                                + ". The map should have: " + collection["r2"];
 
 
                 map.UserId = userId;
