@@ -443,4 +443,12 @@ label
 f{
 
 }
+/**/
+#sketch{
+position:absolute;
+z-index:100;
+}
 
+.control-label{
+    color:white;
+}
